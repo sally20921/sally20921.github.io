@@ -19,17 +19,17 @@ Proficient with deep learning and aritificial intelligence
 Proficient with computer architecture and system programming 
 
 
-## Working Experience  
+### Working Experience  
 
-### Intern, Pacific Law firm, Seoul, South Korea 
-### Intern, Music and Audio Research Group, Seoul, South Korea 
-### Intern, System Software and Architecture Laboratory 
-
-
-## Awards/Publications 
+#### Intern, Pacific Law firm, Seoul, South Korea 
+#### Intern, Music and Audio Research Group, Seoul, South Korea 
+#### Intern, System Software and Architecture Laboratory 
 
 
+### Awards/Publications 
 
-## Research Projects 
 
-## Others 
+
+### Research Projects 
+
+### Others 
