@@ -16,7 +16,6 @@ avatar: /images/profile.jpeg
 
 # List of links in the navigation bar
 navbar-links:
-  Home: "about-me"
   About Me: "about-me"
 
 #
