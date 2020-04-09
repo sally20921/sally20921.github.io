@@ -30,7 +30,7 @@ permalink: /about-me/
 
 ## Relevant Courses 
 
-#### Major GPA: 3.61 / 4.3
+### Major GPA: 3.61 / 4.3
 
 - [Data Structures](https://cse.snu.ac.kr/course/자료구조) (A+)
 - [Algorithms](https://cse.snu.ac.kr/course/알고리즘) (A-)
@@ -53,18 +53,18 @@ permalink: /about-me/
 
 ## Working Experience  
 
-#### [Pacific Law firm](http://www.bkl.co.kr/main/en/main.jsp#law/main.jsp), Seoul, South Korea (02/2018)
+### [Pacific Law firm](http://www.bkl.co.kr/main/en/main.jsp#law/main.jsp), Seoul, South Korea (02/2018)
 - position: winter research intern, lawyer assistance 
 - team: labor law  
 - working on minimum wage research assisting lawyers 
 - [paper](/doc/Pacific_paper.pdf)
 
-#### [Music and Audio Research Group](http://marg.snu.ac.kr), Seoul, South Korea (07/2019 - 08/2019)
+### [Music and Audio Research Group](http://marg.snu.ac.kr), Seoul, South Korea (07/2019 - 08/2019)
 - position: summer research intern 
 - working on developing end-to-end deep learning algorithm for lyric alignment
 - [research project](https://sally20921.github.io/)
 
-#### [System Software and Architecture Laboratory](http://csl.snu.ac.kr), Seoul,South Korea (09/2019 - present)
+### [System Software and Architecture Laboratory](http://csl.snu.ac.kr), Seoul,South Korea (09/2019 - present)
 - position: undergraduate research intern 
 - working on developing key-value stores for Key Value SSDs
 - [research project](https://sally20921.github.io/)
@@ -81,14 +81,14 @@ permalink: /about-me/
 
 ## Research Projects 
 
-#### Development of HDR Algorithm, LG Display (09/2018 - 12/2018)
+### Development of HDR Algorithm, LG Display (09/2018 - 12/2018)
 - [code](https://github.com/sally20921/Final_SLchecked) 
 - [report](/doc/HDR/HDR_paper.pdf)
 - [poster1](/doc/HDR/presentation1.jpeg)
 - [poster2](/doc/presentation2.jpeg)
 - [picture](/doc/pic.jpeg)
 
-##### GWAJAMS Full Stack Development, Naver Hackerton (03/2019 - 02/2020)
+### GWAJAMS Full Stack Development, Naver Hackerton (03/2019 - 02/2020)
 - [wiki](https://github.com/swapp201901-team9/frontend/wiki/Design-and-Planning)
 - [code_frontend](https://github.com/swapp201901-team9/frontend)
 - [code_backend](https://github.com/swapp201901-team9/backend)
@@ -96,11 +96,15 @@ permalink: /about-me/
 - [poster](/doc/GWAJAMS/poster.png)
 - [picture](/doc/GWAJAMS/pic.jpeg)
 
-#### End-to-End Lyric Alignment Algorithm, Music and Audio Research Group (07/2019 - 08/2019)
+### Development of End-to-End Lyric Alignment Algorithm, Music and Audio Research Group (07/2019 - 08/2019)
 - [code]() 
-- [report]()  
+- [report]()
 
-#### Development of a Key Value Store that supports LevelDB API for Key Value SSDs(09/2019 - present) 
+### Development of Recommendation System Using Attention Mechanism, Data Mining Laboratory (01/2020 - 02/2020)
+- [code]() 
+- [presentation](ATRank/presentation.pdf)
+
+### Development of a Key Value Store that supports LevelDB API for Key Value SSDs(09/2019 - present) 
 - [paper1](/doc/KVSSD/LevelDB_paper.pdf) 
 - [paper2](coming soon)
 - [paper3](coming soon)
