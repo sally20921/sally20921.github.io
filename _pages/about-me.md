@@ -36,7 +36,7 @@ permalink: /about-me/
 - [Algorithms](https://cse.snu.ac.kr/course/알고리즘) (A-)
 - [Computer Programming](https://cse.snu.ac.kr/course/컴퓨터프로그래밍) (B+)
 
-- [Introduction to Deep Learning] (A0)
+- Introduction to Deep Learning (A0)
 
 - [Creative Integrated Design1](https://cse.snu.ac.kr/course/창의적통합설계1) (A0)
 - [General Concepts for Computers and Their Application](https://cse.snu.ac.kr/course/컴퓨터의-개념-및-실습-0) (A0)
