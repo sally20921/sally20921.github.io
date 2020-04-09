@@ -9,8 +9,12 @@ permalink: /about-me/
 undergraduate student at Seoul National University 
 majoring in Computer Science and Engineering 
 
+github: sally20921
+
 ### Education 
- 
+#### Seoul National University 
+#### Jinmyeong Girls' High School
+Graduated summa cum laude 
 
 ### Professional Skills 
 
@@ -26,10 +30,13 @@ Proficient with computer architecture and system programming
 #### Intern, System Software and Architecture Laboratory 
 
 
-### Awards/Publications 
+### Publications 
 
-
+### Awards 
 
 ### Research Projects 
 
-### Others 
+### Language Skills
+English: TOEIC 990, TOEIC  Speaking Test 160(Level 7)
+Chinese: double major in Chinese Language and Literature
+Korean: mother language
