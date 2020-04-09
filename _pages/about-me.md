@@ -82,13 +82,20 @@ permalink: /about-me/
 ## Research Projects 
 
 ### Development of HDR Algorithm, LG Display (09/2018 - 12/2018)
-- [code](https://github.com/sally20921/Final_SLchecked) 
+This project aims to develop an full Android application of HDR (high dynamic range) camera. 
+We modified Exposure Fusion algorithm and developed a new HDR algorithm to get better result images. 
+The exposure fusion algorithm was developed by Tom Mertens, Jan Kautz, Frank Van Reeth from Hasselt University and University College London. Here is a link to their paper: [link](https://mericam.github.io/papers/exposure_fusion_reduced.pdf)
+
+- [code](https://github.com/peterhyun/ExposureFusion_Android) 
 - [report](/doc/HDR/HDR_paper.pdf)
 - [poster1](/doc/HDR/presentation1.jpeg)
 - [poster2](/doc/presentation2.jpeg)
 - [picture](/doc/pic.jpeg)
 
 ### GWAJAMS Full Stack Development, Naver Hackerton (03/2019 - 02/2020)
+This project aims to develop a website using React/Redux for frontend, and Python Django for backend. 
+The website GWAJAMS helps a specific organization design, comment, and vote on uniforms they want to design.
+
 - [wiki](https://github.com/swapp201901-team9/frontend/wiki/Design-and-Planning)
 - [code_frontend](https://github.com/swapp201901-team9/frontend)
 - [code_backend](https://github.com/swapp201901-team9/backend)
@@ -97,14 +104,17 @@ permalink: /about-me/
 - [picture](/doc/GWAJAMS/pic.jpeg)
 
 ### Development of End-to-End Lyric Alignment Algorithm, Music and Audio Research Group (07/2019 - 08/2019)
+
 - [code]() 
 - [report]()
 
 ### Development of Recommendation System Using Attention Mechanism, Data Mining Laboratory (01/2020 - 02/2020)
+
 - [code]() 
 - [presentation](ATRank/presentation.pdf)
 
-### Development of a Key Value Store that supports LevelDB API for Key Value SSDs(09/2019 - present) 
+### Development of a Key Value Store that supports LevelDB API for Key Value SSDs(09/2019 - present)
+
 - [paper1](/doc/KVSSD/LevelDB_paper.pdf) 
 - [paper2](coming soon)
 - [paper3](coming soon)
