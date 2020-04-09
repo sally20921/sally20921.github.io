@@ -10,7 +10,7 @@ permalink: /about-me/
 - majoring in [Computer Science and Engineering](https://cse.snu.ac.kr)
 
 
-## Education 
+# Education 
 
 #### [Seoul National University](https://www.snu.ac.kr) (02/2016 - present)
 
@@ -20,7 +20,7 @@ permalink: /about-me/
 
 - Graduated [summa cum laude](/doc/graduate.mp4)
 
-## Professional Skills 
+# Professional Skills 
 
 - Proficient with Java, C/C++,Verilog
 - Proficient with Python, Pytorch, OpenCL
@@ -28,7 +28,7 @@ permalink: /about-me/
 - Proficient in deep learning and aritificial intelligence areas
 - Proficient in computer architecture and system programming areas 
 
-## Relevant Courses 
+# Relevant Courses 
 
 ### Major GPA: 3.61 / 4.3
 
@@ -51,7 +51,7 @@ permalink: /about-me/
 
 
 
-## Working Experience  
+# Working Experience  
 
 ### [Pacific Law firm](http://www.bkl.co.kr/main/en/main.jsp#law/main.jsp), Seoul, South Korea (02/2018)
 - position: winter research intern, lawyer assistance 
@@ -62,24 +62,22 @@ permalink: /about-me/
 ### [Music and Audio Research Group](http://marg.snu.ac.kr), Seoul, South Korea (07/2019 - 08/2019)
 - position: summer research intern 
 - working on developing end-to-end deep learning algorithm for lyric alignment
-- [research project](https://sally20921.github.io/)
 
 ### [System Software and Architecture Laboratory](http://csl.snu.ac.kr), Seoul,South Korea (09/2019 - present)
 - position: undergraduate research intern 
 - working on developing key-value stores for Key Value SSDs
-- [research project](https://sally20921.github.io/)
 
 
-## Publications 
+# Publications 
 
 - [Multimodal Dual Attention Networks for 2019 DramaQA](/doc/dramaQA/dramaQA_paper.pdf), 2019 Korea Software Congress 
 - [Performance Evaluation of LevelDB on Key Value SSD](/doc/KVSSD/LevelDB_paper.pdf), 2019 Korea Software Congress 
 
-## Awards 
+# Awards 
 
 - 2019 DramaQA Challenge [2nd place](/doc/dramaQA/2019_2nd.jpg)(prize 1,500,000 won), Korea Software Congress 
 
-## Research Projects 
+# Research Projects 
 
 ### Development of HDR Algorithm, LG Display (09/2018 - 12/2018)
 This project aims to develop an full Android application of HDR (high dynamic range) camera. 
@@ -104,27 +102,25 @@ The website GWAJAMS helps a specific organization design, comment, and vote on u
 - [picture](/doc/GWAJAMS/pic.jpeg)
 
 ### Development of End-to-End Lyric Alignment Algorithm, Music and Audio Research Group (07/2019 - 08/2019)
-
-- [code]() 
+In the last decade, there has been considerable interest in digital music services that display the lyrics of songs that are synchronized with their audio. This project aims to develop an automatic lyrics-to-audio alignment system that could reduce huge amount of time and labor required to manually construct lyric time stamps. 
 - [report]()
 
-### Development of Recommendation System Using Attention Mechanism, Data Mining Laboratory (01/2020 - 02/2020)
-
-- [code]() 
+### Building A Multi-Behavior Recommendation System Using Attention Mechanism, Data Mining Laboratory (01/2020 - 02/2020)
+Given user behavior data of multiple types, this project aims to predict users' next behaviors of target type. An algorithm was created that captures the sequential patterns by using multihead attention mechanism. This algorithm improves the previous algorithm that was designed by using RNN (recurrent neural networks).
 - [presentation](ATRank/presentation.pdf)
 
 ### Development of a Key Value Store that supports LevelDB API for Key Value SSDs(09/2019 - present)
-
+This project aims to design a LevelDB-like key-value store that supports range queries, snapshots, etc. for KV SSDs. By replacing block SSD with KV SSD and designing a software layer to provide more operations mentioned above, this project achieves significant performance improvement compared to state-of-the-art LSM-tree based key-value store such as LevelDB. 
 - [paper1](/doc/KVSSD/LevelDB_paper.pdf) 
-- [paper2](coming soon)
-- [paper3](coming soon)
+- paper2 coming soon
+- paper3 coming soon
 
 
-## Language Skills
+# Language Skills
 - English: TOEIC 990, TOEIC  Speaking Test 160(Level 7)
 - Chinese: double major in Chinese Language and Literature
 - Korean: mother language
 
-## Club Activities
+# Club Activities
 - Member of SNUCSE Web Administrator Club (Bacchus)
 - Former vice-president of Computer Study Club (SCSC)
