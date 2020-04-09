@@ -25,8 +25,8 @@ permalink: /about-me/
 - Proficient with Java, C/C++,Verilog
 - Proficient with Python, Pytorch, OpenCL
 - Proficient with Django, React/Redux, Travis CI
-- Proficient with deep learning and aritificial intelligence 
-- Proficient with computer architecture and system programming 
+- Proficient in deep learning and aritificial intelligence areas
+- Proficient in computer architecture and system programming areas 
 
 ## Relevant Courses 
 
@@ -77,7 +77,7 @@ permalink: /about-me/
 
 ## Awards 
 
-- 2019 DramaQA Challenge [2nd place](/doc/dramaQA/2019_2nd.jpg)(prize 1,500,000 won), 2019 Korea Software Congress 
+- 2019 DramaQA Challenge [2nd place](/doc/dramaQA/2019_2nd.jpg)(prize 1,500,000 won), Korea Software Congress 
 
 ## Research Projects 
 
@@ -92,19 +92,18 @@ permalink: /about-me/
 - [wiki](https://github.com/swapp201901-team9/frontend/wiki/Design-and-Planning)
 - [code_frontend](https://github.com/swapp201901-team9/frontend)
 - [code_backend](https://github.com/swapp201901-team9/backend)
-- [website]() 
-- [report]()
-- [poster]()
-- [picture]()
+- [report](/doc/GWAJAMS/paper.pdf)
+- [poster](/doc/GWAJAMS/poster.png)
+- [picture](/doc/GWAJAMS/pic.jpeg)
 
 #### End-to-End Lyric Alignment Algorithm, Music and Audio Research Group (07/2019 - 08/2019)
 - [code]() 
 - [report]()  
 
 #### Development of a Key Value Store that supports LevelDB API for Key Value SSDs(09/2019 - present) 
-- [paper1]() 
-- [paper2]()
-- [paper3]()
+- [paper1](/doc/KVSSD/LevelDB_paper.pdf) 
+- [paper2](coming soon)
+- [paper3](coming soon)
 
 
 ## Language Skills
