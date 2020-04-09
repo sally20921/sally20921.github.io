@@ -15,8 +15,8 @@ description: sally20921@snu.ac.kr
 avatar: /images/profile.jpeg
 
 # List of links in the navigation bar
-navbar-links:
-  About Me: "about-me"
+#navbar-links:
+#  About Me: "about-me"
 
 #
 # Flags below are optional
