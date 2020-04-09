@@ -13,6 +13,7 @@ github: https://github.com/sally20921
 
 ### Education 
 #### Seoul National University 
+present 
 #### Jinmyeong Girls' High School
 Graduated summa cum laude 
 
@@ -48,20 +49,33 @@ Electrical and Electronic Cirtuits (A-)
 
 ### Working Experience  
 
-#### Intern, Pacific Law firm, Seoul, South Korea 
-#### Intern, Music and Audio Research Group, Seoul, South Korea 
-#### Intern, System Software and Architecture Laboratory 
+#### Pacific Law firm, Seoul, South Korea (02/2018)
+position: winter research intern, lawyer assistance 
+team: labor law  
+working on minimum wage research assisting lawyers 
+
+#### Music and Audio Research Group, Seoul, South Korea (07/2019 - 08/2019)
+position: summer research intern 
+working on developing end-to-end deep learning algorithm for lyric alignment 
+
+#### System Software and Architecture Laboratory (09/2019 - present)
+position: undergraduate research intern 
+working on developing key-value stores for Key Value SSDs
 
 
 ### Publications 
-Performance Evaluation of LevelDB on Key Value SSD
+Multimodal Dual Attention Networks for 2019 DramaQA, Korea Software Congress 
+Performance Evaluation of LevelDB on Key Value SSD, Korea Software Congress 
 
 ### Awards 
+
 2019 DramaQA Challenge 2nd place, Korea Software Congress 
+
 ### Research Projects 
-Development of HDR Algorithm, LG Display
-GWAJAMS Full Stack Development, Naver Hackerton
-End-to-End Lyric Alignment Algorithm, Music and Audio Research Group
+#### Development of HDR Algorithm, LG Display (09/2018 - 12/2018)
+#### GWAJAMS Full Stack Development, Naver Hackerton (03/2019 - 02/2020)
+#### End-to-End Lyric Alignment Algorithm, Music and Audio Research Group (07/2019 - 08/2019)
+#### Development of a Key Value Store that supports LevelDB API for Key Value SSDs(09/2019 - present) 
 
 
 
