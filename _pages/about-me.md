@@ -4,7 +4,7 @@ title: About Me
 permalink: /about-me/
 ---
 
-## Personal Information 
+# Personal Information 
 
 - undergraduate student at [Seoul National University](https://www.snu.ac.kr)
 - majoring in [Computer Science and Engineering](https://cse.snu.ac.kr)
