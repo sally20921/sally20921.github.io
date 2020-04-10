@@ -87,8 +87,8 @@ The exposure fusion algorithm was developed by Tom Mertens, Jan Kautz, Frank Van
 - [code](https://github.com/peterhyun/ExposureFusion_Android) 
 - [report](/doc/HDR/HDR_paper.pdf)
 - [poster1](/doc/HDR/presentation1.jpeg)
-- [poster2](/doc/presentation2.jpeg)
-- [picture](/doc/pic.jpeg)
+- [poster2](/doc/HDR/presentation2.jpeg)
+- [picture](/doc/HDR/pic.jpeg)
 
 ### GWAJAMS Full Stack Development, Naver Hackerton (03/2019 - 02/2020)
 This project aims to develop a website using React/Redux for frontend, and Python Django for backend. 
