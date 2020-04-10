@@ -103,7 +103,7 @@ The website GWAJAMS helps a specific organization design, comment, and vote on u
 
 ### Development of End-to-End Lyric Alignment Algorithm, Music and Audio Research Group (07/2019 - 08/2019)
 In the last decade, there has been considerable interest in digital music services that display the lyrics of songs that are synchronized with their audio. This project aims to develop an automatic lyrics-to-audio alignment system that could reduce huge amount of time and labor required to manually construct lyric time stamps. 
-- [code] (https://github.com/sally20921/lyric_alignment.git) 
+- [code](https://github.com/sally20921/lyric_alignment.git) 
 - [report]()
 
 ### Building A Multi-Behavior Recommendation System Using Attention Mechanism, Data Mining Laboratory (01/2020 - 02/2020)
