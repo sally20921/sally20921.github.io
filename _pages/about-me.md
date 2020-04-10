@@ -101,6 +101,12 @@ The website GWAJAMS helps a specific organization design, comment, and vote on u
 - [poster](/doc/GWAJAMS/poster.png)
 - [picture](/doc/GWAJAMS/pic.jpeg)
 
+### Development of a Key Value Store that supports LevelDB API for Key Value SSDs(09/2019 - present)
+This project aims to design a LevelDB-like key-value store that supports range queries, snapshots, etc. for KV SSDs. By replacing block SSD with KV SSD and designing a software layer to provide more operations mentioned above, this project achieves significant performance improvement compared to state-of-the-art LSM-tree based key-value store such as LevelDB. Here is a slide that describes the characteristics of KVSSD: [link](https://www.systor.org/2019/slides/S8P1%20Towards%20Building%20a%20High-performance,%20Scale-in%20Key-value%20Storage%20System.pdf)
+- [paper1](/doc/KVSSD/LevelDB_paper.pdf) 
+- paper2 coming soon
+- paper3 coming soon
+
 ### Development of End-to-End Lyric Alignment Algorithm, Music and Audio Research Group (07/2019 - 08/2019)
 In the last decade, there has been considerable interest in digital music services that display the lyrics of songs that are synchronized with their audio. This project aims to develop an automatic lyrics-to-audio alignment system that could reduce huge amount of time and labor required to manually construct lyric time stamps. Here is the paper that provided the baseline for this project: [link](https://arxiv.org/pdf/1902.06797.pdf)
 - [code](https://github.com/sally20921/lyric_alignment.git) 
@@ -110,12 +116,6 @@ In the last decade, there has been considerable interest in digital music servic
 Given user behavior data of multiple types, this project aims to predict users' next behaviors of target type. An algorithm was created that captures the sequential patterns by using multihead attention mechanism. This algorithm improves the previous algorithm that was designed by using RNN (recurrent neural networks). Here is a paper about Recommendation System that was originally designed with RNN : [link](https://arxiv.org/pdf/1511.06939.pdf)
 - [code](https://github.com/sally20921/Multi-Behavior-Recommendation-System)
 - [presentation](ATRank/presentation.pdf)
-
-### Development of a Key Value Store that supports LevelDB API for Key Value SSDs(09/2019 - present)
-This project aims to design a LevelDB-like key-value store that supports range queries, snapshots, etc. for KV SSDs. By replacing block SSD with KV SSD and designing a software layer to provide more operations mentioned above, this project achieves significant performance improvement compared to state-of-the-art LSM-tree based key-value store such as LevelDB. Here is a slide that describes the characteristics of KVSSD: [link](https://www.systor.org/2019/slides/S8P1%20Towards%20Building%20a%20High-performance,%20Scale-in%20Key-value%20Storage%20System.pdf)
-- [paper1](/doc/KVSSD/LevelDB_paper.pdf) 
-- paper2 coming soon
-- paper3 coming soon
 
 
 # Language Skills
