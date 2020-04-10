@@ -111,13 +111,11 @@ This project aims to design a LevelDB-like key-value store that supports range q
 In the last decade, there has been considerable interest in digital music services that display the lyrics of songs that are synchronized with their audio. This project aims to develop an automatic lyrics-to-audio alignment system that could reduce huge amount of time and labor required to manually construct lyric time stamps. Here is the paper that provided the baseline for this project: [link](https://arxiv.org/pdf/1902.06797.pdf)
 - [code](https://github.com/sally20921/lyric_alignment.git)
 - [report1](/doc/LyricAlignment/report1.pdf)
-- [report2] (updated soon)
 
 ### Building A Multi-Behavior Recommendation System Using Attention Mechanism, Data Mining Laboratory (01/2020 - 02/2020)
 Given user behavior data of multiple types, this project aims to predict users' next behaviors of target type. An algorithm was created that captures the sequential patterns by using multihead attention mechanism. This algorithm improves the previous algorithm that was designed by using RNN (recurrent neural networks). Here is a paper about Recommendation System that was originally designed with RNN : [link](https://arxiv.org/pdf/1511.06939.pdf)
 - [code](https://github.com/sally20921/Multi-Behavior-Recommendation-System)
 - [paper review](/doc/ATRank/paper_review.pdf)
-- [report] (updated soon)
 - [presentation](ATRank/presentation.pdf)
 
 
