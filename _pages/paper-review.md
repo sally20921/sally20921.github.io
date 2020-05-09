@@ -13,6 +13,7 @@ permalink: /paper-review/
 - Caron, Mathilde, et al. "Deep clustering for unsupervised learning of visual features." Proceedings of the European Conference on Computer Vision (ECCV). 2018.
 - Hadsell, Raia, Sumit Chopra, and Yann LeCun. "Dimensionality reduction by learning an invariant mapping." 2006 IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR'06). Vol. 2. IEEE, 2006.
 - Xie, Qizhe, et al. "Unsupervised data augmentation." arXiv preprint arXiv:1904.12848 (2019).
+Luo, Zelun, et al. "Label efficient learning of transferable representations acrosss domains and tasks." Advances in Neural Information Processing Systems. 2017.
 - Xie, Shaoan, et al. "Learning semantic representations for unsupervised domain adaptation." International Conference on Machine Learning. 2018.
 - Chen, Ting, et al. "A simple framework for contrastive learning of visual representations." arXiv preprint arXiv:2002.05709 (2020).
 
