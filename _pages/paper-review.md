@@ -5,7 +5,7 @@ permalink: /paper-review/
 ---
 (updated: 2020/05/09)
 
-### Unsupervised Domain Adaptation on Mobile/Edge Devices (05/2020 - present)  
+# Unsupervised Domain Adaptation on Mobile/Edge Devices (05/2020 - present)  
 - Becker, Suzanna, and Geoffrey E. Hinton. "Self-organizing neural network that discovers surfaces in random-dot stereograms." Nature 355.6356 (1992): 161-163.
 - Asano, Yuki M., Christian Rupprecht, and Andrea Vedaldi. "A critical analysis of self-supervision, or what we can learn from a single image." arXiv preprint arXiv:1904.13132 (2019).
 - Pan, Sinno Jialin, and Qiang Yang. "A survey on transfer learning." IEEE Transactions on knowledge and data engineering 22.10 (2009): 1345-1359.
@@ -15,7 +15,7 @@ permalink: /paper-review/
 - Chen, Ting, et al. "A simple framework for contrastive learning of visual representations." arXiv preprint arXiv:2002.05709 (2020).
 
 
-### Development of a Key Value Store that supports LevelDB API for Key Value SSDs (09/2019 - 05/2020)
+# Development of a Key Value Store that supports LevelDB API for Key Value SSDs (09/2019 - 05/2020)
 - Bender, Michael A., et al. "An Introduction to Bε-trees and Write-Optimization." ; login: 40.5 (2015). [paper review](/doc/KVSSD/b.pdf)
 - Kang, Yangwook, et al. "Towards building a high-performance, scale-in key-value storage system." Proceedings of the 12th ACM International Conference on Systems and Storage. 2019. [paper review1](/doc/KVSSD/KVSSD.pdf)/ [paper review2](/doc/KVSSD/SSD.pdf)
 - Papagiannis, Anastasios, et al. "An efficient memory-mapped key-value store for flash storage." Proceedings of the ACM Symposium on Cloud Computing. 2018. [paper review1](/doc/KVSSD/Kreon.pdf)/ [paper review2](/doc/KVSSD/COW.pdf)
