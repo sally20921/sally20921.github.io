@@ -3,6 +3,7 @@ layout: page
 title: About Me
 permalink: /about-me/
 ---
+(updated: 2020/05/09)
 
 # Personal Information 
 
@@ -63,15 +64,21 @@ permalink: /about-me/
 - position: summer research intern 
 - working on developing end-to-end deep learning algorithm for lyric alignment
 
-### [System Software and Architecture Laboratory](http://csl.snu.ac.kr), Seoul,South Korea (09/2019 - present)
+### [System Software and Architecture Laboratory](http://csl.snu.ac.kr), Seoul,South Korea (09/2019 - 05/2020)
 - position: undergraduate research intern 
 - working on developing key-value stores for Key Value SSDs
+
+### [Computing and Memory Architecture Laboratory](http://cmalab.snu.ac.kr/), Seoul,South Korea (05/2020 - present)
+- position: undergraduate research intern 
+- working on unsupervised domain adaptation on mobile/edge devices 
 
 
 # Publications 
 
 - [Multimodal Dual Attention Networks for 2019 DramaQA](/doc/dramaQA/dramaQA_paper.pdf), 2019 Korea Software Congress 
 - [Performance Evaluation of LevelDB on Key Value SSD](/doc/KVSSD/LevelDB_paper.pdf), 2019 Korea Software Congress 
+- [LevelKV: A Persistent 𝐵+-Tree Based Key-Value Store for Key-Value SSD](updated soon), 2020 Korea Computer Congress
+- [𝐿𝑒𝑣𝑒𝑙𝐾𝑉*: Checkpoint Based Persistent Key Value Store for Key-Value SSD](updated soon), 2020 APSys
 
 # Awards 
 
@@ -79,16 +86,25 @@ permalink: /about-me/
 
 # Research Projects 
 
-### Development of HDR Algorithm, LG Display (09/2018 - 12/2018)
-This project aims to develop an full Android application of HDR (high dynamic range) camera. 
-We modified Exposure Fusion algorithm and developed a new HDR algorithm to get better result images. 
-The exposure fusion algorithm was developed by Tom Mertens, Jan Kautz, Frank Van Reeth from Hasselt University and University College London. Here is a link to their paper: [link](https://mericam.github.io/papers/exposure_fusion_reduced.pdf)
+### Unsupervised Domain Adaptation on Mobile/Edge Devices (05/2020 - present)  
+This project aims to develop an unsupervised domain adaptation algorithm that improves the state-of-the-art algorithm. 
 
-- [code](https://github.com/peterhyun/ExposureFusion_Android) 
-- [report](/doc/HDR/HDR_paper.pdf)
-- [poster1](/doc/HDR/presentation1.jpeg)
-- [poster2](/doc/HDR/presentation2.jpeg)
-- [picture](/doc/HDR/pic.jpeg)
+### Development of a Key Value Store that supports LevelDB API for Key Value SSDs(09/2019 - 05/2020)
+This project aims to design a LevelDB-like key-value store that supports range queries, snapshots, etc. for KV SSDs. By replacing block SSD with KV SSD and designing a software layer to provide more operations mentioned above, this project achieves significant performance improvement compared to state-of-the-art LSM-tree based key-value store such as LevelDB. Here is a slide that describes the characteristics of KVSSD: [link](https://www.systor.org/2019/slides/S8P1%20Towards%20Building%20a%20High-performance,%20Scale-in%20Key-value%20Storage%20System.pdf)
+- [paper1](/doc/KVSSD/LevelDB_paper.pdf) 
+- paper2 coming soon
+- paper3 coming soon
+
+### Building A Multi-Behavior Recommendation System Using Attention Mechanism, Data Mining Laboratory (01/2020 - 02/2020)
+Given user behavior data of multiple types, this project aims to predict users' next behaviors of target type. An algorithm was created that captures the sequential patterns by using multihead attention mechanism. This algorithm improves the previous algorithm that was designed by using RNN (recurrent neural networks). Here is a paper about Recommendation System that was originally designed with RNN : [link](https://arxiv.org/pdf/1511.06939.pdf)
+- [code](https://github.com/sally20921/Multi-Behavior-Recommendation-System)
+- [paper review](/doc/ATRank/paper_review.pdf)
+- [presentation](ATRank/presentation.pdf)
+
+### Development of End-to-End Lyric Alignment Algorithm, Music and Audio Research Group (07/2019 - 08/2019)
+In the last decade, there has been considerable interest in digital music services that display the lyrics of songs that are synchronized with their audio. This project aims to develop an automatic lyrics-to-audio alignment system that could reduce huge amount of time and labor required to manually construct lyric time stamps. Here is the paper that provided the baseline for this project: [link](https://arxiv.org/pdf/1902.06797.pdf)
+- [code](https://github.com/sally20921/lyric_alignment.git)
+- [report1](/doc/LyricAlignment/report1.pdf)
 
 ### GWAJAMS Full Stack Development, Naver Hackerton (03/2019 - 02/2020)
 This project aims to develop a website using React/Redux for frontend, and Python Django for backend. 
@@ -101,23 +117,17 @@ The website GWAJAMS helps a specific organization design, comment, and vote on u
 - [poster](/doc/GWAJAMS/poster.png)
 - [picture](/doc/GWAJAMS/pic.jpeg)
 
-### Development of a Key Value Store that supports LevelDB API for Key Value SSDs(09/2019 - present)
-This project aims to design a LevelDB-like key-value store that supports range queries, snapshots, etc. for KV SSDs. By replacing block SSD with KV SSD and designing a software layer to provide more operations mentioned above, this project achieves significant performance improvement compared to state-of-the-art LSM-tree based key-value store such as LevelDB. Here is a slide that describes the characteristics of KVSSD: [link](https://www.systor.org/2019/slides/S8P1%20Towards%20Building%20a%20High-performance,%20Scale-in%20Key-value%20Storage%20System.pdf)
-- [paper1](/doc/KVSSD/LevelDB_paper.pdf) 
-- paper2 coming soon
-- paper3 coming soon
 
-### Development of End-to-End Lyric Alignment Algorithm, Music and Audio Research Group (07/2019 - 08/2019)
-In the last decade, there has been considerable interest in digital music services that display the lyrics of songs that are synchronized with their audio. This project aims to develop an automatic lyrics-to-audio alignment system that could reduce huge amount of time and labor required to manually construct lyric time stamps. Here is the paper that provided the baseline for this project: [link](https://arxiv.org/pdf/1902.06797.pdf)
-- [code](https://github.com/sally20921/lyric_alignment.git)
-- [report1](/doc/LyricAlignment/report1.pdf)
+### Development of HDR Algorithm, LG Display (09/2018 - 12/2018)
+This project aims to develop an full Android application of HDR (high dynamic range) camera. 
+We modified Exposure Fusion algorithm and developed a new HDR algorithm to get better result images. 
+The exposure fusion algorithm was developed by Tom Mertens, Jan Kautz, Frank Van Reeth from Hasselt University and University College London. Here is a link to their paper: [link](https://mericam.github.io/papers/exposure_fusion_reduced.pdf)
 
-### Building A Multi-Behavior Recommendation System Using Attention Mechanism, Data Mining Laboratory (01/2020 - 02/2020)
-Given user behavior data of multiple types, this project aims to predict users' next behaviors of target type. An algorithm was created that captures the sequential patterns by using multihead attention mechanism. This algorithm improves the previous algorithm that was designed by using RNN (recurrent neural networks). Here is a paper about Recommendation System that was originally designed with RNN : [link](https://arxiv.org/pdf/1511.06939.pdf)
-- [code](https://github.com/sally20921/Multi-Behavior-Recommendation-System)
-- [paper review](/doc/ATRank/paper_review.pdf)
-- [presentation](ATRank/presentation.pdf)
-
+- [code](https://github.com/peterhyun/ExposureFusion_Android) 
+- [report](/doc/HDR/HDR_paper.pdf)
+- [poster1](/doc/HDR/presentation1.jpeg)
+- [poster2](/doc/HDR/presentation2.jpeg)
+- [picture](/doc/HDR/pic.jpeg)
 
 # Language Skills
 - English: TOEIC 990, TOEIC  Speaking Test 160(Level 7)
