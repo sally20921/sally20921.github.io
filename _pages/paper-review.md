@@ -15,8 +15,8 @@ permalink: /paper-review/
 - Xie, Qizhe, et al. "Unsupervised data augmentation." arXiv preprint arXiv:1904.12848 (2019).
 Luo, Zelun, et al. "Label efficient learning of transferable representations acrosss domains and tasks." Advances in Neural Information Processing Systems. 2017.
 Lee, Dong-Hyun. "Pseudo-label: The simple and efficient semi-supervised learning method for deep neural networks." Workshop on challenges in representation learning, ICML. Vol. 3. 2013.
-- Xie, Shaoan, et al. "Learning semantic representations for unsupervised domain adaptation." International Conference on Machine Learning. 2018.
-- Chen, Ting, et al. "A simple framework for contrastive learning of visual representations." arXiv preprint arXiv:2002.05709 (2020).
+- Xie, Shaoan, et al. "Learning semantic representations for unsupervised domain adaptation." International Conference on Machine Learning. 2018. [algorithm](/doc/DA/MSTN.pdf)
+- Chen, Ting, et al. "A simple framework for contrastive learning of visual representations." arXiv preprint arXiv:2002.05709 (2020). [algorithm](/doc/DA/SimCLR.pdf)
 
 
 # Development of a Key Value Store that supports LevelDB API for Key Value SSDs (09/2019 - 05/2020)
