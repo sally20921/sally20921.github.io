@@ -132,7 +132,7 @@ The exposure fusion algorithm was developed by Tom Mertens, Jan Kautz, Frank Van
 - [picture](/doc/HDR/pic.jpeg)
 
 # Language Skills
-- English: TOEIC 990, TOEIC  Speaking Test 160(Level 7)
+- English: TOEIC 990/990, TOEIC  Speaking Test 160(Level 7), New TEPS 555/600
 - Chinese: double major in Chinese Language and Literature
 - Korean: mother language
 
