@@ -77,7 +77,7 @@ permalink: /about-me/
 
 - [Multimodal Dual Attention Networks for 2019 DramaQA](/doc/dramaQA/dramaQA_paper.pdf), 2019 Korea Software Congress 
 - [Performance Evaluation of LevelDB on Key Value SSD](/doc/KVSSD/LevelDB_paper.pdf), 2019 Korea Software Congress 
-- [LevelKV: A Persistent 𝐵+-Tree Based Key-Value Store for Key-Value SSD] updated soon, 2020 Korea Computer Congress
+- [LevelKV: A Persistent 𝐵+-Tree Based Key-Value Store for Key-Value SSD] (/doc/KVSSD/LevelKV.pdf), 2020 Korea Computer Congress
 - [𝐿𝑒𝑣𝑒𝑙𝐾𝑉*: Checkpoint Based Persistent Key Value Store for Key-Value SSD] updated soon, 2020 APSys
 
 # Awards 
