@@ -6,15 +6,6 @@ permalink: /paper-review/
 (updated: 2020/05/09)
 
 # Unsupervised Domain Adaptation on Mobile/Edge Devices (05/2020 - present)  
-- Becker, Suzanna, and Geoffrey E. Hinton. "Self-organizing neural network that discovers surfaces in random-dot stereograms." Nature 355.6356 (1992): 161-163.
-- Asano, Yuki M., Christian Rupprecht, and Andrea Vedaldi. "A critical analysis of self-supervision, or what we can learn from a single image." arXiv preprint arXiv:1904.13132 (2019).
-- Pan, Sinno Jialin, and Qiang Yang. "A survey on transfer learning." IEEE Transactions on knowledge and data engineering 22.10 (2009): 1345-1359.
-- Wang, Mei, and Weihong Deng. "Deep visual domain adaptation: A survey." Neurocomputing 312 (2018): 135-153.
-- Caron, Mathilde, et al. "Deep clustering for unsupervised learning of visual features." Proceedings of the European Conference on Computer Vision (ECCV). 2018.
-- Hadsell, Raia, Sumit Chopra, and Yann LeCun. "Dimensionality reduction by learning an invariant mapping." 2006 IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR'06). Vol. 2. IEEE, 2006.
-- Xie, Qizhe, et al. "Unsupervised data augmentation." arXiv preprint arXiv:1904.12848 (2019).
-Luo, Zelun, et al. "Label efficient learning of transferable representations acrosss domains and tasks." Advances in Neural Information Processing Systems. 2017.
-Lee, Dong-Hyun. "Pseudo-label: The simple and efficient semi-supervised learning method for deep neural networks." Workshop on challenges in representation learning, ICML. Vol. 3. 2013.
 - Xie, Shaoan, et al. "Learning semantic representations for unsupervised domain adaptation." International Conference on Machine Learning. 2018. [summary](/doc/DA/MSTN.pdf)
 - Chen, Ting, et al. "A simple framework for contrastive learning of visual representations." arXiv preprint arXiv:2002.05709 (2020). [summary](/doc/DA/SimCLR.pdf)
 - Xie, Qizhe, et al. "Self-training with Noisy Student improves ImageNet classification." arXiv preprint arXiv:1911.04252 (2019). [summary](/doc/DA/NS.pdf)
