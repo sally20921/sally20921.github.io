@@ -10,6 +10,9 @@ permalink: /paper-review/
 - Chen, Ting, et al. "A simple framework for contrastive learning of visual representations." arXiv preprint arXiv:2002.05709 (2020). [summary](/doc/DA/SimCLR.pdf)
 - Xie, Qizhe, et al. "Self-training with Noisy Student improves ImageNet classification." arXiv preprint arXiv:1911.04252 (2019). [summary](/doc/DA/NS.pdf)
 - Chang, Woong-Gi, et al. "Domain-Specific Batch Normalization for Unsupervised Domain Adaptation." Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2019.[summary](/doc/DA/DSBN.pdf)
+- Ioffe, Sergey, and Christian Szegedy. "Batch normalization: Accelerating deep network training by reducing internal covariate shift." arXiv preprint arXiv:1502.03167 (2015). [summary](/doc/DA/BN.pdf)
+- Khosla, Prannay, et al. "Supervised contrastive learning." arXiv preprint arXiv:2004.11362 (2020). [summary](/doc/DA/SCL.pdf)
+
 
 
 # Development of a Key Value Store that supports LevelDB API for Key Value SSDs (09/2019 - 05/2020)
