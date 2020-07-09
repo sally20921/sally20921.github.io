@@ -12,7 +12,8 @@ permalink: /paper-review/
 - Chang, Woong-Gi, et al. "Domain-Specific Batch Normalization for Unsupervised Domain Adaptation." Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2019.[summary](/doc/DA/DSBN.pdf)
 - Ioffe, Sergey, and Christian Szegedy. "Batch normalization: Accelerating deep network training by reducing internal covariate shift." arXiv preprint arXiv:1502.03167 (2015). [summary](/doc/DA/BN.pdf)
 - Khosla, Prannay, et al. "Supervised contrastive learning." arXiv preprint arXiv:2004.11362 (2020). [summary](/doc/DA/SCL.pdf)
-
+- Grill, Jean-Bastien, et al. "Bootstrap Your Own Latent: A New Approach to Self-Supervised Learning." arXiv preprint arXiv:2006.07733 (2020). [summary](/doc/DA/BYOL.pdf)
+- Sun, Yu Ying et al. “Test-Time Training with Self-Supervision for Generalization under Distribution Shifts.” (2019). [summary](/doc/DA/test.pdf)
 
 
 # Development of a Key Value Store that supports LevelDB API for Key Value SSDs (09/2019 - 05/2020)
