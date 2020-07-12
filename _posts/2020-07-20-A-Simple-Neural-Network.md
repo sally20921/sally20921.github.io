@@ -252,7 +252,7 @@ optimizer = optim.SGD(net.parameters(), lr=lr)
 
 The optimizer object now has the model parameters. The `optim` package  provides a convenient function called `step()`, which does the parameter update based on the  strategy defined by the optimizer: 
 
-`
+`python
 for epoch in range(epochs):
  for batch in range(no_of_batches):
    start  = batch * batches
