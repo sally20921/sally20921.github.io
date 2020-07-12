@@ -22,11 +22,11 @@ html {
 
 body {
   background: #fff;
-  font-family: -system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  color: #404040;
+  font-family: 'FuturaPTLight';
+  color: #555;
   line-height: 1.7;
-  font-weight: 400;
-  font-size: 18px;
+  font-weight: bold;
+  font-size: 15pt;
   height: 100%;
 }
 
@@ -38,14 +38,14 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: -system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'FuturaPTLight';
   color: $darkerGray;
   font-weight: bold;
 
   line-height: 1.7;
   margin: 1em 0 15px;
   padding: 0;
-  text-align: center;
+  text-align: left;
 
   @include mobile {
     line-height: 1.4;
@@ -63,17 +63,17 @@ h2 {
   font-size: 24px;
 }
 
-@media (min-width: 769px){
-	.post h2::before, .post h2::after {
-	    content: "";
-	    display: inline-block;
-	    vertical-align: middle;
-	    width: 46px;
-	    height: 1px;
-	    background: rgb(192, 211, 218);
-	    margin: 0px 30px;
-	}
-}
+//@media (min-width: 769px){
+//	.post h2::before, .post h2::after {
+//	    content: "";
+//	    display: inline-block;
+//	    vertical-align: middle;
+//	    width: 46px;
+//	    height: 1px;
+//	    background: rgb(192, 211, 218);
+//	    margin: 0px 30px;
+//	}
+//}
 
 h3 {
   font-size: 20px;
@@ -81,7 +81,7 @@ h3 {
 
 h4 {
   font-size: 18px;
-  color: #222;
+  color: $gray;
 }
 
 p {
@@ -154,26 +154,6 @@ table tr td :last-child {
 .share-box {
   font-weight: bold;
   color: #222;
-}
-
-span[data-pullquote] {
-  display: block;
-
-  @include mobile {
-    display: none;
-  }
-}
-
-span[data-pullquote]:before {
-  content: attr(data-pullquote);
-  float: right;
-  width: 200px;
-  margin: 0 0 0.5em 30px;
-  padding: 0 -5% 0 0;
-  font-size: 1.3em;
-  font-style: italic;
-  color: green;
-  text-align: center;
 }
 
 a {
@@ -312,11 +292,6 @@ p > img {
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
-  text-align: left;
-
-  @include mobile {
-    text-align: center;
-  }
 }
 
 .site-description {
@@ -433,6 +408,16 @@ body:after {
     content: '';
 }
 
+@font-face {
+    font-family: EBGaramond;
+    src: url(fonts/EBGaramond-Regular.ttf);
+}
+
+@font-face {
+    font-family: FuturaPTLight;
+    src: url(fonts/FuturaPTLight.otf);
+}
+
 #bar {
     background: #000;
     height: 7px;
@@ -446,8 +431,8 @@ body:after {
 }
 
 .post h1{
-  font-family: -system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  text-align: center;
+  font-family: 'FuturaPTLight';
+  text-align: left;
   font-weight: bold;
   font-kerning: auto;
   font-feature-settings: "kern","liga","dlig","hlig","cswh";
@@ -455,7 +440,7 @@ body:after {
 }
 
 .page h1{
-  font-family: -system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'FuturaPTLight';
   text-align: center;
   font-weight: bold;
   font-kerning: auto;
