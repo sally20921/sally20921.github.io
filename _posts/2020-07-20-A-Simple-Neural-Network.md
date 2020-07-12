@@ -114,6 +114,7 @@ All the modules in PyTorch that  are  required to build a neural network are Pyt
 
 `net  =  FizBuzNet(input_size, hidden_size, output_size)`
 `
+```python
 class FizBuzNet(nn.Module):
  """
  2 layer network for predicting fiz or buz
@@ -130,7 +131,7 @@ class FizBuzNet(nn.Module):
   activated = torch.sigmoid(hidden)
   out  = self.out(activated)
   return out 
-`
+```
 - We have  defined the structure of FizBuzNet and wrapped it insdie a Python class inherited from `torch.nn.Module`. The `nn` module in PyTorch is the high-level API for  accessing all the popular layers in the deep learning world. 
 
 ### nn.Module
@@ -141,7 +142,7 @@ __call__ and backward(), and the user needs to override forward and __init__().
 - The user has the  option to build the layers in the  __init__() definition, which takes care of the weight and bias creation we  have done in the  novice model by hand. In our following `FizBuzNet`, lines in __init__() create the linear layers. The linear layer is also called the fully connected or dense layer, which does the matrix multiplication between the weights and the input, and bias addition, internally. 
 
 - Let's look at the  source code of `nn.Linear` from PyTorch, which should give us enough  understanding about how `nn.Module`works and how we can extend `nn.Module`  to  create  another custom module:
-`
+```python
 class Linear(torch.nn.Module):
  def __init__(self, in_features, out_features, bias):
   super(Linear, self).__init__()
@@ -151,7 +152,7 @@ class Linear(torch.nn.Module):
   self.bias = torch.nn.Parameter(torch.Tensor(out_features))
  def forward(self, input):
   return  input.matmul(self.weight.t())+self.bias
-`
+```
 
 - The `Parameter` class adds the weights and biases to the list of module parameters and 
 will be  available when you call `model.parameters()`. The initializer saves all the arguments as object attributes. 
@@ -167,12 +168,12 @@ apply()
 cuda() and cpu()
 `
 `model.cpu()` converts all the parameters to CPU tensors, which is handy when you have  more  than  a few parameters  in your model and converting each of them separately is cumbersome. 
-`
+```
 net.cpu() #convert all  parameters  to CPU tensors
 net.cuda() #convert all  parameters to GPU tensors
-`
+```
 - While  creating the  tensor itself, PyTorch allows you to  do this by passing  the tensro  type as an argument  to the  factory function. The ideal way to  make this decision is to test whether  CUDA is available or not with  PyTorch's inbuilt `cuda.is_available()` function and create tensors accordingly:
-`
+```python
 if torch.cuda.is_available():
  xtype =  torch.cuda.FloatTensor
  ytype =  torch.cuda.LongTensor
@@ -182,7 +183,7 @@ else:
  
 x = torch.from_numpy(trX).type(xtype)
 y = torch.from_numpy(trY).type(ytype)
-`
+```
 
 `
 train() and eval() 
@@ -194,7 +195,7 @@ parameters()
 `
 - A call on `parameters()` returns all the  model parameters, which are useful in the  case of optimizers or if you want to  do experiments with parameters. 
 
-`
+```python
 net =  FizBUzNet(input_size, hidden_size, output_size)
 #building graph
 #backpropagation
@@ -203,7 +204,7 @@ net =  FizBUzNet(input_size, hidden_size, output_size)
 with torch.no_grad():
  for p in net.parameters():
   p -= p.grad*lr
-`
+```
 `
 zero_grad()
 `
@@ -214,7 +215,7 @@ Other layers
 `
 - An important  layer that  comes with `nn.Module` is the sequential container, which provides an easy API to make a model object without having the user write the class structure  if the  structure of the model is sequential and straightforward. 
 
-`
+```python
 import torch.nn as nn
 
 net = nn.Sequential(
@@ -222,7 +223,7 @@ net = nn.Sequential(
       nn.Sigmoid(),
       nn.Linear(h, o),
       nn.Sigmoid())
-`
+```
 
 ## The Functional Module
 - The `nn.functional` module comes with operations we require  to connect the network nodes together. `F.linear` allows us to pass the weights and inuts and returns the  same value as if it were  a normal `matmul`. 
@@ -234,11 +235,11 @@ net = nn.Sequential(
 ## The Loss Function  
 -  We call the  loss functino to find the error. PyTorch comes with all the popular loss functions inbuilt  in the  `nn` module. Loss functions accept the logits and the actual value, and apply the loss functionality on them to find the loss score. 
 
-`
+```
 loss = nn.MSELoss()
 output  = loss(hyp, y_)
 output.backward()
-`
+```
 - The node returned by `loss(hyp, y_)` will then be the leaf node  on which we  can call backward to  find the gradients.
 
 ## Optimizers
@@ -252,8 +253,7 @@ optimizer = optim.SGD(net.parameters(), lr=lr)
 
 The optimizer object now has the model parameters. The `optim` package  provides a convenient function called `step()`, which does the parameter update based on the  strategy defined by the optimizer: 
 
-`python
-
+```python
 for epoch in range(epochs):
  for batch in range(no_of_batches):
    start  = batch * batches
@@ -265,6 +265,6 @@ for epoch in range(epochs):
    optimizer.zero_grad()
    loss.backward()
    optimizer.step() #update parameters
+```
 
-`
 - after the update, the user is responsible for zeroing the gradients. 
