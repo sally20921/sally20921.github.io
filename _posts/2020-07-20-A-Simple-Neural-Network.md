@@ -245,10 +245,11 @@ output.backward()
 -  There are  different  strategies for weight updates. The  one  we  used is  the most basic gradient descent  method. 
 - The  `optim` package is the  alternative  that PyTorch  provides to handle the weight updates efficiently. Additional  to that, the user can call `zero_grad` on the optimizer object once  it is  initialized with model parameters. 
 
-`
-optimizer = optim.SGD(net.parameters(), lr=lr)
 
 `
+optimizer = optim.SGD(net.parameters(), lr=lr)
+`
+
 The optimizer object now has the model parameters. The `optim` package  provides a convenient function called `step()`, which does the parameter update based on the  strategy defined by the optimizer: 
 
 `
