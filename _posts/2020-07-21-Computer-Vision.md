@@ -117,7 +117,7 @@ optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 trainloader, testloader = get_data()
 ```
 
--momentum is a very popular technique used along with  the optimization algorithm nowadays. We add a factor of the current gradient to the current  gradient itself to get a bigger value, which is then subtracted from the weights. Momentum accelerates the  movement of the  loss in the  direction of the minima analogous to  momentum in the  real world. 
+- momentum is a very popular technique used along with  the optimization algorithm nowadays. We add a factor of the current gradient to the current  gradient itself to get a bigger value, which is then subtracted from the weights. Momentum accelerates the  movement of the  loss in the  direction of the minima analogous to  momentum in the  real world. 
 
 ```python
 inputs, labels = data
