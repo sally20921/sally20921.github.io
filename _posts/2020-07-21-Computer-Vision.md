@@ -136,4 +136,120 @@ optimizer.step()
 - LinkNet exploits the idea of autoencoders, which used to be a data  compression technique. Autoencoders have two parts in their  architecture: an encoder and a decoder. The encoder encodes the input to  a low-dimensional space and the decoder decodes the input from the low-dimensional space. Autoencoders are widely used to reduce dimensionality in compression and so on. 
 - LinkNet consists of an initial block, a final block, and encoder block with  four convolutional modules in it,  and a decoder with four deconvolution modules. 
 The initial block downsamples the input image twice by using a strided convolution and a max-pooling layer. Then each convolution module in the encoder block downsamples the input once with strided convolution. The encoded output is then passed to the decoder block, which upsamples the input  with strided deconvolution once in each deconvolution block. The output from the decoder block then passes through  the final block. which upsamples twice. 
-- LinkNet is capable of reducing the number of parameters in  the architecture using  the idea of skip connection. 
+- LinkNet is capable of reducing the number of parameters in  the architecture using  the idea of skip connection. The encoder block communicates with  the decoder  block after each convolutional  block, which lets the  encoder block
+forget certain information after the  forward pass. Since  the output of the  encoder  block does not  have to keep  that information, the  number  of parameters can be  much less tahn for other existing architectures. 
+- Deconvolution can be vaguely described as the reverse of a convolution operation. It has many names, such as transpose convolution  and backward convolution  (since  the  operation is teh  back pass of convolution  while backpropagating). For  deconvolution  with padding and stride, the input image will have padding  around the pixels and will have zero valued pixels in between. The movement of the  kernel sliding window will remain the same in all cases. 
+-  The parallel horizontal line between encoder and decoder  in the LinkNet architecture is the skip connection representation. Skip connections help the  network to forget certain information during encoding  and look at  it again while decoding. This reduces the number of parameters required for the network, since the  amount of information that is needed for the network  to decode  and generate the  image  is relatively low.  
+
+#### Model 
+- *ConvBlock*  is a custom `nn.Module` class that implements the convolution and non-linearity. 
+- *DeconvBlock* is a custom `nn.Module` class that  implements the  deconvolution and non-linearity.
+- *nn.MaxPool2d* is an in-built PyTorch layer that does 2D max-pooling.
+- *EncoderBlock*
+- *DecoderBlock*
+
+```python
+class ConvBlock(nn.Module):
+  """LinkNet uses initial block with conv->batchnorm->relu"""
+  def __init__(self, inp, out, kernel, stride, pad, bias, act):
+    super().__init__()
+    if act:
+      self.conv_block = nn.Sequential(nn.Conv2d(inp, out, kernel, stride, pad, bias=bias), 
+                                    nn.BatchNorm2d(num_features=out),
+                                    nn.ReLU())
+    else:  
+      self.conv_block = nn.Sequential(nn.Conv2d(inp, out, kernel, stride, pad, bias=bias),
+                                      nn.BatchNorm2d(num_features=out))
+  
+  def forward(self, x):
+    return self.conv_block(x)
+```
+- a Boolean representing  whetehr bias is required or not, and a Boolean representing whether activation (ReLU) is required or not.
+- If *inplace* argument is ReLU is true, ReLU will be  applied on the data in place instead of creating  another memory  location. 
+- Here we use *BatchNorm2d* since we have four-dimensional data where one dimension is the batch size and another dimension is depth. *BatchNorm2d* accepts the number of features, epsilon value, momentum, and affine as arguments.
+
+```python
+class  DeconvBlock(nn.Module):
+  """LinkNet uses Deconv block with transposeconv->batchnorm->relu"""
+  def __init__(self, inp, out, kernel, stride, pad):
+    super().__init__()
+    self.conv_transpose = nn.ConvTranspose2d(inp, out, kernel, stride, pad)
+    self.batchnorm = nn.BatchNorm2d(out)
+    self.relu = nn.ReLU()
+    
+   def forward(self, x, output_size):
+    convt_out =  self.conv_transpose(x, output_size=output_size)
+    batchnormout = self.batchnorm(convt_out)
+    return self.relu(batchnormout)
+```
+
+```python
+class  EncoderBlock(nn.Module):
+  def __init__(self, inp, out):
+    super().__init__()
+    self.block1 =  nn.Sequential(ConvBlock(inp=inp, out=out, kernel=3, stride=2, pad=1, bias=True, act=True), 
+                                ConvBlock(inp=out, out=out,  kernel=3, stride=1, pad=1, bias=True, act=True))
+    self.block2 =  nn.Sequential(ConvBlock(inp=inp, out=out, kernel=3, stride=2, pad=1, bias=True, act=True), 
+                                ConvBlock(inp=out, out=out,  kernel=3, stride=1, pad=1, bias=True, act=True))
+    self.residual = ConvBlock(inp=inp, out=out, kernel=3,  stride=2, pad=1, bias=True, act=True)
+   
+   def forward(self, x):
+    out1 = self.block1(x)
+    residual  =  self.residual(x)
+    out2 =  self.block2(out1+residual)
+    return out2+out1
+```
+
+- just like  how  one  encoder  block  downsamples the  input by the factor  of  two, *DecoderBlock* upsamples the  input by a factor of two. 
+```python
+class DecoderBlock(nn.Module):
+  def __init__(self, inp, out):
+    super().__init__()
+    self.conv1 = ConvBlock(inp=inp, out=inp//4, kernel=1, stride=1,pad=0,bias=True, act=True)
+    self.deconv = DeconvBlock(inp=inp//4, out = inp, kernel=3,  stride=2,  pad=1)
+    self.conv2 = ConvBlock(inp=inp//4, out=out, kernel=1, stride=1, pad=0, bias=True, act=True)
+    
+  def forward(self, x, output_size):
+    conv1 =  self.conv1(x)
+    deconv = self.deconv(conv1, output_size=output_size)
+    conv2 = self.conv2(deconv)
+    return conv2
+```
+
+-  The four  decoder blocks upsample the  image  to compensate  for the  downsampling done by the four encoders. The strided convolution and max-pool layer before our encoder blocks also downsample the image twice. Compensating for  that,  we  have  two *DeconvBlock*s where  the *ConvBlock* placed between the *DeconvBlock* doesn't affect the dimension at all. 
+- The  forward call just chains all the initialized variables together. Also, we add the  output from the encoder output to the  decoder input of the next step. This is the skip connection we have seen before. 
+
+```python
+class  SegmentationModel(nn.Module):
+  def __init__(self):
+    super().__init__()
+    self.init_conv = ConvBlock(inp=3, out=64, kernel=7, stride=2, pad=3, bias=True, act=True)
+    self.init_maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
+    self.encoder1  = EncoderBlock(inp=64,out=64)
+    self.encoder2  = EncoderBlock(inp=64,  out=128)
+    self.encoder3 = EncoderBlock(inp=128, out=256)
+    self.encoder4 = EncoderBlock(inp=256,out=512)
+    self.decoder4 = DecoderBlock(inp=512,out=256)
+    self.decoder3 = DecoderBlock(inp=256,out=128)
+    self.decoder2  = DecoderBlock(inp=128, out=64)
+    self.decoder1  = DecoderBlock(inp=64,out=64)
+    self.final_deconv1 = DeconvBlock(inp=64, out=32,kernel=3,stride=2, pad=1)
+    self.final_conv = ConvBlock(inp=32, out=32, kernel=3, stride=1, pad=1, bias=True, act=True)
+    self.final_deconv2 = DeconvBlock(inp=32, out=2, kernel=2, stride=2, pad=0)
+   
+   def forward(self,x):
+   init_conv = self.init_conv(x)
+   init_maxpool = self.init_maxpool(init_conv)
+   e1 = self.encoder1(init_maxpool)
+   e2 = self.encoder2(e1)
+   e3 =  self.encoder3(e2)
+   e4  = self.encoder4(e3)
+   d4 = self.decoder4(e4, e3.size())+e3
+   d3  = self.decoder3(d4, d2.size())+e2
+   d2 =  self.decoder2(d3, e1.size())+e1
+   d1 = self.decoder1(d2, init_maxpool.size())
+   final_deconv1=self.final_deconv1(d1, init_conv.size())
+   final_conv = self.final_conv(final_deconv1)
+   final_deconv2=self.final_deconv(final_conv, x.size())
+   return  final_deconv2
+```
