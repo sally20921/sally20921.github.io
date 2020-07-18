@@ -53,5 +53,21 @@ def softmas(inputs):
 - indicates the  distance  between  what the  model believes the output distribution should be,  and  what  the  original distribution really is. 
 - cross entropy is a widely used alternative of  squared error
 - it is  used as  a loss function in neural networks which have softmax activations in the  output layer  
+- a combination  of  the entropy of  the  true  distribution *P*  and KL divergence between *P* and *Q*
 
 ![img](https://miro.medium.com/max/1400/1*ETtY7KCrzAlOmLeyDWE4Xg.png)
+- **S(y)** is the output of your softmax function. L is the ground truth! It is easy to  remember that the  log  only applies to Softmax output because the one-hot encoded ground truth almost  always have  zero entries, and we cannot take log  of zero. 
+
+### cross entropy loss in Deep Learning  
+![img](https://miro.medium.com/max/1400/1*70OE3A8sQn4Yl3VPTmChkA.png)
+- It sits  right  after softmax function, and it  takes the input from the  softmax function output and the true label.  
+- Remember the goal for cross entropy loss is to compare how  well  the  probability distribution output by softmax matches teh  one-hot-encoded  ground truth label of the  data. 
+- for  a classification task in neural networks, we are  usually dealing  with the  true distribution *P*  being a one-hot  encoded vector. 
+- the  output layer of our neural network  will be  a  softmax layer, where all  outputs  have been  normalized  so they  sum to one.
+- to  get the  predicted class, one would run an *np.argmax* over the output and as such, for  one-hot encoded vectors, the cross entropy collapses to:
+
+![img](https://latex.codecogs.com/gif.latex?H(p,q)&space;=&space;-\log&space;q(x_i))
+- The closer  Q  value gets to 1, the  lower  the loss would get. This is because the  KL divergence between P and Q is reducing for this index. 
+- In PyTorch, the function to use is  **torch.nn.CrossEntropyLoss()**
+- note that this  function  performs a softmax transformation of the input  before calculating cross entropy 
+- as such, one should supply only the  logits (the  raw, pre-activated  output  layer  values) from your classifier network.
