@@ -50,3 +50,8 @@ def softmas(inputs):
 ## Cross-Entropy Loss
 - Usually an activation function is applied to the scores before the CE Loss computation
 - Logistic Loss and Multinomial Logistic Loss are other names for Cross-Entropy Loss
+- indicates the  distance  between  what the  model believes the output distribution should be,  and  what  the  original distribution really is. 
+- cross entropy is a widely used alternative of  squared error
+- it is  used as  a loss function in neural networks which have softmax activations in the  output layer  
+
+![img](https://miro.medium.com/max/1400/1*ETtY7KCrzAlOmLeyDWE4Xg.png)
