@@ -22,7 +22,3 @@
 
 SE = \frac{\sigma}{\sqrt{n}}
 
-
-<script type="text/javascript" async
-
-src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
