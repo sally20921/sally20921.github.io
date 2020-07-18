@@ -9,3 +9,14 @@
 - The CNN will have *C* output neurons. 
 - The target vector *t* can have more  than  a  positive  calss, so it will be  a vector of  0s and 1s with *C* dimensionality.
 
+# Output Activation Functions
+- these  functions  are transformations we apply to vectors comming  out from *CNN(s)* before the loss computation.
+
+## Sigmoid
+- It is also called the logistic function
+
+## Softmax
+- They can be  interpreted as class probabilities.
+```math
+SE = \frac{\sigma}{\sqrt{n}}
+```
