@@ -17,6 +17,8 @@
 ## Sigmoid
 - It is also called the logistic function
 
+![equ](https://latex.codecogs.com/gif.latex?f(s_i)&space;=&space;1/(1&plus;e^{-s^i})" title="f(s_i) = 1/(1+e^{-s^i}))
+
 ## Softmax
 - They can be  interpreted as class probabilities.
 
