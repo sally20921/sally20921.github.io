@@ -14,6 +14,8 @@ permalink: /paper-review/
 - Khosla, Prannay, et al. "Supervised contrastive learning." arXiv preprint arXiv:2004.11362 (2020). [summary](/doc/DA/SCL.pdf)
 - Grill, Jean-Bastien, et al. "Bootstrap Your Own Latent: A New Approach to Self-Supervised Learning." arXiv preprint arXiv:2006.07733 (2020). [summary](/doc/DA/BYOL.pdf)
 - Sun, Yu Ying et al. “Test-Time Training with Self-Supervision for Generalization under Distribution Shifts.” (2019). [summary](/doc/DA/test.pdf)
+- Hoffer, Elad, and Nir Ailon. "Deep metric learning using triplet network." International Workshop on Similarity-Based Pattern Recognition. Springer, Cham, 2015. [summary](/doc/DA/metric.pdf)
+- He, Kaiming, et al. "Momentum contrast for unsupervised visual representation learning." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020. [summary](/doc/DA/momentum.pdf)
 
 
 # Development of a Key Value Store that supports LevelDB API for Key Value SSDs (09/2019 - 05/2020)
