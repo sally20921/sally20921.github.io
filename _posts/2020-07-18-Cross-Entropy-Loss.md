@@ -1,3 +1,7 @@
+<script type="text/javascript" async
+
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+
 # Task
 ## Multi-Class Classification
 - each sample can belong to one of *C* classes. 
