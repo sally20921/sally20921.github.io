@@ -1,6 +1,4 @@
-<script type="text/javascript" async
 
-src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 
 # Task
 ## Multi-Class Classification
@@ -21,6 +19,9 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 
 ## Softmax
 - They can be  interpreted as class probabilities.
-```math
+
+<script type="text/javascript" async
+
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 SE = \frac{\sigma}{\sqrt{n}}
-```
+
