@@ -26,3 +26,60 @@
 
 ### RNNCell 
 - The way it works is that one  RNN cell is capable  of processing all  the words in the  sentence one by one. 
+
+`
+```python
+class RNNCell(nn.Module):
+ def __init__(self, embed_dim, hidden_size, vocab_dim):
+  super().__init__()
+  self.hidden_size =  hidden_size
+  self.input2hidden = nn.Linear(embed_dim+hidden_size, hidden_size)
+  
+ def forward(self, inputs, hidden):
+  combined  = torch.cat((input, hidden), 1)
+  hidden = torch.relu(self.input2hidden(combined))
+  output = self.input2output(combined)
+  output = self.softmax(output)
+  return output, hidden 
+  
+ def init_hidden(self):
+  return torch.zeros(1, self.hidden_size)
+```
+
+### Classifier 
+- So, we have two sentences in hand that we passed through the encoders and we got the final  hidden state of both sentences. Now it's time to  define the loss  function.
+- One approach would  be  to find the distance  between  the  high-dimensional hidden states  from both sentences. THe loss  can be  manipulated  as follows:
+1) Maximize the loss to a big positive value if  it's an entailment.
+2) Minimize the loss to  a  big negative value  if it's a contradiction. 
+3) Keep the  loss around zero if it's neutral 
+
+- Another approach could be  to concatenate  the  hidden states of both sentences and  pass them to another set of layers, and define a final classifier layer that could classify the concatenated value into the three classes we want.
+
+```python
+class  RNNClassifier(nn.Module):
+ def __init__(self, config):
+  super().__init__()
+  self.config = config
+  self.embed = nn.Embedding(config.vacab_dim, config.embed_dim)
+  self.encoder = Encoder(config)
+  self.classifier = nn.Sequential(
+                      Merger(config.embed_dim, config.dropout),
+                      nn.Linear(4*config.embed_dim, config.fc1_dim),
+                      nn.ReLU(), 
+                      nn.BatchNorm1d(config.fc1_dim), 
+                      nn.Dropout(p=config.dropout),
+                      nn.Linear(config.fc1_dim, config.fc2_dim)
+                    )
+```
+
+- The RNNClassifier module has three major layers, which we discussed previously:
+1) The embedding layer saved into *self.embed*
+2) The encoder layer that uses *RNNCell*
+3) An instance of the  *nn.Sequential* layer stored in *self.classifier*
+
+- The final sequential layer starts with the *Merger* node. The merged output  will have the  sequence length dimension augmented by a factor of four because we append both sentences, their difference, and their product to the output of *Merger*.
+- This is then passed  through  a fully  connected  layer, which will then be  normalized using  *batchnorm1d* after a *ReLU* non-linearity. 
+- The dropout afterward reduces the chance of overfitting, which is then passed to  another  fully connected layer,  which creates scores for our input data.  
+
+###  Training 
+- We  initialize the model class, we define the  loss function, and then we define the  optimizer.  - But in a simple RNN, since we  are doing transfer learning  from the learned embeddings from the  GloVe vectors, we have to  transfer those learned weights  to  
