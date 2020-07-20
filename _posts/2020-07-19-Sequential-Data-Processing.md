@@ -1,3 +1,11 @@
+---
+layout: post
+title: Sequential Data Processing
+categories: PyTorch
+tags: [PyTorch]
+excerpt: PyTorch Deep Learning Hands-On
+---
+
 - The major challenges  that neural  networks are trying to  solve  today are  processing, understanding, compressing, and  generating sequential data. Sequential data  can be described vaguely as anything that has a dependency on the  previous data point and the next  data point. 
 - Handling different  types of sequential data requires different techniques, although the  basic approach can be generalized. 
 
