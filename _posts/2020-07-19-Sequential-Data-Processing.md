@@ -82,4 +82,49 @@ class  RNNClassifier(nn.Module):
 - The dropout afterward reduces the chance of overfitting, which is then passed to  another  fully connected layer,  which creates scores for our input data.  
 
 ###  Training 
-- We  initialize the model class, we define the  loss function, and then we define the  optimizer.  - But in a simple RNN, since we  are doing transfer learning  from the learned embeddings from the  GloVe vectors, we have to  transfer those learned weights  to  
+- We  initialize the model class, we define the  loss function, and then we define the  optimizer.  - But in a simple RNN, since we  are doing transfer learning  from the learned embeddings from the  GloVe vectors, we have to  transfer those learned weights  to  the weight matrix of our embed layer. 
+```python
+model = RNNClassifier(config)
+model.embed.weight.data = inputs.vocab.vectors
+criterion = nn.CrossEntropyLoss()
+opt =  optim.Adam(model.parameters(), lr=lr)
+```
+## Advanced RNNs
+- Gates are fundamentally activations, such as sigmoid, to decide the  amount  of data to  flow through. 
+
+### LSTM
+- LSTMs are mainly composed of a forget gates, and update  gate,  and a cell state, which makes the LSTMs different  from normal RNN cells. 
+- All the  operations will be performed on the  cell state flowing parallelly through the network, which has only a linear interaction with the  information in the  network  and hence allows the  data  to flow  forward and  backward seamlessly.
+
+### GRUs
+- GRUs merges the  forget gate  and  update gate  together and only do one-time  updating  on the  cell state. 
+- In  fact, GRUs don't have a  separate cell state and hidden state, both of which  are merged together to  create one  state. 
+- GRUs are being  widely used nowadays  because of the  performance  gain GRUs have over LSTMs. 
+
+### Architecture
+- PyTorch has functional APIs available  for  using an LSTM cell or GRU cell as  the smallest unit of the recurrent  network. 
+- The only difference between advanced RNNs and simple RNNs lies in the  encoder network. The *RNNCell* class  has been replaced with *torch.nn.LSTMCell* or  *torch.nn.GRUCell*, and the *Encoder* class uses these prebuilt cells instead of the  custom *RNNCell* we made  last time.
+
+```python
+class Encoder(nn.Module):
+ def __init__(self, config):
+   super(Encoder, self).__init__()
+   self.config =  config
+   if config.type == 'LSTM':
+    self.rnn  = nn.LSTMCell(config.embed_dim, config.hidden_size)
+   elif config.type == 'GRU':
+    self.rnn = nn.GRUCell(config.embed_dim, config.hidden_size)
+ 
+ def forward(self, inputs):
+  ht = self.rnn.init_hidden()
+  for word  in inputs.split(1, dim=1):
+   ht, ct =  self.rnn(word, (ht, ct))
+```
+- The forward call  accepts the  mini-batch of  input with the  input size and creates cell  state and hidden state  for  that instance,  which is then passed to the  next execution input. 
+- The *torch.nn* module has higher-level APIs for LSTM and GRU nets, which wrap *LSTMCell* and *GRUCell* and implement  the  efficient execution using **cuDNN(CUDA Deep Neural Network)**.
+- Theoretically, bidirectional RNNs tend to work better if the  tasks in hand require  past and future information. In our classification task, a bidirectional RNN works better since when the  RNN makes the contextual meaning of the  sequence, it uses the flow of the  sequence  on both sides. PyTorch's LSTM or  GRU accepts a Boolean value  for the  argument *bidirectional*, which decides whether the network should be bidirectional or not. 
+
+### Attention
+- Attention is the  process of focusing on  the  important  area along with the  normal neural  network process. Attention acts  as another module that looks at  the  input  always and is passed as an extra  input to  the current network. 
+- The idea behind attention is that we focus on the  important part of  the  sentence when we read one.  
+- Attaining  attention in PyTorch is straightforward once the concept is clear.  Attention  can effectively be  used in a number of applications, where autoencoders were  the go-to implementation before, and  CNN to  RNN, and others. 
