@@ -1,4 +1,10 @@
-
+---
+layout: post
+title: Cross Entropy Loss
+categories: PyTorch
+tags: [PyTorch]
+excerpt: PyTorch Deep Learning Hands-On
+---
 
 # Task
 ## Multi-Class Classification
