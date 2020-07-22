@@ -39,4 +39,50 @@ that transforms the space of words into a lower-dimensional space of word embedd
 - Words from the vocabulary with  size *V* are transformed into one-hot vectors of size *V* (each
 words is encoded uniquely). Then the embedding function transforms this *V*-dimensional space into a  
 distributed representation of size *D*. 
-- The idea is that  the 
+- The idea is that  the embedding functino learns semantic information about the  words. It associates each words in the  vocabulary with a continuous-valued vector representation, that is, the  word embedding. Each word corresponds to a point in this embedding space,  and different dimensions correspond to the grammatical  or semantic properties of these words. 
+-  The  goal is to ensure that the words close to  each other in the embedding space have similar meanings. In this  way, the  information that some words are semantically similar can be  exploited by the language  model. 
+- Words embeddings are  one of the central  paradigms when solving  NLP tasks.
+
+## Nueral Probabilistic Language Model  
+- It is possible to learn the language model and,  implicitly, the embedding function via feedforward fully connected network. Given  a sequence of *n-1* words, it tries to output  the  probability distribution of the next  word. The network layers play different roles, such as the  following:
+1) The  embedding layer takes the one-hot representation of the word w_i and transforms it into the word's embedding vecgor by multiplying it with  the embedding matrix, **C**. This computation can  be  efficiently implemented with table  lookup. The  embedding  matrix, **C**, is shared between the words, so all words use the same embedding  function. **C** is a *VxD* matrix, where  *V* is the size of the vocabulary and *D* is the size of the embedding. In other words, the matrix, **C** represents the network weights of the hidden *tanh* layer.
+2) The resulting embeddings are concatenated and serve  as an input to the hidden layer, which uses *tanh* activation. 
+3)  Finally, we  have the  output layer  with weights, *U*, bias, *b*, and softmax activation,  which map the hidden layer to the word space probability distribution.
+
+- This model simultaneously learns an embedding  of all the words in the vocabulary (embedding  layer) and a model of the probability  function for sequences of words (network output). It is  able to  generalize  this probability function to sequences of words that were  not  seen during training. 
+- Since  we can construct the  training  data and labels based on the positions  of the  words (which already exist  in the text), training  this model is an unsupervised learning task. 
+
+## Word2Vec
+- word2vec creates embeddingvectors based on the context (surrounding words) of the word in focus. 
+
+### CBOW
+- CBOW predicts the most likely word given its context (surrounding words). 
+1) The network  has input, hidden, and output layers.
+2) THe input  is the  one-hot encoded word representations.The one-hot encoded vector size of each  word is equal to the size of the  vocabulary, *V*.
+3)  The  embedding vectors are represented  by  the  input-to-hidden weights, W_(VxD), of the  network. They are  VxD-shaped matrix, where *D* is the length of the embedding vector (which is the  same as the  number of units in the hidden layer). We can  think of the weights as  a  lookup table, where each  row represents one word embedding  vector. 
+3) The  embedding vectors of all context words are  averaged  to produce the output of the  hidden network layer.
+4) THe hidden activations serve  as input  to  the  output softmax layer  of size  *V*, which predicts the most likely owrd to be found in the context of the input words. 
+
+-We'll train the network with  gradient descent and backpropagation.  The training set consists of one-hot  encoded  pairs of words, appearing  in  close proximity to  each other in the text. 
+
+# Sequence-to-Sequence Models and Attention 
+- In this section, we'll introduce  the attention mechanism - a new type of algorithm for seq2seq tasks. It allows direct access  to any element of the input  sequence. 
+
+##  Introducing seq2seq models
+-Seq2seq, or encoder-decoder  models use RNNs in a way  that's especially suited for  solving tasks with indirect many-to-many relationships between  the  input and the  output. The model consists  of  two  parts: an encoder and a decoder. Here's how the inference part works:
+1) The encoder  is an  RNN. THe  original paper uses LSTM, but GRU  or other types would also work. Taken by itself, the  encoder works in the usual way - it reads the input  sequence, one step  at a time, and updates its internal state after each step. The  encoder  output is discarded and has no role in the  seq2seq model, as we're only interested in the hidden encoder state.
+2) Once the encoder is finished, we'll signal the decoder so that it can start generating the  output sequence.  The decoder is also an RNN (LSTM or GRU). The linke between the  encoder and the decoder is the most recent encoder internal state vector h_t (also known as the  thought vector), which is fed as the  recurrence relation  at the  first decoder step.  
+
+- The  training  of the model is supervised,  and  the  model needs to know both the  input sequence and its corresponding target output sequence. We  feed the  input sequence  to the decoder, generate  the  thought vector h_t,  and use it to initiate the output sequence generation from the decoder. 
+
+## Seq2seq  with  attention
+- The decoder has to generate the entire output sequence  based solely on the  thought vector. For  this to  work,  the  thought vector has to encode all of the information  of the input sequence;  however,  the encoder is an RNN, and we can expect that its  hidden state wil lcarry more inforamtion about the  latest sequence elements than the  earliest. Using  LSTM  cells and reversing the input helps, but cannot prevent it entirely. Because of this, the thought vector becomes something of a bottleneck. As a  result, the  seq2seq model works well for short sentences, but the performance deteriorates for longer ones. 
+
+###  Bahdanau attention
+- We can solve  this problem with  the help of the **attention mechanism**, an extension of the seq2seq model, that provides  a way for the decoder to work with all encoder hidden  states, not just the last one.  
+- Besides solving the  bottleneck problem, the attention mechanism has some other advantages. For one, the immediate  access to all previous states helps to prevent  the vanishing gradient problem. It also allows for some interpretability of the  results because we can see what parts of  the  input the  decoder  was focusing on. 
+- The attention mechanism works by plugging an  additional context  vector  c_t between the encoder and the decoder. The hidden decoder state s_t at the time t  is  now  a function not only of hidden state  and decoder  output  and step  t-1, but  also of the context vector c_t. 
+- Each  decoder step has a unique context vector, and the context vector for  one  decoder step is just a weighted sum of all encoder hidden states. In this way, the encoder has access to  all input sequence states  at each output step *t*, which removes the  necessity  to  encode  all  information  of the source  sequence  into a fixed-length vector
+
+### General attention
+- Let's assume that we are working with hard attention. We can think of vector s_(t-1) as a query executed against  a  data-base of key-value pairs, where  the keys are vectors and the hidden states are the values. These are often abbreviated as Q, K, and V, and you can think of them as matrices of vectors. 
