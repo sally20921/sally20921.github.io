@@ -86,3 +86,16 @@ distributed representation of size *D*.
 
 ### General attention
 - Let's assume that we are working with hard attention. We can think of vector s_(t-1) as a query executed against  a  data-base of key-value pairs, where  the keys are vectors and the hidden states are the values. These are often abbreviated as Q, K, and V, and you can think of them as matrices of vectors. 
+
+### Understanding transformers
+- But  we still use attention in the context of RNN - in that sense, it works as an addition on top of the core  recurrent nature of these models. Since  attention is so good, is there  a  way  to use it on its own without  the RNN part? It turns out that there is. The  paper  *Attention is all you need* introduces a new architecture called **transformers** with encoder and  decoder that relies solely on the attention mechanism. 
+
+### The transformer  attention 
+- The transformer  uses dot product  attention, which follows the general attention procedure. In practice, we'll compute the attention  function over a  set  of  queries simultaneously, packed into  matrix **Q**. In this scenario, the keys **K**, the values **V**, and the result are also matrices. 
+1) Match the query **Q** and the database (keys **K**) with matrix multiplication to produce the alignment  scores. In other words, we can match  multiple queries against multiple database keys in a single matrix-matrix multiplication. In the context of NMT, we can compute  the alignment  scores of all words of the  target sentence over all words of the  source sentence in the  same way. 
+2) Scale  the alignment scores, where d_k is the vector size of the key vectors in the matrix **K**, which is also equal to the size of the query vectors in **Q**. 
+3) Compute  the attention scores with  the softmax operation along the rows of the matrix. 
+4) Compute the  final attention vector by multiplying the attention scores with the  values **V**.
+
+- The authors also proposes multihead attention. Instead of a single attention function with  d_model-dimensional keys, we  linearly project the keys, queries, and values *h* times to produce  *h* different d_k, d_k, and d_v-dimensional projections of these values. Then we apply separate parallel  attention  functinos over the newly  created vectors, which yield a single d_v-dimensinal output  for each head. Finaly, we concatenate the  head outputs  to produce the  final attention result.  Multihead attention allows each head to  attend to  different elements of the sequence.  Let's look at this in more detail, starting with the heads:
+
