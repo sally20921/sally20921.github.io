@@ -87,8 +87,7 @@ distributed representation of size *D*.
 ### General attention
 - Let's assume that we are working with hard attention. We can think of vector s_(t-1) as a query executed against  a  data-base of key-value pairs, where  the keys are vectors and the hidden states are the values. These are often abbreviated as Q, K, and V, and you can think of them as matrices of vectors. 
 
-### multihead attention 
-- Instead  of a single attention function with d_model-dimensional keys, we linearly project the keys, queries, and values *h* times to produce *h* different d_k, d_k and d_v-dimensional projections of these values. Then, we apply separate  parallel attention  functions (or  heads) over the  newly created vectors, which yields a single  d_v-dimensional output for each head. Finally, we concatenate the  head outputs to produce the  final attention result.  Multihead attention allows each head to  attend to  different elements of the  sequence. At the same time, the  model combines the  outputs  of the  heads  in a  single  cohesive  representation. 
+
 
 ### Understanding transformers
 - But  we still use attention in the context of RNN - in that sense, it works as an addition on top of the core  recurrent nature of these models. Since  attention is so good, is there  a  way  to use it on its own without  the RNN part? It turns out that there is. The  paper  *Attention is all you need* introduces a new architecture called **transformers** with encoder and  decoder that relies solely on the attention mechanism. 
@@ -100,5 +99,19 @@ distributed representation of size *D*.
 3) Compute  the attention scores with  the softmax operation along the rows of the matrix. 
 4) Compute the  final attention vector by multiplying the attention scores with the  values **V**.
 
-- The authors also proposes multihead attention. Instead of a single attention function with  d_model-dimensional keys, we  linearly project the keys, queries, and values *h* times to produce  *h* different d_k, d_k, and d_v-dimensional projections of these values. Then we apply separate parallel  attention  functinos over the newly  created vectors, which yield a single d_v-dimensinal output  for each head. Finaly, we concatenate the  head outputs  to produce the  final attention result.  Multihead attention allows each head to  attend to  different elements of the sequence.  Let's look at this in more detail, starting with the heads:
+#### multihead attention 
+- Instead  of a single attention function with d_model-dimensional keys, we linearly project the keys, queries, and values *h* times to produce *h* different d_k, d_k and d_v-dimensional projections of these values. Then, we apply separate  parallel attention  functions (or  heads) over the  newly created vectors, which yields a single  d_v-dimensional output for each head. Finally, we concatenate the  head outputs to produce the  final attention result.  Multihead attention allows each head to  attend to  different elements of the  sequence. At the same time, the  model combines the  outputs  of the  heads  in a  single  cohesive  representation. 
 
+1) Each head receives the linearly projected versions of the initial Q, K, and V. The  projections are  computed  with the  learnable weight matrices respectively. Note that we have a separate set of weights for each component (Q,K,V) and  for each head i.
+2)  Once Q,K, and V are  transformed, we  can compute  the  attention  of each  head using the  regular attention model we  described  at the beginning  of this section.
+3) The final  attention result is the  linear projection (the weight matrix W_O of learnable weights)  over the  concatenated head outputs head_i.
+
+
+#### self-attention
+- The transformer model also relies on self-attention, where the query Q  belongs to the  same  dataset as the keys K and vectors V of the query  database. In other words, in self-attention, the source and and target  are the same sequence  (in our  case, the same sentence). On  an intuitive level, it  allows us to see the relationship between words of the same sequence. The transformer model uses self-attention as a replacement of the  encoder/decoder RNNs.  
+
+### The transformer model
+#### Encoder
+- It begins with  an input sequence of one-hot-encoded words, which are transformed into d_model-dimensional embedding vectors. 
+- The transformer doesn't use RNNs, and therefore, it has to convey the positional information of each sequence element in some other way. We can do this explicitly by augmenting each embedding vector with positional encoding. The  positional vectore is added (elementwise) to the embedding vector and the result is propagated further in the encoder. 
+- The rest of  the encoder is composed of a stack of *N=6* identical blocks. 
