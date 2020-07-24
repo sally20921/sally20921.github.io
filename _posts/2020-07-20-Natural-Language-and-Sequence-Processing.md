@@ -87,6 +87,9 @@ distributed representation of size *D*.
 ### General attention
 - Let's assume that we are working with hard attention. We can think of vector s_(t-1) as a query executed against  a  data-base of key-value pairs, where  the keys are vectors and the hidden states are the values. These are often abbreviated as Q, K, and V, and you can think of them as matrices of vectors. 
 
+### multihead attention 
+- Instead  of a single attention function with d_model-dimensional keys, we linearly project the keys, queries, and values *h* times to produce *h* different d_k, d_k and d_v-dimensional projections of these values. Then, we apply separate  parallel attention  functions (or  heads) over the  newly created vectors, which yields a single  d_v-dimensional output for each head. Finally, we concatenate the  head outputs to produce the  final attention result.  Multihead attention allows each head to  attend to  different elements of the  sequence. At the same time, the  model combines the  outputs  of the  heads  in a  single  cohesive  representation. 
+
 ### Understanding transformers
 - But  we still use attention in the context of RNN - in that sense, it works as an addition on top of the core  recurrent nature of these models. Since  attention is so good, is there  a  way  to use it on its own without  the RNN part? It turns out that there is. The  paper  *Attention is all you need* introduces a new architecture called **transformers** with encoder and  decoder that relies solely on the attention mechanism. 
 
