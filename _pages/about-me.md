@@ -78,11 +78,12 @@ permalink: /about-me/
 - [Multimodal Dual Attention Networks for 2019 DramaQA](/doc/dramaQA/dramaQA_paper.pdf), 2019 Korea Software Congress 
 - [Performance Evaluation of LevelDB on Key Value SSD](/doc/KVSSD/LevelDB_paper.pdf), 2019 Korea Software Congress 
 - [LevelKV: A Persistent 𝐵+-Tree Based Key-Value Store for Key-Value SSD](/doc/KVSSD/LevelKV.pdf), 2020 Korea Computer Congress
-- [𝐿𝑒𝑣𝑒𝑙𝐾𝑉*: Checkpoint Based Persistent Key Value Store for Key-Value SSD] updated soon, 2020 APSys
+- [𝐿𝑒𝑣𝑒𝑙𝐾𝑉*: Checkpoint Based Persistent Key Value Store for Key-Value SSD] (/doc/KVSSD/LevelKV*.pdf), 2020 APSys
 
 # Awards 
 
 - 2019 DramaQA Challenge [2nd place](/doc/dramaQA/2019_2nd.jpg)(prize 1,500,000 won), Korea Software Congress 
+- 2020 DramaQA Challenge *4th place*
 
 # Research Projects 
 
@@ -90,6 +91,12 @@ permalink: /about-me/
 This project aims to develop an unsupervised domain adaptation algorithm that improves the state-of-the-art algorithm. 
 - [code(reproduction of SimCLR)](https://github.com/sally20921/simclr.git)
 - [code(reproduction of MSTN)](https://github.com/sally20921/MSTN.git)
+- [code(reproduction of SCL)](https://github.com/sally20921/SupervisedContrastive.git)
+- [code(reproduction of DSBN)](https://github.com/sally20921/DSBN.git)
+
+### Development of Character-Centered Video Story Understanding Algorithm for Hierarchical QA with DramaQA Dataset
+This project aims to develop an algorithm for a Video QA Challenge called 'DramaQA'. 
+- [code](https://github.com/sally20921/dramaqa2020)
 
 ### Development of a Key Value Store that supports LevelDB API for Key Value SSDs (09/2019 - 05/2020)
 This project aims to design a LevelDB-like key-value store that supports range queries, snapshots, etc. for KV SSDs. By replacing block SSD with KV SSD and designing a software layer to provide more operations mentioned above, this project achieves significant performance improvement compared to state-of-the-art LSM-tree based key-value store such as LevelDB. Here is a slide that describes the characteristics of KVSSD: [link](https://www.systor.org/2019/slides/S8P1%20Towards%20Building%20a%20High-performance,%20Scale-in%20Key-value%20Storage%20System.pdf)
@@ -118,7 +125,6 @@ The website GWAJAMS helps a specific organization design, comment, and vote on u
 - [report](/doc/GWAJAMS/paper.pdf)
 - [poster](/doc/GWAJAMS/poster.png)
 - [picture](/doc/GWAJAMS/pic.jpeg)
-
 
 ### Development of HDR Algorithm, LG Display (09/2018 - 12/2018)
 This project aims to develop an full Android application of HDR (high dynamic range) camera. 
