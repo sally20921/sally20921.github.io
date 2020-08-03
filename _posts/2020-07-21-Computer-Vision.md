@@ -1,3 +1,11 @@
+---
+layout: post
+title: Computer Vision
+categories: PyTorch
+tags: [PyTorch]
+excerpt: PyTorch Deep Learning Hands-On
+---
+
 # Introduction to CNNs
 - A CNN is a network architecture that  fundamentally consists of small networks,
 almost like the simple feedforward network. CNN consists of neurons that have
