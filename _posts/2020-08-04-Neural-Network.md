@@ -71,6 +71,74 @@ All events are equally likely.
 
 # Probability  and sets 
 - The collection of all possible  outcomes (events) of an experiement is called, **sample space**.We  can think of the  sample sapce as  a mathematical **set**. A single  outcome  of  the  set is called a **sample point**. An **event** is an outcome (sample point) or a  combination of outcomes  (subset) of the  sample space.  
+- We  can transfer the set properties to events and their probabilities. We'll assume that the  events are independent - the  occurrence of one event doesn't  affect the  probability  of the occurrence of another. 
+- The  intersection of two  events  is  a subset of the  outcomes, contained in  both events. The  probability  of the  intersection is  called  **joint probability**.
+- The  probability  of the  occurrence of a single event P(A) is also known as **marginal  probability** (as opposed to joint probability).
+-  Two events are  disjoint (or **mutually exclusive**) if they don't  share any outcomes. That is, their respective  sample space  subsets are  disjoint. 
+
+# Information theory 
+- Information theory attempts to determine the amount  of information an event has. 
+- The higher the  probability of an event, the  less informative  the event is  considered. 
+- Conversely, if the probability is lower, the event carries more informational content.  
+
+# Differential calulus 
+- In ML, we are often interested in how to approximate some target function by  adjusting the  parameters of ML algorithms. If we think  of the  ML algorithm itself as a mathematical function, we would like to know how that output of that function changes when we change  some of its parameters (weights). Thankfully, differential calculus deals with the  rate of change of a function with respect to  a variable  that the function depends on. 
+
+# A short introduction to NNs
+- A NN is a function that tries to approximate another target function, *g*. 
+- The  goal is to find such parameters with the best  approximate, *g*. 
+- This generic definition applies for both regression (approximating  the  exact value  of *g*), 
+and classification (assigning  the input ot one of  multiple possible classes) tasks.
+
+## Neurons 
+- Now let's discuss the  basic building  blocks of a NN, namely neurons (or **units**).
+- Units are mathematical functions that can be defined as follows: 
+![equ](https://latex.codecogs.com/gif.latex?y&space;=&space;f(\sum^n_{i=1}x_iw_i&plus;b&space;))
+- *y* is the  unit  output (single value)
+- *f* is  the  non-linear differentiable activation function. The  activation function is the source  of  non-linearity in a NN - if the  NN was entirely linear,  it would only be able to approximate other linear  functions. 
+- The argument of the  activation  function is the weigthed sum of  all the  unit  inputs and the  bias weight. 
+
+## Layers as operations 
+- The  next  level in the  NN organizational structure is the layers  of units, where we combine the  scalar outputs of multiple units in a single output vector. The  units in a layer are not connected to each other. This organizational structure makes sense for the following  reasons:
+- We  can generalize multivariate regression to a layer, as opposed to only linear or  logistic regression for a  single unit. In other words, we can approximate multiple values with a  layer as  opposed to  a single value  with a unit. This happens in case  of classification output, where  each output unit represents  the  probability  the input belongs to a certain class. 
+- A unit can convey  limited information because its output is  a scalar.  By combining the  unit outputs, instead of a single activation, we can now  consider the  vector in  its  entirety. In this way, we can convey a lot more  information, not only because  the  vector has multiple values, but  also becuase  the  relative  ratios  between  them carry additional meaning.  
+- Becuase  the units in  a  layer have  no connections to  each other,  we  can parallelize  the  computation of their  outputs (thereby  increasing the computational speed). This ability is one of the major reasons for  the  success of DL in recent years. 
+- In classical NNs (that is, NNs before DL, when they were just one of many ML algorithms), the primary type of layer is the  fully connected (FC) layer.  In this layer, every unit receives weighted input from all the compoments of the input vector, **x**. Let's assume that the  size of  the  input vector is *m* and that the  FC layer has *n* units and an activation function *f*, which is the same for all the units. Each of the  *n* units will have *m* weights: one for each of the *m* inputs. 
+- We can represent the weights connecting the  input vector to the  units as *mxn* matrix **W**. In this case, the  output vector of the layer is the  result of matrix-vector multiplication. 
+- However, we  can also combine multiple input samples in an input matrix (or **batch**),
+which will be  passed through the  layer simultaneously. In this case, we have matrix-matrix multiplication  and the layer output is also a matrix. 
+- Contemporary  DL is not limited to FC layers. We  have  amny  other types, such as convolutional, pooling, and so on. Some of the  layers have trainable weights (FC, convolutional), while  others don't (pooling). We  can also use the terms functions or operations interchangeably with the  layer. 
+- For example, in  TensorFlow and PyTorch, the  FC layer we just described is a combination of two  sequential operations. First, we perform  the weighted sum of the weights and inputs and then  we  feed the result as an input to the  activation function operation. In practice, the basic building  block of a NN is not the  unit but  an operation that  takes one or more tensors as input and outputs one or more tensors
+
+## NNs  
+- In the  *Neurons* section, we  demonstrated that  a  neuron (also valid for a  layer) can only classify linearly separable classes. To overcome this limitation,  we have  to  combine  multiple layers  in a  NN. We'll define the NN as a directed  graph of operations ( or layers). The graph  nodes are operations, and the edges between them determine the data  flow. 
+- If two operations are  connected, then the  output  tensor  of the first will serve as  input to the  second, which is  determined by  the  edge  direction. 
+- A NN can have multiple  inputs and  outputs -  the input nodes only  have outgoing edges, while the outputs only have  incoming  edges. Based on this definition, we can identify two main types of NNs: 
+- **Feed-forward**, which are represented by **acylic** graphs.
+- **Recurrent(RNN)**, which are represented by  **cyclic** graphs. 
+
+## Activation functions 
+-  **Sigmoid**: Its output is bounded between 0 and 1  and  can be  interpreted  stochastically as the  probability of the neuron activating. Because of these  properties, the sigmoid was the  most popular  activation function for a  long time.  However, it also has some less desirable  properties, which led to its  decline in popularity. 
+- **Hyerbolic tangent(tanh)**: The  principal difference with the sigmoid  is  that the tanh is in the (-1,1) range. 
+- the **LU** (LU stands for  linear unit) family of functions. We'll  start with  the rectified linear  unit (**ReLU**), which was first successfully used in 2011.  As we can see, the  ReLU repeats its input when x>0 and stays 0 otherwise. This activation has several important  advantages  over sigmoid and tanh:
+- Its derivative  helps prevent vanishing gradients. Strictly speaking, the derivative ReLU at value 0  is undefined, which makes the ReLU only semi-differentiable. But in practice, it works well enought.
+- It's idempotent - if we pass a value through an aribitrary  number  of ReLU activations, it will not change. This is not  the  case  for  a sigmoid, where  the  value  is *squashed* on each pass. The  idempotence of ReLU makes it  theoretically possible  to create networks with more  layers  compared  to sigmoid.
+- It creates sparse activations. It's  better to  achieve the  same  result  with a simpler data  representation than a complex one. 
+- It's faster  to  compute  in  both the  forward and backward passes. 
+- However, during training, the  network  weights can be updated in such a way that  some of the  ReLU  units in a  layer will always receive  inputs  smaller  than 0, which  in  turn will  cause them to  permanently output 0 as well.  This phenomenon  is known as **dying** ReLUs. To  solve  this, a number of ReLU modifications  have  been proposed. 
+- **Leaky ReLU**: When the input  is  larger than 0, leaky ReLU repeats its input in the same  way as the regular  ReLU does. However, when x<0, the  leaky ReLU outpus *x* multiplied by  some constant instead of 0. 
+- **Parametric ReLU(PReLU)** - this activation is the same  as the  leaky ReLU, but the parameter is  tunable  and  is  adjusted during training. 
+- **Exponential linear units(ELU)**: When the  input is larger  than  0, ELU repeats its  input in the  same way as ReLU does.  However,  when x<0, the ELU output becomes the  exponential of x minus 1  multiplied by  alpha, where  alpha is a  tunable  parameter. 
+- **softmax** : the  activation function of the  output layer  in classification problems. 
+Let's assume that the  output  of the  final network  layer is a vector,  where  each of the  *n* components represents the probability that the input data  belongs to  one of *n* possible classes. Here, the softmax output for each of the vector components is as follows: 
+![equ](https://latex.codecogs.com/gif.latex?f(z_i)&space;=&space;\frac{exp(z_i)}{\sum_{j=1}^n&space;exp(z_j)&space;})
+- The donominator  in  this formula acts as a normalizer. The softmax output has some important properties:
+- Every value f(z_i) is in the [0,1] range
+- The total sum of values of **z** is equal to 1. 
+- an added bonus is that the function is differentiable.
+- In other words, we can interpret the softmax output as a probability distribution of a  discrete random variable.  
+- However,  it also has  one more  subtle  property. 
+
 
 ```python
 import numpy  as np
