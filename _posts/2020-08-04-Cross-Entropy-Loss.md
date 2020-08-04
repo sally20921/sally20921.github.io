@@ -1,3 +1,4 @@
+---
 layout: post
 title: The mathematical appartus of NNs
 categories: Python  
