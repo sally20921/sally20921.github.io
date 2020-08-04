@@ -137,9 +137,44 @@ Let's assume that the  output  of the  final network  layer is a vector,  where 
 - The total sum of values of **z** is equal to 1. 
 - an added bonus is that the function is differentiable.
 - In other words, we can interpret the softmax output as a probability distribution of a  discrete random variable.  
-- However,  it also has  one more  subtle  property. 
+- However,  it also has  one more  subtle  property. Before we normalize the  data, we transform each vector component exponentially. In effect, the softmax increases the probability of the  higher scores compared to lower ones. 
 
+# The  universla Approximation theorem
+- The  universal approximation theorem was first proved in 1989 for a NN with sigmoid activation
+functions and then in 1991  for NNs with arbitrary non-linear activation functions. It states that any contimuous function on compact subsets  of R_n can be approximated to an arbitrary degree of accuracy by a feedforward NN with  at least  one hidden layer with a finite  number of units and a non-linear activation. Although a NN with a single hidden layer won't perform well on many tasks, the theorem still tells us that there are no theoretical insurmountable limitations in terms of NNs. 
 
+#  Training NNs
+- In this  section,  we'll define training a NN as the process of adjusting  its parameters in a way that minimizes the cost function. The cost  function is some  performance measurement over a training  set that consists of multiple samples, represented as vectors. Each vector has an associated label (supervised  learning). Most commonly, the  cost function measures the difference between the  network output and the label. 
+
+##  Gradient descent
+- For  the  purposes of this section, we'll use a NN with a  single regression output and mean  square  error  (MSE) cost function.
+- First,  gradient  descent  computes the  derivative (gradient) of cost function with respect to all  the network weights.  The  gradient  gives us  an indication of how cost function changes  with respect  to every weight. 
+- Then, the  algorithm uses  this information to update the  weights in a way that  will minimize  cost function in future  occurrences of teh same input/target paris. The goal is to  gradually reach the global minimum of the  cost function.
+- Let's  go  over  the  step-by-step execution  of gradient descent:
+1. Initialize the  network weights with random values.
+2. Repeat until the cost function falls below a certain threshold:
+- Forward pass: compute the cost function for  all  the samples of the  training set using the  preceding formula.
+- Backward pass: compute the derivative  of the  cost function with repect to  all teh network  weights using the chain rule 
+3. Use these drivatives to  update each  of the network weights 
+- Gradient descent updates  the  weights by accumulating the erro across all teh training samples. In practice, we  would use two of its  modifications:
+- **Stochastic(or online) gradient descent (SGD)** updates  the weights after  every training  sample.
+- **Mini-batch gradient descent** accumulates the  error for every *n* samples (one mini-batch) and performs one weight update. 
+
+## cost functions 
+- Beside MSE, there are also a few other loss functions  that are commonly used in regression problems. 
+- **Mean absolute error(MAE)** is the mean of the  absolute  differences (not squared) between the network  output and the  target. One  advantage  of MAE  over MSE is that it  deals with outlier samples better. With MSE, if the difference of a  sample is  >1,  it increases exponentially. We'll get an outsized weight  of this sample compared to the  others, which may skew the results.  With MAE, the difference  is not exponential and this issue is  less  pronounced.  
+- On the other  hand, the MAE gradient will have  the same value  until we reach the  minimum, where  it will  become 0 immediately. This makes it harder for the algorith, to anticipate how close the cost function minimum is. Compare this to  MSE, where  the slope gradually decreases as we get close to the  cost  minimum. This  makes MSE easier to optimize. In conclusion, unless  the  training data  is corrupted with outliers, it  is  usually recommended to use MSE over  MAE. 
+- **cross-entropy** loss: This loss is  usually applied over the output of a  softmax  function. The  two  work  very well together. First, the softmax converts the network output into a  probability  distribution. Then, cross-entropy  measures the difference between the  network  output (Q)  and the true distribution (P), which is provided as a training label.  
+- Another nice property is that the derivative of H(P, Q_softmax) is quite  straightforward.
+
+## Backpropagation
+- In this section, we'll discuss how to  update the network weights in order to minimize  the cost function. As we  demonstrated in the *Gradient descent* section, this means finding  the  derivative of the  cost function with respect to  each network weight. We already took a step in this direction with the help of the chain rule: 
+- In  this section, we'll push the  envelope further and we'll learn how to  derive the NN function itself for all the network weights.  We'll do this by propagating the  error gradient backward through the network. 
+
+## Weight Initialization
+- One key component of training  deep networks is the random weight initialization. 
+- This matters because some activation functions, such as sigmoid and ReLU, produce meaningful outputs and gradients if their inputs are within a certain range.
+- A famous example is the vanishing gradient  problem. 
 ```python
 import numpy  as np
 
