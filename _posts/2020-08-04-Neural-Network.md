@@ -175,6 +175,16 @@ functions and then in 1991  for NNs with arbitrary non-linear activation functio
 - One key component of training  deep networks is the random weight initialization. 
 - This matters because some activation functions, such as sigmoid and ReLU, produce meaningful outputs and gradients if their inputs are within a certain range.
 - A famous example is the vanishing gradient  problem. 
+- One way to solve  this problem is to use *LU* activations. But  even so, it still makes  sense to use  better  weight initialization since it can speed up the training process. 
+
+##  SGD improvements  
+- We'll start with **momentum**, which extends vanilla SGD  by adjusting the current weight update with the values of  previous  weight updates. That  is, if  the  weight  update at step *t-1* was big,  it  will also  increase the  weight update of  step  *t*. We can explain momentum with  an  analogy. Think of  the  loss function surface as the  surface of  a hill.HOw, imagine that we  are  holding a ball at  the top of  the  hill(maximum). If we  drop the  ball,  thanks to  the  Earth's  gravity, it  will  start rolling  toward  the  bottom of the  hill (minimum). The  more  distance it travels, the  more its speed will  increase.  In other  words, it  will gain momentum (hence  the  name  of the  optimization). 
+-  Let's  assume that we are  at step  *t*  of the training process:
+1.  First,  we'll calculate  the current weight update value v_t by also including  the velocity  of the previous  update v_(t-1).
+2.  Then, we  perform the actual weight  update
+- An improvement over  the  basic momentum is the  **Nesterov momentum**. It  relies on the  observation that  the momentum from step *t-1* may not reflect  the conditions  at step  *t*. For example, let's  say that the gradient at  *t-1* is  steep and therefore the  momentum  is  high.  However, after the  *t-1* weight update, we  actually reach the  cost function  minimum and require only a minor weight update  at *t*.  Despite  that, we'll still get the  large  momentum  from  *t-1*,  which may lead the  adjusted weight  to  jump over the  minimum. Nesterov momentum  proposes a change  in  the  way we compute the  velocity of the weight update. We'll calculate v_t based  on  the  gradeint of  the cost function that's  computed  by  the potential  future  value  of the weight theta_j. If the  momentum at *t-1* is  incorrect with respect to *t*, the modified gradient will compensate for  this  error  in the  same update step. 
+- Next, let's discuss the  Adam adaptive learning  rate algorithm. It calculates  individual and adaptive learning rates for every  weight based  on previous weight updates. 
+- First, 
 ```python
 import numpy  as np
 
