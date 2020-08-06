@@ -77,13 +77,166 @@ the deeper  layers may detect task-specific features and it would be better to u
 We can use this method when we have more training data  and don't need to worry about overfitting. 
 
 ###  Implementing transfer learning with PyTorch
+```python
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision
+from torchvision import models, transforms
 
+batch_size = 50
+```
+- The CIFAR-10 images are 32x32, while the ImageNet network expects 224x224  input.
+Since we are  using an ImageNet-based network, we'll upsample the 32x32 CIFAR images to 224x224.
+-Standardize the CIFAR-10 dat using the ImageNet mean and standard deviation since this is what the network expects.
+- We'll also add some data augmentation in the form of random horizontal or vertical flips.
 
+```python
+#training data
+train_data_transform = transforms.Compose([
+  transforms.Resize(224),
+  transforms.RandomHorizontalFlip(),
+  transforms.RandomVerticalFlip(),
+  transforms.ToTensor(),
+  transforms.Normalize((0.4914, 0.4821,0.4465), (0.2470, 0.2435, 0.2616))
+  ])
+train_set = torchvision.datasets.CIFAR10(root='./data', train=True, download=True,
+  transform = train_data_transform)
+train_loader = torch.utils.data.DataLoader(train_set, batch_size=batch_size, shuffle=True,
+  num_workers=2)
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
+def train_model(model, loss_function, optimizer, data_loader):
+  #set model to training mode
+  model.train()
+  current_loss = 0.0
+  curren_acc = 0
+  #iterate over the training  data 
+  for i, (inputs, labels) in enumerate(data_loader):
+  #send the input/labels to  the GPU
+    inputs = inputs.to(device)
+    labels = labels.to(device)
+    # zero the parameter gradients 
+    optimizer.zero_grad()
+    with torch.set_grad_enabled(True):
+      #forward
+      outputs = model(inputs)
+      _, predictions  = torch.max(outputs, 1)
+      loss = loss_function(outputs, labels)
+      #backward
+      loss.backward()
+      optimizer.step()
+      #statistics 
+      current_loss += loss.item() * inputs.size(0)
+      current_acc += torch.sum(predictions == labels.data)
+      total_loss = current_loss / len(data_loader.dataset)
+      total_acc = current_acc.double() / len(data_loader.dataset)
+      print('Train Loss: {:4f}; Accuracy:{:.4f}'.format(total_loss, total_acc))
+```
+- define the testing/validation of  the  model.
+- define the  first TL  scenario, where  we use the pretrained network as a feature extractor:
+we'll use a  popular network known as  ResNet-18. Replace the  last network layer  with  a new layer with 10  outpus (one  for each CIFAR-10 class). Exclude the  existing network layers from the backward pass and only pass the  newly added fully-connected layer to the Adam optimizer.
+Run the training for epochs and evaluate the network  accuarcy after each epoch.
+- plot the test accuracy  with the help of the plot_accuracy function. 
 
+```
+def tl_feature_extractor(epochs=5):
+  # load the pretrained model 
+  model = torchvision.models.resnet18(pretrained=True)
+  #exclude existing paramters from backward pass
+  for param in model.parameters():
+    param.requires_grad = False
+    
+  #newly constructed  layers have  requires_grad=True by default
+  num_features = model.fc.in_features
+  model.fc  = nn.Linear(num_features, 10)
+  
+  #transfer to GPU 
+  model = model.to(device)
+  loss_function = nn.CrossEntropyLoss()
+  
+  #only  parameters of the final layer are being  optimized
+  optimizer = optim.Adam(model.fc.parameters())
+  
+  #train 
+  test_acc = list() #collect accuracy for plotting
+  for epoch in range(epochs):
+    print('Epoch {}/{}'.format(epoch+1, epochs))
+    train_model(model, loss_function, optimizer, train_loader)
+    _, acc = test_model(model, loss_function, val_order)
+    test_acc.append(acc)
+    
+  plot_accuracy(test_acc)
+```
 
+- implement  the  fine-tuning approach. This function is similar  to  tl_feature_extractor,
+but here,  we're training the whole network:
+```
+def tl_fine_tuning(epochs=5):
+   #load the pretrained model
+   model = models.resnet18(pretrained=True)
+   #replace the  last  layer 
+   num_features = model.fc.in_features
+   model.fc  =  nn.Linear(num_features, 10)
+   
+   #transfer the  model to  GPU 
+   model = model.to(device)
+   
+   #loss function
+   loss_function = nn.CrossEntropyLoss()
+   
+   #We'll optimize  all parameters
+   optimizer = optim.Adam(model.parameters())
+   
+   #train 
+   test_acc =  list() #collect accuracy for plotting
+   for epoch in range(epochs):
+    print('Epoch {}/{}'.format(epoch+1, epochs))
+    train_model(model, loss_function, optimizer, train_loader)
+    _, acc = test_model(model, loss_function, val_order)
+    test_acc.append(acc)
+    
+   plot_accuracy(test_acc)
+```
 
+## Advanced Convolutional Networks
+- We'll go a step further there and talk about some of the  most  popular CNN architectures.
+These networks usually combine multiple primitive convolution and/or  pooling operations in a novel building block that  serves  as  a base for a complex  architecture. This allows us to build  very deep  (and sometimes wide) networks with high  representational power  that perform well on complex tasks such as  ImageNet classification, image  segmentation,  speech recognition, and so on. 
 
+### Introducing AlexNet
+- The model has five cross-correlated convolutional layers, three  overlapping max pooling layers, three fully connected layers, and ReLU activations. The output is a  1000-way softmax (one for each ImageNet  class). The first  and second convolutional layers  use local respnse normalization - a  type of normalization, somewhat similar  to batch normalization. The fully connected layers have a  dropout rate of 0.5. To prevent overfitting, the network  was trained 
+using 227x227 crops of the 256x256 input images. 
+
+### An introduction to Visual Geometry Group 
+- The  VGG family of networks remains popular tody and is often used  as a benchmark  against newer architectures. The authors of the  paper  observed that a convolutional layer  with a  large  filter size can be replaced with a  stack  of two or more  convolutional layers with smaller filters (factorized convolution). This structure has several advantages as follows:
+- The number of weights and operations of stacked layers is smaller. 
+- Stacking  multiple layers makes the decision function more discriminative.
+- The VGG networks consists  of multiple blocks of two, three, or four stacked convolutional layers combined with  a  max pooling layer. 
+- As the  depth of the  VGG network increases, so does the width (the number of filters) in the convolutional layers. 
+
+###  Understanding residual networks 
+- This is also the first network architecture that has successfully trained  a network with a depth of more than 100 layers. Thanks to better weight initializations, new activation functions,  as well as normalization layers, it's now  possible to train deep networks. 
+In theory, we can take a shallow network and stack identity layers on top of it to produce a deeper  network that  behaves in exactly the same  way as the shallow one. Yet, their  experiments have been  unable  to match the performance  of the shallow network. 
+- To solve this problem, they  proposed  a network  constructed of residual blocks. A residual block consists of two or three sequential convolutional layers and a separate  parallel identity shortcut connection,  which  connects the input of the  first layer  and the output of the last one.  
+- The two  paths are merged via an element-wise sum. The  output is a single tensor  with the  same shape  as the input. In effect, we  propagate forward the features learned by the block, but also the original unmodified signal. In this way, we can get closer  to the original scenario, as described by the  authors. Thanks to this, we can stack  any number  of blocks for  a  network  with an  arbitrary depth. 
+
+### The limitations of convolutional networks
+
+> The pooling operation used in convolutional neural networks is a big mistake and the fact that it works so well is a disaster.
+
++ CNNs are  translation invariant. Translation invariance means taht a  CNN is very good at telling us taht  the picture contains a face,  but it cannot  tell us whether the face  is in the  left or right part of the image. The main culprit for this behaviro is  the pooling  layers. Every pooling  alyer introduces a little translation invariance. For example, the max pooling  routes forward the activation of only one of  the input neurons, but the  subsequent  layers don't have  any knowledge of which neuron is routed.
+
++ By stacking  multiple pooling layers, we gradually increase the receptive  field size. But, the detected object could be  anywhere in thew new  receptive field, because none of the pooling layers relay such information. Therefore, we also increase teh translation invariance. At first,  this might seem to be  a  good thing, because the final labels have to be translation-invariant.  But,  it poses a problem, as CNNs cannot identify the  postition of one  object relative  to another. 
+
++ A CNN would identify both of the  following images as a face, because they  both contain the  components  of a face (a nose, mouth, and eyes) regardless of their relative  positions to one  another. 
+ + This is also known as the **Picasso problem**. 
+ 
++ A CNN would be confused even if the face had a different orientation, for example, if it was turned upsdie down. One way to overcome this is with data augmentation (rotation) during training. But, this  only shows the limitations  of the network. We  have to explicitly show the object in different orientations and tell the CNN that this  is, in fact, the  same object. 
+ +  In computer vision, the combination of translation and orientation is known as the  **pose**. The  pose is enough to  uniquely identify the object's properties in the coordinate system. 
+  + If we can somehow train a network  to understand these properties, we won't have to feed it with multiple augmented versions of the  same object. A CNN cannot do  that,  because its internal data representation doesn't contain information about  the object's pose (only about  its type). In contrast, capsule networks preverve information for both the type and the pose of an object. 
+  
+  ## Object detection and Image Segmentation
+  
 
 
 
