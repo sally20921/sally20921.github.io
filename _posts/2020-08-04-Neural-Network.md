@@ -183,8 +183,11 @@ functions and then in 1991  for NNs with arbitrary non-linear activation functio
 1.  First,  we'll calculate  the current weight update value v_t by also including  the velocity  of the previous  update v_(t-1).
 2.  Then, we  perform the actual weight  update
 - An improvement over  the  basic momentum is the  **Nesterov momentum**. It  relies on the  observation that  the momentum from step *t-1* may not reflect  the conditions  at step  *t*. For example, let's  say that the gradient at  *t-1* is  steep and therefore the  momentum  is  high.  However, after the  *t-1* weight update, we  actually reach the  cost function  minimum and require only a minor weight update  at *t*.  Despite  that, we'll still get the  large  momentum  from  *t-1*,  which may lead the  adjusted weight  to  jump over the  minimum. Nesterov momentum  proposes a change  in  the  way we compute the  velocity of the weight update. We'll calculate v_t based  on  the  gradeint of  the cost function that's  computed  by  the potential  future  value  of the weight theta_j. If the  momentum at *t-1* is  incorrect with respect to *t*, the modified gradient will compensate for  this  error  in the  same update step. 
-- Next, let's discuss the  Adam adaptive learning  rate algorithm. It calculates  individual and adaptive learning rates for every  weight based  on previous weight updates. 
-- First, 
+- Next, let's discuss the  Adam adaptive learning rate algorithm. It calculates  individual and adaptive learning rates for every  weight based  on previous weight updates. 
+- First, we need to compute the first moment (or mean) and the second moment  (or variance) of the gradient. Here, beta_1 and beta_2 are hyperparameters with default  values of 0.9 and 0.999, respectively. m_t and v_t act as moving-average  values of the gradient, some what similar to momentum. They  are initialized with 0 during  the first  iteration.
+- Since  m_t and v_t  start  as  0, they will have a bias toward 0 in the initial phase of the training. 
+- Finally, we need to perfrom the weight  update  using  the following formula.
+
 ```python
 import numpy  as np
 
