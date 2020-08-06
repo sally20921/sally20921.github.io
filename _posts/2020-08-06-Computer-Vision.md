@@ -236,7 +236,37 @@ In theory, we can take a shallow network and stack identity layers on top of it 
   + If we can somehow train a network  to understand these properties, we won't have to feed it with multiple augmented versions of the  same object. A CNN cannot do  that,  because its internal data representation doesn't contain information about  the object's pose (only about  its type). In contrast, capsule networks preverve information for both the type and the pose of an object. 
   
   ## Object detection and Image Segmentation
+  - We can  say that  these tasks are more complex compared to classification, because the model
+  has to obtain a more comprehensive  understanding  of the image. It has  to be able  to detect different objects as well as their positions on the  image. At  the same time, the task complexity allows for more creative  solutions. 
   
+### Approaches to object detection
++ **Classic sliding window**: here, we'll use a regular classification network (classifier). This approach can work with any type of classification algorithm, but it's relatively slow and error-prone.
+1. Build an image pyramid: This is combination of different  scales of the same image. 
+2.  Slide the classifier  across the  whole image: We'll use each location of the image  as an input to  the classifier, and the result will determine the type of object that  is in the location. The bounding box of the location is just the image  region that we used as input.
+3. We'll have  multiple overlapping bounding boxes for each object: We'll use some heuristics to combine them in a single prediction. 
+
++ **Two-stage detection methods**: These methods are very accurate, but relatively slow.
+1. A special type of CNN, called Region Proposal Network (RPN), scans the image and proposes a number of possible bounding boxes, or regions of interest (RoI), where objects might be  located. However,  this network doesn't detect the type of the object,  but only whether an object is present in the region.
+2. The regions of interest  are  sent to the second stage  for object classification, which determines the actual object in  each bounding box.
+
++**One-stage (or one-shot) detection methods**: Here, a single CNN produces both the object type and the bounding box. These approaches are usually faster, but less accurate compared to the two-stage methods. 
+
+### Object detection with YOLOv3
+- The  algorithm starts with the  so-called backbone network called Darknet-53 (after the  number of convolutional layers). It  is trained to  classify the ImageNet dataset. It is fully convolutional and uses  residual connections. 
+- Once the network is trained, it  will serve as a base for the following object detection training phase. This is a case of feature extraction transfer  learning. The fully connected layers of the backbone  are  replaced with new randomly initialized convolutional and fully connected layers. THe new fully connected layers  will output the  bounding boexes, object classes, and confidence scores of all detected objects in just a single pass. 
+
+1. Split the image into a grid of SxS cells 
+* The  network  treats the  center  of each grid cell as the center of the region, where an object might be located.
+* An object might  lie entirely within a cell. Thenm its bounding box will be  samller than the cell. Alternatively, it can span over multiple cells and the bounding box will be larger. YOLO covers both cases.
+* The algorithm can detect multiple objects in a grid cell with the help of anchor boxes, but  an object is associated with one cell only. That is, if the  bounding box of the object covers multiple cells, we'll associate the object with the cell, where the center of the  bounding box lies. 
+* Some of the  cells may  contain an object and others might not. We are  only interested in the  ones that do.
+
+2. The network  will output multiple possible detected objects for each grid cell. 
+* *c1, c2, ..., cn* is a one-hot encoding of the  object class. 
+3. If we have  multiple  objects in the  same cell, we'll associate each object with one of the anchor boxes. 
+
+3.  The  output of the  network  might be  noisy - that is, the  output includes all possible anchor boxes for each cell, regardless of whether an object is present in them. Many of the boxes will overlap and actually predict the same object. We'll get  rid of the noise using **non-maximum suppression**.
+* Discard all bounding boxes with  a confidence score of less than or equal to 0.6.
 
 
 
