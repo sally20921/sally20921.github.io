@@ -267,6 +267,106 @@ In theory, we can take a shallow network and stack identity layers on top of it 
 
 3.  The  output of the  network  might be  noisy - that is, the  output includes all possible anchor boxes for each cell, regardless of whether an object is present in them. Many of the boxes will overlap and actually predict the same object. We'll get  rid of the noise using **non-maximum suppression**.
 * Discard all bounding boxes with  a confidence score of less than or equal to 0.6.
+* From the remaining bounding boxes, pick the one with the  highest possible confidence score.
+* Discard  any box whose IoU >= 0.5 with the  box we selected in the previous step.
+
+- need  opencv-python 
+
+```python
+import os.path
+import cv2 #opencv import
+import numpy as np
+import requests 
+
+# Download YOLO net  config file
+yolo_config = 'yolov3.cfg'
+if not os.path.isfile(yolo_config):
+  url = 'https://raw.githubusercontent.com/pjreddie/darnet/master/cfg/yolov3.cfg'
+  r  = request.get(url)
+  with open(yolo_config, 'wb') as f:
+    f.write(r.content)
+    
+# Download YOLO net weights
+yolo_weights = 'yolov3.weights'
+if not os.path.isfile(yolo_weights):
+  url = 'https://pjreaddie.com/media/files/yolov3.weights'
+  r =  request.get(url)
+  with open(yolo_weights, 'wb')  as f:
+    f.write(r.content)
+    
+# load the network
+net = cv2.dnn.readNet(yolo_weights, yolo_config)
+
+# Download class names file
+classes_file = 'coco.names'
+if not os.path.isfile(classes_file):
+  url = 'https://raw.githubusercontent.com/pjreddie/darknet/master/data/coco.names'
+  r = request.get(url)
+  with  open(classes_file, 'wb') as f:
+    f.write(r.content)
+    
+# load class names
+with open(classes_file, 'r') as f:
+  classes = [line.strip() for line in f.readlines()]
+  
+# Download object detection image
+image_file = 'source_1.png'
+if not os.path.isfile(image_file):
+  url = "https://github.com/ivan-vasilev/advanced-deep-learning-with-python/blob/master/chapter04-detection-segmentation/source_1.png"
+  r = request.get(url)
+  with open(image_file, 'wb') as f:
+    f.write(r.content)
+    
+# read and normalize image
+image = cv2.imread(image_file)
+blob = cv2.dnn.blobFromImage(image, 1/255, (416,416), (0,0,0), True, crop=False)
+
+# set as input to the net 
+net.setInput(blob)
+
+# get network  output layers
+layer_names = net.getLayerNames()
+output_layers = [layer_names[i[0]-1] for i in net.getUnconnectedOutLayers()]
+
+# inference 
+outs =  net.forward(outpu_layers)
+
+# extract bounding boxes
+class_ids = list()
+confidences = list()
+boxes = list()
+
+# iterate over all classes 
+for out in outs:
+  for detection in out:
+    # bounding  box
+    center_x = int(detection[0]*image.shape[1])
+    center_y = int(detection[1]*image.shape[0])
+    w, h = int(detection[2]*image.shape[1]), int(detection[3]*image.shape[0])
+    x, y = center_x - w // 2, center_y - h // 2
+    boxes.append([x,y,w,h])
+    
+    # confidence
+    confidences.append(float(detection[4]))
+    
+    # class
+    class_ids.append(np.argmax(detection[5:]))
+    
+    # non-max suppression
+    ids = cv2.dnn.NMSBoxes(boxes, confidences, score_threshold=0.75,  nms=threshold=0.5)
+    
+    # draw the bounding boxes and their captions on the image
+    for i in ids:
+      i = i[0]
+      x, y, w, h = boxes[i]
+      class_id = class_ids[i]
+    color = colors[class_id]
+    cv2.rectangle(img=image, pt1=(round(x),round(y)), pt2=(round(x+w), round(y+h)), color=color, thickness=3)
+    cv2.putText(img=image, text= f"{classes[class_id]}:{confidences[i]:.2f}", org=(x-10, y=10), fontFace = cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.8, color=color, thickness=2)
+    
+    # detect image
+    cv2.imshow("Object detection", image)
+    cv2.waitKey()
 
 
 
