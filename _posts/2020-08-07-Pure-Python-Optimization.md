@@ -19,4 +19,8 @@ excerpt: Advanced Python Programming
 * In some cases, it is necessary  to efficiently perform insertion or removal of elements both at the  beginning and at the end of the collection. Python provides a data structure  with those properties in the collections.deque class. The  word **deque** stands for double-ended queue  because this data structure is designed to efficiently put and remove elements at the beginning  and at  the end of  the collection, as it is in the case  of queues. In Python, deques are implemented as doubly-linked lists. 
 
 # Dictionaries  
+- Dictionaries are extremely versatile and extensively used in the Python language. Dictionaries are implemented as hash maps and are  very good at element insertion, deletion, and access. All these operations have an average O(1) time complexity.
 
+- In Python versions up to 3.5, dictionaries are unordered collections. Since Python 3.6, dictionaries are capable of maintaining their elements by order of insertion.
+
+- A hash map is a data structure that associates a set of key-value pairs. The principle behind hash maps is to assign 
