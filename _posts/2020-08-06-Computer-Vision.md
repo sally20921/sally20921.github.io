@@ -139,7 +139,7 @@ we'll use a  popular network known as  ResNet-18. Replace the  last network laye
 Run the training for epochs and evaluate the network  accuarcy after each epoch.
 - plot the test accuracy  with the help of the plot_accuracy function. 
 
-```
+```python
 def tl_feature_extractor(epochs=5):
   # load the pretrained model 
   model = torchvision.models.resnet18(pretrained=True)
@@ -171,7 +171,7 @@ def tl_feature_extractor(epochs=5):
 
 - implement  the  fine-tuning approach. This function is similar  to  tl_feature_extractor,
 but here,  we're training the whole network:
-```
+```python
 def tl_fine_tuning(epochs=5):
    #load the pretrained model
    model = models.resnet18(pretrained=True)
@@ -235,7 +235,7 @@ In theory, we can take a shallow network and stack identity layers on top of it 
  +  In computer vision, the combination of translation and orientation is known as the  **pose**. The  pose is enough to  uniquely identify the object's properties in the coordinate system. 
   + If we can somehow train a network  to understand these properties, we won't have to feed it with multiple augmented versions of the  same object. A CNN cannot do  that,  because its internal data representation doesn't contain information about  the object's pose (only about  its type). In contrast, capsule networks preverve information for both the type and the pose of an object. 
   
-  ## Object detection and Image Segmentation
+## Object detection and Image Segmentation
   - We can  say that  these tasks are more complex compared to classification, because the model
   has to obtain a more comprehensive  understanding  of the image. It has  to be able  to detect different objects as well as their positions on the  image. At  the same time, the task complexity allows for more creative  solutions. 
   
@@ -249,7 +249,7 @@ In theory, we can take a shallow network and stack identity layers on top of it 
 1. A special type of CNN, called Region Proposal Network (RPN), scans the image and proposes a number of possible bounding boxes, or regions of interest (RoI), where objects might be  located. However,  this network doesn't detect the type of the object,  but only whether an object is present in the region.
 2. The regions of interest  are  sent to the second stage  for object classification, which determines the actual object in  each bounding box.
 
-+**One-stage (or one-shot) detection methods**: Here, a single CNN produces both the object type and the bounding box. These approaches are usually faster, but less accurate compared to the two-stage methods. 
++ **One-stage (or one-shot) detection methods**: Here, a single CNN produces both the object type and the bounding box. These approaches are usually faster, but less accurate compared to the two-stage methods. 
 
 ### Object detection with YOLOv3
 - The  algorithm starts with the  so-called backbone network called Darknet-53 (after the  number of convolutional layers). It  is trained to  classify the ImageNet dataset. It is fully convolutional and uses  residual connections. 
