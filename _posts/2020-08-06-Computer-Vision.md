@@ -367,6 +367,7 @@ for out in outs:
     # detect image
     cv2.imshow("Object detection", image)
     cv2.waitKey()
+```
 
 
 
