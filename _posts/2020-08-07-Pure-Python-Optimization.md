@@ -152,4 +152,23 @@ r_i = np.random.rand(10, 2)
   * If you have  a hard time distinguishing arrays that  differ in the axes order, it is useful to think that every time you say the word  **of**, you should introduce a new dimension. 
   * An array with ten elements of size two  will be  (10,2). Conversely, an array with two elements of  size en will be  (2,10)
 
-* A typical operation we may be interested in is the extraction of the *x* component from each coordinate. In other words, you want to extract resulting in an array with shape (10, )
+* A typical operation we may be interested in is the extraction of the *x* component from each coordinate. In other words, you want to extract resulting in an array with shape (10, ). It is helpful to think that the first index is *moving* while the second one is *fixed*. With this in mind, we will slice every index on the first axis, and take the first element (the fixed one) on the second axis, as shown in the  following line of code:
+```python
+x_i = r_i[:, 0]
+```
+* On the other hand, the following expression will keep the first index fixed  and the second index moving, returning  the first (x,y) coordinate:
+```python
+r_ 0  = r_i[0, :]
+```
+* Slicing all the indexes over the  last axis is optional; using *r_i[0]* has the same effect  as *r_i[0, :]*.
+
+* NumPy allows you to index an array using another NumPy array made of either integer or Boolean values - a feature called *fancy indexing*. If you index an array with another array  of integers, NumPy will interpret the integers as indexes and will return an array containing  their  correspnding values. 
+ * If we index an array containing 10 elements with *np.array([0,2,3])*, we obtain an array of shape  (3, ), containing the  elements at positions 0, 2, and 3. 
+ * You can use fancy indexing on multiple dimensions by passing  an array for each dimension. If we want to extract the (0,2) and (1,3) elements, we have to pack all the indexes acting on the first axis in one array, and the ones acting on the  second axis in another. 
+ 
+```python
+a = np.array([[0,1,2],[3,4,5],[6,7,8],[9,10,11]])
+idx1=   np.array([0,1])
+idx2= np.array([2,3])
+a[idx1,idx2]
+```
