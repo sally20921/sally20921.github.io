@@ -99,4 +99,57 @@ import  numpy as np
 a = np.array([[0,1,2],[3,4,5]])
 ```
 
-* The array created in this way has two dimensions, which are called **axes** in NumPy's jargon. We can access the axes using the *ndarray.shape* attribute. Arrays can also be reshaped as long as the product of the shape dimensions is equal to the total number of elements in the array. (that is, the total number  of elements is conserved). For example, we can 
+* The array created in this way has two dimensions, which are called **axes** in NumPy's jargon. We can access the axes using the *ndarray.shape* attribute. Arrays can also be reshaped as long as the product of the shape dimensions is equal to the total number of elements in the array. (that is, the total number  of elements is conserved). For example, we can reshape an array containing 16 elements in the following ways: (2,8), (4,4), or (2,2,4). To  reshape an array, we can either use the *ndarray.reshape* method or  assign a new value  to the  *ndarray.shape* tuple. 
+ * Thanks  to this property, you can freely add  dimensions of size one. You can reshape an array with 16 elements to  (16,1), (1,16), (16,1,1), and so on. 
+ * NumPy provides convenience functions, shown in the following  code, to create  arrays filled with  zeros, ones, or with no initial value ( in this case, their  actual value  is meaningless and depends on the  memory state). Those functions  take the array shape as a tuple and, optionally, its dtype:
+ 
+ ```python
+import  numpy as np
+np.zeros((3,3))
+np.empty((3,3))
+np.ones((3,3), dtype='float32')
+```
+ * In our examples, we will use the *numpy.random* module to generate random floating point numbers in the (0,1) interval. The *numpy.random.rand* will take a shape and return an array of random numbers with that shape:
+ 
+ ```python
+import  numpy as np
+np.random.rand(3,3)
+```
+ * Sometimes, it is convenient  to initialize  arrays that have the  same shape as that of some other array. For that purpose, NumPy provides some handy functions, such  as *zeros_like*, *empty_like*, and *ones_like*. 
+ 
+ ```python
+import  numpy as np
+np.zeros_like(a)
+np.empty_like(a)
+np.ones_like(a)
+```
+
+### Accessing  arrays
+* The NumPy array interface is, on a shallow level, similar to that of Python lists. NumPy array can be indexed using integers and iterated using a for loop:
+ * In NumPy, array elements and sub-arrays can be conveniently accessed by using multiple values separated by commas insdie the subscript operator, []. If we take a (3,3) array, and we access the element with index 0, we obtain the first row. 
+ * We can index  the row again by adding  another index separatec  by comma. To get  the second element of the first row, we can use the (0,1) index. 
+ * An important  observation is that the *A[0,1]* notation is actually shorthand for *A[(0,1)]*, that is, we are  actually indexing using a  tuple!  
+ 
+* NumPy allows you to slice arrays into  multiple dimensions. If we slice on the first dimension, we can obtain a collection of triplets. If we slice the  array again on the second dimension, we are basically extracting the first two elements from the collection of  triplets  shown earlier. This results in an array of shape (2,2).
+ * Intuitively, you can update the  values in the  array using both numerical  indexes and slices. 
+* Indexing with the slicing syntax is very fast, because, unlike lists, it doesn't produces a copy of  the array. 
+* In  NumPy's terminology, it returns a *view* of the same memory area. If we take a slice of the original array, and then we change one of its values, the original array will be updated  as  well. 
+
+```python
+a = np.array([1,1,1,1])
+a_view = a[0:2]
+a_view[0] = 2
+print(a)
+# output : [2 1 1 1]
+```
+* It is important to be  extra careful when mutating  NumPy arrays. Sinces views share  data, changing the values of a view can result in  hard-to-find bugs. To  prevent side effects you can set the  *a.flag.writeable =  False* flag, which will prevent accidental mutation of the array or any  of its views. 
+
+* We can take a look at another example that shows how the slicing syntax can be  used  in a real-world setting. We  define an *r_i* array, shown in the  following line of code, which contains a set  of 10 coordinates (x,y). Its shape  will be  (10,2):
+```python
+import  numpy as np
+r_i = np.random.rand(10, 2)
+```
+  * If you have  a hard time distinguishing arrays that  differ in the axes order, it is useful to think that every time you say the word  **of**, you should introduce a new dimension. 
+  * An array with ten elements of size two  will be  (10,2). Conversely, an array with two elements of  size en will be  (2,10)
+
+* A typical operation we may be interested in is the extraction of the *x* component from each coordinate. In other words, you want to extract resulting in an array with shape (10, )
