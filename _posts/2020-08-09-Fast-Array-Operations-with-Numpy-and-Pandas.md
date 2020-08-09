@@ -7,7 +7,7 @@ excerpt: Advanced Python Programming
 ---
 
 # Getting started with NumPy
-## Accessing arrays
+
 
 ```python
 a = np.array([[0,1,2],[3,4,5],[6,7,8],[9,10,11]])
