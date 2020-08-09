@@ -12,4 +12,4 @@ excerpt: Advanced Guided to Python 3  Programming
 #  Working with  CSV Files
 # Introduction to Logging  
 # Logging in  Python
-$ Advanced Logging 
+# Advanced Logging 
