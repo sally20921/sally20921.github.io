@@ -79,8 +79,57 @@ with open('my-new-file.txt','r') as f:
   for line in lines:
     print(line, end='')
  ```
+ 
+## The Fileinput Module
+* In some situations, you may need to read the input from several files in one go. You could do this by opening each file independently and then reading the contents and appending  that contents  to a list. However,  this is  a common enough requirement that the *fileinput*  module provides a function *fileinput.input()*  that can take  a list of files and treat  all  the  files as  a single input.
+```python
+with fileinput.input(files=('spam.txt', 'eggs.txt')) as f:
+ for line in f:
+  process(line)
+ ```
+ * Features provided by the *fileinput* module include  
+  * Return the name of the file currently being  read 
+  * return the  integer "file descriptor" for the current file
+  * return the  cumulative  line  number  of the  line  that has just been read
+  * return the line number  in the  current file. Beforet he  first line has been  read  this returns 0.
+  * A boolean  function  that indicates if the current line  just read is the  first line of its file. 
+  
+  ```python
+with fileinput.input(files=('spam.txt', 'eggs.txt')) as f:
+ line  = f.readline()
+ f.filename()
+ f.isfirstline()
+ f.lineno()
+ f.filelineno()
+ for line in f:
+  print(line, end='')
+ ```
+ 
+ ##  Renaming Files 
+ * A file can be renamed using the *os.rename()* function. This function takes two arguments, the current filename and the new filename. It  is part of the  Python *os*  module which provides methods that can be  used to perfrom a  range of file-processing operations (such as renaming  a file). 
+ 
+ ##  Random Access Files
+ * It is also possible to use a random-access approach to the contents within a file. 
+ * The random-access aspect of a file is provided by the seek method of the file object:
+ * *file.seek(offset, whence)* : this method determines where the next  read or write  operation takes place. 
+  * The optional whence  parameter  indicates where the  offset is relative to. 
+ 
 # Stream IO
 #  Working with  CSV Files
+* The  CSV (Comma Separated Values) format is the  most common import and export format  for spreadsheets  and databases. 
+* The Python *csv* module implements classes to read and write tabular data in CSV format. 
+* This allows programmers to  iterate  over lines in the given csvfile. An optional dialect parameter  can be  given. 
+```python
+csv.writer(csvfile, dialect='excel', **fmtparams)
+ ```
+ * Returns a writer object responsible for converting  the user's data into delimited strings on the given csvfile. 
+ ```python
+csv.list_dialects()
+ ```
+ * Returns the names of all registered dialects. 
+ 
+ ## The CSV Writer  Class
+ 
 # Introduction to Logging  
 # Logging in  Python
 # Advanced Logging 
