@@ -128,8 +128,124 @@ csv.list_dialects()
  ```
  * Returns the names of all registered dialects. 
  
- ## The CSV Writer  Class
- 
-# Introduction to Logging  
+## The CSV Writer  Class
+* A CSV Writer is obtained from the *csv.writer()* function. 
+# Introduction to Logging
+* Logging is typically a key aspect of any production application; this is because it is important  to provide appropriate information to allow future investigation following some events or issue in such applications. 
+
+## Why Not Just Use Print?
+* There  might be  no terminal/console window to send the data to; instead the data is just lost. 
 # Logging in  Python
+## The Logging  Module 
+* Python  has included a built-in logging module since Python 2.3. This  module, the *logging*  module, defines functions  and classes which implement  a flexible  logging  framework that can be  used in any Python application/script or in Python libraries/modules. 
+* **Configuration Information** The logger can be configured either  programmatically in Python or through configuration files. These configuration files can be written using key-value pairs or in a YAML file (which is a simple mark up language). YAML stands for Yet Another Markup Language!
+
+### The  Logger  
+* The Logger provides the programmers interface to the logging pipeline. 
+* A Logger object is obtained from the *getLogger()* function defined in the *logging* module.
+```python
+import logging 
+logger  = logging.getLogger()
+ ```
+### Controlling the  Amount of Information Logged 
+* Log messages are actually associated with a  log level. There are six different log levels associated  with  the Python logging framework.
+ * **NOTESET**
+ * **DEBUG** : when a developer is diagnosing a bug 
+ * **INFO**
+ * **WARNING**
+ * **ERROR**
+ * **CRITICAL**
+ ```python
+import logging 
+logging.basicConfig(level=logging.DEBUG)
+logger  = logging.getLogger()
+ ```
+ 
+ ###  Logger Methods
+ ```python
+import logging 
+
+logger = logging.getLogger()
+
+try:
+ print('starting')
+except:
+ logger.exception('an exception message')
+print('Done')
+ ```
+
+### Default Logger
+* A default (or root) logger is always available from the logging framework. 
+
+### Module Level Loggers
+* Most modules will not use the root logger to log information, instead they will use a *named* or *module level* logger. Such a logger can be configured independently of the  root logger. This allows developers to turn on logging just for a module rather than for a whole application. 
+* It is possible to create a named logger. This is a separate logger object that has its own name and can potentially have  its own log level, handlers, and formatters etc. 
+ ```python
+logger1 = logging.getLogger('my logger')
+ ```
+ * multiple calls to *getLogger()* with the same name will always return a reference to the same Logger object. 
+ * It is common practice to use the name of the module as the name of the logger; 
+ 
+### Logger  Hierarchy
+ *  There  is in fact a hierarchy of loggers with the root logger at the top of this hierarchy. All *named* loggers are below the  root logger. 
+ 
+### Formatters
+#### Formatting Log Messages 
+ ```python
+logger.warning('%s is set to %d', 'count', 42)
+ ```
+#### Foramtting Log  Output
+* To globally set the output format for log messages use the *logging.basicConfig()* function using  the named parameter  *format*. 
+
+ ```python
+import logging 
+logging.basicConfig(format='%(asctime)s %(messages)s', level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+ ```
 # Advanced Logging 
+* In this chapter we go  further into the configuration and modification of the Python logging module. In particular  we will look at  Handlers (used to determine the destination for log messages) and logger configuration files. We conclude the chapter by considering performance issues associated with logging. 
+
+## Handlers
+* Within the logging pipeline, it is handlers that send log messages to their final destination. By default the handler is set up to direct output to the console/terminal associated with  the running program. However, this can be changed to send the log messages to a file, to an email service, to a web server etc. 
+
+### Setting the Root Output Handler
+ ```python
+import logging 
+
+logging = basicConfig(filename='example.log', level=logging.DEBUG)
+
+logger = logging.getLogger(__name__)
+ ```
+ 
+ ###  Logger Configuration
+ * For most production systems a better solution is to use an external configuration file which is loaded when the  application is run and is used to dynamically configure  the  logging framework. 
+* This allows system administrators and others to change the log level, the log  destination, the log format etc. without needing to change the code. 
+* The logging configuration  file can be  written using several  standard formats from JSON to YAML format, or as a set of key-value pairs in a .conf file. 
+* The YAML code is stored in a file called *logging.conf.yaml*
+* The YAML file always starts with a version number. This file can be loaded into a Python application using the *PyYAML* module. This  provides a YAML parser that can  load a YAML file as a dictionary structure that can be  passed to the *logging.config.dictConfig()* function. 
+* As this is a file it must be opened and closed to ensure  that the resource  is handled appropriately. It is therefore best managed using the *with-as* statement as shown below:
+ ```python
+with open('logging.config.yaml', 'r') as f:
+ config = yaml.safe_load(f.read())
+ logging.config.dictConfig(config)
+ ```
+ * This will open the YAML file in a read-only mode and close it  when the two statements have been executed. 
+ 
+  ```python
+import logging
+import logging.config
+import yaml
+
+with  open('logging.config.yaml','r') as f:
+ config = yaml.safe_load(f.read())
+ logging.config.dictConfig(config)
+ 
+logger = logging.getLogger('myLogger')
+
+# 'application' code
+def do_something():
+ 
+logger.info('Starting')
+do_something()
+logger.info('Done')
+ ```
