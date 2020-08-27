@@ -12,11 +12,17 @@ excerpt: https://realpython.com/python-super/
 - calling the previously built methods with *super()* saves you from needing to rewrite those methods in your subclass, and allows you  to  swap  out superclasses with  minimal code changes. 
 
 # What can *super()* do for you?
-
-
-
-
+- Before heading into multiple inheritance,  let's take a quick  detour into the mechanics of *super()*.
+- While  the examples above (and below) call *super()* without any parameters, *super()*  can also take two parameters: the first is the subclass, and the second parameter is an object that is an instance of that subclass. 
 
 ```python
-tensorboard  --logdir ~/ch3_tb_log --port 6006
+class Rectangle:
+  def __init__(self, length,  width):
+    self.length = length
+    self.width - width
+    
+  def area(self):
+    return self.length * self.width
+    
+    
 ```
