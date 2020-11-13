@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The mathematical appartus of NNs
-categories: Python  
+categories: Linear-Algebra 
 tags: [Advanced Deep Learning with Python]
 excerpt: Advanced Deep Learning with Python
 ---
