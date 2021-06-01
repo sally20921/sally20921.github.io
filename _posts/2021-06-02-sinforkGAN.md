@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ForkGAN with Single Rainy Images: Leveraging the RumiGAN to See into the Rainy Night
-categories: Projects
+categories: Python
 tags: 
 excerpt: 
 ---
