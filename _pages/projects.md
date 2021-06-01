@@ -8,7 +8,7 @@ permalink: /projects/
 
 # Project Pages 
 <div id="archives">
-{% for category in site.projects %}
+{% for category in site.categories %}
   <div class="archive-group">
     {% capture category_name %}{{ category | first }}{% endcapture %}
     <div id="#{{ category_name | slugize }}"></div>
