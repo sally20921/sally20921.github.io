@@ -34,7 +34,7 @@ Sorry if the code is messy and unorganized. It will be reorganized very soon :)
 <a name="1"></a>
 ## Overview
 
-![Pipeline](./imgs/figure1.png)
+
 
 <a name="2"></a>
 ## Dataset
