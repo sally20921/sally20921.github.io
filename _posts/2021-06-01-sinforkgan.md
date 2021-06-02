@@ -34,7 +34,7 @@ Sorry if the code is messy and unorganized. It will be reorganized very soon :)
 <a name="1"></a>
 ## Overview
 
-![pipeline](/images/figure1)
+![pipeline](./images/figure1)
 
 
 <a name="2"></a>
