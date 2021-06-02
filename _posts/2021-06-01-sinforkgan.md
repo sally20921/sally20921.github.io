@@ -34,8 +34,7 @@ Sorry if the code is messy and unorganized. It will be reorganized very soon :)
 <a name="1"></a>
 ## Overview
 
-![pipeline](./images/figure1)
-
+![image](https://user-images.githubusercontent.com/38284936/120408008-1da1a200-c389-11eb-9ade-4105d3774ffa.png)
 
 <a name="2"></a>
 ## Dataset
