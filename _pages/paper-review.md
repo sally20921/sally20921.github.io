@@ -5,7 +5,8 @@ permalink: /paper-review/
 ---
 (updated: 2020/05/09)
 
-# Unsupervised Domain Adaptation on Mobile/Edge Devices (05/2020 - present)  
+# Unsupervised Domain Adaptation on Mobile/Edge Devices (05/2020 - present) 
+- Seri Lee, et al. "SinForkGAN: ForkGAN with Single Rainy Night Images." [abstract](/doc/sinforkgan.pdf)
 - Xie, Shaoan, et al. "Learning semantic representations for unsupervised domain adaptation." International Conference on Machine Learning. 2018. [summary](/doc/DA/MSTN.pdf)
 - Chen, Ting, et al. "A simple framework for contrastive learning of visual representations." arXiv preprint arXiv:2002.05709 (2020). [summary](/doc/DA/SimCLR.pdf)
 - Xie, Qizhe, et al. "Self-training with Noisy Student improves ImageNet classification." arXiv preprint arXiv:1911.04252 (2019). [summary](/doc/DA/NS.pdf)
