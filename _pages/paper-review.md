@@ -4,7 +4,7 @@ title: Paper Review
 permalink: /paper-review/
 ---
 (updated: 2020/05/09)
-
+- [course info](/doc/인공지능특강.pdf)
 # Unsupervised Domain Adaptation on Mobile/Edge Devices (05/2020 - present) 
 - Seri Lee, et al. "SinForkGAN: ForkGAN with Single Rainy Night Images." [abstract](/doc/sinforkgan.pdf)
 - Xie, Shaoan, et al. "Learning semantic representations for unsupervised domain adaptation." International Conference on Machine Learning. 2018. [summary](/doc/DA/MSTN.pdf)
