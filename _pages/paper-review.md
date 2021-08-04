@@ -4,6 +4,7 @@ title: Paper Review
 permalink: /paper-review/
 ---
 (updated: 2020/05/09)
+- [presentation](/doc/ac.pdf)
 - [resume](/doc/resume.pdf)
 - [course info](/doc/ai.pdf)
 # Unsupervised Domain Adaptation on Mobile/Edge Devices (05/2020 - present) 
