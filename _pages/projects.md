@@ -6,32 +6,13 @@ permalink: /projects/
 (updated: 2021/06/01)
 ---
 
-# Project Pages 
-<div id="archives">
-{% for category in site.categories %}
-  <div class="archive-group">
-    {% capture category_name %}{{ category | first }}{% endcapture %}
-    <div id="#{{ category_name | slugize }}"></div>
-    <p></p>
-    
-    <h3 class="category-head">{{ category_name }}</h3>
-    <a name="{{ category_name | slugize }}"></a>
-    {% for post in site.categories[category_name] %}
-    <article class="archive-item">
-      <h4><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h4>
-    </article>
-    {% endfor %}
-  </div>
-{% endfor %}
-</div>
-
 # Research Projects 
 ### SinForkGAN: ForkGAN with Single Rainy Night Images (03/2021 - 2021/06)
  *ForkGAN*[/doc/forkgan.pdf] has been proposed as a task agnostic image translation method that can boost the performance of multiple vision tasks
  in adverse weather conditions. The recently proposed *RumiGAN framework*[/doc/rumigan.pdf] is incorporated to get rid of daytime image translation
  module in ForkGAN. This project was conducted for class "Advanced GANs" in Seoul National University. 
  - [code](https://github.com/sally20921/SinForkGAN)
- - [paper]
+ - [paper](/doc/sinforkgan.pdf)
  
 ### Unsupervised Domain Adaptation on Mobile/Edge Devices (05/2020 - 2021/02)  
 This project aims to develop an unsupervised domain adaptation algorithm that improves the state-of-the-art algorithm. 
