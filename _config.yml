@@ -17,6 +17,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-spaceship
   
 authors:
     sal:
@@ -55,11 +56,26 @@ defaults:
 # Syntax
 markdown: kramdown
 highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
 
 # Paginate
 paginate: 10
 
-
+jekyll-spaceship:
+processors:
+- table-processor
+- plantuml-processor
+- mermaid-processor
+- polyfill-processor
+- media-processor
+- emoji-processor
+- element-processor
+- mathjax-processor
+mathjax-processor:
+src:
+- https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML
 
 # Exclude metadata and development time dependencies (like Grunt plugins)
 exclude: [README.markdown, package.json, grunt.js, Gruntfile.js, Gruntfile.coffee, node_modules, vendor]
