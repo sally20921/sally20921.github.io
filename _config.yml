@@ -18,6 +18,7 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-spaceship
+  - jekyll-include-cache
   
 authors:
     sal:

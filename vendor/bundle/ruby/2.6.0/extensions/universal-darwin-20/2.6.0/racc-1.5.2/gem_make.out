@@ -1,5 +1,5 @@
 current directory: /Users/seri/sally20921.github.io/vendor/bundle/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
-/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20210828-43012-nt48rm.rb extconf.rb
+/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20210831-47811-5juiq2.rb extconf.rb
 checking for rb_ary_subseq()... yes
 creating Makefile
 
@@ -14,4 +14,4 @@ ld: warning: directory not found for option '-L/Applications/Xcode.app/Contents/
 
 current directory: /Users/seri/sally20921.github.io/vendor/bundle/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 cparse.bundle ./.gem.20210828-43012-ygzntf/racc
+/usr/bin/install -c -m 0755 cparse.bundle ./.gem.20210831-47811-ct9zd3/racc
