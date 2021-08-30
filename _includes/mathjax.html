@@ -54,6 +54,14 @@ MathJax.Hub.Config({
     }
   }
 });
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+
 </script>
 
 <script type="text/javascript">
@@ -78,9 +86,5 @@ MathJax.Hub.Config({
     "config=TeX-AMS-MML_HTMLorMML", function(){});
 
 })();
-</script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/latest?tex-mml-chtml.js">
 </script>
 
