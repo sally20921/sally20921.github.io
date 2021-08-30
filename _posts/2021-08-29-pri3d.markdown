@@ -2,8 +2,8 @@
 layout: post
 title:  "Pri3D: Can 3D Priors Help 2D Representation Learning?"
 author: seri
-categories: [ paper, rgb-d, ssl ]
-image: /assets/images/pri3d.png
+categories: [paper]
+image: assets/images/pri3d.png
 ---
 
 ![](/assets/images/pri3d.png)
@@ -36,7 +36,7 @@ For a given RGB-D sequence in the train set, our method then leverages the 3D da
 
 In the training phase, a pair of sampled images is input to a shared 2D network backbone. In our experiments, we use a UNet-style backbone with ResNet architecture as an encoder, but note that our method is agnostic to the underlying encoder backbone. We then consider the feature map from decoder of the 2D backbone, where its size is half of the input resolution. For each image in the pair, we use the aforementioned pixel-to-pixel correspondences which refer to the same physical 3D point. Note that these correspondences may have different color values due to view-dependent lighting effects but represent the same 3D world location; additionally, the regions surrounding the correspondences appear different due to different viewing angles. In this fashion, we treat these pairs of correspondences as positive samples in contrastive learning; we use all non-matching pixels as negatives. Non-matching pixels are also defined within the set of correspondences. For a pair of frames with $n$ pairs of correspondences as positive samples, we use all $n(n-1)$ negative pairs (each of $n$ pixels from the first frame with each $n-1$ non-matching pixel from the second). Non-matching pixel-voxels are defined similarly but from a pair of frame and 3D chunk.
 
-Between the features of matching and non-matching pixel locations, we then compute a PointInfoNCE loss, which is defined as: $$L_p = -\sum_{(a,b) \in M}\log{\frac{\exp(f_a \cdot f_b / \tau}{\sum_{(\cdot,k) \in M}\exp(f_a \cdot f_k /\tau}}$$, where $M$ is the set of pairs of pixel correspondences, ahd $f$ represents the associated feature vector of a pixel in the feature map. By leveraging multi-view correspondences, e apply implicit 3D priors-without any explicit 3D learning, we imbue view-invariance in the learned image-based features. 
+Between the features of matching and non-matching pixel locations, we then compute a PointInfoNCE loss, which is defined as: $$L_p = -\sum_{(a,b) \in M}\log{\frac{\exp(f_a \cdot f_b / \tau)}{\sum_{(\cdot,k) \in M}\exp(f_a \cdot f_k /\tau)}}$$, where $M$ is the set of pairs of pixel correspondences, ahd $f$ represents the associated feature vector of a pixel in the feature map. By leveraging multi-view correspondences, e apply implicit 3D priors-without any explicit 3D learning, we imbue view-invariance in the learned image-based features. 
 
 ### Geometric Prior
 In addition to multi-view constraints, we also leverage explicit geometry-color correspondences inherent to the RGB-D data during training. For an RGB-D train sequence, the geometry-color correspondences are given by associating the surface reconstruction $S$ with the RGB frames of the sequence. For each frame $i$, we compute its view frustum in the world space. A volumetric chuck $V_i$ of $S$ is then cropped from the axis-aligned bounding box of the view frustum. We represent $V_i$ as a 2cm resolution volumetric occupancy grid from the surface. We thus consider pairs of color frames and geometric chuncks $(C_i, V_i)$.
