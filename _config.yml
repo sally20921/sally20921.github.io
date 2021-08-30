@@ -59,6 +59,7 @@ defaults:
 markdown: kramdown
 kramdown:
    math_engine: mathjax
+   math_engine_opts: {}
 highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
@@ -135,3 +136,4 @@ jekyll-spaceship:
 
 # Exclude metadata and development time dependencies (like Grunt plugins)
 exclude: [README.markdown, package.json, grunt.js, Gruntfile.js, Gruntfile.coffee, node_modules, vendor]
+include: [_site] 
