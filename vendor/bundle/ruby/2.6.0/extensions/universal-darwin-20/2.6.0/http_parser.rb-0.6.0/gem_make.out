@@ -1,5 +1,5 @@
 current directory: /Users/seri/sally20921.github.io/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
-/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20210831-47811-1qy6gy5.rb extconf.rb
+/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20210831-68134-bt02gg.rb extconf.rb
 creating Makefile
 
 current directory: /Users/seri/sally20921.github.io/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
@@ -14,4 +14,4 @@ ld: warning: directory not found for option '-L/Applications/Xcode.app/Contents/
 
 current directory: /Users/seri/sally20921.github.io/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 ruby_http_parser.bundle ./.gem.20210831-47811-2inlop
+/usr/bin/install -c -m 0755 ruby_http_parser.bundle ./.gem.20210831-68134-1j6hn75

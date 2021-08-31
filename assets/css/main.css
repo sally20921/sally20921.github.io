@@ -5912,6 +5912,12 @@ button.bg-lightblue:focus {
 .shadow-none {
   box-shadow: none !important; }
 
+.fill {object-fit: fill;}
+
+.cover {object-fit: cover;
+	height: 100%;
+	width: 100%;}
+
 .w-25 {
   width: 25% !important; }
 

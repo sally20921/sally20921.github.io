@@ -146,7 +146,8 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
                 </p>
                 <a href="{{site.baseurl}}{{post.url}}" class="btn btn-dark">Read More</a>
             </div>
-            <div class="col-md-6 d-none d-md-block pr-0" style="background-size:cover;background-image:url({{site.baseurl}}/{{ post.image }});">	
+	    <!--<div class="col-md-6 d-none d-md-block pr-0" style="background-size:contain;background-repeat:no-repeat;background-image:url({{site.baseurl}}/{{ post.image }});">-->
+	     <img class="col-md-6 d-non d-md-block pr-0" src={{site.baseurl}}/{{post.image}} align="midde">
             </div>
         </div>
     </div>

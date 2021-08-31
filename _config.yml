@@ -12,6 +12,9 @@ repository: sally20921/sally.github.io
 include: ["_pages"]
 permalink: /:title/
 
+theme: jekyll-theme-hydejack
+remote_theme: hydecorp/hydejack
+
 # Plugins
 plugins: 
   - jekyll-feed
@@ -20,23 +23,15 @@ plugins:
   - jekyll-seo-tag
   - jekyll-spaceship
   - jekyll-include-cache
+  - jekyll-latex
   
 authors:
-    sal:
-      name:           Sal
-      site:           https://www.wowthemes.net
-      avatar:         assets/images/avatar1.jpg
-      bio:            "Hi, I am Sal, the author of Mundana, the theme you're currently previewing. I hope you like it!"
-      email:          wowthemesnet@gmail.com
-      twitter:        https://twitter.com/wowthemesnet
-
-    jane:
-      name:           Jane
-      site:           https://www.wowthemes.net
-      avatar:         assets/images/avatar2.jpg
-      bio:            "Blogger, fashionista, love to explore new ideas and write on my morning coffee!"
-      email:          fakemail@gmail.com
-      twitter:        https://twitter.com/wowthemesnet
+    seri:
+      name:           Seri
+      site:           https://sites.google.com/snu.ac.kr/sally20921porfolio
+      avatar:         assets/images/profile.jpg
+      bio:            "Hi, I am Seri, the author of this blog."
+      email:          sally20921@snu.ac.kr
  
 # Defaults
 defaults:
@@ -46,8 +41,8 @@ defaults:
       path: "_posts"
     values:
       layout: post
-      author: sal
-      avatar: assets/images/avatar1.jpg
+      author: seri
+      avatar: assets/images/profile.jpg
       
   # all pages
   - scope:
@@ -132,8 +127,6 @@ jekyll-spaceship:
     src: https://github.githubassets.com/images/icons/emoji/
 
 
-
-
 # Exclude metadata and development time dependencies (like Grunt plugins)
 exclude: [README.markdown, package.json, grunt.js, Gruntfile.js, Gruntfile.coffee, node_modules, vendor]
-include: [_site] 
+
