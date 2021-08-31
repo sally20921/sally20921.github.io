@@ -5,6 +5,7 @@ author: seri
 categories: [ computer vision ]
 image: assets/images/home.png
 tags: [sticky]
+reference: https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/
 ---
 
 ## Introduction 
@@ -104,4 +105,8 @@ This is more of a traditional convention, rather than a useful way to write ligh
 
 ## Summary 
 
-Homogeneous coordinates have an extra dimension called $W$, which scales the $X$, $Y$, and $Z$ dimensions. Matrices for translation and perspective projection can only be applied to homogeneous coordinates, which is why they are so common in 3D computer graphics. The $X$, $Y$, and $Z$ values are said to be `correct` when $W=1$. Any homogeneous coordinates can be converted to have $W=1$ by dividing all four dimensions by the $W$ value, except if $W=0$. When $W=0$, the coordinate represents a point at infinity (a vector with infinite length), and this is often used to denote the direction of directional lights. 
+Homogeneous coordinates have an extra dimension called $W$, which scales the $X$, $Y$, and $Z$ dimensions. Matrices for translation and perspective projection can only be applied to homogeneous coordinates, which is why they are so common in 3D computer graphics. The $X$, $Y$, and $Z$ values are said to be `correct` when $W=1$. Any homogeneous coordinates can be converted to have $W=1$ by dividing all four dimensions by the $W$ value, except if $W=0$. When $W=0$, the coordinate represents a point at infinity (a vector with infinite length), and this is often used to denote the direction of directional lights.
+
+## References
+- [Tomdalling's Blog Post](https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/)
+- [Image Processing and Computer Vision Lecture Notes](https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20172018/LectureNotes/MATH/homogenous.html)
