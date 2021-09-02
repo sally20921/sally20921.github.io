@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "Inverse Projection Transformation"
+author: seri
+categories: [ computer vision ]
+image: assets/images/depth/12.png
+tags: featured
+---
+
+> Understanding depth perception is essential in many computer vision applications. For example, able to measure depth for autonomous vehicle allows for better deicison making as the agent is fully aware of the separation distances between other vehicles and pedistrians. 
+
+## Depth and Inverse Projection
+
+![](/assets/images/depth/11.png)*RGB + Depth = 3D back-projected Points* 
+
+When an image of a scene is captured by a camera, we *lose depth information* as objects and points in 3D space are mapped onto a 2D image plane. This is also known as *projective transformation*, in which points in the world are converted to pixels on a 2D plane. 
+
+However, what if we want to do the *inverse*? That is, we want to recover and reconstruct the scene given only 2D image. To do that, we need to know the depth or $Z$-component of each corresponding pixels. Depth can be represented as an image with with brigther intensity denoting further away.
+
+## Difficulty Reasoning in Perspective View
+
+
+
+
+## References
+- [medium article](https://towardsdatascience.com/inverse-projection-transformation-c866ccedef1c)
+
