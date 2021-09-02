@@ -1,4 +1,141 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-01T06:00:30+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">3D Rigid Body Motion (Part 2)</title><link href="http://localhost:4000/rigid2/" rel="alternate" type="text/html" title="3D Rigid Body Motion (Part 2)" /><published>2021-09-01T00:00:00+09:00</published><updated>2021-09-01T00:00:00+09:00</updated><id>http://localhost:4000/rigid2</id><content type="html" xml:base="http://localhost:4000/rigid2/">&lt;h1 id=&quot;rotation-vectors-and-euler-angles&quot;&gt;Rotation Vectors and Euler Angles&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-03T07:05:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Depth Estimation: Basics and Intuition</title><link href="http://localhost:4000/depth/" rel="alternate" type="text/html" title="Depth Estimation: Basics and Intuition" /><published>2021-09-02T00:00:00+09:00</published><updated>2021-09-02T00:00:00+09:00</updated><id>http://localhost:4000/depth</id><content type="html" xml:base="http://localhost:4000/depth/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;In computer vision, depth is extracted from 2 prevalent methodologies. Namely, &lt;em&gt;depth from monocular images&lt;/em&gt; (static or sequential) or &lt;em&gt;depth from stereo images&lt;/em&gt; by exploiting epipolar geometry. This article will focus on giving readers a background into depth estimation and the problems associated with it.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-we-view-the-world&quot;&gt;How We View the World&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s start with how humans perceive depth in general. This will give us some valuable insights on depth estimation since many of the methods were derived from our human vision system. Both machine and human vision share similarities in the way image is formed. Theoretically, when light rays from a source hit surfaces, it reflects off and directs towards the back of our retina, projecting them and our eye processes them as 2D just like how an image is formed on an image plane.&lt;/p&gt;
+
+&lt;p&gt;So how do we actually measure distance and understand our environment in 3D when the projected scene is in 2D? The mechanism at work here is that our brain starts to reason about the incoming visual signals by recognizing patterns such as the size, texture and motion about the scene known as &lt;em&gt;depth cues&lt;/em&gt;. There is no distance information about the image but somehow we can interpret and recover depth information effortlessly. These cues allow us to view objects and surfaces which are supposedly on flat images as 3D.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-destroy-depth&quot;&gt;How to Destroy Depth&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Interpreting these depth cues begins with how scenes are projected to perspective view in humans and camera vision. On the other hand, an &lt;em&gt;orthographic projection&lt;/em&gt; to front view or side view is one which destroys all depth information.&lt;/p&gt;
+
+&lt;p&gt;Consider the above image. An observer could disentangle which aspect of the house is nearer to him/her as seen in the left image. However, it is totally impossible to distinguish relative distances from the right image. Even the background might be lying on the same plane as the house.&lt;/p&gt;
+
+&lt;h2 id=&quot;judging-depth-using-cues&quot;&gt;Judging Depth Using Cues&lt;/h2&gt;
+
+&lt;p&gt;There are basically 4 categories of depth cues: static monocular depth from motion, binocular and physiological cues. We subconsciously take advantage of these signals to perceive depth remarkably well.&lt;/p&gt;
+
+&lt;h3 id=&quot;pictorial-depth-cues&quot;&gt;Pictorial Depth Cues&lt;/h3&gt;
+
+&lt;p&gt;Our ability to perceive depth from a single image depends on the spatial arrangement of things in the scene. Below, I have summarized some of the hints that enable us to reason about the distance of different objects. It may already feel natural to you from your daily interaction.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Size of objects&lt;/li&gt;
+  &lt;li&gt;Texture&lt;/li&gt;
+  &lt;li&gt;Linear Perspective&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;An interesting study was conducted at UC, Berkeley and they show experimentally that when the horizon is viewable, there is an overwhelming tendency for us to exploit this property to quickly perceive depth.&lt;/p&gt;
+
+&lt;h3 id=&quot;depth-cues-from-motion-motion-parallax&quot;&gt;Depth Cues from Motion (Motion Parallax)&lt;/h3&gt;
+
+&lt;p&gt;This should not be surprising to you as well. When you, as an observer, is in motion, things around you pass by faster than the one that is farther away. The farther something appears, the slower it seems to pass away from the observer.&lt;/p&gt;
+
+&lt;h3 id=&quot;depth-cues-from-stereo-vision-binocular-parallax&quot;&gt;Depth Cues from Stereo Vision (Binocular Parallax)&lt;/h3&gt;
+
+&lt;p&gt;The difference in view observed by your left and right eye is known as retina disparity. This phenomenon is also known as &lt;em&gt;stereopsis&lt;/em&gt;: ability to perceive depth due to 2 different perspectives of the world. By comparing iamges from the retinas in the two eyes, the brain computes distance. The greater the disparity, the closer the things are around you.&lt;/p&gt;
+
+&lt;h2 id=&quot;depth-estimation-in-computer-vision&quot;&gt;Depth Estimation in Computer Vision&lt;/h2&gt;
+
+&lt;p&gt;The goal of depth estimation is to obtain a representation of the spatial structure of a scene, recovering the three-dimensional shape and appearance of objects in imagery. This is also known as the inverse problem, where we seek to recover some unknowns given insufficient information to fully specify the solution.&lt;/p&gt;
+
+&lt;p&gt;So how do machines actually perceive depth? Can we somehow transfer some of the ideas discussed above? The earliest algorithm with impressive results begin with depth estimation using stereo vision back in the 90s. A lot of progress was made on dense stereo correspondence algorithm. Researchers were able to utilize geometry to constrain and replicate the idea of stereopsis mathemtically and at the same time running at real-time.&lt;/p&gt;
+
+&lt;p&gt;As for monocular depth estimation, it recently started to gain popularity by using neural networks to learn representation that distills depth directly. Through neural networks, depth cues are implicitly learned through gradient-based methods. Besides this, there has been great advancement in self-supervised depth estimation. In this method, a model is trained to predict depth by means of optimizing a proxy signal. No ground truth label is needed in the training process. Most research either exploits geometrical cues such as multi-view geometry or epipolar geometry to learn depth.&lt;/p&gt;
+
+&lt;h3 id=&quot;depth-estimation-from-stereo-vision&quot;&gt;Depth Estimation from Stereo Vision&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The main idea of solving depth using a stereo camera involves the concept of triangulation and stereo matching. The former depends on good calibration and rectification to constrain the problem so that it can be modelled on a 2D plane known as epipolar plane, which greatly reduces the latter (stereo matching) to a line search along the epipolar line.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Analogous to binocular parallax, once we are able to match pixel correspondences between the 2 views, the next task is to obtain a representation that encodes the difference. This representation is known as &lt;em&gt;disparity&lt;/em&gt;. The formula to obtain depth from disparity can be worked out from similar triangles.&lt;/p&gt;
+
+&lt;p&gt;To summarize the steps:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;identify similar points from feature descriptors&lt;/li&gt;
+  &lt;li&gt;Match feature correspondence using a matching cost function&lt;/li&gt;
+  &lt;li&gt;Using epipolar geometry, find and match correspondence in one picture frame to the other. A matching cost function is used to measure the pixel dissimilarity.&lt;/li&gt;
+  &lt;li&gt;Compute disparity from known correspondences $d = x1 - x2$ as shown in the above image.&lt;/li&gt;
+  &lt;li&gt;Compute depth from the known disparity $ z = (f*b)/d$.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;age-of-deep-learning&quot;&gt;Age of Deep Learning&lt;/h3&gt;
+
+&lt;p&gt;Deep learning excels in high-level perceptual and cognitive task such as recognition, detection and scene understanding. Depth perception falls into this category and likewise should be a natural way forward.&lt;/p&gt;
+
+&lt;p&gt;The seminal work of estimating depth directly from a monocular image started from Saxena. They learned to regress depth directly from monocular cues in 2D images via supervised learning, by minimizing a regression loss. Since then, many varieties of approaches have been proposed to improve the representation learning by proposing new architectures or loss functions.&lt;/p&gt;
+
+&lt;h4 id=&quot;self-supervised-monocular-depth-estimation-using-stereo&quot;&gt;Self-Supervised Monocular Depth Estimation using Stereo&lt;/h4&gt;
+
+&lt;p&gt;In this framework, the model will predict the disparities $d_l$ and $d_r$ only from the left RGB, $I_l$. Similar to the above method, a spatial transformer network warps the RGB image pair $I_l$, $I_r$ using the disparity. So the paired view can be synthesized and a reconstruction loss between the reconstructed views $I_{pred_l}$ and $I_{pred_r}$ and the target views $I_l$ and $Ir$ is used to supervise the training.&lt;/p&gt;
+
+&lt;h4 id=&quot;self-supervised-depth-estimation-using-sfm-framework&quot;&gt;Self-Supervised Depth Estimation using SfM Framework&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This method frames the problem as learning to generate a novel view from a video sequence. The task of the neural network is to generate the target view $I_t$ from source view by taking image at different time step $I, I_{t-1}, I_{t+1}$ and applying a learnt transformation from a pose network to perform the image warping. Training was made possible by treating the warped view synthesis as supervision in a differentiable manner using a spatial transformer network. At inference time, the depth CNN would predict depth from a single RGB image. Do note that these methods do have some shortcomings such as unable to determine scale and modelling moving objects as described in the next section.&lt;/p&gt;
+
+&lt;h4 id=&quot;cnn-depth-cues-and-bias-learnt&quot;&gt;CNN Depth Cues and Bias Learnt&lt;/h4&gt;
+
+&lt;p&gt;Understanding and deciphering the black box has been an ongoing research in interpretable machine learning. In the context of depth estimation, a few works have started investigating what depth cues do neural network relies on or the inductive biased learnt from a particular dataset. They found out that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Position of objects relative to ground contact point provides strong contextual information&lt;/li&gt;
+  &lt;li&gt;Shape does not matter but shadow does&lt;/li&gt;
+  &lt;li&gt;In an experiment, by placing an arbitrary object with artificial casted shadow, the model would estimate depth reasonably even if it is not available during training.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;why-is-measuring-depth-so-difficult&quot;&gt;Why is Measuring Depth So Difficult?&lt;/h2&gt;
+
+&lt;p&gt;Let’s try to understand some of the fundamental problems of depth estimation. The main culprit lies in the projection of 3D views to 2D images where depth information is lost. Another problem is deeply seeded when there are motion and moving objects.&lt;/p&gt;
+
+&lt;h3 id=&quot;depth-estimation-is-ill-posed&quot;&gt;Depth Estimation is Ill-Posed&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On many depth estimation paper, many authors mention that the problem of estimating depth from a single RGB image is ill-posed inverse problem. What this means is that many 3D scenes observed in the world can indeed correspond to the same 2D plane.&lt;/p&gt;
+
+&lt;h3 id=&quot;scale-ambiguity-for-monocular-depth-estimatio&quot;&gt;Scale-Ambiguity for Monocular Depth Estimatio&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Recall that adjusting the focal length will proportionally scale the points on the image plane. Now, suppose we scale the entire scene, $X$ by some factor $k$ and at the same time, scale the camera matrices $P$ by the factor of $1/k$, the projections of the scene points in the image remains exactly the same.&lt;/p&gt;
+
+&lt;p&gt;$$ x = PX = (1/k)P * kX $$
+That is to say, we can never recover the exact scale of the actual scene from the image alone! Note that this issue exists for monocular base techniques, as the scale can be recovered for a stero rig with a known baseline.&lt;/p&gt;
+
+&lt;h3 id=&quot;projection-ambiguity&quot;&gt;Projection Ambiguity&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Suppose we perform a geometric transformation of the scene. It is possible that after the transformation, these points will map to the same location on the plane. There exists not only projective ambiguity, but also affine and similarity ambiguity as well.&lt;/p&gt;
+
+&lt;h3 id=&quot;properties-that-degrade-matching&quot;&gt;Properties that Degrade Matching&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For stereo based or multi-view depth estimation that requires triangulation, it usually involves the pipeline of &lt;em&gt;Detect-Describe-Match&lt;/em&gt;. Matching becomes very difficult when the scene is taken from an extremely different viewpoint or varying changes in illumination between images. An extreme case is given in the above picture. These problematic cases include textureless regions (where many pixels will ahve the same pixel intensity), reflective surfaces, repetitive patterns or occlusions. Also. violating the Lambertian property (Lambertian surfaces refer to surfaces that appear to have teh same brightness no matter where it is viewed from). When images that show the same scene from 2 different view, the corresponding brightness intensity may not be equivalent due to non-ideal diffuse reflection.&lt;/p&gt;
+
+&lt;h3 id=&quot;moving-objects-violate-the-static-assumption-for-sfm-methods&quot;&gt;Moving Objects Violate the Static Assumption for SfM Methods&lt;/h3&gt;
+
+&lt;p&gt;Dynamic objects in the scene further complicates the estimation process. Depth estimation via Structure from Motion involves a moving camera and consecutive static scenes. This assumption must hold for matching and aligning pxiels. This assumption breaks when there are moving objects in the scene.&lt;/p&gt;
+
+&lt;p&gt;To this end, many researchers have looked into several methods to model moving objects in the scene by incorporating velocity information using optical flow or by using instance segmentation mask to model the object’s motion from one frame to another.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-estimation-1-basics-and-intuition-86f2c9538cd1&quot;&gt;medium article&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">Introduction</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Rigid Body Motion (Part 2)</title><link href="http://localhost:4000/rigid2/" rel="alternate" type="text/html" title="3D Rigid Body Motion (Part 2)" /><published>2021-09-01T00:00:00+09:00</published><updated>2021-09-01T00:00:00+09:00</updated><id>http://localhost:4000/rigid2</id><content type="html" xml:base="http://localhost:4000/rigid2/">&lt;h1 id=&quot;rotation-vectors-and-euler-angles&quot;&gt;Rotation Vectors and Euler Angles&lt;/h1&gt;
 &lt;h2 id=&quot;rotation-vectors&quot;&gt;Rotation Vectors&lt;/h2&gt;
 &lt;p&gt;With a rotation matrix to describe the rotation, is it enough to use a $4 \times 4$ transformation matrix to represent a 6-degree-of-freedom 3D rigid body motion? Obviously, the matrix representation has at least the following disadvantages:&lt;/p&gt;
 &lt;ol&gt;
@@ -28,7 +165,7 @@ Regarding the axis $n$, since the rotation axis does not change after the rotati
   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>jane</name></author><category term="deep learning" /><category term="featured" /><summary type="html">def print_hi(name) puts &quot;Hi, #{name}&quot; end print_hi('Tom') #=&amp;gt; prints 'Hi, Tom' to STDOUT.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/cnn.png" /><media:content medium="image" url="http://localhost:4000/assets/images/cnn.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Homogeneous Coordinates and Projective Geometry</title><link href="http://localhost:4000/homogeneous/" rel="alternate" type="text/html" title="Homogeneous Coordinates and Projective Geometry" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/homogeneous</id><content type="html" xml:base="http://localhost:4000/homogeneous/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>seri</name></author><category term="deep learning" /><category term="featured" /><summary type="html">def print_hi(name) puts &quot;Hi, #{name}&quot; end print_hi('Tom') #=&amp;gt; prints 'Hi, Tom' to STDOUT.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/cnn.png" /><media:content medium="image" url="http://localhost:4000/assets/images/cnn.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Homogeneous Coordinates and Projective Geometry</title><link href="http://localhost:4000/homogeneous/" rel="alternate" type="text/html" title="Homogeneous Coordinates and Projective Geometry" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/homogeneous</id><content type="html" xml:base="http://localhost:4000/homogeneous/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;In this article, I’m going to explain homogeneous coordinates (a.k.a 4D coordinates) as simply as I can. It is now time to take a closer look at projective geometry.&lt;/p&gt;
 
 &lt;h2 id=&quot;terminology&quot;&gt;Terminology&lt;/h2&gt;
@@ -143,8 +280,7 @@ Regarding the axis $n$, since the rotation axis does not change after the rotati
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/&quot;&gt;Tomdalling’s Blog Post&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20172018/LectureNotes/MATH/homogenous.html&quot;&gt;Image Processing and Computer Vision Lecture Notes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="sticky" /><summary type="html">Introduction In this article, I’m going to explain homogeneous coordinates (a.k.a 4D coordinates) as simply as I can. It is now time to take a closer look at projective geometry.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/home.png" /><media:content medium="image" url="http://localhost:4000/assets/images/home.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Point Cloud Processing</title><link href="http://localhost:4000/point-cloud/" rel="alternate" type="text/html" title="3D Point Cloud Processing" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/point-cloud</id><content type="html" xml:base="http://localhost:4000/point-cloud/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;This blog post is best suited for those who have basic familiarity with image-based 2D object detection networks and are interesting in learning how the standard methods used in 2D object detection networks are used and tailored towards point cloud 3D object detection task.&lt;/p&gt;</content><author><name>seri</name></author><category term="computer vision" /><summary type="html">Introduction This blog post is best suited for those who have basic familiarity with image-based 2D object detection networks and are interesting in learning how the standard methods used in 2D object detection networks are used and tailored towards point cloud 3D object detection task.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/point.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/point.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Rigid Body Motion (Part 1)</title><link href="http://localhost:4000/rigid/" rel="alternate" type="text/html" title="3D Rigid Body Motion (Part 1)" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/rigid</id><content type="html" xml:base="http://localhost:4000/rigid/">&lt;blockquote&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="sticky" /><summary type="html">Introduction In this article, I’m going to explain homogeneous coordinates (a.k.a 4D coordinates) as simply as I can. It is now time to take a closer look at projective geometry.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/home.png" /><media:content medium="image" url="http://localhost:4000/assets/images/home.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Rigid Body Motion (Part 1)</title><link href="http://localhost:4000/rigid/" rel="alternate" type="text/html" title="3D Rigid Body Motion (Part 1)" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/rigid</id><content type="html" xml:base="http://localhost:4000/rigid/">&lt;blockquote&gt;
   &lt;p&gt;The goal of this article is to introduce the rigid body geometry in 3-dimensional space: rotation matrix, transformation matrix, quaternion, and Euler angle.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -266,53 +402,4 @@ Again, we use the notation of $T_{12}$ to represent a transformation from 2 to 1
 &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.springer.com/gp/book/9789811649387&quot;&gt;Introduction to Visual SLAM&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">The goal of this article is to introduce the rigid body geometry in 3-dimensional space: rotation matrix, transformation matrix, quaternion, and Euler angle.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/rigid.png" /><media:content medium="image" url="http://localhost:4000/assets/images/rigid.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Tree of Codes</title><link href="http://localhost:4000/tree-of-codes/" rel="alternate" type="text/html" title="Tree of Codes" /><published>2019-01-27T00:00:00+09:00</published><updated>2019-01-27T00:00:00+09:00</updated><id>http://localhost:4000/tree-of-codes</id><content type="html" xml:base="http://localhost:4000/tree-of-codes/">&lt;p&gt;The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter.&lt;/p&gt;
-
-&lt;p&gt;As for this particular rendition of Charles Perrault’s classic tale, the text and design is by Lydia Very (1823-1901), sister of Transcendentalist poet Jones Very. The gruesome ending of the original — which sees Little Red Riding Hood being gobbled up as well as her grandmother — is avoided here, the gore giving way to the less bloody aims of the morality tale, and the lesson that one should not disobey one’s mother.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;It would seem the claim could also extend to die cut books in general, as we can’t find anything sooner, but do let us know in the comments if you have further light to shed on this! Such books are, of course, still popular in children’s publishing today, though the die cutting is not now limited to mere outlines, as evidenced in a beautiful 2014 version of the same Little Red Riding Hood story.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;An 1868 Prang catalogue would later claim that such “books in the shape of a regular paper Doll… originated with us”.&lt;/p&gt;
-
-&lt;p&gt;The die cut has also been employed in the non-juvenile sphere as well, a recent example being Jonathan Safran Foer’s ambitious Tree of Codes.&lt;/p&gt;</content><author><name>sal</name></author><category term="Jekyll" /><category term="tutorial" /><summary type="html">The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/python.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/python.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Powerful things you can do with the Markdown editor</title><link href="http://localhost:4000/powerful-things-markdown-editor/" rel="alternate" type="text/html" title="Powerful things you can do with the Markdown editor" /><published>2019-01-24T00:00:00+09:00</published><updated>2019-01-24T00:00:00+09:00</updated><id>http://localhost:4000/powerful-things-markdown-editor</id><content type="html" xml:base="http://localhost:4000/powerful-things-markdown-editor/">&lt;p&gt;There are lots of powerful things you can do with the Markdown editor&lt;/p&gt;
-
-&lt;p&gt;If you’ve gotten pretty comfortable with writing in Markdown, then you may enjoy some more advanced tips about the types of things you can do with Markdown!&lt;/p&gt;
-
-&lt;p&gt;As with the last post about the editor, you’ll want to be actually editing this post as you read it so that you can see all the Markdown code we’re using.&lt;/p&gt;
-
-&lt;h2 id=&quot;special-formatting&quot;&gt;Special formatting&lt;/h2&gt;
-
-&lt;p&gt;As well as bold and italics, you can also use some other special formatting in Markdown when the need arises, for example:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;del&gt;strike through&lt;/del&gt;&lt;/li&gt;
-  &lt;li&gt;==highlight==&lt;/li&gt;
-  &lt;li&gt;*escaped characters*&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;writing-code-blocks&quot;&gt;Writing code blocks&lt;/h2&gt;
-
-&lt;p&gt;There are two types of code elements which can be inserted in Markdown, the first is inline, and the other is block. Inline code is formatted by wrapping any word or words in back-ticks, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;like this&lt;/code&gt;. Larger snippets of code can be displayed across multiple lines using triple back ticks:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.my-link {
-    text-decoration: underline;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you want to get really fancy, you can even add syntax highlighting using Rouge.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/3.jpg&quot; alt=&quot;walking&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;reference-lists&quot;&gt;Reference lists&lt;/h2&gt;
-
-&lt;p&gt;The quick brown jumped over the lazy.&lt;/p&gt;
-
-&lt;p&gt;Another way to insert links in markdown is using reference lists. You might want to use this style of linking to cite reference material in a Wikipedia-style. All of the links are listed at the end of the document, so you can maintain full separation between content and its source or reference.&lt;/p&gt;
-
-&lt;h2 id=&quot;full-html&quot;&gt;Full HTML&lt;/h2&gt;
-
-&lt;p&gt;Perhaps the best part of Markdown is that you’re never limited to just Markdown. You can write HTML directly in the Markdown editor and it will just work as HTML usually does. No limits! Here’s a standard YouTube embed code as an example:&lt;/p&gt;
-
-&lt;p&gt;&lt;iframe style=&quot;width:100%;&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Cniqsc9QfDo?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;</content><author><name>sal</name></author><category term="Jekyll" /><category term="tutorial" /><category term="featured" /><summary type="html">There are lots of powerful things you can do with the Markdown editor</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/4.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/4.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">The goal of this article is to introduce the rigid body geometry in 3-dimensional space: rotation matrix, transformation matrix, quaternion, and Euler angle.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/rigid.png" /><media:content medium="image" url="http://localhost:4000/assets/images/rigid.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

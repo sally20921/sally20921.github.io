@@ -1,0 +1,145 @@
+---
+layout: post
+title:  "Depth Estimation: Basics and Intuition"
+author: seri
+categories: [ computer vision ]
+image: assets/images/depth/1.jpg
+tags: featured
+---
+
+## Introduction
+
+In computer vision, depth is extracted from 2 prevalent methodologies. Namely, *depth from monocular images* (static or sequential) or *depth from stereo images* by exploiting epipolar geometry. This article will focus on giving readers a background into depth estimation and the problems associated with it. 
+
+## How We View the World
+
+![](/assets/images/depth/2.png)
+
+Let's start with how humans perceive depth in general. This will give us some valuable insights on depth estimation since many of the methods were derived from our human vision system. Both machine and human vision share similarities in the way image is formed. Theoretically, when light rays from a source hit surfaces, it reflects off and directs towards the back of our retina, projecting them and our eye processes them as 2D just like how an image is formed on an image plane. 
+
+
+So how do we actually measure distance and understand our environment in 3D when the projected scene is in 2D? The mechanism at work here is that our brain starts to reason about the incoming visual signals by recognizing patterns such as the size, texture and motion about the scene known as *depth cues*. There is no distance information about the image but somehow we can interpret and recover depth information effortlessly. These cues allow us to view objects and surfaces which are supposedly on flat images as 3D.
+
+
+## How to Destroy Depth 
+
+![](/assets/images/depth/3.png)
+
+Interpreting these depth cues begins with how scenes are projected to perspective view in humans and camera vision. On the other hand, an *orthographic projection* to front view or side view is one which destroys all depth information. 
+
+Consider the above image. An observer could disentangle which aspect of the house is nearer to him/her as seen in the left image. However, it is totally impossible to distinguish relative distances from the right image. Even the background might be lying on the same plane as the house. 
+
+## Judging Depth Using Cues
+
+There are basically 4 categories of depth cues: static monocular depth from motion, binocular and physiological cues. We subconsciously take advantage of these signals to perceive depth remarkably well. 
+
+### Pictorial Depth Cues
+
+Our ability to perceive depth from a single image depends on the spatial arrangement of things in the scene. Below, I have summarized some of the hints that enable us to reason about the distance of different objects. It may already feel natural to you from your daily interaction. 
+
+* Size of objects
+* Texture
+* Linear Perspective
+
+An interesting study was conducted at UC, Berkeley and they show experimentally that when the horizon is viewable, there is an overwhelming tendency for us to exploit this property to quickly perceive depth. 
+
+### Depth Cues from Motion (Motion Parallax)
+
+This should not be surprising to you as well. When you, as an observer, is in motion, things around you pass by faster than the one that is farther away. The farther something appears, the slower it seems to pass away from the observer. 
+
+### Depth Cues from Stereo Vision (Binocular Parallax)
+
+The difference in view observed by your left and right eye is known as retina disparity. This phenomenon is also known as *stereopsis*: ability to perceive depth due to 2 different perspectives of the world. By comparing iamges from the retinas in the two eyes, the brain computes distance. The greater the disparity, the closer the things are around you. 
+
+## Depth Estimation in Computer Vision
+
+The goal of depth estimation is to obtain a representation of the spatial structure of a scene, recovering the three-dimensional shape and appearance of objects in imagery. This is also known as the inverse problem, where we seek to recover some unknowns given insufficient information to fully specify the solution. 
+
+So how do machines actually perceive depth? Can we somehow transfer some of the ideas discussed above? The earliest algorithm with impressive results begin with depth estimation using stereo vision back in the 90s. A lot of progress was made on dense stereo correspondence algorithm. Researchers were able to utilize geometry to constrain and replicate the idea of stereopsis mathemtically and at the same time running at real-time. 
+
+As for monocular depth estimation, it recently started to gain popularity by using neural networks to learn representation that distills depth directly. Through neural networks, depth cues are implicitly learned through gradient-based methods. Besides this, there has been great advancement in self-supervised depth estimation. In this method, a model is trained to predict depth by means of optimizing a proxy signal. No ground truth label is needed in the training process. Most research either exploits geometrical cues such as multi-view geometry or epipolar geometry to learn depth. 
+
+### Depth Estimation from Stereo Vision
+
+![](/assets/images/depth/4.png)
+
+The main idea of solving depth using a stereo camera involves the concept of triangulation and stereo matching. The former depends on good calibration and rectification to constrain the problem so that it can be modelled on a 2D plane known as epipolar plane, which greatly reduces the latter (stereo matching) to a line search along the epipolar line. 
+
+![](/assets/images/depth/5.png)
+
+Analogous to binocular parallax, once we are able to match pixel correspondences between the 2 views, the next task is to obtain a representation that encodes the difference. This representation is known as *disparity*. The formula to obtain depth from disparity can be worked out from similar triangles. 
+
+To summarize the steps:
+1. identify similar points from feature descriptors
+2. Match feature correspondence using a matching cost function
+3. Using epipolar geometry, find and match correspondence in one picture frame to the other. A matching cost function is used to measure the pixel dissimilarity. 
+4. Compute disparity from known correspondences $d = x1 - x2$ as shown in the above image. 
+5. Compute depth from the known disparity $ z = (f*b)/d$. 
+
+### Age of Deep Learning 
+
+Deep learning excels in high-level perceptual and cognitive task such as recognition, detection and scene understanding. Depth perception falls into this category and likewise should be a natural way forward. 
+
+The seminal work of estimating depth directly from a monocular image started from Saxena. They learned to regress depth directly from monocular cues in 2D images via supervised learning, by minimizing a regression loss. Since then, many varieties of approaches have been proposed to improve the representation learning by proposing new architectures or loss functions.
+
+#### Self-Supervised Monocular Depth Estimation using Stereo
+
+In this framework, the model will predict the disparities $d_l$ and $d_r$ only from the left RGB, $I_l$. Similar to the above method, a spatial transformer network warps the RGB image pair $I_l$, $I_r$ using the disparity. So the paired view can be synthesized and a reconstruction loss between the reconstructed views $I_{pred_l}$ and $I_{pred_r}$ and the target views $I_l$ and $Ir$ is used to supervise the training. 
+
+
+#### Self-Supervised Depth Estimation using SfM Framework
+
+![](/assets/images/depth/6.png)
+
+This method frames the problem as learning to generate a novel view from a video sequence. The task of the neural network is to generate the target view $I_t$ from source view by taking image at different time step $I, I_{t-1}, I_{t+1}$ and applying a learnt transformation from a pose network to perform the image warping. Training was made possible by treating the warped view synthesis as supervision in a differentiable manner using a spatial transformer network. At inference time, the depth CNN would predict depth from a single RGB image. Do note that these methods do have some shortcomings such as unable to determine scale and modelling moving objects as described in the next section.
+
+#### CNN Depth Cues and Bias Learnt
+
+Understanding and deciphering the black box has been an ongoing research in interpretable machine learning. In the context of depth estimation, a few works have started investigating what depth cues do neural network relies on or the inductive biased learnt from a particular dataset. They found out that:
+
+- Position of objects relative to ground contact point provides strong contextual information
+- Shape does not matter but shadow does 
+ * In an experiment, by placing an arbitrary object with artificial casted shadow, the model would estimate depth reasonably even if it is not available during training. 
+
+## Why is Measuring Depth So Difficult?
+
+Let's try to understand some of the fundamental problems of depth estimation. The main culprit lies in the projection of 3D views to 2D images where depth information is lost. Another problem is deeply seeded when there are motion and moving objects. 
+
+### Depth Estimation is Ill-Posed
+
+![](/assets/images/depth/7.png)
+
+On many depth estimation paper, many authors mention that the problem of estimating depth from a single RGB image is ill-posed inverse problem. What this means is that many 3D scenes observed in the world can indeed correspond to the same 2D plane. 
+
+### Scale-Ambiguity for Monocular Depth Estimatio
+
+![](/assets/images/depth/8.png)
+
+Recall that adjusting the focal length will proportionally scale the points on the image plane. Now, suppose we scale the entire scene, $X$ by some factor $k$ and at the same time, scale the camera matrices $P$ by the factor of $1/k$, the projections of the scene points in the image remains exactly the same. 
+
+$$ x = PX = (1/k)P * kX $$
+That is to say, we can never recover the exact scale of the actual scene from the image alone! Note that this issue exists for monocular base techniques, as the scale can be recovered for a stero rig with a known baseline. 
+
+### Projection Ambiguity
+
+![](/assets/images/depth/9.png)
+
+Suppose we perform a geometric transformation of the scene. It is possible that after the transformation, these points will map to the same location on the plane. There exists not only projective ambiguity, but also affine and similarity ambiguity as well. 
+
+### Properties that Degrade Matching
+
+![](/assets/images/depth/10.png)
+
+For stereo based or multi-view depth estimation that requires triangulation, it usually involves the pipeline of *Detect-Describe-Match*. Matching becomes very difficult when the scene is taken from an extremely different viewpoint or varying changes in illumination between images. An extreme case is given in the above picture. These problematic cases include textureless regions (where many pixels will ahve the same pixel intensity), reflective surfaces, repetitive patterns or occlusions. Also. violating the Lambertian property (Lambertian surfaces refer to surfaces that appear to have teh same brightness no matter where it is viewed from). When images that show the same scene from 2 different view, the corresponding brightness intensity may not be equivalent due to non-ideal diffuse reflection. 
+
+### Moving Objects Violate the Static Assumption for SfM Methods
+
+Dynamic objects in the scene further complicates the estimation process. Depth estimation via Structure from Motion involves a moving camera and consecutive static scenes. This assumption must hold for matching and aligning pxiels. This assumption breaks when there are moving objects in the scene. 
+
+To this end, many researchers have looked into several methods to model moving objects in the scene by incorporating velocity information using optical flow or by using instance segmentation mask to model the object's motion from one frame to another. 
+
+
+## References
+- [medium article](https://towardsdatascience.com/depth-estimation-1-basics-and-intuition-86f2c9538cd1)
+
+

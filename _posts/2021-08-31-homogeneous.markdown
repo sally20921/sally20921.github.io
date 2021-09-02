@@ -5,7 +5,6 @@ author: seri
 categories: [ computer vision ]
 image: assets/images/home.png
 tags: [sticky]
-reference: https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/
 ---
 
 ## Introduction 
