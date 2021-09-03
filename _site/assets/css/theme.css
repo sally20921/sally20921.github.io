@@ -673,14 +673,19 @@ article {
 	caption-side: bottom;
 	}
 
+.highlighted {
+	background: #7DFFB3;
+}
 
-article caption {
-	font-size: 70%;
-	margin-top: -2rem;
-	text-align: center;
-	caption-side: bottom;
-	border: thin silver solid;}
+.underlined {
+	text-decoration: underline;
+}
 
+.blued { color: rgb(0,0,225);
+	font-style: italic;}
+
+.reded { color: #ea2f65;
+       font-style: italic; }
 .article-
 
 article code
