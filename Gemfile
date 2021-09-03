@@ -22,4 +22,5 @@ group :jekyll_plugins do
     gem 'jekyll-include-cache'
     gem 'jekyll-spaceship'
     gem 'jekyll-latex'
+    gem 'jekyll-figure'
 end

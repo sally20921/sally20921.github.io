@@ -199,6 +199,13 @@ caption {
   text-align: left;
   caption-side: bottom; }
 
+image-caption {
+  padding-top: 0.0rem;
+  padding-bottom: 0.75rem;
+  text-align: center;
+  caption-side: bottom;}
+
+
 th {
   text-align: inherit; }
 

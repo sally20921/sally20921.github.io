@@ -24,6 +24,7 @@ plugins:
   - jekyll-spaceship
   - jekyll-include-cache
   - jekyll-latex
+  - jekyll-figure
   
 authors:
     seri:
