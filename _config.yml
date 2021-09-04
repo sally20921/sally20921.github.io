@@ -3,6 +3,8 @@ name: 'Seri Lee Blog'
 description: 'This is where I write posts about my research field.'
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/favicon.ico'
+url: 'https://sally20921.github.io'
+repository: sally20921/sally20921.github.io
 baseurl: ''
 disqus: 'demowebsite'
 email: 'sally20921@snu.ac.kr'
