@@ -1,3 +1,112 @@
+.highlight-sketch{
+  position:relative;
+}
+
+.highlight-sketch:before{
+  content:"";
+  z-index:-1;
+  left:0em;
+  top:0em;
+  border-width:2px;
+  border-style:solid;
+  border-color:darkblue;
+  position:absolute;
+  border-right-color:transparent;
+  width:100%;
+  height:1em;
+  transform:rotate(2deg);
+  opacity:0.5;
+  border-radius:0.25em;
+}
+
+.highlight-sketch:after{
+  content:"";
+  z-index:-1;
+  left:0em;
+  top:0em;
+  border-width:2px;
+  border-style:solid;
+  border-color:darkblue;
+  border-left-color:transparent;
+  border-top-color:transparent;
+  position:absolute;
+  width:100%;
+  height:1em;
+  transform:rotate(-1deg);
+  opacity:0.5;
+  border-radius:0.25em;
+}
+.caption {
+	margin-top: -2rem;
+	margin-bottom: 2rem;
+	text-align: center;
+	font-size: 70%;
+	caption-side: bottom;
+	}
+
+.highlight-green {
+	background: #7DFFB3;
+}
+
+
+.underline {
+	text-decoration: underline;
+}
+
+
+.rainbow { /*color: rgb(0,0,225);*/
+	font-style: italic;
+	font-weight: bolder;
+	background-image: linear-gradient(
+        45deg,
+        #CA4246 16.666%, 
+        #E16541 16.666%, 
+        #E16541 33.333%, 
+        #F18F43 33.333%, 
+        #F18F43 50%, 
+        #8B9862 50%, 
+        #8B9862 66.666%, 
+        #476098 66.666%, 
+        #476098 83.333%, 
+        #A7489B 83.333%);
+  
+  /* Set the background size and repeat properties. */
+  	background-size: 100%;
+  	background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+	}
+
+.red { color: #ea2f65;
+       font-style: italic;
+       font-weight: bolder;
+       background: linear-gradient(to right, pink, red);
+       color: transparent;
+       -webkit-background-clip: text;
+       background-clip: text;
+      }
+
+.blue { color: #0808CF;
+	font-style: italic;
+	font-weight: bolder;
+    	background: linear-gradient(to right, purple, blue);
+    	color: transparent;
+    	-webkit-background-clip: text;
+    	background-clip: text;
+	/*text-shadow: 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black;*/
+	}
+
+.blue:hover, .red:hover, .rainbow:hover {
+	color: black;
+}
+
+.happy {
+	cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
+	text-decoration: blink;
+}
 
 /* Theorem */
 .theorem {
