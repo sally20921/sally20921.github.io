@@ -32,10 +32,41 @@
     crossorigin="anonymous"></script>
 
     {% include tracking-header.html %}
-
-     
-
-
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="{{site.baseurl}}/assets/js/lib.js" defer></script>
+    <script> 
+	    MathJax = {
+		    loader: {load: ['input/tex', 'ui/menu']},
+		    tex: {
+			    inlineMath: {'[+]': [['$','$']]},
+			    displayMath: {'[+]':[['$$', '$$']]}
+			}
+	    }
+   </script>
+    <script type="text/javascript" id="MathJax-script" defer
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+ <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>
+  <script>
+    function convert() {
+      //
+      //  Get the MathML input string, and clear any previous output
+      //
+      var input = document.getElementById("input").value.trim();
+      output = document.getElementById('output');
+      output.innerHTML = '';
+      //
+      //  Convert the MathMl to an HTML node and append it to the output
+      //
+      output.appendChild(MathJax.mathml2chtml(input));
+      //
+      //  Then update the document to include the adjusted CSS for the
+      //    content of the new equation.
+      //
+      MathJax.startup.document.clear();
+      MathJax.startup.document.updateDocument();
+    }
+  </script> 
 </head>
 
 <body class="{% if page.url == "/" %} homefirstpage {% endif %}">

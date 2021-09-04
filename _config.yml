@@ -12,8 +12,6 @@ repository: sally20921/sally.github.io
 include: ["_pages"]
 permalink: /:title/
 
-theme: jekyll-theme-hydejack
-remote_theme: hydecorp/hydejack
 
 # Plugins
 plugins: 

@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="twitter:title" content="Mundana Free Jekyll Theme">
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/logo.png"}},"url":"http://localhost:4000/","name":"Seri Lee Blog","description":"A great Jekyll theme developed by Sal @wowthemesnet.","headline":"Mundana Free Jekyll Theme","@type":"WebSite","@context":"https://schema.org"}</script>
+{"description":"A great Jekyll theme developed by Sal @wowthemesnet.","headline":"Mundana Free Jekyll Theme","url":"http://localhost:4000/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/logo.png"}},"@type":"WebSite","name":"Seri Lee Blog","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 	
@@ -45,10 +45,40 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
     <!-- This goes before </head> closing tag, Google Analytics can be placed here --> 
-
-     
-
-
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="/assets/js/lib.js" defer></script>
+    <script> 
+	    MathJax = {
+		    loader: {load: ['input/tex', 'ui/menu']},
+		    tex: {
+			    inlineMath: {'[+]': [['$','$']]},
+			    displayMath: {'[+]':[['$$', '$$']]}
+			}
+	    }
+   </script>
+    <script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+ <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>
+  <script>
+    function convert() {
+      //
+      //  Get the MathML input string, and clear any previous output
+      //
+      var input = document.getElementById("input").value.trim();
+      output = document.getElementById('output');
+      output.innerHTML = '';
+      //
+      //  Convert the MathMl to an HTML node and append it to the output
+      //
+      output.appendChild(MathJax.mathml2chtml(input));
+      //
+      //  Then update the document to include the adjusted CSS for the
+      //    content of the new equation.
+      //
+      MathJax.startup.document.clear();
+      MathJax.startup.document.updateDocument();
+    }
+  </script> 
 <script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
@@ -125,7 +155,7 @@ var documents = [{
     "id": 6,
     "url": "http://localhost:4000/",
     "title": "Mundana Free Jekyll Theme",
-    "body": "                      	    &lt;img width= 550px  height= 200px  src=/assets/images/depth/12. png style= height: 210px;  align= middle &gt;        Inverse Projection Transformation  :       When an image of a scene is captured by a camera, we lose depth information. This is also known as projective transformation, in whic. . .               In                 computer vision,                                        Sep 03, 2021                                                                                                                             Depth Estimation: Basics and Intuition          :                       In                         computer vision,                                                                  Sep 02, 2021                                                                                                                                     3D Rigid Body Motion (Part 2)          :                       In                         computer vision,                                                                  Sep 01, 2021                                                                                                                                    3D Rigid Body Motion (Part 1)          :                       In                         computer vision,                                                                  Aug 31, 2021                                                         Homogeneous Coordinates and Projective Geometry                  IntroductionIn this article, I’m going to explain homogeneous coordinates (a. k. a 4D coordinates) as simply as I can. It is now time t. . .                 Read More      	  	   &lt;img class= col-md-6 d-none d-md-block pr-0  src=/assets/images/home. png align= midde &gt;                        All Stories:                   		Inverse Projection Transformation	: 		  When an image of a scene is captured by a camera, we lose depth information. This is also known as projective transformation, in which points in the world are converted to pixels on a. . . 	 			In 				computer vision, 								Sep 03, 2021						                  		Depth Estimation: Basics and Intuition	: 		  Introduction	 			In 				computer vision, 								Sep 02, 2021						                  		3D Rigid Body Motion (Part 2)	: 		  Rotation Vectors and Euler AnglesRotation VectorsWith a rotation matrix to describe the rotation, is it enough to use a $4 \times 4$ transformation matrix to represent a 6-degree-of-f. . . 	 			In 				computer vision, 								Sep 01, 2021						                  		3D Rigid Body Motion (Part 1)	: 		   The goal of this article is to introduce the rigid body geometry in 3-dimensional space: rotation matrix, transformation matrix, quaternion, and Euler angle. 	 			In 				computer vision, 								Aug 31, 2021						                  		Homogeneous Coordinates and Projective Geometry	: 		  IntroductionIn this article, I’m going to explain homogeneous coordinates (a. k. a 4D coordinates) as simply as I can. It is now time to take a closer look at projective geometry. 	 			In 				computer vision, 								Aug 31, 2021						                  		3D CNN	: 		  def print_hi(name) puts  Hi, #{name} endprint_hi('Tom')#=&gt; prints 'Hi, Tom' to STDOUT. 	 			In 				deep learning, 								Aug 31, 2021						                                                  Featured:    				                                          Inverse Projection Transformation                          In                     computer vision,                                                                                           Depth Estimation: Basics and Intuition                          In                     computer vision,                                                                                           3D Rigid Body Motion (Part 2)                          In                     computer vision,                                                                                           3D Rigid Body Motion (Part 1)                          In                     computer vision,                                                                                           3D CNN                          In                     deep learning,                                                               &lt;/div&gt; "
+    "body": "                  	    &lt;img width= 550px  height= 200px  src=/assets/images/depth/12. png style= height: 210px;  align= middle &gt;        Inverse Projection Transformation  :       When an image of a scene is captured by a camera, we lose depth information. This is also known as projective transformation, in whic. . .               In                 computer vision,                                        Sep 03, 2021                                                                                                                             Depth Estimation: Basics and Intuition          :                       In                         computer vision,                                                                  Sep 02, 2021                                                                                                                                     3D Rigid Body Motion (Part 2)          :                       In                         computer vision,                                                                  Sep 01, 2021                                                                                                                                    3D Rigid Body Motion (Part 1)          :                       In                         computer vision,                                                                  Aug 31, 2021                                                         Homogeneous Coordinates and Projective Geometry                  IntroductionIn this article, I’m going to explain homogeneous coordinates (a. k. a 4D coordinates) as simply as I can. It is now time t. . .                 Read More      	  	   &lt;img class= col-md-6 d-none d-md-block pr-0  src=/assets/images/home. png align= midde &gt;                        All Stories:                   		Inverse Projection Transformation	: 		  When an image of a scene is captured by a camera, we lose depth information. This is also known as projective transformation, in which points in the world are converted to pixels on a. . . 	 			In 				computer vision, 								Sep 03, 2021						                  		Depth Estimation: Basics and Intuition	: 		  Introduction	 			In 				computer vision, 								Sep 02, 2021						                  		3D Rigid Body Motion (Part 2)	: 		  Rotation Vectors and Euler AnglesRotation VectorsWith a rotation matrix to describe the rotation, is it enough to use a $4 \times 4$ transformation matrix to represent a 6-degree-of-f. . . 	 			In 				computer vision, 								Sep 01, 2021						                  		3D Rigid Body Motion (Part 1)	: 		   The goal of this article is to introduce the rigid body geometry in 3-dimensional space: rotation matrix, transformation matrix, quaternion, and Euler angle. 	 			In 				computer vision, 								Aug 31, 2021						                  		Homogeneous Coordinates and Projective Geometry	: 		  IntroductionIn this article, I’m going to explain homogeneous coordinates (a. k. a 4D coordinates) as simply as I can. It is now time to take a closer look at projective geometry. 	 			In 				computer vision, 								Aug 31, 2021						                  		3D CNN	: 		  def print_hi(name) puts  Hi, #{name} endprint_hi('Tom')#=&gt; prints 'Hi, Tom' to STDOUT. 	 			In 				deep learning, 								Aug 31, 2021						                                                  Featured:    				                                          Inverse Projection Transformation                          In                     computer vision,                                                                                           Depth Estimation: Basics and Intuition                          In                     computer vision,                                                                                           3D Rigid Body Motion (Part 2)                          In                     computer vision,                                                                                           3D Rigid Body Motion (Part 1)                          In                     computer vision,                                                                                           3D CNN                          In                     deep learning,                                                               &lt;/div&gt; "
     }, {
     "id": 7,
     "url": "http://localhost:4000/privacy-policy.html",
@@ -145,7 +175,7 @@ var documents = [{
     "id": 10,
     "url": "http://localhost:4000/inverse/",
     "title": "Inverse Projection Transformation",
-    "body": "2021/09/03 -  Depth and Inverse Projection:  Test if caption works When an image of a scene is captured by camera, we lose depth information as objects and points in 3D space are mapped onto a 2D image plane. This is also known as a projective transformation , in which points in the world are converted to pixels on a 2D plane. However, what if we want to do the inverse ? That is, we want to recover and reconstruct the scene given only 2D image. To do that, we would need to know the depth or $Z$-component of each corresponding pixels. Depth can be represented as an image as shown in the figure above, with brighter intensity denoting points further away. References:  MEDIUM "
+    "body": "2021/09/03 -  Depth and Inverse Projection : RGB + Depth = 3D Back-Projected Points When an image of a scene is captured by a camera, we lose depth information as objects and points in 3D space are mapped onto a 2D image plane. This is also known as projective transformation , in which points in the world are converted to pixels on a 2D plane. &lt;/p&gt;However, what if we want to do the inverse ? That is, we want to recover and reconstruct the scene given only 2D image. To do that, we would need to know the depth or $Z$-component of each corresponding pixels. Depth can be represented as an image as shown in the figure above, with brigther intensity denoting points further away.  In this blog post, we will take a tour and understand the mathematics and concepts of performing back-projection from 2D pixel coordinates to 3D points. We will assume that a depth map is provided to perform the 3D reconstruction. The concept that we will go through are camera calibration parameters, projective transformation using intrinsic and its inverse, and coordinate transformation between frames.  Central Projection of Pinhole Camera Model : First and foremost, understanding the geometrical model of the camera projection serves as the core idea. What we are ultimately interested in is the depth, parameter $Z$. Here, we consider the simplest pinhole camera model with no skew or distortion factor. 3D points are mapped to the image plane $(u,v) = f(X,Y,Z)$. The complete mathematical model that describes this transformation can be written as $p = K[R|t]*P$. $$s \begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = \begin{bmatrix} f_x &amp; 0 &amp; u_0 \\ 0 &amp; f_y &amp; v_0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix} \begin{bmatrix} r_{11} &amp; r_{12} &amp; r{13} &amp; t{1} \\ r_{21} &amp; r_{22} &amp; r_{23} &amp; t_2 \\ r_{31} &amp; r_{32} &amp; r_{33} &amp; t_3\end{bmatrix} \begin{bmatrix} X \\ Y \\ Z \\ 1 \end{bmatrix}$$, where $p$ is the projected point on the image plane $K$ is the camera intrinsics matrix $[R|t]$ is the extrinsic parameters describing the relative transformation of the point in the world frame to the camera frame $P$ or $[X, Y, Z, 1]$ represents the 3D point expressed in a predefined world coordinate system in Euclidean space Aspect ratio scaling $s$ controls how pixels are scaled in the $x$ and $y$ direction as focal length chnanges Intrinsic Parameter Matrix :  Camera Projective Geometry The matrix $K$ is responsible for projecting 3D points to the image plane. To do that, the following quantities must be defined as:* Focal length $(f_x, f_y)$: measure the position of the image plane with respect to the camera center. * Principal point $(u_0, v_0)$; the optical center of the image plane* Skew factor: the misalignment from a square pixel if the image plane axes are not perpendicular. In our example, this is set to zero. The most common way of solving all the paramters is using the checkerboard method, where several 2D-3D correspondences obtained through matching and solving the unknown parameters by means of PnP, Direct Linear Transform or RANSAC to improve robustness. With all the unknowns determined, we can finally proceed to recover the 3D points $(X,Y,Z)$ by applying the inverse.  Back-Projection : ## References- MEDIUM "
     }, {
     "id": 11,
     "url": "http://localhost:4000/depth/",
@@ -241,9 +271,7 @@ function lunr_search(term) {
     <main role="main" class="site-content">
         <div class="container">
     
-
-    
-    
+ 
     
 <!-- Begin post excerpts, let's highlight the first 4 posts on top -->
 <div class="row remove-site-content-margin">

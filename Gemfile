@@ -10,7 +10,6 @@ ruby RUBY_VERSION
 gem 'github-pages', group: :jekyll_plugins
 gem 'duktape'
 gem 'nokogiri', '~> 1.10.0'
-gem 'jekyll-theme-hydejack'
 
 # If you have any plugins, put them here!
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
@@ -24,3 +23,5 @@ group :jekyll_plugins do
     gem 'jekyll-latex'
     gem 'jekyll-figure'
 end
+
+gem "webrick", "~> 1.7"

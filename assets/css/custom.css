@@ -1,3 +1,71 @@
+::selection {
+	background: #EFEF8E;
+	color: #1f542d;
+}
+
+article ul {
+	list-style: none;
+	margin: 1em;
+	padding: 0;
+}
+
+
+article ul li:hover {
+	/*background: linear-gradient(to right, green, violet, red);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;*/
+	font-style: italic;
+	font-weight: bolder;
+}
+
+article ul li:before {
+	content: "• ";
+	color: blue;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+}
+
+
+article ul li:nth-child(1):before {
+	content: "• ";
+	color: red;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+	
+}
+
+article ul li:nth-child(2):before {
+	content: "• ";
+	color: cyan;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+	
+}
+
+article ul li:nth-child(3):before {
+	content: "• ";
+	color: green;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+
+}
+
+article ul li:nth-child(4):before {
+	content: "• ";
+	color: purple;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+	
+}
+
+
+
+
 .highlight-sketch{
   position:relative;
 }
@@ -44,8 +112,24 @@
 	caption-side: bottom;
 	}
 
+.highlight-pink{
+	background: linear-gradient(120deg, #e4a0a1 0%, #e4a0a1 100%);
+    	background-repeat: no-repeat;
+    	background-size: 100% 20%;
+    	background-position: 0 60%;
+}
+
 .highlight-green {
 	background: #7DFFB3;
+}
+
+.highlight-yellow {
+    background-color: #fff2ac;
+    background-image: linear-gradient(to right, #ffe359 0%, #fff2ac 100%);
+}
+
+.monospace {
+	font-family: monospace;
 }
 
 
@@ -96,8 +180,7 @@
     	color: transparent;
     	-webkit-background-clip: text;
     	background-clip: text;
-	/*text-shadow: 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black;*/
-	}
+}
 
 .blue:hover, .red:hover, .rainbow:hover {
 	color: black;
@@ -165,8 +248,6 @@
   font-style: normal;
 }
 
-
-
 .circle-sketch-highlight{
   position:relative;
 }
@@ -208,7 +289,7 @@
   border-radius:50%;
 }
 
-.typewriter h1, .typewriter h2 {
+.typewriter {
   overflow: hidden; /* Ensures the content is not revealed until the animation */ text-align: center;
   border-right: .15em solid orange; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
@@ -217,6 +298,181 @@
   animation: 
     typing 3.5s steps(40, end),
     blink-caret .75s step-end infinite;
+}
+
+.glow {
+	animation: glow-blue 2s ease-in-out infinite;
+	color: #4db1bc;
+}
+
+.gif {
+	background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+  	background-size: cover;
+ 	color: transparent;
+  	-moz-background-clip: text;
+  	-webkit-background-clip: text;
+  }
+
+
+.showup { animation: showup 7s infinite;}
+
+.reveal { animation: reveal 7s infinite;}
+
+.slidein{ animation: slidein 7s infinite;}
+
+.shine { animation: shine 2s forwards;}
+
+.blink{ animation: blink 3s 2s infinite;}
+
+.frozen {
+	background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/6963bbf342d87b3a2150bd8f59682b89.jpg);
+    	-webkit-background-clip: text;
+  	background-size: contain;
+  	width: 100%;
+	color: transparent;
+	animation: frozen-shine 1s infinite;
+}
+
+.neon-green {
+	color: #fff;
+  	text-shadow:
+      	0 0 7px #fff,
+      	0 0 10px #fff,
+      	0 0 21px #fff,
+      	0 0 42px #0fa,
+      	0 0 82px #0fa,
+      	0 0 92px #0fa,
+      	0 0 102px #0fa,
+      	0 0 151px #0fa;
+	animation: flicker 1.5s infinite alternate;
+}
+
+.neon-pink { 
+	color: #fff;
+	text-shadow:
+      	0 0 7px #fff,
+      	0 0 10px #fff,
+      	0 0 21px #fff,
+      	0 0 42px #f09,
+      	0 0 82px #f09,
+      	0 0 92px #f09,
+      	0 0 102px #f09,
+      	0 0 151px #f09;
+	animation: pulsate 0.11s ease-in-out infinite alternate;}
+
+@keyframes pulsate {
+  100% {
+    /* Larger blur radius */
+    text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #f09,
+      0 0 80px #f09,
+      0 0 90px #f09,
+      0 0 100px #f09,
+      0 0 150px #f09;
+  }
+ 0% {
+    /* A slightly smaller blur radius */
+    text-shadow:
+      0 0 4px #fff,
+      0 0 10px #fff,
+      0 0 18px #fff,
+      0 0 38px #f09,
+      0 0 73px #f09,
+      0 0 80px #f09,
+      0 0 94px #f09,
+      0 0 140px #f09;
+  }
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #0fa,
+      0 0 80px #0fa,
+      0 0 90px #0fa,
+      0 0 100px #0fa,
+      0 0 150px #0fa;
+  }
+  20%, 24%, 55% {       
+    text-shadow: none;
+  }
+}
+
+@keyframes frozen-shine {
+  0% {background-position: -100%;}
+  100% {background-position: 100%;}
+}
+
+@keyframes blink {
+  0%,
+  22%,
+  36%,
+  75% {
+    color: #ffe6ff;
+    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
+      -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
+      0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+  }
+  28%,
+  33% {
+    color: #ff65bd;
+    text-shadow: none;
+  }
+  82%,
+  97% {
+    color: #ff2483;
+    text-shadow: none;
+  }
+}
+
+@keyframes shine {
+  0% {
+    color: #6b1839;
+    text-shadow: none;
+  }
+  100% {
+    color: #ffe6ff;
+    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
+      -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
+      0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+  }
+}
+
+@keyframes showup {
+    0% {opacity:0;}
+    20% {opacity:1;}
+    80% {opacity:1;}
+    100% {opacity:0;}
+}
+
+@keyframes slidein {
+    0% { margin-left:-800px; }
+    20% { margin-left:-800px; }
+    35% { margin-left:0px; }
+    100% { margin-left:0px; }
+}
+
+@keyframes reveal {
+    0% {opacity:0;width:0px;}
+    20% {opacity:1;width:0px;}
+    30% {width:355px;}
+    80% {opacity:1;}
+    100% {opacity:0;width:355px;}
+}
+
+@keyframes glow-blue {
+	from {
+      	text-shadow: 0 0 20px #2d9da9;
+   	 }
+    	to {
+      	text-shadow: 0 0 30px #34b3c1, 0 0 10px #4dbbc7;
+    	}
 }
 
 /* The typing effect */

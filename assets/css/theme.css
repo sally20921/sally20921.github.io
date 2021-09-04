@@ -2,20 +2,15 @@
  * Mundana Jekyll Theme (https://www.wowthemes.net/mundana-jekyll-theme/)
  */
 
-body {
-	overflow-x:hidden;
+body {	
 	padding-top:69.75px;
+	text-align: left !important;
 }
 .site-content {
 	margin-top:30px;
 	min-height:400px;
 }
-.remove-site-content-margin {
-	margin-top:-30px;
-}
-
-img {
-	max-width:100%;
+.remove-site-content-marmax-width:100%;
 	}
 
 .tofront {
@@ -640,6 +635,7 @@ ol.list-featured li:before {
 .catlist .sep:last-child {
 	display:none;
 }
+
 footer {
 	margin-top:50px;
 	z-index:1022;
@@ -664,11 +660,6 @@ article {
 	/*cursor: text;*/
 }
 
-::selection{
-	background-color: #c0ffc8;
-	color: green;
-}
-
 
 .article-headline {
     font-family: Georgia,Times,"Times New Roman",serif;
@@ -678,20 +669,18 @@ article {
     color: #222222;
 }
 
-
 .shape {
 	width: 300px;
 	float: left;
 	shape-outside: circle(50%);
 }
 
+article code,article p,article pre, article blockquote, article iframed,article embed {margin-bottom:2rem;}
 
-.article-
-
-article code
-article p,article pre,article figure, article img, article blockquote,article iframed,article embed {
-	margin-bottom:2rem;}
-
+article figure, article img {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
 
 article blockquote {
     font-family: Georgia, serif;
