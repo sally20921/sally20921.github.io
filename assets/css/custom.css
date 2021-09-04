@@ -1,3 +1,63 @@
+
+/* Theorem */
+.theorem {
+  counter-increment: theorem;
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
+.theorem::before {
+  content: 'Theorem ' counter(theorem) '. ';
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Lemma */
+.lemma {
+  counter-increment: theorem;
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
+.lemma::before {
+  content: 'Lemma ' counter(theorem) '. ';
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Proof */
+.proof {
+  display: block;
+  margin: 12px 0;
+  font-style: normal;
+  position: relative;
+}
+.proof::before {
+  content: 'Proof. ' attr(title);
+  font-style: italic;
+}
+.proof:after {
+  content: '◾️';
+  position: absolute;
+  right: -12px;
+  bottom: -2px;
+}
+
+/* Definition */
+.definition {
+  counter-increment: definition;
+  display: block;
+  margin: 12px 0;
+  font-style: normal;
+}
+.definition::before {
+  content: 'Definition ' counter(definition) '. ';
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+
 .circle-sketch-highlight{
   position:relative;
 }
