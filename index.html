@@ -1,15 +1,15 @@
 ---
-title: "Mundana Free Jekyll Theme"
+title: "Seri Lee Blog"
 layout: default
 pagination:
     enabled: true
-description: "A great Jekyll theme developed by Sal @wowthemesnet."
+description: "A Blog about Computer Vision and Deep Learning"
 ---
 
 
 <div class="container">
     
-{% if page.url == "/" %} 
+<!--{% if page.url == "/" %}-->
     
 <!-- Begin post excerpts, let's highlight the first 4 posts on top -->
 <div class="row remove-site-content-margin">
@@ -20,7 +20,7 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
     <div class="card border-0 mb-4 box-shadow">   
     <a href="{{site.baseurl}}{{latest_post.url}}">
 	    <!--<div class="topfirstimage" style="background-image: url({% if latest_post.image contains "://" %}{{ latest_post.image }}{% else %} {{site.baseurl}}/{{ latest_post.image}}{% endif %}); height: 200px;    background-size: cover;    background-repeat: no-repeat;"></div>-->
-    <img width="550px" height="200px" src="{{site.baseurl}}/{{latest_post.imagel}}" style="height: 210px;" align="middle">
+    <img width="550px" height="200px" src="{{site.baseurl}}/{{latest_post.image}}" style="height: 210px;" align="middle">
     </a>
     <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
     <h2 class="h4 font-weight-bold">
@@ -53,7 +53,7 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
                 {% if second_post.image %}
                 <div class="col-md-4">
                 <a href="{{site.baseurl}}{{second_post.url}}">
-                 <img height="110px" width="180px" src="{% if second_post.image contains "://" %}{{ second_post.image }}{% else %}{{ second_post.image | absolute_url }}{% endif %}" alt="{{ second_post.title }}" align="middle">
+			<img height="110px" width="180px" src="{% if second_post.image contains "://" %}{{ second_post.image }}{% else %}{{site.baseurl}}/{{second_post.image}}% endif %}" alt="{{ second_post.title }}" align="middle">
                 </a>
                 </div>
                 {% endif %}                
@@ -110,7 +110,8 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
                 <img width="180px" height="110px" src="{% if fourth_post.image contains "://" %}{{ fourth_post.image }}{% else %}{{site.baseurl}}/{{ fourth_post.image }}{% endif %}" alt="{{ fourth_post.title }}">
                 </a>
                 </div>
-                {% endif %}                
+		<!--{% endif %}-->
+
                 <div>
                     <h2 class="mb-2 h6 font-weight-bold">
                     <a class="text-dark" href="{{site.baseurl}}{{fourth_post.url}}">{{ fourth_post.title }}</a>
