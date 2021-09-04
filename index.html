@@ -11,8 +11,9 @@ description: "A Blog about Computer Vision and Deep Learning"
     {% assign latest_post = site.posts[0] %}
     <div class="col-md-6">
     <div class="card border-0 mb-4 box-shadow">   
-    <a href="{{site.baseurl}}{{latest_post.url}}">
-    <img width="550px" height="200px" src="{{site.baseurl}}/{{latest_post.image}}" style="height: 210px;" align="middle">
+    <a href="{{latest_post.url}}">
+    {{latest_post.title}}
+    <img width="550px" height="200px" src="{{latest_post.image|relative_url}}" style="height: 210px;" align="middle">
     </a>
     </div>
     </div>
