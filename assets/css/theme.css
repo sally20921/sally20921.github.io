@@ -13,13 +13,21 @@ body {
 .remove-site-content-margin {
 	margin-top:-30px;
 }
+
 img {
 	max-width:100%;
+	overflow: hidden;
+	}
+
+img:hover {
+	transform: scale(1.1);
 }
+
 .tofront {
 	position:relative;
 	z-index:1;
 }
+
 .full-width {
 	width:100vw;
 	position:relative;
@@ -28,7 +36,8 @@ img {
 }
 a,a:hover {
 	transition:all .2s;
-	text-decoration:none;
+	/*text-decoration: wavy overline lime;*/
+	text-decoration: none;
 }
 a {
 	color:#03a87c;
@@ -647,16 +656,121 @@ footer {
 .homefirstpage .main-loop .main-loop-card:nth-child(-n+5) {
 	display:none !important;
 }
+
 .excerpt {
     color: rgba(0,0,0,0.59);
     margin-top:10px;
 }
 
+/* Theorem */
+.theorem {
+  counter-increment: theorem;
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
+.theorem::before {
+  content: 'Theorem ' counter(theorem) '. ';
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Lemma */
+.lemma {
+  counter-increment: theorem;
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
+.lemma::before {
+  content: 'Lemma ' counter(theorem) '. ';
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Proof */
+.proof {
+  display: block;
+  margin: 12px 0;
+  font-style: normal;
+  position: relative;
+}
+.proof::before {
+  content: 'Proof. ' attr(title);
+  font-style: italic;
+}
+.proof:after {
+  content: '◾️';
+  position: absolute;
+  right: -12px;
+  bottom: -2px;
+}
+
+/* Definition */
+.definition {
+  counter-increment: definition;
+  display: block;
+  margin: 12px 0;
+  font-style: normal;
+}
+.definition::before {
+  content: 'Definition ' counter(definition) '. ';
+  font-weight: bold;
+  font-style: normal;
+}
+
 article {
 	font-size:20px;
 	line-height:1.86;
-    font-family:Lora;
+        font-family:Lora;
+	/*cursor: text;*/
 }
+
+::selection{
+	background-color: #c0ffc8;
+	color: red;
+}
+
+.highlight-sketch{
+  position:relative;
+}
+
+.highlight-sketch:before{
+  content:"";
+  z-index:-1;
+  left:0em;
+  top:0em;
+  border-width:2px;
+  border-style:solid;
+  border-color:darkblue;
+  position:absolute;
+  border-right-color:transparent;
+  width:100%;
+  height:1em;
+  transform:rotate(2deg);
+  opacity:0.5;
+  border-radius:0.25em;
+}
+
+.highlight-sketch:after{
+  content:"";
+  z-index:-1;
+  left:0em;
+  top:0em;
+  border-width:2px;
+  border-style:solid;
+  border-color:darkblue;
+  border-left-color:transparent;
+  border-top-color:transparent;
+  position:absolute;
+  width:100%;
+  height:1em;
+  transform:rotate(-1deg);
+  opacity:0.5;
+  border-radius:0.25em;
+}
+
+
 .article-headline {
     font-family: Georgia,Times,"Times New Roman",serif;
     font-size: 3.2rem;
@@ -673,19 +787,81 @@ article {
 	caption-side: bottom;
 	}
 
-.highlighted {
+.caption:hover {
+	color: green;
+}
+
+.highlight-green {
 	background: #7DFFB3;
 }
 
-.underlined {
+
+.underline {
 	text-decoration: underline;
 }
 
-.blued { color: rgb(0,0,225);
-	font-style: italic;}
 
-.reded { color: #ea2f65;
-       font-style: italic; }
+.rainbow { /*color: rgb(0,0,225);*/
+	font-style: italic;
+	font-weight: bolder;
+	background-image: linear-gradient(
+        45deg,
+        #CA4246 16.666%, 
+        #E16541 16.666%, 
+        #E16541 33.333%, 
+        #F18F43 33.333%, 
+        #F18F43 50%, 
+        #8B9862 50%, 
+        #8B9862 66.666%, 
+        #476098 66.666%, 
+        #476098 83.333%, 
+        #A7489B 83.333%);
+  
+  /* Set the background size and repeat properties. */
+  	background-size: 100%;
+  	background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+	}
+
+.red { color: #ea2f65;
+       font-style: italic;
+       font-weight: bolder;
+       background: linear-gradient(to right, pink, red);
+       color: transparent;
+       -webkit-background-clip: text;
+       background-clip: text;
+      }
+
+.blue { color: #0808CF;
+	font-style: italic;
+	font-weight: bolder;
+    	background: linear-gradient(to right, purple, blue);
+    	color: transparent;
+    	-webkit-background-clip: text;
+    	background-clip: text;
+	/*text-shadow: 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black;*/
+	}
+
+.blue:hover, .red:hover, .rainbow:hover {
+	color: black;
+}
+
+.happy {
+	cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
+	text-decoration: blink;
+}
+
+.shape {
+	width: 300px;
+	float: left;
+	shape-outside: circle(50%);
+}
+
+
 .article-
 
 article code
@@ -696,6 +872,12 @@ article figure, article img {
 	margin-top:3rem;
 	margin-bottom:2rem;
 	verticle-align:middle;
+	display: flex;
+}
+
+article figure:hover, article img:hover {
+	transform: scale(2,2);
+}
 
 article blockquote {
     font-family: Georgia, serif;

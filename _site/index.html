@@ -38,6 +38,9 @@
     <!-- Theme Stylesheet -->
     <link rel="stylesheet" href="/assets/css/theme.css">
 
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">-->
     <!-- Jquery on header to make sure everything works, the rest  of the scripts in footer for fast loading -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
@@ -97,7 +100,7 @@ var documents = [{
     "id": 1,
     "url": "http://localhost:4000/about.html",
     "title": "About",
-    "body": "Made with by Seri @porfolio. "
+    "body": "Made by Seri @porfolio. "
     }, {
     "id": 2,
     "url": "http://localhost:4000/author-sal.html",
@@ -142,7 +145,7 @@ var documents = [{
     "id": 10,
     "url": "http://localhost:4000/inverse/",
     "title": "Inverse Projection Transformation",
-    "body": "2021/09/03 -  Depth and Inverse Projection  Test if caption works When an image of a scene is captured by a camera, we  lose depth information as objects and points in 3D space are mapped onto a 2D image plane. This is also known as projective transformation, in which points in the world are converted to pixels on a 2D plane. However, what if we want to do the inverse? That is, we want to recover and reconstruct the scene given only 2D image. To do that, we need to know the depth or $Z$-component of each corresponding pixels. Depth can be represented as an image with with brigther intensity denoting further away. Difficulty Reasoning in Perspective View: References:  medium article"
+    "body": "2021/09/03 -  Depth and Inverse Projection:  Test if caption works When an image of a scene is captured by camera, we lose depth information as objects and points in 3D space are mapped onto a 2D image plane. This is also known as a projective transformation , in which points in the world are converted to pixels on a 2D plane. However, what if we want to do the inverse ? That is, we want to recover and reconstruct the scene given only 2D image. To do that, we would need to know the depth or $Z$-component of each corresponding pixels. Depth can be represented as an image as shown in the figure above, with brighter intensity denoting points further away. References:  MEDIUM "
     }, {
     "id": 11,
     "url": "http://localhost:4000/depth/",
@@ -700,6 +703,7 @@ function lunr_search(term) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
     <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/custom.js"></script>
     
 
     <!-- Footer -->
@@ -707,17 +711,13 @@ function lunr_search(term) {
         <div class="container">
         <div class="row align-items-center justify-content-between">
             <div>
-                <span class="navbar-brand mr-2 mb-0"><strong>Mundana</strong></span>
+                <span class="navbar-brand mr-2 mb-0"><strong>Seri Lee</strong></span>
                 <span>Copyright © <script>document.write(new Date().getFullYear())</script>.</span>
 
                 <!--  Github Repo Star Btn-->
-                <a class="text-dark ml-1" target="_blank" href="https://github.com/wowthemesnet/mundana-theme-jekyll"><i class="fab fa-github"></i> Fork on Github</a>
-
+                
             </div>
-            <div>
-                Made with <a target="_blank" class="text-dark font-weight-bold" href="https://www.wowthemes.net/mundana-jekyll-theme/"> Mundana Jekyll Theme </a> by <a class="text-dark" target="_blank" href="https://www.wowthemes.net">WowThemes</a>.
             </div>
-        </div>
         </div>
     </footer>
 

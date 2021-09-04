@@ -48,13 +48,15 @@
 *::after {
   box-sizing: border-box; }
 
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  scroll-behavior: smooth;}
 
 @-ms-viewport {
   width: device-width; }
@@ -325,8 +327,8 @@ h1, h2, h3, h4, h5, h6,
   line-height: 1.2;
   color: inherit; }
 
-.typewriter h1 {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
+.typewriter h1, .typewriter h2 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */ text-align: center;
   border-right: .15em solid orange; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */

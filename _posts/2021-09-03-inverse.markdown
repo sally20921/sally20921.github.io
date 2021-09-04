@@ -8,21 +8,17 @@ tags: featured
 excerpt: When an image of a scene is captured by a camera, we lose depth information. This is also known as projective transformation, in which points in the world are converted to pixels on a 2D plane. But how do we do the opposite?
 ---
 <div class="typewriter">
-<h1> Depth and Inverse Projection </h1>
+<h2> Depth and Inverse Projection</h2>
 </div>
 
 ![](/assets/images/depth/11.png)
 <div class="caption"> Test if caption works </div>
 
-When an image of a scene is captured by a camera, we <span class="underlined"> <dfn> lose depth information</dfn> </span> as objects and points in 3D space are mapped onto a 2D image plane. This is also known as *projective transformation*, in which points in the world are converted to pixels on a 2D plane. 
+When an image of a scene is captured by camera, we <span class="circle-sketch-highlight"> lose depth information </span> as objects and points in 3D space are mapped onto a 2D image plane. This is also known as a <span class="blue"> projective transformation </span>, in which points in the world are converted to pixels on a 2D plane.
 
-However, what if we want to do the *inverse*? That is, we want to recover and reconstruct the scene given only 2D image. To do that, we need to know the depth or $Z$-component of each corresponding pixels. Depth can be represented as an image with with brigther intensity denoting further away.
-
-## Difficulty Reasoning in Perspective View
-
-
+However, what if we want to do the <dfn> inverse </dfn>? That is, we want to recover and reconstruct the scene given only 2D image. To do that, we would need to know the depth or $Z$-component of each corresponding pixels. Depth can be represented as an image as shown in the figure above, with brighter intensity denoting points further away.
 
 
 ## References
-- [medium article](https://towardsdatascience.com/inverse-projection-transformation-c866ccedef1c)
+- <a class="second after" href="https://towardsdatascience.com/inverse-projection-transformation-c866ccedef1c"> MEDIUM </a>
 
