@@ -39,117 +39,47 @@
   border-radius:50%;
 }
 
-/* box ------------------------------------------------------ */
-
-#box {
-  text-align: center;
-  font-size: 3em;
-  font-weight: bold;
-  -webkit-backface-visibility: hidden; /* fixes flashing */
+.typewriter h1, .typewriter h2 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */ text-align: center;
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
 }
 
-
-/* flashlight ------------------------------------------------------ */
-
-#flashlight {
-  color: hsla(0,0%,0%,0) !important;
-  perspective: 80px;
-  outline: none;
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }
 
-
-/* flash ------------------------------------------------------ */
-
-#flash {
-  display: inline-block;
-  text-shadow: #bbb 0 0 1px, #fff 0 -1px 2px, #fff 0 -3px 2px, rgba(0,0,0,0.8) 0 30px 25px;
-  transition: margin-left 0.3s cubic-bezier(0, 1, 0, 1);
-}
-    
-#box:hover #flash {
-  text-shadow: #111 0 0 1px, rgba(255,255,255,0.1) 0 1px 3px;
-  margin-left: 20px;
-  transition: margin-left 1s cubic-bezier(0, 0.75, 0, 1);
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
 }
 
+/*h1, h2 {
+    text-align: center;
+}*/
 
-/* light ------------------------------------------------------ */
-
-#light {
-  display: inline-block;
-  text-shadow: #111 0 0 1px, rgba(255,255,255,0.1) 0 1px 3px;
+/*h2 {
+  text-align: center;     
 }
-
-#box:hover #light {
-  text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
-  transform: rotateY(-60deg);
-  transition:         transform 0.3s cubic-bezier(0, 0.75, 0, 1), text-shadow 0.1s ease-out;
+h2:before, h2:after {
+  font-family: "Some cool font with glyphs", serif;
+  content: "⭐"; 
+  color: #c83f3f;
 }
-
-a,a:visited,a:hover,a:active{
-  -webkit-backface-visibility:hidden;
-          backface-visibility:hidden;
-	position:relative;
-  transition:0.5s color ease;
-	text-decoration:none;
-	color:lightblue;
-	font-size:1em;
-	text-transform: lowercase;
+h2:before {
+  margin-right: 10px;
 }
-a:hover{
-	color:red;
-}
-a.before:before,a.after:after{
-  content: "";
-  transition:0.5s all ease;
-  -webkit-backface-visibility:hidden;
-          backface-visibility:hidden;
-  position:absolute;
-}
-a.before:before{
-  top:-0.25em;
-}
-a.after:after{
-  bottom:-0.25em;
-}
-a.before:before,a.after:after{
-  height:5px;
-  height:0.35rem;
-  width:0;
-  background:#d73444;
-}
-a.first:after{
-  left:0;
-}
-a.second:after{
-  right:0;
-}
-a.third:after,a.sixth:before,a.sixth:after{
-  left:50%;
-  -webkit-transform:translateX(-50%);
-          transform:translateX(-50%);
-}
-a.fourth:before,a.fourth:after{
-  left:0;
-}
-a.fifth:before,a.fifth:after{
-  right:0;
-}
-a.seventh:before{
-  right:0;
-}
-a.seventh:after{
-  left:0;
-}
-a.eigth:before{
-  left:0;
-}
-a.eigth:after{
-  right:0;
-}
-a.before:hover:before,a.after:hover:after{
-  width:100%;
-}
+h2:after {
+  margin-left: 10px;
+}*/
 
 
 
