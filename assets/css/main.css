@@ -327,48 +327,6 @@ h1, h2, h3, h4, h5, h6,
   line-height: 1.2;
   color: inherit; }
 
-.typewriter h1, .typewriter h2 {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */ text-align: center;
-  border-right: .15em solid orange; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
-  animation: 
-    typing 3.5s steps(40, end),
-    blink-caret .75s step-end infinite;
-}
-
-/* The typing effect */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: orange; }
-}
-
-/*h1, h2 {
-    text-align: center;
-}*/
-
-/*h2 {
-  text-align: center;     
-}
-h2:before, h2:after {
-  font-family: "Some cool font with glyphs", serif;
-  content: "⭐"; 
-  color: #c83f3f;
-}
-h2:before {
-  margin-right: 10px;
-}
-h2:after {
-  margin-left: 10px;
-}*/
-
 h1, .h1 {
   font-size: 2.5rem; }
 
