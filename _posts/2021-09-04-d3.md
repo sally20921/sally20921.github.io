@@ -3,7 +3,7 @@ layout: post
 title:  "Depth from Disparity"
 author: seri
 categories: [ computer vision ]
-image: depth/12.png
+image: assets/images/depth/12.png
 tags: featured 
 ---
 
