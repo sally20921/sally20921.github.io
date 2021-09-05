@@ -9,11 +9,12 @@ description: "A Blog about Computer Vision and Deep Learning"
 <div class="container">
     <!-- latest post -->
     {% assign latest_post = site.posts[0] %}
+	<script>
     <div class="col-md-6">
     <div class="card border-0 mb-4 box-shadow">   
     <a href="{{latest_post.url}}">
     {{latest_post.title}}
-    <img width="550px" height="200px" src="{{latest_post.image|relative_url}}" style="height: 210px;" align="middle">
+    <img width="550px" height="200px" src="{{latest_post.image}}" style="height: 210px;" align="middle">
     </a>
     </div>
     </div>
