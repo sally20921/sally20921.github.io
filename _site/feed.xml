@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-05T09:49:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/d2.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/d2</id><content type="html" xml:base="http://localhost:4000/d2.html">&lt;p&gt;We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision. &lt;!--more--&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-05T11:05:47+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/d2.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/d2</id><content type="html" xml:base="http://localhost:4000/d2.html">&lt;p&gt;We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision. &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;div align=&quot;center&quot;&gt;&lt;h2 class=&quot;glow&quot;&gt;🌟 3D Reconstruction from 2D Signals &lt;/h2&gt;&lt;/div&gt;
 
@@ -172,4 +172,62 @@
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt; 
 &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-from-disparity-via-deep-learning-part-0-458827141b23&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/d4.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/d4</id><content type="html" xml:base="http://localhost:4000/d4.html">&lt;p&gt;We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision. &lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;&lt;h2 class=&quot;glow&quot;&gt;🌟 3D Reconstruction from 2D Signals &lt;/h2&gt;&lt;/div&gt;
+
+&lt;p&gt;We are going to look at depth estimation as a multi-view problem. Multi-view problems can span into different domains including stereo vision, Structure from Motion and optical flow. Although each carries great importance in the problem of Virtual Reality (VR) and robotics, we will focus on stereo vision in this multi-part series. Specifically, the progress of deep learning in stereo vision technology.&lt;/p&gt;
+
+&lt;p&gt;How can we automatically compute 3D geometry from images? What cues in the image provide 3D information? Before looking at binocular, let’s consider single view characteristics.&lt;/p&gt;
+
+&lt;p&gt;Well, we humans do so naturally. Here are several cues we use to infer depth information:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; shading &lt;/li&gt;
+&lt;li&gt; texture &lt;/li&gt; 
+&lt;li&gt; focus &lt;/li&gt;
+&lt;li&gt; motion &lt;/li&gt; 
+&lt;li&gt; perspective &lt;/li&gt;
+&lt;li&gt; occlusion &lt;/li&gt; 
+&lt;li&gt; symmetry &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/single.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Nonetheless, structure and depth are inherently ambiguous from a single view. As seen from the optical center (i.e., camera location), $P1$ and $P2$ are projected onto the image plane as equivalent.&lt;/p&gt;
+
+&lt;h2&gt; The Stereo Problem &lt;/h2&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/stereo.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Stereo vision systems reference the knowledge of two images captured simultaneously from a pair of cameras (left and right) with camera parameters (extrinsic and intrinsic). Stereo is heavily motivated by biology. Classic stereo problem include disparity, depth, occlusion, Structure from Motion, motion parallax etc. Provided left and right images, the ambiguity problem of the aforementioned is satisfied via triangulation from the two image planes by matching correspondences of a point in the world coordinate to the ones that can be seen in both images.&lt;/p&gt;
+
+&lt;p&gt;The basic principle of triangulation is shown above: the reconstruction via the intersection of two rays. Requirements? Calibration and correspondences.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/epipolar.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Furthermore,  &lt;span class=&quot;rainbow&quot;&gt; the Epipolar Constraint &lt;/span&gt; reduces the correspondence problem to $1D$ search along &lt;span class=&quot;frozen&quot;&gt; conjugate epipolar lines &lt;/span&gt; shown in the above figure.&lt;/p&gt;
+
+&lt;p&gt;Thus, &lt;span class=&quot;rainbow&quot;&gt; Epipolar Constraint &lt;/span&gt; assumes that stereo pairs are rectified images, meaning the same &lt;span class=&quot;frozen&quot;&gt; epipolar line &lt;/span&gt; aligns across rows such that it is orthogonal to both and aligned with one another. Rectification is achieved by learning a transformation based on intrinsic and extrinsic parameters: a process that dates back several decades.&lt;/p&gt;
+
+&lt;p&gt;From the rectified image pair, the depth $Z$ can be determined by its inversely proportionate relationhip with disparity $d$, where the disparity is defined as the pixel difference along the horizontal when comparing correspondences of left and right. This can be written as:&lt;/p&gt;
+
+\[I(x,y) = D(x+d, y)\]
+
+&lt;p&gt;This relationship is easiest to grasp visually. Provided a point in the left image plane $P_L(x,y)$ along with the correspondence in the right image plane and the world coordinates $(X,Y,Z)$ projected as a point in a 3D scene, our goal is to reconstruct the missing $Z$ (depth) provided the stereo pair.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;We set the relative coordinates (red axis) along with having known baseline $b$ between the two camera centers. Then $/frac{x_L}{f}$ can be expressed as $\frac{X+b/2}{Z}$ and $\frac{x_R}{f} = \frac{X-b/2}{Z}$. Therefore,&lt;/p&gt;
+
+\[\frac{y_L}{f} = \frac{y_R}{f} = \frac{Y}{Z}\]
+
+&lt;p&gt;and the world coordinate can be expressed as&lt;/p&gt;
+
+\[X = \frac{b(x_L+x_R}{2(x_L - x_R} Y = \frac{b(y_L + y_R}{2(x_L-x_R} Z = \frac{bf}{(x_L - x_R)}\]
+
+&lt;blockquote class=&quot;black&quot;&gt; $d = x_L - x_R$ is the &lt;span class=&quot;neon-green&quot;&gt;disparity&lt;/span&gt; between corresponding left and right image points &lt;/blockquote&gt;
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt; 
+&lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-from-disparity-via-deep-learning-part-0-458827141b23&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured," /><category term="sticky" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

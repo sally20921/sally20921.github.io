@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://localhost:4000/d4.html</loc>
+<lastmod>2021-08-31T00:00:00+09:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/d3.html</loc>
 <lastmod>2021-09-04T00:00:00+09:00</lastmod>
 </url>
@@ -11,6 +15,9 @@
 <url>
 <loc>http://localhost:4000/disparity.html</loc>
 <lastmod>2021-09-05T00:00:00+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/_posts/2021-08-31-d4.html</loc>
 </url>
 <url>
 <loc>http://localhost:4000/_posts/2021-09-04-d3.html</loc>

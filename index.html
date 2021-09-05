@@ -9,7 +9,9 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
 
 <div class="container">
     
-{% if page.url == page.url %} 
+{% if page.url == "/" %}
+    
+    
     
 <!-- Begin post excerpts, let's highlight the first 4 posts on top -->
 <div class="row remove-site-content-margin">
@@ -19,7 +21,7 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
     <div class="col-md-6">
     <div class="card border-0 mb-4 box-shadow">   
     <a href="{{site.baseurl}}{{latest_post.url}}">
-    <div class="topfirstimage" style="background-image: url({% if latest_post.image contains "://" %}{{ latest_post.image }}{% else %} {{site.baseurl}}/{{ latest_post.image}}{% endif %}); height: 200px;    background-size: cover;    background-repeat: no-repeat;"></div>    
+    <div class="topfirstimage" style="background-image: url({% if latest_post.image contains "://" %}{{ latest_post.image }}{% else %} {{site.baseurl}}/{{ latest_post.image}}{% endif %}); height: 200px;    background-size: cover;    background-repeat: no-repeat;"></div>     
     </a>
     <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
     <h2 class="h4 font-weight-bold">
@@ -144,7 +146,7 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
                 </p>
                 <a href="{{site.baseurl}}{{post.url}}" class="btn btn-dark">Read More</a>
             </div>
-            <div class="col-md-6 d-none d-md-block pr-0" style="background-size:cover;background-image:url({{site.baseurl}}/{{ post.image }});">	
+            <img class="col-md-6 d-none d-md-block pr-0" src="{{site.baseurl}}/{{ post.image }}" align="middle">	
             </div>
         </div>
     </div>
