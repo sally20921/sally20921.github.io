@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-05T11:05:47+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/d2.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/d2</id><content type="html" xml:base="http://localhost:4000/d2.html">&lt;p&gt;We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision. &lt;!--more--&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-05T13:55:15+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/d2.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/d2</id><content type="html" xml:base="http://localhost:4000/d2.html">&lt;p&gt;We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision. &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;div align=&quot;center&quot;&gt;&lt;h2 class=&quot;glow&quot;&gt;🌟 3D Reconstruction from 2D Signals &lt;/h2&gt;&lt;/div&gt;
 
@@ -56,7 +56,251 @@
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt; 
 &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-from-disparity-via-deep-learning-part-0-458827141b23&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/disparity.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/disparity</id><content type="html" xml:base="http://localhost:4000/disparity.html">&lt;p&gt;We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision. &lt;!--more--&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Self-Supervised Depth Estimation</title><link href="http://localhost:4000/ssl.html" rel="alternate" type="text/html" title="Self-Supervised Depth Estimation" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/ssl</id><content type="html" xml:base="http://localhost:4000/ssl.html">&lt;p&gt;We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision. &lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;&lt;h2 class=&quot;glow&quot;&gt;🌟 3D Reconstruction from 2D Signals &lt;/h2&gt;&lt;/div&gt;
+
+&lt;p&gt;We are going to look at depth estimation as a multi-view problem. Multi-view problems can span into different domains including stereo vision, Structure from Motion and optical flow. Although each carries great importance in the problem of Virtual Reality (VR) and robotics, we will focus on stereo vision in this multi-part series. Specifically, the progress of deep learning in stereo vision technology.&lt;/p&gt;
+
+&lt;p&gt;How can we automatically compute 3D geometry from images? What cues in the image provide 3D information? Before looking at binocular, let’s consider single view characteristics.&lt;/p&gt;
+
+&lt;p&gt;Well, we humans do so naturally. Here are several cues we use to infer depth information:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; shading &lt;/li&gt;
+&lt;li&gt; texture &lt;/li&gt; 
+&lt;li&gt; focus &lt;/li&gt;
+&lt;li&gt; motion &lt;/li&gt; 
+&lt;li&gt; perspective &lt;/li&gt;
+&lt;li&gt; occlusion &lt;/li&gt; 
+&lt;li&gt; symmetry &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/single.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Nonetheless, structure and depth are inherently ambiguous from a single view. As seen from the optical center (i.e., camera location), $P1$ and $P2$ are projected onto the image plane as equivalent.&lt;/p&gt;
+
+&lt;h2&gt; The Stereo Problem &lt;/h2&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/stereo.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Stereo vision systems reference the knowledge of two images captured simultaneously from a pair of cameras (left and right) with camera parameters (extrinsic and intrinsic). Stereo is heavily motivated by biology. Classic stereo problem include disparity, depth, occlusion, Structure from Motion, motion parallax etc. Provided left and right images, the ambiguity problem of the aforementioned is satisfied via triangulation from the two image planes by matching correspondences of a point in the world coordinate to the ones that can be seen in both images.&lt;/p&gt;
+
+&lt;p&gt;The basic principle of triangulation is shown above: the reconstruction via the intersection of two rays. Requirements? Calibration and correspondences.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/epipolar.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Furthermore,  &lt;span class=&quot;rainbow&quot;&gt; the Epipolar Constraint &lt;/span&gt; reduces the correspondence problem to $1D$ search along &lt;span class=&quot;frozen&quot;&gt; conjugate epipolar lines &lt;/span&gt; shown in the above figure.&lt;/p&gt;
+
+&lt;p&gt;Thus, &lt;span class=&quot;rainbow&quot;&gt; Epipolar Constraint &lt;/span&gt; assumes that stereo pairs are rectified images, meaning the same &lt;span class=&quot;frozen&quot;&gt; epipolar line &lt;/span&gt; aligns across rows such that it is orthogonal to both and aligned with one another. Rectification is achieved by learning a transformation based on intrinsic and extrinsic parameters: a process that dates back several decades.&lt;/p&gt;
+
+&lt;p&gt;From the rectified image pair, the depth $Z$ can be determined by its inversely proportionate relationhip with disparity $d$, where the disparity is defined as the pixel difference along the horizontal when comparing correspondences of left and right. This can be written as:&lt;/p&gt;
+
+\[I(x,y) = D(x+d, y)\]
+
+&lt;p&gt;This relationship is easiest to grasp visually. Provided a point in the left image plane $P_L(x,y)$ along with the correspondence in the right image plane and the world coordinates $(X,Y,Z)$ projected as a point in a 3D scene, our goal is to reconstruct the missing $Z$ (depth) provided the stereo pair.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;We set the relative coordinates (red axis) along with having known baseline $b$ between the two camera centers. Then $/frac{x_L}{f}$ can be expressed as $\frac{X+b/2}{Z}$ and $\frac{x_R}{f} = \frac{X-b/2}{Z}$. Therefore,&lt;/p&gt;
+
+\[\frac{y_L}{f} = \frac{y_R}{f} = \frac{Y}{Z}\]
+
+&lt;p&gt;and the world coordinate can be expressed as&lt;/p&gt;
+
+\[X = \frac{b(x_L+x_R}{2(x_L - x_R} Y = \frac{b(y_L + y_R}{2(x_L-x_R} Z = \frac{bf}{(x_L - x_R)}\]
+
+&lt;blockquote class=&quot;black&quot;&gt; $d = x_L - x_R$ is the &lt;span class=&quot;neon-green&quot;&gt;disparity&lt;/span&gt; between corresponding left and right image points &lt;/blockquote&gt;
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt; 
+&lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-from-disparity-via-deep-learning-part-0-458827141b23&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dissecting the Camera Matrix (Part 1)</title><link href="http://localhost:4000/intrinsic.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 1)" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/intrinsic</id><content type="html" xml:base="http://localhost:4000/intrinsic.html">&lt;p&gt;This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices, and and I will try to untangle the issues that can crop-up with different coordinate conventions.   &lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h2&gt; Camera Calibration and Decomposition &lt;/h2&gt;
+&lt;p&gt;Primarily, camera calibration is about finding the quantities internal to the camera that affect the imaging process. Here are some of the factors that will be taken care of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; image center &lt;/span&gt;: we need to find the position of the image center in the image. Wait, isn&apos;t the image center located at $(width/2, height/2)$? Well, no. Unless we calibrate the camera, the image will almost always appear to be off-center.&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; focal length &lt;/span&gt;: this is a very important parameter. Remember how people using DSLR cameras tend to &lt;mark&gt; focus &lt;/mark&gt; on things before capturing the image? this parameter is directly related to the &lt;mark&gt; focus &lt;/mark&gt; of the camera and it is very critical.&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; scaling factors &lt;/span&gt;: the scaling factors for row pixels and column pixels might be different. If we don&apos;t take care of this thing, the image will look stretched (either horizontally or vertically).&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; skew factor: this refers to shearing. the image will look like a parallelogram otherwise. &amp;lt;/li&amp;gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; lens distortion: this refers to the pseudo zoom effect that we see near the center of any image. &amp;lt;/li&amp;gt; 
+
+&lt;small class=&quot;sidenote&quot;&gt; shearing refers to a transformation in which all points along a given line $L$ remain fixed while other points are shifted parallel to $L$ by a distance proportional to their perpendicular distance from $L$. &lt;/small&gt;
+
+&lt;h2&gt; Pinhole Camera Model &lt;/h2&gt;
+&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole.png&quot; /&gt;&amp;lt;/picutre&amp;gt;
+
+Before we jump into anything, let&apos;s see where this all began. When we capture an image, we are basically mapping the 3D scene to a 2D scene. It means that every point in the 3D world gets mapped to the 2D plane of our image. This is called the &lt;span class=&quot;red&quot;&gt; pinhole camera model &lt;/span&gt;. It basically describes the relationship between the coordinates of the 3D point and its projection on the 2D image. This, of course, is the ideal case where &lt;span class=&quot;highlight-yellow&quot;&gt; there is absolutely no distortion &lt;/span&gt; of any kind. Every camera is modeled based on this, and every camera aspires to simulate this as close as possible. But in the real world, we have to deal with things like geometric distortions, blurring, finite sized apertures, etc. 
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole2.png&quot; /&gt;&lt;/picture&gt;
+
+The figure shown here depicts a pinhole camera model. The camera is placed at the origin $O$. The point $P$ represents a point in the real world. We are trying to capture that onto a 2D plane. The &lt;span class=&quot;rainbow&quot;&gt; image plane &lt;/span&gt; represents the 2D plane that you get after capturing the image. The image plane actually contains the image that you see after capturing a picture. So basically, we are trying to map every 3D point to a point on the image plane. In this case, the point $P$ gets mapped to $P_c$. The distance between the origin $O$ and this image plane is called the &lt;span class=&quot;highlight-sketch&quot;&gt; focal length &lt;/span&gt; of the camera. This is the parameter you modify when you adjst the &lt;mark&gt; focus &lt;/mark&gt; of the camera. 
+
+&lt;h2&gt; Intrinsic and Extrinsic Parameters &lt;/h2&gt; 
+In the above figure, we want to estimate $(u,v)$ from $(X,Y,Z)$. Let&apos;s say the focal length is denoted by $f$. If you look at the triangle formed using the origin-$P_c$-and the $Z$-axis with the origin-$P$ and $Z$-axis, you will notice that they are similar triangles. This means that $u$ depends on the $f$, $X$ and $Z$. Similarly, $v$ depends on $f$, $Y$ and $Z$. 
+
+$$
+u = fX/Z
+v = fY/Z
+$$
+
+Next, if the origin of the 2D image coordinate system does not coincide with where the $Z$-axis intersects the image plane, we need to translate $P_c$ into the desired origin. Let this translation be defined by $(t_u, t_v)$. So now, $u$ and $v$ are given by:
+
+$$
+u = fX/Z + t_u
+v = fY/Z + t_v
+$$
+
+So up until now, we have something that can translate $(X,Y,Z)$ to $(u,v)$. Let&apos;s denote this matrix $M$. So we can write:
+
+$$ 
+P_c = MP
+$$
+
+
+Since this is a camera image, we need to express it in inches. For this, we will need to know the resolution of the camera in pixels/inch. If the pixels are square the resolution will be identical in both $u$ and $v$ directions of the camera image coordinates. However, for a more general case, we assume rectangular pixels with resolution $m_u$ and $m_v$ pixels/inch in $u$ and $v$ directions respectively. Therefore, to measure $P_c$ in pixels, its $u$ and $v$ coordinates should be multiplied by $m_u$ and $m_v$ respectively. So now, this new transformation matrix depends on $f, X, Y, Z, t_u, t_v, m_u, m_v$. Let&apos;s denote this by:
+
+$$
+P_c = KP
+$$
+
+Here, $K$ is called the &lt;span class=&quot;typewriter&quot;&gt; intrinsic parameter matrix &lt;/span&gt; for the camera.
+
+Now, if the camera does not have its center of projection at $(0,0,0)$ and is oriented in an arbitrary fashion (not necessarily $z$-perpendicular to the image plane), then we need roation and translation to make the camera coordinate system coincide with the configuration in that pinhole camera figure. Let the rotation applied to coincide the principal axis with $Z$-axis given by a $3 \times 3$ rotation matrix $R$. Then the matrix is formed by first applying the translation followed by the rotation is given by the $3 \times 4$ matrix.
+
+$$
+E = \(R|RT)
+$$
+
+This is called the &lt;span class=&quot;typewriter&quot;&gt; extrinsic parameter matrix for the camera &lt;/span&gt;. So, the complete camera transformation can now be represented as: 
+
+$$ 
+K\(R|RT) = KR\(I|T)
+$$
+
+Hence, $P_c$ the projection of $P$ is given by:
+
+$$
+P\_c = KR\(I|T)P = CP
+$$
+
+$C$ is a $3 \times 4$ matrix usually called the complete camera calibration matrix. So basically, camera calibration matrix is used to transform a 3D point in the real world to a 2D point on the image plane considering all the things like focal length of the camera, distortion, resolution, shifting of origin, etc. 
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt; 
+&lt;li&gt;&lt;a href=&quot;https://ksimek.github.io/2012/08/14/decompose/&quot;&gt; ksimek blog &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://prateekvjoshi.com/2014/05/31/understanding-camera-calibration/&quot;&gt; prateekvjoshi blog &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/picture&gt;&lt;/span&gt;&lt;/li&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices, and and I will try to untangle the issues that can crop-up with different coordinate conventions.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/camera/camera.jpeg" /><media:content medium="image" url="http://localhost:4000/assets/images/camera/camera.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dense Depth Using Stereo Vision</title><link href="http://localhost:4000/dense.html" rel="alternate" type="text/html" title="Dense Depth Using Stereo Vision" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/dense</id><content type="html" xml:base="http://localhost:4000/dense.html">&lt;div align=&quot;center&quot;&gt;&lt;h2&gt; Stereo Vision Unlocks Dense Depth &lt;/h2&gt;&lt;/div&gt;
+
+&lt;picture&gt; &lt;img src=&quot;/assets/images/dense.jpeg&quot; /&gt; &lt;/picture&gt;
+&lt;div class=&quot;caption&quot;&gt; Sparse Depth Provided by LiDAR (left) and Dense Depth which Stereo Vision Gives Us (right) &lt;/div&gt;
+
+&lt;p&gt;What exactly is this all-important dense depth that stereo vision makes possible? When we talk about dense depth, we mean we can take the video we capture from our car’s cameras and tell you exactly how far away everything (by everything, every pixel) is. This contrasts with the &lt;span class=&quot;highlight-sketch&quot;&gt; sparse depth &lt;/span&gt; you get from LiDAR, where highly accurate depth calculations are achieved but only for a small fraction of the visible points in a video.&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;&lt;h2&gt; Dense Depth Matters, Because Safety Matters &lt;/h2&gt;&lt;/div&gt;
+
+&lt;p&gt;Dense depth is a must. Why? First up, seeing in 3D is essential for accurately classifying what we see in a scene. Secondly, &lt;span class=&quot;blue&quot;&gt; seeing &lt;span&gt; with stereo vision’s dense depth allows us to better classify the entirety of a complex scene and its unpredictable road layouts.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;In complex city environments, the sparse quality of other methods can lead to missing or indeterminate details. There can be areas in the scene whre it’s hard, or impossible to determine the depth due to something blocking or partially blocking the sensors’ view of that area. For example, one car may be partially obscured behind another. These partial &lt;span class=&quot;blue&quot;&gt; occlussions &lt;span&gt; make it harder to understand the scene semantically. Dense depth gives us answers.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Third, dense depth also helps us combat wet, grey European weather. Rain and snow produce noise effects that obscure the scene. Dense depth allows to better overcome this inference.&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;&lt;h2&gt; How Does It Work? &lt;/h2&gt;&lt;/div&gt;
+
+&lt;p&gt;The cameras on our car are set up in pairs, left and right, with both cameras in the pair pointing in the same direction. The difference in position of the cameras gives them slightly different views of the world. We use this difference to estimate the distance to objects in the scene.&lt;/p&gt;
+
+&lt;p&gt;Let’s see how this works. For example, find a scene around you that’s going to stay fairly stationary for the next couple of minutes-one with some close objects, and others further away. Look at one object that’s further away, and as you do so, cover one eye then the other. Try to notice how the closer objects move from left to right as you switch eyes.&lt;/p&gt;
+
+&lt;p&gt;We calculate how far away an object is by measuring those changes in the horizontal position of close objects in relation to far objects. The larger the change in horizontal position, the close the object must be. If an object hardly moves at all, it must be very far away.&lt;/p&gt;
+
+&lt;p&gt;We calibrate our cameras so that, if an object is &lt;span class=&quot;typewriter&quot;&gt; infinitely far away &lt;/span&gt; it will appear in teh same pixel in both left and right cameras. By matching the pixels in the image from left hand camera corresponding to the same object in the right hand camera, we can measure the difference in the position of those two pixels in teh two frames. We can then take this disparity and calculate the distance to the object.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/fiveai/dense-depth-using-stereo-vision-to-see-european-city-streets-fd4fa65885c9&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">What exactly is this all-important dense depth that stereo vision makes possible? When we talk about dense depth, we mean we can take the video we capture from our car&apos;s cameras and tell you exactly how far away everything (every pixel) is.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dissecting the Camera Matrix (Part 1)</title><link href="http://localhost:4000/camera.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 1)" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/camera</id><content type="html" xml:base="http://localhost:4000/camera.html">&lt;p&gt;This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices, and and I will try to untangle the issues that can crop-up with different coordinate conventions.   &lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h2&gt; Camera Calibration and Decomposition &lt;/h2&gt;
+&lt;p&gt;Primarily, camera calibration is about finding the quantities internal to the camera that affect the imaging process. Here are some of the factors that will be taken care of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; image center &lt;/span&gt;: we need to find the position of the image center in the image. Wait, isn&apos;t the image center located at $(width/2, height/2)$? Well, no. Unless we calibrate the camera, the image will almost always appear to be off-center.&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; focal length &lt;/span&gt;: this is a very important parameter. Remember how people using DSLR cameras tend to &lt;mark&gt; focus &lt;/mark&gt; on things before capturing the image? this parameter is directly related to the &lt;mark&gt; focus &lt;/mark&gt; of the camera and it is very critical.&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; scaling factors &lt;/span&gt;: the scaling factors for row pixels and column pixels might be different. If we don&apos;t take care of this thing, the image will look stretched (either horizontally or vertically).&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; skew factor: this refers to shearing. the image will look like a parallelogram otherwise. &amp;lt;/li&amp;gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; lens distortion: this refers to the pseudo zoom effect that we see near the center of any image. &amp;lt;/li&amp;gt; 
+
+&lt;small class=&quot;sidenote&quot;&gt; shearing refers to a transformation in which all points along a given line $L$ remain fixed while other points are shifted parallel to $L$ by a distance proportional to their perpendicular distance from $L$. &lt;/small&gt;
+
+&lt;h2&gt; Pinhole Camera Model &lt;/h2&gt;
+&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole.png&quot; /&gt;&amp;lt;/picutre&amp;gt;
+
+Before we jump into anything, let&apos;s see where this all began. When we capture an image, we are basically mapping the 3D scene to a 2D scene. It means that every point in the 3D world gets mapped to the 2D plane of our image. This is called the &lt;span class=&quot;red&quot;&gt; pinhole camera model &lt;/span&gt;. It basically describes the relationship between the coordinates of the 3D point and its projection on the 2D image. This, of course, is the ideal case where &lt;span class=&quot;highlight-yellow&quot;&gt; there is absolutely no distortion &lt;/span&gt; of any kind. Every camera is modeled based on this, and every camera aspires to simulate this as close as possible. But in the real world, we have to deal with things like geometric distortions, blurring, finite sized apertures, etc. 
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole2.png&quot; /&gt;&lt;/picture&gt;
+
+The figure shown here depicts a pinhole camera model. The camera is placed at the origin $O$. The point $P$ represents a point in the real world. We are trying to capture that onto a 2D plane. The &lt;span class=&quot;rainbow&quot;&gt; image plane &lt;/span&gt; represents the 2D plane that you get after capturing the image. The image plane actually contains the image that you see after capturing a picture. So basically, we are trying to map every 3D point to a point on the image plane. In this case, the point $P$ gets mapped to $P_c$. The distance between the origin $O$ and this image plane is called the &lt;span class=&quot;highlight-sketch&quot;&gt; focal length &lt;/span&gt; of the camera. This is the parameter you modify when you adjst the &lt;mark&gt; focus &lt;/mark&gt; of the camera. 
+
+&lt;h2&gt; Intrinsic and Extrinsic Parameters &lt;/h2&gt; 
+In the above figure, we want to estimate $(u,v)$ from $(X,Y,Z)$. Let&apos;s say the focal length is denoted by $f$. If you look at the triangle formed using the origin-$P_c$-and the $Z$-axis with the origin-$P$ and $Z$-axis, you will notice that they are similar triangles. This means that $u$ depends on the $f$, $X$ and $Z$. Similarly, $v$ depends on $f$, $Y$ and $Z$. 
+
+$$
+u = fX/Z
+v = fY/Z
+$$
+
+Next, if the origin of the 2D image coordinate system does not coincide with where the $Z$-axis intersects the image plane, we need to translate $P_c$ into the desired origin. Let this translation be defined by $(t_u, t_v)$. So now, $u$ and $v$ are given by:
+
+$$
+u = fX/Z + t_u
+v = fY/Z + t_v
+$$
+
+So up until now, we have something that can translate $(X,Y,Z)$ to $(u,v)$. Let&apos;s denote this matrix $M$. So we can write:
+
+$$ 
+P_c = MP
+$$
+
+
+Since this is a camera image, we need to express it in inches. For this, we will need to know the resolution of the camera in pixels/inch. If the pixels are square the resolution will be identical in both $u$ and $v$ directions of the camera image coordinates. However, for a more general case, we assume rectangular pixels with resolution $m_u$ and $m_v$ pixels/inch in $u$ and $v$ directions respectively. Therefore, to measure $P_c$ in pixels, its $u$ and $v$ coordinates should be multiplied by $m_u$ and $m_v$ respectively. So now, this new transformation matrix depends on $f, X, Y, Z, t_u, t_v, m_u, m_v$. Let&apos;s denote this by:
+
+$$
+P_c = KP
+$$
+
+Here, $K$ is called the &lt;span class=&quot;typewriter&quot;&gt; intrinsic parameter matrix &lt;/span&gt; for the camera.
+
+Now, if the camera does not have its center of projection at $(0,0,0)$ and is oriented in an arbitrary fashion (not necessarily $z$-perpendicular to the image plane), then we need roation and translation to make the camera coordinate system coincide with the configuration in that pinhole camera figure. Let the rotation applied to coincide the principal axis with $Z$-axis given by a $3 \times 3$ rotation matrix $R$. Then the matrix is formed by first applying the translation followed by the rotation is given by the $3 \times 4$ matrix.
+
+$$
+E = \(R|RT)
+$$
+
+This is called the &lt;span class=&quot;typewriter&quot;&gt; extrinsic parameter matrix for the camera &lt;/span&gt;. So, the complete camera transformation can now be represented as: 
+
+$$ 
+K\(R|RT) = KR\(I|T)
+$$
+
+Hence, $P_c$ the projection of $P$ is given by:
+
+$$
+P\_c = KR\(I|T)P = CP
+$$
+
+$C$ is a $3 \times 4$ matrix usually called the complete camera calibration matrix. So basically, camera calibration matrix is used to transform a 3D point in the real world to a 2D point on the image plane considering all the things like focal length of the camera, distortion, resolution, shifting of origin, etc. 
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt; 
+&lt;li&gt;&lt;a href=&quot;https://ksimek.github.io/2012/08/14/decompose/&quot;&gt; ksimek blog &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://prateekvjoshi.com/2014/05/31/understanding-camera-calibration/&quot;&gt; prateekvjoshi blog &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/picture&gt;&lt;/span&gt;&lt;/li&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices, and and I will try to untangle the issues that can crop-up with different coordinate conventions.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/camera/camera.jpeg" /><media:content medium="image" url="http://localhost:4000/assets/images/camera/camera.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/disparity.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/disparity</id><content type="html" xml:base="http://localhost:4000/disparity.html">&lt;p&gt;We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision. &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;div align=&quot;center&quot;&gt;&lt;h2 class=&quot;glow&quot;&gt;🌟 3D Reconstruction from 2D Signals &lt;/h2&gt;&lt;/div&gt;
 
@@ -172,62 +416,217 @@
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt; 
 &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-from-disparity-via-deep-learning-part-0-458827141b23&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/d4.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/d4</id><content type="html" xml:base="http://localhost:4000/d4.html">&lt;p&gt;We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision. &lt;!--more--&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Inverse Projection Transformation</title><link href="http://localhost:4000/inverse.html" rel="alternate" type="text/html" title="Inverse Projection Transformation" /><published>2021-09-03T00:00:00+09:00</published><updated>2021-09-03T00:00:00+09:00</updated><id>http://localhost:4000/inverse</id><content type="html" xml:base="http://localhost:4000/inverse.html">&lt;div align=&quot;center&quot;&gt;&lt;h2&gt; Depth and Inverse Projection &lt;/h2&gt;&lt;/div&gt;
 
-&lt;div align=&quot;center&quot;&gt;&lt;h2 class=&quot;glow&quot;&gt;🌟 3D Reconstruction from 2D Signals &lt;/h2&gt;&lt;/div&gt;
+&lt;picture&gt;&lt;img src=&quot;/assets/images/depth/11.png&quot; /&gt;&lt;/picture&gt;
 
-&lt;p&gt;We are going to look at depth estimation as a multi-view problem. Multi-view problems can span into different domains including stereo vision, Structure from Motion and optical flow. Although each carries great importance in the problem of Virtual Reality (VR) and robotics, we will focus on stereo vision in this multi-part series. Specifically, the progress of deep learning in stereo vision technology.&lt;/p&gt;
+&lt;div class=&quot;caption&quot;&gt; RGB + Depth = 3D Back-Projected Points &lt;/div&gt;
 
-&lt;p&gt;How can we automatically compute 3D geometry from images? What cues in the image provide 3D information? Before looking at binocular, let’s consider single view characteristics.&lt;/p&gt;
+&lt;p&gt; When an image of a scene is captured by a camera, we &lt;span class=&quot;circle-sketch-highlight&quot;&gt; lose depth information as objects and points in 3D space are mapped onto a 2D image plane. This is also known as &lt;span class=&quot;blue&quot;&gt; projective transformation &lt;/span&gt;, in which points in the world are converted to &lt;span class=&quot;highlight-green&quot;&gt;pixels&lt;/span&gt; on a 2D plane. &amp;lt;/p&amp;gt;
 
-&lt;p&gt;Well, we humans do so naturally. Here are several cues we use to infer depth information:&lt;/p&gt;
+&lt;p&gt;However, what if we want to do the &lt;span class=&quot;underline&quot;&gt; inverse &lt;/span&gt;? That is, we want to recover and reconstruct the scene given only 2D image. To do that, we would need to know the depth or $Z$-component of each corresponding pixels. Depth can be represented as an image as shown in the figure above, with brigther intensity denoting points further away. &lt;/p&gt;
+
+In this blog post, we will take a tour and understand the mathematics and concepts of performing back-projection from 2D pixel coordinates to 3D points. We will assume that a depth map is provided to perform the 3D reconstruction. The concept that we will go through are camera calibration parameters, projective transformation using intrinsic and its inverse, and coordinate transformation between frames.  
+
+&lt;div align=&quot;center&quot;&gt;&lt;h2&gt; Central Projection of Pinhole Camera Model &lt;/h2&gt;&lt;/div&gt;
+
+First and foremost, understanding the geometrical model of the camera projection serves as the core idea. What we are ultimately interested in is the depth, parameter $Z$. Here, we consider the simplest pinhole camera model with no skew or distortion factor. 
+
+3D points are mapped to the image plane $(u,v) = f(X,Y,Z)$. The complete mathematical model that describes this transformation can be written as $p = K[R|t]*P$.
+
+$$
+s \begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = \begin{bmatrix} f_x &amp;amp; 0 &amp;amp; u_0 \\ 0 &amp;amp; f_y &amp;amp; v_0 \\ 0 &amp;amp; 0 &amp;amp; 1 \end{bmatrix} \begin{bmatrix} r_{11} &amp;amp; r_{12} &amp;amp; r_{13} &amp;amp; t{1} \\ r_{21} &amp;amp; r_{22} &amp;amp; r_{23} &amp;amp; t_2 \\ r_{31} &amp;amp; r_{32} &amp;amp; r_{33} &amp;amp; t_3\end{bmatrix} \begin{bmatrix} X \\ Y \\ Z \\ 1 \end{bmatrix}
+$$
+
+, where &lt;ul&gt;&lt;li&gt; $p$ is the projected point on the image plane&lt;/li&gt;
+&lt;li&gt; $K$ is the camera intrinsics matrix&lt;/li&gt;
+&lt;li&gt; $[R|t]$ is the extrinsic parameters describing the relative transformation of the point in the world frame to the camera frame &lt;/li&gt;
+&lt;li&gt; $P$ or $[X, Y, Z, 1]$ represents the 3D point expressed in a predefined world coordinate system in Euclidean space &lt;/li&gt;
+&lt;li&gt; Aspect ratio scaling $s$ controls how pixels are scaled in the $x$ and $y$ direction as focal length chnanges&lt;/li&gt; &lt;/ul&gt;
+
+&lt;h3&gt; Intrinsic Parameter Matrix &lt;/h3&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/depth/13.png&quot; /&gt;&lt;/picture&gt; 
+&lt;div class=&quot;caption&quot;&gt; Camera Projective Geometry &lt;/div&gt;
+
+The matrix $K$ is responsible for projecting 3D points to the image plane. To do that, the following quantities must be defined as:
+
+* Focal length $(f_x, f_y)$: measure the position of the image plane with respect to the camera center.
+* Principal point $(u_0, v_0)$; the optical center of the image plane
+* Skew factor: the misalignment from a square pixel if the image plane axes are not perpendicular. In our example, this is set to zero.
+
+The most common way of solving all the paramters is using the &lt;span class=&quot;reveal&quot;&gt; checkerboard method&lt;/span&gt;, where several 2D-3D correspondences obtained through matching and solving the unknown parameters by means of PnP, Direct Linear Transform or RANSAC to improve robustness. 
+
+With all the unknowns determined, we can finally proceed to recover the 3D points $(X,Y,Z)$ by applying the inverse. 
+
+&lt;h3&gt; Back-Projection &lt;/h3&gt;
+
+Suppose $(X,Y,Z,1)$ is in the camera coordinate frame, i.e. we do not need to consider the extrinsic matrix $[R|t]$.
+
+## References
+- &lt;a href=&quot;https://towardsdatascience.com/inverse-projection-transformation-c866ccedef1c&quot;&gt; MEDIUM &lt;/a&gt;
+
+&lt;/span&gt;&lt;/p&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">When an image of a scene is captured by a camera, we lose depth information. This is also known as projective transformation, in which points in the world are converted to pixels on a 2D plane. But how do we do the opposite?</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth Estimation: Basics and Intuition</title><link href="http://localhost:4000/depth.html" rel="alternate" type="text/html" title="Depth Estimation: Basics and Intuition" /><published>2021-09-02T00:00:00+09:00</published><updated>2021-09-02T00:00:00+09:00</updated><id>http://localhost:4000/depth</id><content type="html" xml:base="http://localhost:4000/depth.html">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;In computer vision, depth is extracted from 2 prevalent methodologies. Namely, &lt;em&gt;depth from monocular images&lt;/em&gt; (static or sequential) or &lt;em&gt;depth from stereo images&lt;/em&gt; by exploiting epipolar geometry. This article will focus on giving readers a background into depth estimation and the problems associated with it.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-we-view-the-world&quot;&gt;How We View the World&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s start with how humans perceive depth in general. This will give us some valuable insights on depth estimation since many of the methods were derived from our human vision system. Both machine and human vision share similarities in the way image is formed. Theoretically, when light rays from a source hit surfaces, it reflects off and directs towards the back of our retina, projecting them and our eye processes them as 2D just like how an image is formed on an image plane.&lt;/p&gt;
+
+&lt;p&gt;So how do we actually measure distance and understand our environment in 3D when the projected scene is in 2D? The mechanism at work here is that our brain starts to reason about the incoming visual signals by recognizing patterns such as the size, texture and motion about the scene known as &lt;em&gt;depth cues&lt;/em&gt;. There is no distance information about the image but somehow we can interpret and recover depth information effortlessly. These cues allow us to view objects and surfaces which are supposedly on flat images as 3D.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-destroy-depth&quot;&gt;How to Destroy Depth&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Interpreting these depth cues begins with how scenes are projected to perspective view in humans and camera vision. On the other hand, an &lt;em&gt;orthographic projection&lt;/em&gt; to front view or side view is one which destroys all depth information.&lt;/p&gt;
+
+&lt;p&gt;Consider the above image. An observer could disentangle which aspect of the house is nearer to him/her as seen in the left image. However, it is totally impossible to distinguish relative distances from the right image. Even the background might be lying on the same plane as the house.&lt;/p&gt;
+
+&lt;h2 id=&quot;judging-depth-using-cues&quot;&gt;Judging Depth Using Cues&lt;/h2&gt;
+
+&lt;p&gt;There are basically 4 categories of depth cues: static monocular depth from motion, binocular and physiological cues. We subconsciously take advantage of these signals to perceive depth remarkably well.&lt;/p&gt;
+
+&lt;h3 id=&quot;pictorial-depth-cues&quot;&gt;Pictorial Depth Cues&lt;/h3&gt;
+
+&lt;p&gt;Our ability to perceive depth from a single image depends on the spatial arrangement of things in the scene. Below, I have summarized some of the hints that enable us to reason about the distance of different objects. It may already feel natural to you from your daily interaction.&lt;/p&gt;
+
 &lt;ul&gt;
-&lt;li&gt; shading &lt;/li&gt;
-&lt;li&gt; texture &lt;/li&gt; 
-&lt;li&gt; focus &lt;/li&gt;
-&lt;li&gt; motion &lt;/li&gt; 
-&lt;li&gt; perspective &lt;/li&gt;
-&lt;li&gt; occlusion &lt;/li&gt; 
-&lt;li&gt; symmetry &lt;/li&gt;
+  &lt;li&gt;Size of objects&lt;/li&gt;
+  &lt;li&gt;Texture&lt;/li&gt;
+  &lt;li&gt;Linear Perspective&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;picture&gt;&lt;img src=&quot;/assets/images/single.png&quot; /&gt;&lt;/picture&gt;
+&lt;p&gt;An interesting study was conducted at UC, Berkeley and they show experimentally that when the horizon is viewable, there is an overwhelming tendency for us to exploit this property to quickly perceive depth.&lt;/p&gt;
 
-&lt;p&gt;Nonetheless, structure and depth are inherently ambiguous from a single view. As seen from the optical center (i.e., camera location), $P1$ and $P2$ are projected onto the image plane as equivalent.&lt;/p&gt;
+&lt;h3 id=&quot;depth-cues-from-motion-motion-parallax&quot;&gt;Depth Cues from Motion (Motion Parallax)&lt;/h3&gt;
 
-&lt;h2&gt; The Stereo Problem &lt;/h2&gt;
+&lt;p&gt;This should not be surprising to you as well. When you, as an observer, is in motion, things around you pass by faster than the one that is farther away. The farther something appears, the slower it seems to pass away from the observer.&lt;/p&gt;
 
-&lt;picture&gt;&lt;img src=&quot;/assets/images/stereo.png&quot; /&gt;&lt;/picture&gt;
+&lt;h3 id=&quot;depth-cues-from-stereo-vision-binocular-parallax&quot;&gt;Depth Cues from Stereo Vision (Binocular Parallax)&lt;/h3&gt;
 
-&lt;p&gt;Stereo vision systems reference the knowledge of two images captured simultaneously from a pair of cameras (left and right) with camera parameters (extrinsic and intrinsic). Stereo is heavily motivated by biology. Classic stereo problem include disparity, depth, occlusion, Structure from Motion, motion parallax etc. Provided left and right images, the ambiguity problem of the aforementioned is satisfied via triangulation from the two image planes by matching correspondences of a point in the world coordinate to the ones that can be seen in both images.&lt;/p&gt;
+&lt;p&gt;The difference in view observed by your left and right eye is known as retina disparity. This phenomenon is also known as &lt;em&gt;stereopsis&lt;/em&gt;: ability to perceive depth due to 2 different perspectives of the world. By comparing iamges from the retinas in the two eyes, the brain computes distance. The greater the disparity, the closer the things are around you.&lt;/p&gt;
 
-&lt;p&gt;The basic principle of triangulation is shown above: the reconstruction via the intersection of two rays. Requirements? Calibration and correspondences.&lt;/p&gt;
+&lt;h2 id=&quot;depth-estimation-in-computer-vision&quot;&gt;Depth Estimation in Computer Vision&lt;/h2&gt;
 
-&lt;picture&gt;&lt;img src=&quot;/assets/images/epipolar.png&quot; /&gt;&lt;/picture&gt;
+&lt;p&gt;The goal of depth estimation is to obtain a representation of the spatial structure of a scene, recovering the three-dimensional shape and appearance of objects in imagery. This is also known as the inverse problem, where we seek to recover some unknowns given insufficient information to fully specify the solution.&lt;/p&gt;
 
-&lt;p&gt;Furthermore,  &lt;span class=&quot;rainbow&quot;&gt; the Epipolar Constraint &lt;/span&gt; reduces the correspondence problem to $1D$ search along &lt;span class=&quot;frozen&quot;&gt; conjugate epipolar lines &lt;/span&gt; shown in the above figure.&lt;/p&gt;
+&lt;p&gt;So how do machines actually perceive depth? Can we somehow transfer some of the ideas discussed above? The earliest algorithm with impressive results begin with depth estimation using stereo vision back in the 90s. A lot of progress was made on dense stereo correspondence algorithm. Researchers were able to utilize geometry to constrain and replicate the idea of stereopsis mathemtically and at the same time running at real-time.&lt;/p&gt;
 
-&lt;p&gt;Thus, &lt;span class=&quot;rainbow&quot;&gt; Epipolar Constraint &lt;/span&gt; assumes that stereo pairs are rectified images, meaning the same &lt;span class=&quot;frozen&quot;&gt; epipolar line &lt;/span&gt; aligns across rows such that it is orthogonal to both and aligned with one another. Rectification is achieved by learning a transformation based on intrinsic and extrinsic parameters: a process that dates back several decades.&lt;/p&gt;
+&lt;p&gt;As for monocular depth estimation, it recently started to gain popularity by using neural networks to learn representation that distills depth directly. Through neural networks, depth cues are implicitly learned through gradient-based methods. Besides this, there has been great advancement in self-supervised depth estimation. In this method, a model is trained to predict depth by means of optimizing a proxy signal. No ground truth label is needed in the training process. Most research either exploits geometrical cues such as multi-view geometry or epipolar geometry to learn depth.&lt;/p&gt;
 
-&lt;p&gt;From the rectified image pair, the depth $Z$ can be determined by its inversely proportionate relationhip with disparity $d$, where the disparity is defined as the pixel difference along the horizontal when comparing correspondences of left and right. This can be written as:&lt;/p&gt;
+&lt;h3 id=&quot;depth-estimation-from-stereo-vision&quot;&gt;Depth Estimation from Stereo Vision&lt;/h3&gt;
 
-\[I(x,y) = D(x+d, y)\]
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;This relationship is easiest to grasp visually. Provided a point in the left image plane $P_L(x,y)$ along with the correspondence in the right image plane and the world coordinates $(X,Y,Z)$ projected as a point in a 3D scene, our goal is to reconstruct the missing $Z$ (depth) provided the stereo pair.&lt;/p&gt;
+&lt;p&gt;The main idea of solving depth using a stereo camera involves the concept of triangulation and stereo matching. The former depends on good calibration and rectification to constrain the problem so that it can be modelled on a 2D plane known as epipolar plane, which greatly reduces the latter (stereo matching) to a line search along the epipolar line.&lt;/p&gt;
 
-&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;We set the relative coordinates (red axis) along with having known baseline $b$ between the two camera centers. Then $/frac{x_L}{f}$ can be expressed as $\frac{X+b/2}{Z}$ and $\frac{x_R}{f} = \frac{X-b/2}{Z}$. Therefore,&lt;/p&gt;
+&lt;p&gt;Analogous to binocular parallax, once we are able to match pixel correspondences between the 2 views, the next task is to obtain a representation that encodes the difference. This representation is known as &lt;em&gt;disparity&lt;/em&gt;. The formula to obtain depth from disparity can be worked out from similar triangles.&lt;/p&gt;
 
-\[\frac{y_L}{f} = \frac{y_R}{f} = \frac{Y}{Z}\]
+&lt;p&gt;To summarize the steps:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;identify similar points from feature descriptors&lt;/li&gt;
+  &lt;li&gt;Match feature correspondence using a matching cost function&lt;/li&gt;
+  &lt;li&gt;Using epipolar geometry, find and match correspondence in one picture frame to the other. A matching cost function is used to measure the pixel dissimilarity.&lt;/li&gt;
+  &lt;li&gt;Compute disparity from known correspondences $d = x1 - x2$ as shown in the above image.&lt;/li&gt;
+  &lt;li&gt;Compute depth from the known disparity $ z = (f*b)/d$.&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;and the world coordinate can be expressed as&lt;/p&gt;
+&lt;h3 id=&quot;age-of-deep-learning&quot;&gt;Age of Deep Learning&lt;/h3&gt;
 
-\[X = \frac{b(x_L+x_R}{2(x_L - x_R} Y = \frac{b(y_L + y_R}{2(x_L-x_R} Z = \frac{bf}{(x_L - x_R)}\]
+&lt;p&gt;Deep learning excels in high-level perceptual and cognitive task such as recognition, detection and scene understanding. Depth perception falls into this category and likewise should be a natural way forward.&lt;/p&gt;
 
-&lt;blockquote class=&quot;black&quot;&gt; $d = x_L - x_R$ is the &lt;span class=&quot;neon-green&quot;&gt;disparity&lt;/span&gt; between corresponding left and right image points &lt;/blockquote&gt;
+&lt;p&gt;The seminal work of estimating depth directly from a monocular image started from Saxena. They learned to regress depth directly from monocular cues in 2D images via supervised learning, by minimizing a regression loss. Since then, many varieties of approaches have been proposed to improve the representation learning by proposing new architectures or loss functions.&lt;/p&gt;
 
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt; 
-&lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-from-disparity-via-deep-learning-part-0-458827141b23&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured," /><category term="sticky" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;h4 id=&quot;self-supervised-monocular-depth-estimation-using-stereo&quot;&gt;Self-Supervised Monocular Depth Estimation using Stereo&lt;/h4&gt;
+
+&lt;p&gt;In this framework, the model will predict the disparities $d_l$ and $d_r$ only from the left RGB, $I_l$. Similar to the above method, a spatial transformer network warps the RGB image pair $I_l$, $I_r$ using the disparity. So the paired view can be synthesized and a reconstruction loss between the reconstructed views $I_{pred_l}$ and $I_{pred_r}$ and the target views $I_l$ and $Ir$ is used to supervise the training.&lt;/p&gt;
+
+&lt;h4 id=&quot;self-supervised-depth-estimation-using-sfm-framework&quot;&gt;Self-Supervised Depth Estimation using SfM Framework&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This method frames the problem as learning to generate a novel view from a video sequence. The task of the neural network is to generate the target view $I_t$ from source view by taking image at different time step $I, I_{t-1}, I_{t+1}$ and applying a learnt transformation from a pose network to perform the image warping. Training was made possible by treating the warped view synthesis as supervision in a differentiable manner using a spatial transformer network. At inference time, the depth CNN would predict depth from a single RGB image. Do note that these methods do have some shortcomings such as unable to determine scale and modelling moving objects as described in the next section.&lt;/p&gt;
+
+&lt;h4 id=&quot;cnn-depth-cues-and-bias-learnt&quot;&gt;CNN Depth Cues and Bias Learnt&lt;/h4&gt;
+
+&lt;p&gt;Understanding and deciphering the black box has been an ongoing research in interpretable machine learning. In the context of depth estimation, a few works have started investigating what depth cues do neural network relies on or the inductive biased learnt from a particular dataset. They found out that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Position of objects relative to ground contact point provides strong contextual information&lt;/li&gt;
+  &lt;li&gt;Shape does not matter but shadow does&lt;/li&gt;
+  &lt;li&gt;In an experiment, by placing an arbitrary object with artificial casted shadow, the model would estimate depth reasonably even if it is not available during training.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;why-is-measuring-depth-so-difficult&quot;&gt;Why is Measuring Depth So Difficult?&lt;/h2&gt;
+
+&lt;p&gt;Let’s try to understand some of the fundamental problems of depth estimation. The main culprit lies in the projection of 3D views to 2D images where depth information is lost. Another problem is deeply seeded when there are motion and moving objects.&lt;/p&gt;
+
+&lt;h3 id=&quot;depth-estimation-is-ill-posed&quot;&gt;Depth Estimation is Ill-Posed&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On many depth estimation paper, many authors mention that the problem of estimating depth from a single RGB image is ill-posed inverse problem. What this means is that many 3D scenes observed in the world can indeed correspond to the same 2D plane.&lt;/p&gt;
+
+&lt;h3 id=&quot;scale-ambiguity-for-monocular-depth-estimatio&quot;&gt;Scale-Ambiguity for Monocular Depth Estimatio&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Recall that adjusting the focal length will proportionally scale the points on the image plane. Now, suppose we scale the entire scene, $X$ by some factor $k$ and at the same time, scale the camera matrices $P$ by the factor of $1/k$, the projections of the scene points in the image remains exactly the same.&lt;/p&gt;
+
+&lt;p&gt;$$ x = PX = (1/k)P * kX $$
+That is to say, we can never recover the exact scale of the actual scene from the image alone! Note that this issue exists for monocular base techniques, as the scale can be recovered for a stero rig with a known baseline.&lt;/p&gt;
+
+&lt;h3 id=&quot;projection-ambiguity&quot;&gt;Projection Ambiguity&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Suppose we perform a geometric transformation of the scene. It is possible that after the transformation, these points will map to the same location on the plane. There exists not only projective ambiguity, but also affine and similarity ambiguity as well.&lt;/p&gt;
+
+&lt;h3 id=&quot;properties-that-degrade-matching&quot;&gt;Properties that Degrade Matching&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/depth/10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For stereo based or multi-view depth estimation that requires triangulation, it usually involves the pipeline of &lt;em&gt;Detect-Describe-Match&lt;/em&gt;. Matching becomes very difficult when the scene is taken from an extremely different viewpoint or varying changes in illumination between images. An extreme case is given in the above picture. These problematic cases include textureless regions (where many pixels will ahve the same pixel intensity), reflective surfaces, repetitive patterns or occlusions. Also. violating the Lambertian property (Lambertian surfaces refer to surfaces that appear to have teh same brightness no matter where it is viewed from). When images that show the same scene from 2 different view, the corresponding brightness intensity may not be equivalent due to non-ideal diffuse reflection.&lt;/p&gt;
+
+&lt;h3 id=&quot;moving-objects-violate-the-static-assumption-for-sfm-methods&quot;&gt;Moving Objects Violate the Static Assumption for SfM Methods&lt;/h3&gt;
+
+&lt;p&gt;Dynamic objects in the scene further complicates the estimation process. Depth estimation via Structure from Motion involves a moving camera and consecutive static scenes. This assumption must hold for matching and aligning pxiels. This assumption breaks when there are moving objects in the scene.&lt;/p&gt;
+
+&lt;p&gt;To this end, many researchers have looked into several methods to model moving objects in the scene by incorporating velocity information using optical flow or by using instance segmentation mask to model the object’s motion from one frame to another.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-estimation-1-basics-and-intuition-86f2c9538cd1&quot;&gt;medium article&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">Introduction In computer vision, depth is extracted from 2 prevalent methodologies. Namely, depth from monocular images (static or sequential) or depth from stereo images by exploiting epipolar geometry. This article will focus on giving readers a background into depth estimation and the problems associated with it. How We View the World Let’s start with how humans perceive depth in general. This will give us some valuable insights on depth estimation since many of the methods were derived from our human vision system. Both machine and human vision share similarities in the way image is formed. Theoretically, when light rays from a source hit surfaces, it reflects off and directs towards the back of our retina, projecting them and our eye processes them as 2D just like how an image is formed on an image plane. So how do we actually measure distance and understand our environment in 3D when the projected scene is in 2D? The mechanism at work here is that our brain starts to reason about the incoming visual signals by recognizing patterns such as the size, texture and motion about the scene known as depth cues. There is no distance information about the image but somehow we can interpret and recover depth information effortlessly. These cues allow us to view objects and surfaces which are supposedly on flat images as 3D. How to Destroy Depth Interpreting these depth cues begins with how scenes are projected to perspective view in humans and camera vision. On the other hand, an orthographic projection to front view or side view is one which destroys all depth information. Consider the above image. An observer could disentangle which aspect of the house is nearer to him/her as seen in the left image. However, it is totally impossible to distinguish relative distances from the right image. Even the background might be lying on the same plane as the house. Judging Depth Using Cues There are basically 4 categories of depth cues: static monocular depth from motion, binocular and physiological cues. We subconsciously take advantage of these signals to perceive depth remarkably well. Pictorial Depth Cues Our ability to perceive depth from a single image depends on the spatial arrangement of things in the scene. Below, I have summarized some of the hints that enable us to reason about the distance of different objects. It may already feel natural to you from your daily interaction. Size of objects Texture Linear Perspective An interesting study was conducted at UC, Berkeley and they show experimentally that when the horizon is viewable, there is an overwhelming tendency for us to exploit this property to quickly perceive depth. Depth Cues from Motion (Motion Parallax) This should not be surprising to you as well. When you, as an observer, is in motion, things around you pass by faster than the one that is farther away. The farther something appears, the slower it seems to pass away from the observer. Depth Cues from Stereo Vision (Binocular Parallax) The difference in view observed by your left and right eye is known as retina disparity. This phenomenon is also known as stereopsis: ability to perceive depth due to 2 different perspectives of the world. By comparing iamges from the retinas in the two eyes, the brain computes distance. The greater the disparity, the closer the things are around you. Depth Estimation in Computer Vision The goal of depth estimation is to obtain a representation of the spatial structure of a scene, recovering the three-dimensional shape and appearance of objects in imagery. This is also known as the inverse problem, where we seek to recover some unknowns given insufficient information to fully specify the solution. So how do machines actually perceive depth? Can we somehow transfer some of the ideas discussed above? The earliest algorithm with impressive results begin with depth estimation using stereo vision back in the 90s. A lot of progress was made on dense stereo correspondence algorithm. Researchers were able to utilize geometry to constrain and replicate the idea of stereopsis mathemtically and at the same time running at real-time. As for monocular depth estimation, it recently started to gain popularity by using neural networks to learn representation that distills depth directly. Through neural networks, depth cues are implicitly learned through gradient-based methods. Besides this, there has been great advancement in self-supervised depth estimation. In this method, a model is trained to predict depth by means of optimizing a proxy signal. No ground truth label is needed in the training process. Most research either exploits geometrical cues such as multi-view geometry or epipolar geometry to learn depth. Depth Estimation from Stereo Vision The main idea of solving depth using a stereo camera involves the concept of triangulation and stereo matching. The former depends on good calibration and rectification to constrain the problem so that it can be modelled on a 2D plane known as epipolar plane, which greatly reduces the latter (stereo matching) to a line search along the epipolar line. Analogous to binocular parallax, once we are able to match pixel correspondences between the 2 views, the next task is to obtain a representation that encodes the difference. This representation is known as disparity. The formula to obtain depth from disparity can be worked out from similar triangles. To summarize the steps: identify similar points from feature descriptors Match feature correspondence using a matching cost function Using epipolar geometry, find and match correspondence in one picture frame to the other. A matching cost function is used to measure the pixel dissimilarity. Compute disparity from known correspondences $d = x1 - x2$ as shown in the above image. Compute depth from the known disparity $ z = (f*b)/d$. Age of Deep Learning Deep learning excels in high-level perceptual and cognitive task such as recognition, detection and scene understanding. Depth perception falls into this category and likewise should be a natural way forward. The seminal work of estimating depth directly from a monocular image started from Saxena. They learned to regress depth directly from monocular cues in 2D images via supervised learning, by minimizing a regression loss. Since then, many varieties of approaches have been proposed to improve the representation learning by proposing new architectures or loss functions. Self-Supervised Monocular Depth Estimation using Stereo In this framework, the model will predict the disparities $d_l$ and $d_r$ only from the left RGB, $I_l$. Similar to the above method, a spatial transformer network warps the RGB image pair $I_l$, $I_r$ using the disparity. So the paired view can be synthesized and a reconstruction loss between the reconstructed views $I_{pred_l}$ and $I_{pred_r}$ and the target views $I_l$ and $Ir$ is used to supervise the training. Self-Supervised Depth Estimation using SfM Framework This method frames the problem as learning to generate a novel view from a video sequence. The task of the neural network is to generate the target view $I_t$ from source view by taking image at different time step $I, I_{t-1}, I_{t+1}$ and applying a learnt transformation from a pose network to perform the image warping. Training was made possible by treating the warped view synthesis as supervision in a differentiable manner using a spatial transformer network. At inference time, the depth CNN would predict depth from a single RGB image. Do note that these methods do have some shortcomings such as unable to determine scale and modelling moving objects as described in the next section. CNN Depth Cues and Bias Learnt Understanding and deciphering the black box has been an ongoing research in interpretable machine learning. In the context of depth estimation, a few works have started investigating what depth cues do neural network relies on or the inductive biased learnt from a particular dataset. They found out that: Position of objects relative to ground contact point provides strong contextual information Shape does not matter but shadow does In an experiment, by placing an arbitrary object with artificial casted shadow, the model would estimate depth reasonably even if it is not available during training. Why is Measuring Depth So Difficult? Let’s try to understand some of the fundamental problems of depth estimation. The main culprit lies in the projection of 3D views to 2D images where depth information is lost. Another problem is deeply seeded when there are motion and moving objects. Depth Estimation is Ill-Posed On many depth estimation paper, many authors mention that the problem of estimating depth from a single RGB image is ill-posed inverse problem. What this means is that many 3D scenes observed in the world can indeed correspond to the same 2D plane. Scale-Ambiguity for Monocular Depth Estimatio Recall that adjusting the focal length will proportionally scale the points on the image plane. Now, suppose we scale the entire scene, $X$ by some factor $k$ and at the same time, scale the camera matrices $P$ by the factor of $1/k$, the projections of the scene points in the image remains exactly the same. \(x = PX = (1/k)P * kX\) That is to say, we can never recover the exact scale of the actual scene from the image alone! Note that this issue exists for monocular base techniques, as the scale can be recovered for a stero rig with a known baseline. Projection Ambiguity Suppose we perform a geometric transformation of the scene. It is possible that after the transformation, these points will map to the same location on the plane. There exists not only projective ambiguity, but also affine and similarity ambiguity as well. Properties that Degrade Matching For stereo based or multi-view depth estimation that requires triangulation, it usually involves the pipeline of Detect-Describe-Match. Matching becomes very difficult when the scene is taken from an extremely different viewpoint or varying changes in illumination between images. An extreme case is given in the above picture. These problematic cases include textureless regions (where many pixels will ahve the same pixel intensity), reflective surfaces, repetitive patterns or occlusions. Also. violating the Lambertian property (Lambertian surfaces refer to surfaces that appear to have teh same brightness no matter where it is viewed from). When images that show the same scene from 2 different view, the corresponding brightness intensity may not be equivalent due to non-ideal diffuse reflection. Moving Objects Violate the Static Assumption for SfM Methods Dynamic objects in the scene further complicates the estimation process. Depth estimation via Structure from Motion involves a moving camera and consecutive static scenes. This assumption must hold for matching and aligning pxiels. This assumption breaks when there are moving objects in the scene. To this end, many researchers have looked into several methods to model moving objects in the scene by incorporating velocity information using optical flow or by using instance segmentation mask to model the object’s motion from one frame to another. References medium article</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Rigid Body Motion (Part 2)</title><link href="http://localhost:4000/rigid2.html" rel="alternate" type="text/html" title="3D Rigid Body Motion (Part 2)" /><published>2021-09-01T00:00:00+09:00</published><updated>2021-09-01T00:00:00+09:00</updated><id>http://localhost:4000/rigid2</id><content type="html" xml:base="http://localhost:4000/rigid2.html">&lt;h1 id=&quot;rotation-vectors-and-euler-angles&quot;&gt;Rotation Vectors and Euler Angles&lt;/h1&gt;
+&lt;h2 id=&quot;rotation-vectors&quot;&gt;Rotation Vectors&lt;/h2&gt;
+&lt;p&gt;With a rotation matrix to describe the rotation, is it enough to use a $4 \times 4$ transformation matrix to represent a 6-degree-of-freedom 3D rigid body motion? Obviously, the matrix representation has at least the following disadvantages:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;$SO(3)$ has a rotation matrix of 9 qunatities, but a 3D rotation only has 3 degrees of freedom. Therefore, the matrix expression is redundant.&lt;/li&gt;
+  &lt;li&gt;Similarly, the transformation matrix expresses 6 degree-of-freedom transformation with 16 quantities. So, is there a more compact representation?&lt;/li&gt;
+  &lt;li&gt;The rotation matrix itself has constraints: it must be an orthogonal matrix with a determinant of 1. The same is true for the transformation matrix. These constraints make the solution more difficult when you want to estimate or optimize a rotation matrix/transform matrix.
+Therefore, we hope that there is a way to describe rotation and translation more compactly. For example, is it feasible to express the rotation with a three-dimensional vector and express transformation with a six-dimensional vector?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Obviously, a rotation can be described by a rotation axis and a rotation angle. Thus, we can use a vector whose direction is parallel with the axis of rotation, and the length is equal to the angle of rotation, which is called the &lt;em&gt;rotation vector&lt;/em&gt; (or angle-axis/axis-angle).&lt;/p&gt;
+
+&lt;p&gt;Only a three-dimensional vector is needed here to describe the rotation. Similarly, we may also use a rotation vector and a translation vector and a to express a transformation for a transformation matrix. The variable at this time is exactly six dimensions.&lt;/p&gt;
+
+&lt;p&gt;Consider a rotation represented by $R$. If described by a rotation vector, assuming that the rotation axis is a unit-length vector $n$ and the angle is $\theta$, then the vector $\theta n$ can also describe this rotation.&lt;/p&gt;
+
+&lt;p&gt;So, we have to ask, what is the connection between the two expressions? In fact, it is not difficult to derive their conversion relationship. The conversion from the rotation vector to the rotation matrix is shown by the &lt;em&gt;Rodrigues’ formula&lt;/em&gt;. Since the derivation process is a little complicated, it is not described here. Only the result of the conversion is given.
+$$ R = \cos \theta I + (1-\cos \theta) n n^T + \sin \theta n^{\wedge}$$.
+The symbol $\wedge$ is a vector to skew-symmetric conversion. Conversely, we can also calculate the conversion from a rotation matrix to a rotation vector. For the corner $\theta$, taking the &lt;em&gt;trace&lt;/em&gt; of both sides, we have:
+$$\begin{split} &amp;amp; tr(R) = \cos \theta tr(I) + (1-\cos \theta) tr(nn^T) + \sin \theta tr(n^{\wedge}) \\ &amp;amp; = 3 \cos \theta + (1 - \cos \theta) \\ &amp;amp; = 1+ 2 \cos \theta \end{split}$$.
+Therefore, $$\theta = \arccos (\frac{tr(R) - 1}{2})$$.
+Regarding the axis $n$, since the rotation axis does not change after the rotation, we have: $$Rn=n$$. So, the axis $n$ is the eigenvector corresponding to the amtrix $R$’s eigenvalue $1$. Solving this equation and normalizing it gives the axis of rotation.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.springer.com/gp/book/9789811649387&quot;&gt;Introduction to Visual SLAM&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">Rotation Vectors and Euler Angles Rotation Vectors With a rotation matrix to describe the rotation, is it enough to use a $4 \times 4$ transformation matrix to represent a 6-degree-of-freedom 3D rigid body motion? Obviously, the matrix representation has at least the following disadvantages: $SO(3)$ has a rotation matrix of 9 qunatities, but a 3D rotation only has 3 degrees of freedom. Therefore, the matrix expression is redundant. Similarly, the transformation matrix expresses 6 degree-of-freedom transformation with 16 quantities. So, is there a more compact representation? The rotation matrix itself has constraints: it must be an orthogonal matrix with a determinant of 1. The same is true for the transformation matrix. These constraints make the solution more difficult when you want to estimate or optimize a rotation matrix/transform matrix. Therefore, we hope that there is a way to describe rotation and translation more compactly. For example, is it feasible to express the rotation with a three-dimensional vector and express transformation with a six-dimensional vector? Obviously, a rotation can be described by a rotation axis and a rotation angle. Thus, we can use a vector whose direction is parallel with the axis of rotation, and the length is equal to the angle of rotation, which is called the rotation vector (or angle-axis/axis-angle). Only a three-dimensional vector is needed here to describe the rotation. Similarly, we may also use a rotation vector and a translation vector and a to express a transformation for a transformation matrix. The variable at this time is exactly six dimensions. Consider a rotation represented by $R$. If described by a rotation vector, assuming that the rotation axis is a unit-length vector $n$ and the angle is $\theta$, then the vector $\theta n$ can also describe this rotation. So, we have to ask, what is the connection between the two expressions? In fact, it is not difficult to derive their conversion relationship. The conversion from the rotation vector to the rotation matrix is shown by the Rodrigues’ formula. Since the derivation process is a little complicated, it is not described here. Only the result of the conversion is given. \(R = \cos \theta I + (1-\cos \theta) n n^T + \sin \theta n^{\wedge}\). The symbol $\wedge$ is a vector to skew-symmetric conversion. Conversely, we can also calculate the conversion from a rotation matrix to a rotation vector. For the corner $\theta$, taking the trace of both sides, we have: \(\begin{split} &amp;amp; tr(R) = \cos \theta tr(I) + (1-\cos \theta) tr(nn^T) + \sin \theta tr(n^{\wedge}) \\ &amp;amp; = 3 \cos \theta + (1 - \cos \theta) \\ &amp;amp; = 1+ 2 \cos \theta \end{split}\). Therefore, \(\theta = \arccos (\frac{tr(R) - 1}{2})\). Regarding the axis $n$, since the rotation axis does not change after the rotation, we have: \(Rn=n\). So, the axis $n$ is the eigenvector corresponding to the amtrix $R$’s eigenvalue $1$. Solving this equation and normalizing it gives the axis of rotation. References Introduction to Visual SLAM</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/rigid/1.png" /><media:content medium="image" url="http://localhost:4000/assets/images/rigid/1.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
