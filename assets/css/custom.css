@@ -1,3 +1,7 @@
+.indent {
+	text-indent: 30px;
+}
+
 ::selection {
 	background: #EFEF8E;
 	color: #1f542d;
@@ -7,7 +11,10 @@
 	display: block;
 	float: left;
 	border: 1px solid #000;
-	margin: 2px;
+	margin-top: 10px; 
+	margin-bottom: 30px;
+	margin-left: 2px;
+	margin-right: 2px;
 	padding: 3px;
 }
 
@@ -18,7 +25,7 @@ article picture img {
 	height: auto;
 }
 
-article h1, article h2 {
+article h1, article h2, article h3, article h4 {
 	text-align: center;
 }
 
@@ -92,6 +99,7 @@ article ul li:nth-child(6):before {
 
 .highlight-sketch{
   position:relative;
+  font-weight: bold;
 }
 
 .highlight-sketch:before{
@@ -142,6 +150,7 @@ article ul li:nth-child(6):before {
     	background-repeat: no-repeat;
     	background-size: 100% 20%;
     	background-position: 0 60%;
+	font-weight: bold;
 }
 
 .highlight-green {
@@ -276,6 +285,7 @@ article ul li:nth-child(6):before {
 
 .circle-sketch-highlight{
   position:relative;
+  font-weight: bold;
 }
 
 .circle-sketch-highlight:before{
