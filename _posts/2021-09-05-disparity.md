@@ -5,9 +5,10 @@ author: seri
 categories: [ computer vision ]
 image: assets/images/depth/12.png
 tags: featured 
+excerpt: "We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, SfM, optical flow, etc."
 ---
 
-We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision. <!--more-->
+<!--We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.--> <!--more-->
 
 <div align="center"><h2 class="glow">🌟 3D Reconstruction from 2D Signals </h2></div>
 

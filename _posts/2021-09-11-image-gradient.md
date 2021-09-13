@@ -3,9 +3,14 @@ layout: post
 title:  "Understanding and Implementing Image Gradients"
 author: seri
 categories: [ computer vision ]
-image: assets/images/camera/camera.jpeg
+image: assets/images/gradient.png
 tags: featured 
+excerpt: "Image gradients are a fundamental building block of image processing routines. In this article, we will learn how to define and calculate image gradients."
 ---
+
+<!--Image gradients are a fundamental building block of image processing routines. In this article, we will learn how computer vision defines image gradient, and how to calculate it.--> <!--more-->
+
+
 <h2> Introduction </h2>
 Image gradients are a fundamental building block of many computer vision and image processing routines. We use gradients for:
 <ul><li> detecting edges in images, which allows us to find contours and outlines of objects in images </li>
@@ -19,7 +24,7 @@ The gradient of an $N$-variable function at each point is an $N$-D vector with t
 For example, for a 3-variable function $f(x,y,z)$ the gradient (if it exists) is given by
 
 $$
-\nabla f = \frac{\partialf}{\partialx}i + \frac{\partialf}{\partialy} j + \frac{\partialf}{\partialz}k 
+\nabla f = \frac{\partial f}{\partial x}i + \frac{\partial f}{\partial y} j + \frac{\partial f}{\partial z}k 
 $$
 
 Thus, the gradient provides two pieces of information-magnitude and direction. The direction of the gradient tells us the direction of greatest increase while the magnitude represents the rate of increase in that direction. 
@@ -33,8 +38,7 @@ $$
 f'(x) \approx \frac{f(x+0.5h)-f(x-0.5h)}{h}
 $$
 
-For calculating image gradients, we use the central difference to approximate gradients in $x$ and $y$ directions.
-In
+For calculating image gradients, we use the central difference to approximate gradients in $x$ and $y$ directions. </li></ul>
 
 <h2> What are Image Gradients? </h2>
 Conventionally, two Python scripts are built, 1) to compute the gradient magnitude and 2) to compute gradient orientation. Together these computations power traditional computer vision techniques such as SIFT or HOG. 
@@ -46,7 +50,7 @@ With an image with detected edges-commonly called edge map, we could then apply 
 At each image point, the gradient vector points in the direction of largest possible intensity increase, nad the magnitude corresponds to the rate of change in that direction. Thus, for an image $f(x,y)$, the gradient direction and magnitude is given by:
 
 $$
-\lVert \nabla f \rVert = \sqrt{\frac{\partial f}{partial x}+\frac{\partial f}{\partial y}}
+\lVert \nabla f \rVert = \sqrt{\frac{\partial f}{\partial x}+\frac{\partial f}{\partial y}}
 $$
 $$
 \theta = \tan^{-1}(\frac{\partial f}{\partial y}/\frac{\partial f}{\partial x})

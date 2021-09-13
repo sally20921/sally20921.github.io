@@ -5,10 +5,8 @@ author: seri
 categories: [ computer vision ]
 image: assets/images/home.png
 tags: [sticky]
+excerpt: "In this article, I'm going to explain homogeneous coordinates (a.k.a 4D coordinates) as simply as I can. We need projective geometry for that."
 ---
-
-## Introduction 
-In this article, I'm going to explain homogeneous coordinates (a.k.a 4D coordinates) as simply as I can. It is now time to take a closer look at projective geometry.
 
 ## Terminology
 Most of the time when working with 3D, we are thinking in terms of Euclidean geometry-that is, coordinates in three-dimensional space ($X$, $Y$ and $Z$). However, there are certain situations where it is useful to think in terms of **projective geometry** instead. Projective geometry has an extra dimension, called $W$, in addition to the $X$, $Y$, and $Z$ dimensions. This four-dimensional space is called `projective space` and coordinates in projective space are called `homogenous coordinates`. 
