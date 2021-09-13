@@ -87,7 +87,8 @@ $$
 
 $$
 
-which corresponds to the system of equations 
+which corresponds to the system of equations
+
 $$
 \displaylines{
 x_1 = 1 \\\
@@ -177,21 +178,24 @@ Note the matrix contains only zero entries below and above the pivots. The aster
 <h3> Number of Solutions </h3>
 
 A system of linear equations in three variables could have:
-<ul><li><span class="rainbow"> one solution </span> If the RREF of a matrix has a pivot in each row, we can read off the values of the solution by inspection:
+<ul><li><span class="rainbow"> one solution </span> If the RREF of a matrix has a pivot in each row, we can read off the values of the solution by inspection. 
 
 $$
+
 \begin{bmatrix}
-1 & 0 & 0 &\bigm | c_{1} \\\ 
-0 & 1 & 0 &\bigm | c \\\ 
-0 & 0 & 1 &\bigm | c
+1 & 0 & 0 & c_1 \\\
+0 & 1 & 0 & c_2 \\\
+0 & 0 & 1 & c_3
 \end{bmatrix}
+
 $$
 
 The unique solution is $x_1 = c_1$, $x_2 = c_2$, and $x_3 = c_3$. </li>
 <li><span class="rainbow"> Infinitely many solutions 1 </span> If one of the equations is redundant, a row of zeros will appear when the matrix is brought to the RREF. This happens when one of the original equations is a linear combination of the other two. In such cases, we're really solving two equations  in three variables, so can't pin down one of the unknown variables. We say the solution contains <span class="underline"> a free variable </span>. For example, consider the following RREF:
 
 $$
-\begin{bmatrix} 1 & 0 & a_1 & c_1 \\\
+\begin{bmatrix} 
+1 & 0 & a_1 & c_1 \\\
 0 & 1 & a_2 & c_2 
 \end{bmatrix}
 $$
@@ -206,16 +210,18 @@ The solution corresponds to the equation of a line passing through the point $(c
 <li><span class="rainbow"> Infinitely many solutions 2 </span> It's also possible to obtain a two-dimensional solution space. This happens when two of the three equations are redundant. In this case, there will be a single leading one, and thus two free variables. For example, in the RREF
 
 $$
-\left[
-\begin{array}{ccc|c} 0 & 1 & a_1 & c_2 \\\ 0 & 0 & 0 & 0 \\\ 0 & 0 & 0 & 0 \end{array}
-\right]
+\begin{bmatrix} 
+0 & 1 & a_1 & c_1 \\\ 
+0 & 0 & 0 & 0 \\\ 
+0 & 0 & 0 & 0 
+\end{bmatrix}
 $$
 
 the variables $x_1$ and $x_3$ are free. As in the previous infinitely-many-solutions case, we define new labels for the free variables $x_1 \equiv s$ and $x_3 \equiv t$, where $ s \in \mathbb{R}$ and $t \in \mathbb{R}$ are two arbitrary numbers. The solution to this system of equations is 
 
 $$ 
 \begin{Bmatrix} 
-x_1 = s \\ x_2 = c_2 - a_2 t \\ x_3 = t , \forall s,t \in \mathbb{R} \end{Bmatrix} = \begin{Bmatrix} \begin{bmatrix} 0 \\ c_2 \\ 0 \end{bmatrix} + s \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} + t \begin{bmatrix} 0 \\ -a_2 \\ 1 \end{bmatrix}, \forall s,t \in \mathbb{R} 
+x_1 = s \\ x_2 = c_2 - a_2 t \\ x_3 = t , \\ \forall s,t \in \mathbb{R} \end{Bmatrix} = \begin{Bmatrix} \begin{bmatrix} 0 \\ c_2 \\ 0 \end{bmatrix} + s \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} + t \begin{bmatrix} 0 \\ -a_2 \\ 1 \end{bmatrix}, \forall s,t \in \mathbb{R} 
 \end{Bmatrix} 
 $$
 
@@ -227,9 +233,13 @@ The general equation for the solution plane is $0x+1y+a_2z = c_2$, as can be obs
 A system of equations has no solution if its reduced row echelon form contains a row of zero coefficients with a nonzero constant in the right-hand side:
 
 $$
-\\{
-\begin{array}{ccc|c}1 & 0 & 0 & c_1 \\\ 0 & 1 & 0 & c_2 \\\ 0 & 0 & 0 & c_3 \end{array}
-\\}
+\begin{Bmatrix}
+\begin{array}{ccc|c}
+1 & 0 & 0 & c_1 \\\ 
+0 & 1 & 0 & c_2 \\\ 
+0 & 0 & 0 & c_3 
+\end{array}
+\end{Bmatrix}
 $$
 
 If $c_3 \neq 0$ this system of equations is impossible to satisfy. There is no solution because there are no numbers $(x_1, x_2, x_3)$ such that $0x_1 + 0x_2 + 0x_3 = c_3$. 
@@ -308,7 +318,7 @@ The formulas for the determinants of larger matrices are defined recursively. Fo
 $$ 
 \begin{vmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{vmatrix} = a_{11} 
 
-= a_{11} \begin{vmatrix}a_{22} & a_{23} \\ a_{32} & a_{33} \end{vmatrix} -a_{12} \begin{vmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{pipes}+ a_{13} \begin{vmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{vmatrix}
+= a_{11} \begin{vmatrix}a_{22} & a_{23} \\ a_{32} & a_{33} \end{vmatrix} -a_{12} \begin{vmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{vmatrix}+ a_{13} \begin{vmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{vmatrix}
 $$ 
 
 There's a neat computational trick for computing $3 \times 3$ determinants by hand. The trick consists of extending the matrix $A$ into a $3 \times 5$ array that contains copies the columns of $A$: the $1^{st}$ column of $A$ is copied to the $4^{th}$ column of the extended array, and the $2^{nd}$ column of $A$ is copied to the $5^{th}$ column. The determinant is then computed by summing the products of the entries on the three positive diagonals and subtracting the products of the entries on the three negative diagonals. 
