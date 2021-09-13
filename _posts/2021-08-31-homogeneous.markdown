@@ -4,16 +4,17 @@ title:  "Homogeneous Coordinates and Projective Geometry"
 author: seri
 categories: [ computer vision ]
 image: assets/images/home.png
-tags: [sticky]
+tags: [sticky, featured]
 excerpt: "In this article, I'm going to explain homogeneous coordinates (a.k.a 4D coordinates) as simply as I can. We need projective geometry for that."
 ---
 
-## Terminology
+## Introduction to Projective Geometry
 Most of the time when working with 3D, we are thinking in terms of Euclidean geometry-that is, coordinates in three-dimensional space ($X$, $Y$ and $Z$). However, there are certain situations where it is useful to think in terms of **projective geometry** instead. Projective geometry has an extra dimension, called $W$, in addition to the $X$, $Y$, and $Z$ dimensions. This four-dimensional space is called `projective space` and coordinates in projective space are called `homogenous coordinates`. 
 
 For the purposes of 3D software, the terms `projective` and `homogeous` are basically interchangeable with `4D`. 
 
-## Not Quaternions
+### Not Quaternions
+
 Quaternions look a lot like homogeneous coordinates. Both are 4D vectors, commonly depicted as $(X,Y,Z,W)$. However, quaternions and homogeneous coordinates are different concepts, with different uses. 
 
 ## An Analogy in 2D
@@ -25,21 +26,21 @@ Imagine a projector that is projecting a 2D image onto a screen. It's easy to id
 
 ![](/assets/images/homo/2.png)
 
-Now, if you step back from the 2D image and look at the projector and the screen, you can see the $W$ dimension, too. The $W$ dimension is the distance from the projector to the screen. 
+Now, if you step back from the 2D image and look at the projector and the screen, you can see the $W$ dimension, too. The $W$ dimension is the <mark> distance from the projector to the screen </mark>. 
 
 ![](/assets/images/homo/3.png)
 
-So what does the $W$ dimension do, exactly? Imagine what would happen to the 2D image if you increased or decreased $W$-that is, if you increased or decreased the distance between the projector and the screen. If you move the projector closer to the screen, the whole 2D image becomes smaller. If you move the projector away from the screen, the 2D image becomes larger. As you can see, the value of $W$ affects the size (a.k.a scale) of the image. 
+So what does the $W$ dimension do, exactly? Imagine what would happen to the 2D image if you increased or decreased $W$-that is, if you increased or decreased the distance between the projector and the screen. If you move the projector closer to the screen, the whole 2D image becomes smaller. If you move the projector away from the screen, the 2D image becomes larger. As you can see, the value of <span class="highlight-green"> $W$ affects the size (a.k.a scale) of the image </span>. 
 
 ## Applying it to 3D 
-There is no such thing as a 3D projector (yet), so its' harder to imagine projective geometry in 3D, but the $W$ value works exactly the same as it does in 2D. When $W$ increases, the coordinates expands (scales up). When $W$ decreases, the coordinates shrinks (scales down). The $W$ is basically a scaling transformation for the 3D coordinates. 
+There is no such thing as a 3D projector (yet), so its' harder to imagine projective geometry in 3D, but the $W$ value works exactly the same as it does in 2D. When $W$ increases, the coordinates expands (scales up). When $W$ decreases, the coordinates shrinks (scales down). The <span class="highlight-green"> $W$ is basically a scaling transformation for the 3D coordinates </span>. 
 
 ## When $W = 1$
-The usual advice for 3D programming beginners is to always set $W=1$ whenever converting a 3D coordinate to 4D coordinate. The reason for that is that when you scale a coordinate by a 1 it doesn't shrink or grow, it just stays the same size. So, when $W=1$, it has no effect on the $X$, $Y$, or $Z$ values. 
+The usual advice for 3D programming beginners is to always set $W=1$ whenever converting a 3D coordinate to 4D coordinate. The reason for that is that when you scale a coordinate by a 1 it doesn't shrink or grow, it just stays the same size. So, <mark> when $W=1$, it has no effect on the $X$, $Y$, or $Z$ values </mark>. 
 
 For this reason, when it comes to 3D computer graphics, coordinates are said to be `correct` only when $W=1$. If you tried to render with $W=0$ your program would crash when it attempted to divide by zero. With $W<0$ everything would flip unside-down and back-to-front.
 
-Mathematically speaking, there is no such thing as an `incorrect` homogeneous coordinate. Using coordinates with $W=1$ is just a useful convention for the 3D computer grahics. 
+Mathematically speaking, there is no such thing as an `incorrect` homogeneous coordinate. <mark> Using coordinates with $W=1$ is just a useful convention for the 3D computer grahics </mark>. 
 
 ## The Math
 Now, let's look at some actual numbers, to see how the math works. 
@@ -67,7 +68,7 @@ As mentioned earlier, in regard to 3D computer graphics, homogeneous coordinates
 
 > A four-column matrix can only be multiplied with a four-element vector, which is why we often use homogeneous 4D vectors instead of 3D vectors. 
 
-Rotation and scaling transformation matrices only require three columns. But, in order to do translation, the matrices need to have at least four columns. This is why transformations are often $4 \times 4$ matices. However, a matrix with four columns cannot be multiplied by a 3D vector, due to the rules of matrix multiplication. A four-column matrix can only be mulitplied with a four-element vector, which is why we often use homogeneous 4D vectors instead of 3D vectors.  
+Rotation and scaling transformation matrices only require three columns. But, in order to do <span class="rainbow"> translation, the matrices need to have at least four columns </span>. This is why transformations are often $4 \times 4$ matices. However, a matrix with four columns cannot be multiplied by a 3D vector, due to the rules of matrix multiplication. A four-column matrix can only be mulitplied with a four-element vector, which is why we often use homogeneous 4D vectors instead of 3D vectors.  
 
 The 4th dimension $W$ is usually unchanged, when using homogeneous coordinates in matrix transformation. $W$ is set to $1$ when converting 3D coordinates into 4D, and is usually still $1$ after the transformation matrices are applied, at which point it can be converted back into a 3D coordinate by ignoring $W$. This is true for all translation, rotation, and scaling transformations, which by far are the most common types of transformations. The notable exception is projection matrices, which do affect the $W$ dimension. 
 

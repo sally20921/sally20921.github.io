@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Guide to Linear Algebra"
+title:  "Guide to Linear Algebra (Part 1)"
 author: seri
 categories: [ linear algebra ]
 image: assets/images/linear.png

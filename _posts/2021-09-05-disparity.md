@@ -14,7 +14,7 @@ excerpt: "We will be looking at depth estimation as a multi-image problem. Multi
 
 We are going to look at depth estimation as a multi-view problem. Multi-view problems can span into different domains including stereo vision, Structure from Motion and optical flow. Although each carries great importance in the problem of Virtual Reality (VR) and robotics, we will focus on stereo vision in this multi-part series. Specifically, the progress of deep learning in stereo vision technology. 
 
-How can we automatically compute 3D geometry from images? What cues in the image provide 3D information? Before looking at binocular, let's consider single view characteristics. 
+How can we automatically <span class="highlight-sketch"> compute 3D geometry from images </span>? What cues in the image provide 3D information? Before looking at binocular, let's consider single view characteristics. 
 
 Well, we humans do so naturally. Here are several cues we use to infer depth information:
 <ul>
@@ -64,7 +64,7 @@ $$
 and the world coordinate can be expressed as 
 
 $$
-X = \frac{b(x_L+x_R}{2(x_L - x_R} Y = \frac{b(y_L + y_R}{2(x_L-x_R} Z = \frac{bf}{(x_L - x_R)}
+X = \frac{b(x_L+x_R)}{2(x_L - x_R)} Y = \frac{b(y_L + y_R}{2(x_L-x_R} Z = \frac{bf}{(x_L - x_R)}
 $$
 
 <blockquote class="black"> $d = x_L - x_R$ is the <span class="neon-green">disparity</span> between corresponding left and right image points </blockquote> 

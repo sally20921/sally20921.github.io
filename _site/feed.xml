@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-13T23:00:51+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Advanced PyTorch: Things You Didn’t Know</title><link href="http://localhost:4000/pytorch.html" rel="alternate" type="text/html" title="Advanced PyTorch: Things You Didn’t Know" /><published>2021-09-12T00:00:00+09:00</published><updated>2021-09-12T00:00:00+09:00</updated><id>http://localhost:4000/pytorch</id><content type="html" xml:base="http://localhost:4000/pytorch.html">&lt;!--more--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-14T00:46:43+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Advanced PyTorch: Things You Didn’t Know</title><link href="http://localhost:4000/pytorch.html" rel="alternate" type="text/html" title="Advanced PyTorch: Things You Didn’t Know" /><published>2021-09-12T00:00:00+09:00</published><updated>2021-09-12T00:00:00+09:00</updated><id>http://localhost:4000/pytorch</id><content type="html" xml:base="http://localhost:4000/pytorch.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Flatten Operation for a Batch of Image Inputs to a CNN 
 &lt;/h2&gt;
@@ -157,62 +157,7 @@
 &lt;p&gt;Reduction operations in general allow us to compute aggregate values across data structures. But do reduction operations always reduce to a tensor with a single element? The answer is no. In fact, we often reduce specific axes at a time. This process is important.&lt;/p&gt;
 
 &lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://deeplizard.com/learn/video/K3lX3Cltt4c&quot;&gt; deeplizard &lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="PyTorch" /><category term="featured" /><summary type="html">This blog post is for those who know the basics of PyTorch but want to go a step further. We will be diving into principles and applications of deep learning via PyTorch.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/pytorch.png" /><media:content medium="image" url="http://localhost:4000/assets/images/pytorch.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Understanding and Implementing Image Gradients</title><link href="http://localhost:4000/image-gradient.html" rel="alternate" type="text/html" title="Understanding and Implementing Image Gradients" /><published>2021-09-11T00:00:00+09:00</published><updated>2021-09-11T00:00:00+09:00</updated><id>http://localhost:4000/image-gradient</id><content type="html" xml:base="http://localhost:4000/image-gradient.html">&lt;!--Image gradients are a fundamental building block of image processing routines. In this article, we will learn how computer vision defines image gradient, and how to calculate it.--&gt;
-&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h2&gt; Introduction &lt;/h2&gt;
-&lt;p&gt;Image gradients are a fundamental building block of many computer vision and image processing routines. We use gradients for:&lt;/p&gt;
-&lt;ul&gt;&lt;li&gt; detecting edges in images, which allows us to find contours and outlines of objects in images &lt;/li&gt;
-&lt;li&gt; inputs for quantifying images through feature extraction-in fact, image descriptors like HOG (Histogram of Oriented Gradients) or SIFT are bult upon image gradient representations.&lt;/li&gt;
-&lt;li&gt; constructing saliency map, which highlight the subject of an image. 
-
-In mathematics, the term gradient of a function means how a function is changing with respect to its arguments or independent variables. The gradient term is more frequently used for multi-variable functions. For a single variable function, we refer to this as the slope. 
-
-The gradient of an $N$-variable function at each point is an $N$-D vector with the components given by the derivatives in the $N$-direction. 
-
-For example, for a 3-variable function $f(x,y,z)$ the gradient (if it exists) is given by
-
-$$
-\nabla f = \frac{\partial f}{\partial x}i + \frac{\partial f}{\partial y} j + \frac{\partial f}{\partial z}k 
-$$
-
-Thus, the gradient provides two pieces of information-magnitude and direction. The direction of the gradient tells us the direction of greatest increase while the magnitude represents the rate of increase in that direction. 
-
-Because gradients are defined only for continuous functions and image is a 2-D discrete function $F(x,y)$. Thus we need to approximate the gradients using Finite Difference Approximation. Instead of $h$ approaching $0$ (i.e. $f'(x) = \lim_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h}$ we assume $h$ to be a fixed (non-zero) value (i.e. $f'(x) \approx \frac{f(x+h)-f(x)}{h}$. Three forms of finite differences are commonly used: forward, backward and central. Forward being the equation above, and backward being 
-$$
-f'(x) \approx \frac{f(x) - f(x-h)}{h}
-$$ 
-and central being
-$$
-f'(x) \approx \frac{f(x+0.5h)-f(x-0.5h)}{h}
-$$
-
-For calculating image gradients, we use the central difference to approximate gradients in $x$ and $y$ directions. &lt;/li&gt;&lt;/ul&gt;
-
-&lt;h2&gt; What are Image Gradients? &lt;/h2&gt;
-&lt;p&gt;Conventionally, two Python scripts are built, 1) to compute the gradient magnitude and 2) to compute gradient orientation. Together these computations power traditional computer vision techniques such as SIFT or HOG.&lt;/p&gt;
-
-&lt;p&gt;The main application of image gradients lies within edge detection. Edge detection is the process of finding edges in an image, which reveals structural information regarding the objects in an image. Edges correspond to either boundaries of an object or boundaries of shadowing or light conditions or boundaries of “parts” within an ojbect.&lt;/p&gt;
-
-&lt;p&gt;With an image with detected edges-commonly called edge map, we could then apply contours to extract the actual objects from the region or quantify the shapes so that we can identify them later. Just as image gradients are building blocks for methods like edge detection, edge detection is also a building block for developing a complete computer vision application.&lt;/p&gt;
-
-&lt;p&gt;At each image point, the gradient vector points in the direction of largest possible intensity increase, nad the magnitude corresponds to the rate of change in that direction. Thus, for an image $f(x,y)$, the gradient direction and magnitude is given by:&lt;/p&gt;
-
-&lt;p&gt;\(\lVert \nabla f \rVert = \sqrt{\frac{\partial f}{\partial x}+\frac{\partial f}{\partial y}}\)
-\(\theta = \tan^{-1}(\frac{\partial f}{\partial y}/\frac{\partial f}{\partial x})\)&lt;/p&gt;
-
-&lt;p&gt;Since edges are an abrupt change in the intensity values thus the largest gradient values will occur across an edge (neglecting noise) in an image. The $x$-gradient will find the vertical edges while $y$-gradient will highlight the horizontal edges. Thus, we may conclude that edges are perpendicular to the largest gradient direction.&lt;/p&gt;
-
-&lt;h2&gt; Sobel and Scharr Kernels &lt;/h2&gt;
-&lt;p&gt;Just like we used kernels to smooth and blur an image, we can also use kernels to compute our gradients. The Sobel method actually uses two kernels: one for detecting horizontal changes in direction and the other for detecting vertical changes in direction. We could also use the Scharr kernel instead of the Sobel kernel which may give us better approximations to the gradient.&lt;/p&gt;
-
-&lt;p&gt;Overall, gradient magnitude and orientation make for excellent features and image descriptors when quantifying and abstractly representing an image. But for edge detection, the gradient representation is extremely sensitive to local noise. We’ll need to add in a few more steps to create an actual robust edge detector.&lt;/p&gt;
-
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt; 
-&lt;li&gt;&lt;a href=&quot;https://www.pyimagesearch.com/2021/05/12/image-gradients-with-opencv-sobel-and-scharr/&quot;&gt; pyimagesearch &lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://theailearner.com/2019/05/11/understanding-image-gradients/&quot;&gt; TheAILearner &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">Image gradients are a fundamental building block of image processing routines. In this article, we will learn how to define and calculate image gradients.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/gradient.png" /><media:content medium="image" url="http://localhost:4000/assets/images/gradient.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Image Processing: the Basics</title><link href="http://localhost:4000/image.html" rel="alternate" type="text/html" title="Image Processing: the Basics" /><published>2021-09-11T00:00:00+09:00</published><updated>2021-09-11T00:00:00+09:00</updated><id>http://localhost:4000/image</id><content type="html" xml:base="http://localhost:4000/image.html">&lt;!--more--&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://deeplizard.com/learn/video/K3lX3Cltt4c&quot;&gt; deeplizard &lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="PyTorch" /><category term="featured" /><summary type="html">This blog post is for those who know the basics of PyTorch but want to go a step further. We will be diving into principles and applications of deep learning via PyTorch.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/pytorch.png" /><media:content medium="image" url="http://localhost:4000/assets/images/pytorch.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Image Processing: the Basics (Part 1)</title><link href="http://localhost:4000/image.html" rel="alternate" type="text/html" title="Image Processing: the Basics (Part 1)" /><published>2021-09-11T00:00:00+09:00</published><updated>2021-09-11T00:00:00+09:00</updated><id>http://localhost:4000/image</id><content type="html" xml:base="http://localhost:4000/image.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Introduction: What is a Digital Image? &lt;/h2&gt;
 &lt;p&gt;A digital image is a numeric representation of a two-dimensional image and is made of picture elements called pixels, arranged in rows and columns. These numeric values are the intensity or brightness values that are associated with the pixels.&lt;/p&gt;
@@ -377,7 +322,7 @@ Because we are taking a median, the output image will have no new pixel values o
 &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://theailearner.com/2018/10/06/what-is-a-digital-image/&quot;&gt; TheAILearner &lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This blog post deals with the basics of image processing. Through digital processing you can avoid problems such as the build-up of noise or distortion. Digital image processing may also be modeled in the form of multidimensional systems.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Guide to Linear Algebra</title><link href="http://localhost:4000/no-bullshit.html" rel="alternate" type="text/html" title="Guide to Linear Algebra" /><published>2021-09-09T00:00:00+09:00</published><updated>2021-09-09T00:00:00+09:00</updated><id>http://localhost:4000/no-bullshit</id><content type="html" xml:base="http://localhost:4000/no-bullshit.html">&lt;!--more--&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This blog post deals with the basics of image processing. Through digital processing you can avoid problems such as the build-up of noise or distortion. Digital image processing may also be modeled in the form of multidimensional systems.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/gradient.png" /><media:content medium="image" url="http://localhost:4000/assets/images/gradient.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Guide to Linear Algebra (Part 1)</title><link href="http://localhost:4000/no-bullshit.html" rel="alternate" type="text/html" title="Guide to Linear Algebra (Part 1)" /><published>2021-09-09T00:00:00+09:00</published><updated>2021-09-09T00:00:00+09:00</updated><id>http://localhost:4000/no-bullshit</id><content type="html" xml:base="http://localhost:4000/no-bullshit.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Computational Linear Algebra &lt;/h2&gt;
 
@@ -724,7 +669,7 @@ Calculating determinants can produce positive or negative numbers.
 &lt;br /&gt;
 
 &lt;h2&gt; Pinhole Camera Model &lt;/h2&gt;
-&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole.png&quot; /&gt;&amp;lt;/picutre&amp;gt;
+&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole.png&quot; /&gt;&lt;/picture&gt;
 
 Before we jump into anything, let's see where this all began. When we capture an image, we are basically mapping the 3D scene to a 2D scene. It means that every point in the 3D world gets mapped to the 2D plane of our image. This is called the &lt;span class=&quot;red&quot;&gt; pinhole camera model &lt;/span&gt;. It basically describes the relationship between the coordinates of the 3D point and its projection on the 2D image. This, of course, is the ideal case where &lt;span class=&quot;highlight-yellow&quot;&gt; there is absolutely no distortion &lt;/span&gt; of any kind. Every camera is modeled based on this, and every camera aspires to simulate this as close as possible. But in the real world, we have to deal with things like geometric distortions, blurring, finite sized apertures, etc. 
 
@@ -736,15 +681,21 @@ The figure shown here depicts a pinhole camera model. The camera is placed at th
 In the above figure, we want to estimate $(u,v)$ from $(X,Y,Z)$. Let's say the focal length is denoted by $f$. If you look at the triangle formed using the origin-$P_c$-and the $Z$-axis with the origin-$P$ and $Z$-axis, you will notice that they are similar triangles. This means that $u$ depends on the $f$, $X$ and $Z$. Similarly, $v$ depends on $f$, $Y$ and $Z$. 
 
 $$
-u = fX/Z
+
+\displaylines{
+u = fX/Z \\\
 v = fY/Z
+}
+
 $$
 
 Next, if the origin of the 2D image coordinate system does not coincide with where the $Z$-axis intersects the image plane, we need to translate $P_c$ into the desired origin. Let this translation be defined by $(t_u, t_v)$. So now, $u$ and $v$ are given by:
 
 $$
-u = fX/Z + t_u
+\displaylines{
+u = fX/Z + t_u \\\
 v = fY/Z + t_v
+}
 $$
 
 So up until now, we have something that can translate $(X,Y,Z)$ to $(u,v)$. Let's denote this matrix $M$. So we can write:
@@ -789,14 +740,14 @@ $C$ is a $3 \times 4$ matrix usually called the complete camera calibration matr
 &lt;/ul&gt;
 
 
-&lt;/picture&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices. We will untangle the issues that arise due to different coordinate conventions.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/camera2.png" /><media:content medium="image" url="http://localhost:4000/assets/images/camera2.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/disparity.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/disparity</id><content type="html" xml:base="http://localhost:4000/disparity.html">&lt;!--We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.--&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices. We will untangle the issues that arise due to different coordinate conventions.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/camera2.png" /><media:content medium="image" url="http://localhost:4000/assets/images/camera2.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/disparity.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/disparity</id><content type="html" xml:base="http://localhost:4000/disparity.html">&lt;!--We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.--&gt;
 &lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;div align=&quot;center&quot;&gt;&lt;h2 class=&quot;glow&quot;&gt;🌟 3D Reconstruction from 2D Signals &lt;/h2&gt;&lt;/div&gt;
 
 &lt;p&gt;We are going to look at depth estimation as a multi-view problem. Multi-view problems can span into different domains including stereo vision, Structure from Motion and optical flow. Although each carries great importance in the problem of Virtual Reality (VR) and robotics, we will focus on stereo vision in this multi-part series. Specifically, the progress of deep learning in stereo vision technology.&lt;/p&gt;
 
-&lt;p&gt;How can we automatically compute 3D geometry from images? What cues in the image provide 3D information? Before looking at binocular, let’s consider single view characteristics.&lt;/p&gt;
+&lt;p&gt;How can we automatically &lt;span class=&quot;highlight-sketch&quot;&gt; compute 3D geometry from images &lt;/span&gt;? What cues in the image provide 3D information? Before looking at binocular, let’s consider single view characteristics.&lt;/p&gt;
 
 &lt;p&gt;Well, we humans do so naturally. Here are several cues we use to infer depth information:&lt;/p&gt;
 &lt;ul&gt;
@@ -841,19 +792,20 @@ $C$ is a $3 \times 4$ matrix usually called the complete camera calibration matr
 
 &lt;p&gt;and the world coordinate can be expressed as&lt;/p&gt;
 
-\[X = \frac{b(x_L+x_R}{2(x_L - x_R} Y = \frac{b(y_L + y_R}{2(x_L-x_R} Z = \frac{bf}{(x_L - x_R)}\]
+\[X = \frac{b(x_L+x_R)}{2(x_L - x_R)} Y = \frac{b(y_L + y_R}{2(x_L-x_R} Z = \frac{bf}{(x_L - x_R)}\]
 
 &lt;blockquote class=&quot;black&quot;&gt; $d = x_L - x_R$ is the &lt;span class=&quot;neon-green&quot;&gt;disparity&lt;/span&gt; between corresponding left and right image points &lt;/blockquote&gt;
 
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt; 
 &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-from-disparity-via-deep-learning-part-0-458827141b23&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, SfM, optical flow, etc.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Homogeneous Coordinates and Projective Geometry</title><link href="http://localhost:4000/homogeneous.html" rel="alternate" type="text/html" title="Homogeneous Coordinates and Projective Geometry" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/homogeneous</id><content type="html" xml:base="http://localhost:4000/homogeneous.html">&lt;h2 id=&quot;terminology&quot;&gt;Terminology&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, SfM, optical flow, etc.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Homogeneous Coordinates and Projective Geometry</title><link href="http://localhost:4000/homogeneous.html" rel="alternate" type="text/html" title="Homogeneous Coordinates and Projective Geometry" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/homogeneous</id><content type="html" xml:base="http://localhost:4000/homogeneous.html">&lt;h2 id=&quot;introduction-to-projective-geometry&quot;&gt;Introduction to Projective Geometry&lt;/h2&gt;
 &lt;p&gt;Most of the time when working with 3D, we are thinking in terms of Euclidean geometry-that is, coordinates in three-dimensional space ($X$, $Y$ and $Z$). However, there are certain situations where it is useful to think in terms of &lt;strong&gt;projective geometry&lt;/strong&gt; instead. Projective geometry has an extra dimension, called $W$, in addition to the $X$, $Y$, and $Z$ dimensions. This four-dimensional space is called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;projective space&lt;/code&gt; and coordinates in projective space are called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;homogenous coordinates&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;For the purposes of 3D software, the terms &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;projective&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;homogeous&lt;/code&gt; are basically interchangeable with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4D&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;not-quaternions&quot;&gt;Not Quaternions&lt;/h2&gt;
+&lt;h3 id=&quot;not-quaternions&quot;&gt;Not Quaternions&lt;/h3&gt;
+
 &lt;p&gt;Quaternions look a lot like homogeneous coordinates. Both are 4D vectors, commonly depicted as $(X,Y,Z,W)$. However, quaternions and homogeneous coordinates are different concepts, with different uses.&lt;/p&gt;
 
 &lt;h2 id=&quot;an-analogy-in-2d&quot;&gt;An Analogy in 2D&lt;/h2&gt;
@@ -865,21 +817,21 @@ $C$ is a $3 \times 4$ matrix usually called the complete camera calibration matr
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/homo/2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Now, if you step back from the 2D image and look at the projector and the screen, you can see the $W$ dimension, too. The $W$ dimension is the distance from the projector to the screen.&lt;/p&gt;
+&lt;p&gt;Now, if you step back from the 2D image and look at the projector and the screen, you can see the $W$ dimension, too. The $W$ dimension is the &lt;mark&gt; distance from the projector to the screen &lt;/mark&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/homo/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;So what does the $W$ dimension do, exactly? Imagine what would happen to the 2D image if you increased or decreased $W$-that is, if you increased or decreased the distance between the projector and the screen. If you move the projector closer to the screen, the whole 2D image becomes smaller. If you move the projector away from the screen, the 2D image becomes larger. As you can see, the value of $W$ affects the size (a.k.a scale) of the image.&lt;/p&gt;
+&lt;p&gt;So what does the $W$ dimension do, exactly? Imagine what would happen to the 2D image if you increased or decreased $W$-that is, if you increased or decreased the distance between the projector and the screen. If you move the projector closer to the screen, the whole 2D image becomes smaller. If you move the projector away from the screen, the 2D image becomes larger. As you can see, the value of &lt;span class=&quot;highlight-green&quot;&gt; $W$ affects the size (a.k.a scale) of the image &lt;/span&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;applying-it-to-3d&quot;&gt;Applying it to 3D&lt;/h2&gt;
-&lt;p&gt;There is no such thing as a 3D projector (yet), so its’ harder to imagine projective geometry in 3D, but the $W$ value works exactly the same as it does in 2D. When $W$ increases, the coordinates expands (scales up). When $W$ decreases, the coordinates shrinks (scales down). The $W$ is basically a scaling transformation for the 3D coordinates.&lt;/p&gt;
+&lt;p&gt;There is no such thing as a 3D projector (yet), so its’ harder to imagine projective geometry in 3D, but the $W$ value works exactly the same as it does in 2D. When $W$ increases, the coordinates expands (scales up). When $W$ decreases, the coordinates shrinks (scales down). The &lt;span class=&quot;highlight-green&quot;&gt; $W$ is basically a scaling transformation for the 3D coordinates &lt;/span&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;when-w--1&quot;&gt;When $W = 1$&lt;/h2&gt;
-&lt;p&gt;The usual advice for 3D programming beginners is to always set $W=1$ whenever converting a 3D coordinate to 4D coordinate. The reason for that is that when you scale a coordinate by a 1 it doesn’t shrink or grow, it just stays the same size. So, when $W=1$, it has no effect on the $X$, $Y$, or $Z$ values.&lt;/p&gt;
+&lt;p&gt;The usual advice for 3D programming beginners is to always set $W=1$ whenever converting a 3D coordinate to 4D coordinate. The reason for that is that when you scale a coordinate by a 1 it doesn’t shrink or grow, it just stays the same size. So, &lt;mark&gt; when $W=1$, it has no effect on the $X$, $Y$, or $Z$ values &lt;/mark&gt;.&lt;/p&gt;
 
 &lt;p&gt;For this reason, when it comes to 3D computer graphics, coordinates are said to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;correct&lt;/code&gt; only when $W=1$. If you tried to render with $W=0$ your program would crash when it attempted to divide by zero. With $W&amp;lt;0$ everything would flip unside-down and back-to-front.&lt;/p&gt;
 
-&lt;p&gt;Mathematically speaking, there is no such thing as an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;incorrect&lt;/code&gt; homogeneous coordinate. Using coordinates with $W=1$ is just a useful convention for the 3D computer grahics.&lt;/p&gt;
+&lt;p&gt;Mathematically speaking, there is no such thing as an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;incorrect&lt;/code&gt; homogeneous coordinate. &lt;mark&gt; Using coordinates with $W=1$ is just a useful convention for the 3D computer grahics &lt;/mark&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-math&quot;&gt;The Math&lt;/h2&gt;
 &lt;p&gt;Now, let’s look at some actual numbers, to see how the math works.&lt;/p&gt;
@@ -913,7 +865,7 @@ $C$ is a $3 \times 4$ matrix usually called the complete camera calibration matr
   &lt;p&gt;A four-column matrix can only be multiplied with a four-element vector, which is why we often use homogeneous 4D vectors instead of 3D vectors.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Rotation and scaling transformation matrices only require three columns. But, in order to do translation, the matrices need to have at least four columns. This is why transformations are often $4 \times 4$ matices. However, a matrix with four columns cannot be multiplied by a 3D vector, due to the rules of matrix multiplication. A four-column matrix can only be mulitplied with a four-element vector, which is why we often use homogeneous 4D vectors instead of 3D vectors.&lt;/p&gt;
+&lt;p&gt;Rotation and scaling transformation matrices only require three columns. But, in order to do &lt;span class=&quot;rainbow&quot;&gt; translation, the matrices need to have at least four columns &lt;/span&gt;. This is why transformations are often $4 \times 4$ matices. However, a matrix with four columns cannot be multiplied by a 3D vector, due to the rules of matrix multiplication. A four-column matrix can only be mulitplied with a four-element vector, which is why we often use homogeneous 4D vectors instead of 3D vectors.&lt;/p&gt;
 
 &lt;p&gt;The 4th dimension $W$ is usually unchanged, when using homogeneous coordinates in matrix transformation. $W$ is set to $1$ when converting 3D coordinates into 4D, and is usually still $1$ after the transformation matrices are applied, at which point it can be converted back into a 3D coordinate by ignoring $W$. This is true for all translation, rotation, and scaling transformations, which by far are the most common types of transformations. The notable exception is projection matrices, which do affect the $W$ dimension.&lt;/p&gt;
 
@@ -960,15 +912,15 @@ $C$ is a $3 \times 4$ matrix usually called the complete camera calibration matr
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/&quot;&gt;Tomdalling’s Blog Post&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20172018/LectureNotes/MATH/homogenous.html&quot;&gt;Image Processing and Computer Vision Lecture Notes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="sticky" /><summary type="html">In this article, I'm going to explain homogeneous coordinates (a.k.a 4D coordinates) as simply as I can. We need projective geometry for that.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/home.png" /><media:content medium="image" url="http://localhost:4000/assets/images/home.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Rigid Body Motion (Part 1)</title><link href="http://localhost:4000/rigid.html" rel="alternate" type="text/html" title="3D Rigid Body Motion (Part 1)" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/rigid</id><content type="html" xml:base="http://localhost:4000/rigid.html">&lt;!--more--&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="sticky" /><category term="featured" /><summary type="html">In this article, I'm going to explain homogeneous coordinates (a.k.a 4D coordinates) as simply as I can. We need projective geometry for that.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/home.png" /><media:content medium="image" url="http://localhost:4000/assets/images/home.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Rigid Body Motion (Part 1)</title><link href="http://localhost:4000/rigid.html" rel="alternate" type="text/html" title="3D Rigid Body Motion (Part 1)" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/rigid</id><content type="html" xml:base="http://localhost:4000/rigid.html">&lt;!--more--&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
-&lt;p&gt;In this article, I will introduce one of the fundamental problems of visual SLAM: How to describe a rigid body’s motion in 3-dimensional space? Intuitively, we certainly know that this consists of one rotation plus one translation. The translation part does not really have any problems, but the rotation part is questionable. I will introduce the meaning of rotation matrices, quaternions, Euler angles and how they are computed and transformed.&lt;/p&gt;
+&lt;p&gt;In this article, I will introduce one of the fundamental problems of visual SLAM: &lt;span class=&quot;blue&quot;&gt; How to describe a rigid body’s motion in 3-dimensional space &lt;/span&gt;? Intuitively, we certainly know that this consists of &lt;span class=&quot;circle-sketch-highlight&quot;&gt; one rotation plus one translation &lt;/span&gt;. The translation part does not really have any problems, but the rotation part is questionable. I will introduce the meaning of &lt;b&gt; rotation matrices, quaternions, Euler angles &lt;/b&gt; and how they are computed and transformed.&lt;/p&gt;
 
 &lt;h2 id=&quot;rotation-matrix&quot;&gt;Rotation Matrix&lt;/h2&gt;
 &lt;h3 id=&quot;points-vectors-and-coordinate-systems&quot;&gt;Points, Vectors, and Coordinate Systems&lt;/h3&gt;
-&lt;p&gt;The space of our daily life is 3-dimensional, so we are born to be used to 3D movements. The 3D space consists of three axes, so the position of one spatial point can be specified by three coordinates. However, we should now consider a rigid body, which has its &lt;em&gt;position&lt;/em&gt; and &lt;em&gt;orientation&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The space of our daily life is 3-dimensional, so we are born to be used to 3D movements. The 3D space consists of three axes, so the position of one spatial point can be specified by three coordinates. However, we should now consider a &lt;b&gt; rigid body &lt;/b&gt;, which has its &lt;span class=&quot;rainbow&quot;&gt; &lt;em&gt;position&lt;/em&gt; and &lt;em&gt;orientation&lt;/em&gt; &lt;/span&gt;.&lt;/p&gt;
 
 &lt;p&gt;The camera can also be viewed as a rigid body in three dimensions, so what we care about in Visual SLAM are the problem of the camera’s position and orientation. Combined, we can say, “the camera is at the $(0,0,0)$ point, facing the front”. Let’s describe this in a mathematical term.&lt;/p&gt;
 
@@ -978,30 +930,33 @@ $C$ is a $3 \times 4$ matrix usually called the complete camera calibration matr
 
 &lt;p&gt;Only when we specify a coordinate system in this 3D space can we talk about the vector’s coordinates in this system, finding several real numbers corresponding to this vector.&lt;/p&gt;
 
-&lt;p&gt;With the knowledge of linear algebra, the coordinates of a point in 3D space can be described as $\mathbb{R}^3$. How to do we describe this? Suppose that in this linear space, we fined a set of base $(e_1, e_2, e_3)$, then, an arbitrary vector $a$ has a &lt;em&gt;coordinate&lt;/em&gt; under this base:&lt;/p&gt;
+&lt;p&gt;With the knowledge of linear algebra, &lt;mark&gt; the coordinates of a point in 3D space can be described as $\mathbb{R}^3$&lt;/mark&gt;. How to do we describe this? Suppose that in this linear space, we fined &lt;b&gt;a set of base $(e_1, e_2, e_3)$ &lt;/b&gt;, then, an arbitrary vector $a$ has a &lt;em&gt;coordinate&lt;/em&gt; under this base:&lt;/p&gt;
 
 &lt;p&gt;$$ a = \begin{bmatrix} e_1 &amp;amp; e_2 &amp;amp; e_3 \end{bmatrix} \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} = a_1 e_1 + a_2 e_2 + a_3 e_3 $$.
-Here, $(a_1, a_2, a_3)^T$ is called $a$’s coordinates. The coordinates’ specific values are related to the vector itself and the selection of the bases. In $\mathbb{R}^3$, the coordinate system usually consists of $3$ orthogonal coordinate axes (it can also be non-orthogonal, but it is rare in practice).&lt;/p&gt;
+Here, &lt;b&gt;$(a_1, a_2, a_3)^T$ is called $a$’s coordinates&lt;/b&gt;. The coordinates’ specific values are related to the vector itself and the selection of the bases. In $\mathbb{R}^3$, the coordinate system usually consists of $3$ orthogonal coordinate axes (it can also be non-orthogonal, but it is rare in practice).&lt;/p&gt;
 
 &lt;p&gt;For example, given $x$ and $y$ axis, the $z$ axis can be determined using the right-hand (or left-hand) rule. According to different definitions, the coordinate system is divided into left-handed and right-handed. The third axis of the left-hand rule is opposite to the right-hand rule. Most 3D libraries use right-handed coordinates.&lt;/p&gt;
 
 &lt;p&gt;Based on basic linear algebra knowledge, we can talk about the operations between vectors/vectors, vectors/numbers, such as scalar multiplication, vector addition, subtraction, inner product, outer product and so on.&lt;/p&gt;
 
-&lt;p&gt;For $a,b \in \mathbb{R}^3$, the inner product of $a,b$ can be written as:
-$$ a \cdot b = a^Tb = \sum_{i=1}^3 a_i b_i = |a||b| \cos(&amp;lt;a,b&amp;gt;)$$, 
-where $ &amp;lt;a.b&amp;gt; $ refers to the angle between the vector $a, b$. The inner product can also describe the projection relationship between vectors.&lt;/p&gt;
+&lt;p&gt;For $a,b \in \mathbb{R}^3$, the &lt;b&gt;inner product of $a,b$&lt;/b&gt; can be written as:&lt;/p&gt;
+&lt;blockquote&gt;
+\$\$ a \cdot b = a^Tb = \sum_{i=1}^3 a_i b_i = |a\||b| \cos(&amp;lt;a,b&amp;gt;)\$\$
+&lt;/blockquote&gt;
+&lt;p&gt;where $ &amp;lt;a.b&amp;gt; $ refers to the angle between the vector $a, b$. The inner product can also describe the projection relationship between vectors.&lt;/p&gt;
 
 &lt;p&gt;$$ a \times b = \begin{Vmatrix} e_1 &amp;amp; e_2 &amp;amp; e_3 \\ a_1 &amp;amp; a_2 &amp;amp; a_3 \\ b_1 &amp;amp; b_2 &amp;amp; b_3 \end{Vmatrix} = \begin{bmatrix} a_2b_3 - a_3 b_2 \\ a_3 b_1 - a_1 b_3 \\ a_1 b_2 - a_2 b_1 \end{bmatrix} = \begin{bmatrix} 0 &amp;amp; -a_3 &amp;amp; a_2 \\ a_3 &amp;amp; 0 &amp;amp; -a_1 \\ -a_2 &amp;amp; a_1 &amp;amp; 0 \end{bmatrix} b =  a \wedge b$$.
 The result of the outer product is a vector whose direction is perpendicular to the two vectors, and the length is 
 $|a||b|\sin(&amp;lt;a,b&amp;gt;)$
 , which is also the area of the quadrilateral of the two vectors.&lt;/p&gt;
 
-&lt;p&gt;From the outer product operation, we introduce the $\wedge$ operator here, which means writing $a$ as a &lt;em&gt;skew-symmetric matrix&lt;/em&gt;. You can take $\wedge$ as a skew-symmetric symbol. It turns the outer product $a \times b$ into the multiplication of the matrix and the vector $a \wedge b$ is a linear operation.&lt;/p&gt;
+&lt;p&gt;From the outer product operation, we introduce the $\wedge$ operator here, which means writing $a$ as a &lt;span class=&quot;glow&quot;&gt; &lt;em&gt;skew-symmetric matrix&lt;/em&gt; &lt;/span&gt;. You can take $\wedge$ as a skew-symmetric symbol. It turns the outer product $a \times b$ into the multiplication of the matrix and the vector $a \wedge b$ is a linear operation.&lt;/p&gt;
 
 &lt;p&gt;This symbol will be used frequently in the following sections. It is a one-to-one mapping, meaning that for any vector, it corresponds to a unique anti-symmetric matrix, and vice versa:&lt;/p&gt;
 
-&lt;p&gt;$$ a \wedge = \begin{bmatrix} 0 &amp;amp; -a_3 &amp;amp; a_2 \\ a_3 &amp;amp; 0 &amp;amp; -a_1 \\ -a_2 &amp;amp; a_1 &amp;amp; 0 \end{bmatrix}$$.
-At the same time, note that the vector operations such as addition, subtraction, inner and outer products can be calculated even when we do not have their coordinates. For example, although the inner product can be expressed by the sum of the two vectors’ product when we know the coordinates, the length and angle can also be calculated even if their coordinates are unknown. Therefore, the inner product result of the two vectors is independent of the selection of the coordinate system.&lt;/p&gt;
+\[a \wedge = \begin{bmatrix} 0 &amp;amp; -a_3 &amp;amp; a_2 \\ a_3 &amp;amp; 0 &amp;amp; -a_1 \\ -a_2 &amp;amp; a_1 &amp;amp; 0 \end{bmatrix}\]
+
+&lt;p&gt;At the same time, note that the vector operations such as addition, subtraction, inner and outer products can be calculated even when we do not have their coordinates. For example, although the inner product can be expressed by the sum of the two vectors’ product when we know the coordinates, the length and angle can also be calculated even if their coordinates are unknown. Therefore, the inner product result of the two vectors is independent of the selection of the coordinate system.&lt;/p&gt;
 
 &lt;h3 id=&quot;euclidean-transforms-between-coordinate-systems&quot;&gt;Euclidean Transforms between Coordinate Systems&lt;/h3&gt;
 
@@ -1011,40 +966,51 @@ At the same time, note that the vector operations such as addition, subtraction,
 
 &lt;p&gt;If we consider a moving robot, it is common practice to set a stationary inertial coordinate system (or world coordinate system), such as the $x_W, y_W, z_W$ defined in the picture above.&lt;/p&gt;
 
-&lt;p&gt;Meanwhile, the camera or robot is a moving coordinate system, such as coordinate system defined by $x_C, y_C, z_C$. We might ask: a vector $p$ in the camera system may have coordinates $p_c$; and in the world coordinate system, its coordinates maybe $p_w$. Then what is the conversion between two coordinates?&lt;/p&gt;
+&lt;p&gt;Meanwhile, the camera or robot is a moving coordinate system, such as coordinate system defined by $x_C, y_C, z_C$. We might ask: &lt;mark&gt; a vector $p$ in the camera system may have coordinates $p_c$; and in the world coordinate system, its coordinates maybe $p_w$ &lt;/mark&gt;. &lt;span class=&quot;glow&quot;&gt; Then what is the conversion between two coordinates&lt;/span&gt;?&lt;/p&gt;
 
 &lt;p&gt;It is necessary to first obtain the coordinate values of the point in the camera system and then use the transform rule to do the coordinate transform. We need a mathematical way to describe this transformation. As we will see later, we can describe it with a transform matrix $T$.&lt;/p&gt;
 
-&lt;p&gt;Intuitively, the motion between two coordinate systems consists of a rotation plus a translation, which is called &lt;em&gt;rigid body motion&lt;/em&gt;. Obviously, the camera movement is rigid. During the rigid body motion, the length and angle of the vector will not change.&lt;/p&gt;
+&lt;p&gt;Intuitively, &lt;span class=&quot;shine&quot;&gt; the motion between two coordinate systems consists of a rotation plus a translation , which is called &lt;em&gt;rigid body motion&lt;/em&gt; &lt;/span&gt;. Obviously, the camera movement is rigid. During the rigid body motion, the length and angle of the vector will not change.&lt;/p&gt;
 
 &lt;p&gt;Imagine that you throw your phone into the air and there may be differences in spatial position and orientation. But the length and the angle of each face will not change. At this point, we say that the phone’s motion is &lt;em&gt;Euclidean&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;The Euclidean transform consists of rotation and translation. Let’s first consider the rotation. We have a unit-length orthogonal base $(e_1, e_2, e_3)$. After a rotation it becomes $(e_1’, e_2’, e_3’)$. Then, for the same vector $a$ (the vector does not move with the rotation of the coordinate system). its coordinates in these two coordinate systems are $[a_1, a_2, a_3]^T$ and $[a_1’, a_2’, a_3]^T$. Because the vector itself has not changed, according to the definition of coordinates, there are:&lt;/p&gt;
+&lt;p&gt;The &lt;span class=&quot;blue&quot;&gt;Euclidean transform consists of rotation and translation &lt;/span&gt;. Let’s first consider the rotation. We have a unit-length orthogonal base $(e_1, e_2, e_3)$. After a rotation it becomes $(e_1’, e_2’, e_3’)$. Then, for the same vector $a$ (the vector does not move with the rotation of the coordinate system). its coordinates in these two coordinate systems are $[a_1, a_2, a_3]^T$ and $[a_1’, a_2’, a_3]^T$. Because the vector itself has not changed, according to the definition of coordinates, there are:&lt;/p&gt;
 
-&lt;p&gt;$$ [e_1, e_2, e_3] \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} = [e_1’, e_2’, e_3’] \begin{bmatrix} a_1’ \\ a_2’ \\ a_3’ \end{bmatrix}$$.
-To describe the relationship between the two coordinates, we multiply the left and right side of the above equation by $\begin{bmatrix} e_1^T \\ e_2^T \\ e_3^T \end{bmatrix}$, then the matrix on the left becomes an identity matrix, so:&lt;/p&gt;
+\[[e_1, e_2, e_3] \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} = [e_1', e_2', e_3'] \begin{bmatrix} a_1' \\ a_2' \\ a_3' \end{bmatrix}\]
+
+&lt;p&gt;To describe the relationship between the two coordinates, we multiply the left and right side of the above equation by $\begin{bmatrix} e_1^T \\ e_2^T \\ e_3^T \end{bmatrix}$, then the matrix on the left becomes an identity matrix, so:&lt;/p&gt;
 
 &lt;p&gt;$$\begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} \triangleq Ra’$$.
 We take the intermediate matrix out and define it as a matrix $R$. This matrix consists of the inner product between the two sets of bases, describing the same vector’s coordinate transformation relationship before and after the rotation.&lt;/p&gt;
 
-&lt;p&gt;It can be said that the matrix $R$ describes the rotation itself. So we call it the &lt;em&gt;rotation matrix&lt;/em&gt;. Meanwhile, the components of the matrix are the inner product of the two coordinate system bases.&lt;/p&gt;
+&lt;p&gt;It can be said that &lt;mark&gt; the matrix $R$ describes the rotation itself &lt;/mark&gt;. So we call it the &lt;em&gt;rotation matrix&lt;/em&gt;. Meanwhile, the components of the matrix are the inner product of the two coordinate system bases.&lt;/p&gt;
 
 &lt;p&gt;Since the base vector’s length is $1$, it is actually the cosine of the angle between the base vectors. So this matrix is also called &lt;em&gt;direction cosine matrix&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;The rotation matrix has some special properties. In fact, it is an &lt;em&gt;orthogonal&lt;/em&gt; matrix with a determinant of $1$. Conversely, an orthogonal matrix with a determinant of 1 is also a rotation matrix. So you can define a set of $n$ dimensional rotation matrices as follows:&lt;/p&gt;
+&lt;p&gt;The rotation matrix has some special properties. &lt;span class=&quot;rainbow&quot;&gt; In fact, it is an &lt;em&gt;orthogonal&lt;/em&gt; matrix with a determinant of &lt;/span&gt; $1$. Conversely, an orthogonal matrix with a determinant of 1 is also a rotation matrix. So you can define a set of $n$ dimensional rotation matrices as follows:&lt;/p&gt;
 
-&lt;p&gt;$$SO(n) = \{ R \in \mathbb{R}^{n \times n}| RR^T = I, det(R) =1 \} $$.
-$SO(n)$ refers to the special orthogonal group. This set consists of a rotation matrix of $n$ dimensional space, in particular, $SO(3)$ refers to the rotation of the three-dimensional space. In this way, we can talk directly about the rotation transformation between the two coordinate systems without having to start from the bases.&lt;/p&gt;
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$$SO(n) = \{ R \in \mathbb{R}^{n \times n}&lt;/td&gt;
+      &lt;td&gt;RR^T = I, det(R) =1 \} $$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;p&gt;Since the rotation matrix is orthogonal, its inverse (i.e., transpose) describes an opposite rotation. According to the above definition, there are:
-$$a’ = R^{-1}a = R^Ta$$.
-Obviously, the $R^T$ represents an opposite rotation.&lt;/p&gt;
+&lt;p&gt;$SO(n)$ refers to the special orthogonal group. This set consists of a rotation matrix of $n$ dimensional space, in particular, $SO(3)$ refers to the rotation of the three-dimensional space. In this way, we can talk directly about the rotation transformation between the two coordinate systems without having to start from the bases.&lt;/p&gt;
+
+&lt;p&gt;Since the rotation matrix is orthogonal, its inverse (i.e., transpose) describes an opposite rotation. According to the above definition, there are:&lt;/p&gt;
+
+\[a' = R^{-1}a = R^Ta\]
+
+&lt;p&gt;Obviously, the $R^T$ represents an opposite rotation.&lt;/p&gt;
 
 &lt;p&gt;In the Euclidean transformation, there is a translation in addition to rotation. Consider the vector $a$ in the world coordinate system. After a rotation (depicted by $R$) and a translation of $t$, we get $a’$. Then we can put the rotation and translation together, and have:
 $$a’= Ra+t$$,
 where $t$ is called a translation vector.&lt;/p&gt;
 
-&lt;p&gt;Compared to the rotation, the translation part simply adds the translation vector to the coordinates after the rotation, which si very simple. By the above formula, we completely describe the coordinate transformation relationship using a rotation matrix $R$ and a translation vector $t$.&lt;/p&gt;
+&lt;p&gt;Compared to the rotation, &lt;span class=&quot;highlight-pink&quot;&gt; the translation part simply adds the translation vector to the coordinates after the rotation &lt;/span&gt;, which si very simple. By the above formula, we completely describe the coordinate transformation relationship using a rotation matrix $R$ and a translation vector $t$.&lt;/p&gt;
 
 &lt;p&gt;In practice, we may define the coordinate system 1 and 2, then the vector $a$ under the two coordinates is $a_1, a_2$. The relationship between the two systems should be: 
 $$a_1 = R_{12} a_2 + t_{12}$$.
