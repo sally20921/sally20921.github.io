@@ -1,0 +1,54 @@
+---
+layout: post
+title:  "Depth Estimation: Basics and Intuition"
+author: seri
+categories: [ computer vision ]
+image: assets/images/depth/1.jpg
+tags: featured
+excerpt: "This article focuses on giving readers a background into depth estimation and problem associated with it. We cover both methodolgies used to extract the depth information, namely 'depth from monocular images' (static or sequential) and 'depth from stereo images' by exploiting epipolar geometry." 
+---
+
+<!--more-->
+
+<h2> Depth Estimation in Computer Vision </h2>
+
+Depth estimation is also known as <span class="blue"> the inverse problem </span>, where we seek to recover unknowns given insufficient information. 
+
+So how do machines actually perceive depth? The earliest algorithm with impressive results began with depth estimation using stereo vision back in the 90s. A lot of progress was made on <span class="highlight-green"> dense stereo correspondence algorithm </span> Researchers were able to <u> utilize geometry </u> to constrain and replicate the idea of <b> stereopsis </b> mathematically. 
+
+As for monocular depth estimation, it recently started to gain popularity by using neural networks. We will talk about this shortly after discussing stereo vision.
+
+<h3> Depth Estimation from Stereo Vision </h3>
+
+<picture><img src="{{site.baseurl}}/asset/images/rect.png"></picture>
+
+The main idea of <u> solving depth using a stereo camera </u> involves the concept of <span class="rainbow"> triangulation and streo matching </span>. The former depends on <b> good calibration and rectification </b> to constrain the problem so that it can be modelled on a 2D plane known as <span class="circle-sketch-highlight"> epipolar plane </span>. Epipolar plane greatly reduces the `stereo matching problem` to a `line search` along the `epipolar line`. 
+
+Once we are able to <span class="gif"> match pixel correspondences </span> between 2 views, the next task is to <span class="shine"> obtain a representation that encodes the difference </span>. <u> This representation is known as <span class="frozen"> disparity </span></u>. The formula to obtain depth from disparity can be worked out from similar triangles.
+
+<h2> Why is Measuring Depth So Difficult? </h2>
+
+Before we move on, let's try to understand some fundamental problems of depth estimation. The main culprit lies <u> in the projection of 3D views to 2D images where depth information is lost </u>. Another problem is deeply seeded when <u> there are motion and moving objects </u>.
+
+<h3> Depth Estimation is Ill-Posed </h3>
+
+<picture><img src="{{site.baseurl}}/assets/images/ill.png"></picture>
+
+Estimating depth from a single RGB image is an ill-posed inverse problem. What this means is that <span class="highlight-yellow"> many 3D scenes observed in the 3D world can indeed correspond to the same 2D image plane.
+
+<h3> Scale Ambiguity for Monocular Depth Estimation </h3>
+
+<picture><img src="{{site.baseurl}}/assets/images/scale.png"></picture> 
+
+The uncertain scale factor require current methods to have an additional sensor like LiDAR to provide depth ground-truth or stereo camera as additional training input, which makes them difficult to implement. 
+
+Note that this issue exists only for <u> monocular-based techniques </u>, as the scale can be recovered for a stereo rig with a known baseline. 
+
+<h2> References </h2> 
+<ul><li><a href="https://towardsdatascience.com/depth-estimation-1-basics-and-intuition-86f2c9538cd1"> medium article</a> </li>
+<ul><li><a href="https://towardsdatascience.com/self-supervised-depth-estimation-breaking-down-the-ideas-f212e4f05ffa"> medium article 2 </a></li>
+<li><a href="https://towardsdatascience.com/inverse-projection-transformation-c866ccedef1c"> medium article 3 </a></li>
+<li><a href="http://ras.papercept.net/images/temp/IROS/files/0898.pdf"> paper about absolute depth </a></li>
+<ul> 
+
+

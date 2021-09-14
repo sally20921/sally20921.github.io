@@ -1,0 +1,144 @@
+---
+layout: post
+title:  "3D Rigid Body Motion (Part 1)"
+author: seri
+categories: [ computer vision ]
+image: assets/images/rigid.png
+tags: featured
+excerpt: "The goal of this article is to introduce the rigid body geometry in 3-dimensional spaace: rotation matrix, transformation matrix, quaternion and Euler angle."
+---
+
+<!--more-->
+
+## Introduction
+
+In this article, I will introduce one of the fundamental problems of visual SLAM: <span class="blue"> How to describe a rigid body's motion in 3-dimensional space </span>? Intuitively, we certainly know that this consists of <span class="circle-sketch-highlight"> one rotation plus one translation </span>. The translation part does not really have any problems, but the rotation part is questionable. I will introduce the meaning of <b> rotation matrices, quaternions, Euler angles </b> and how they are computed and transformed. 
+
+## Rotation Matrix
+### Points, Vectors, and Coordinate Systems
+The space of our daily life is 3-dimensional, so we are born to be used to 3D movements. The 3D space consists of three axes, so the position of one spatial point can be specified by three coordinates. However, we should now consider a <b> rigid body </b>, which has its <span class="rainbow"> *position* and *orientation* </span>. 
+
+The camera can also be viewed as a rigid body in three dimensions, so what we care about in Visual SLAM are the problem of the camera's position and orientation. Combined, we can say, "the camera is at the $(0,0,0)$ point, facing the front". Let's describe this in a mathematical term.
+
+We start from the basic content: *points* and *vectors*. Points are the basic element in space, no length, no volume. Connecting the two points forms a vector. A vector can be thought of as an arrow pointing from one point to another. Here we need to warn you not to confuse the vector with its coordinates. 
+
+A vector is one thing in space, such as $a$. Here, $a$ does not need to be associated with several real numbers. We can naturally talk about the plus or minus operation of two vectors, without relating to any real numbers. 
+
+Only when we specify a coordinate system in this 3D space can we talk about the vector's coordinates in this system, finding several real numbers corresponding to this vector.
+
+With the knowledge of linear algebra, <mark> the coordinates of a point in 3D space can be described as $\mathbb{R}^3$</mark>. How to do we describe this? Suppose that in this linear space, we fined <b>a set of base $(e_1, e_2, e_3)$ </b>, then, an arbitrary vector $a$ has a *coordinate* under this base:
+
+$$ a = \begin{bmatrix} e_1 & e_2 & e_3 \end{bmatrix} \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} = a_1 e_1 + a_2 e_2 + a_3 e_3 $$.
+Here, <b>$(a_1, a_2, a_3)^T$ is called $a$'s coordinates</b>. The coordinates' specific values are related to the vector itself and the selection of the bases. In $\mathbb{R}^3$, the coordinate system usually consists of $3$ orthogonal coordinate axes (it can also be non-orthogonal, but it is rare in practice). 
+
+For example, given $x$ and $y$ axis, the $z$ axis can be determined using the right-hand (or left-hand) rule. According to different definitions, the coordinate system is divided into left-handed and right-handed. The third axis of the left-hand rule is opposite to the right-hand rule. Most 3D libraries use right-handed coordinates.
+
+Based on basic linear algebra knowledge, we can talk about the operations between vectors/vectors, vectors/numbers, such as scalar multiplication, vector addition, subtraction, inner product, outer product and so on. 
+
+For $a,b \in \mathbb{R}^3$, the <b>inner product of $a,b$</b> can be written as:
+<blockquote>
+$$ a \cdot b = a^Tb = \sum_{i=1}^3 a_i b_i = |a||b| \cos(<a,b>)$$
+</blockquote>
+where $ \<a.b\> $ refers to the angle between the vector $a, b$. The inner product can also describe the projection relationship between vectors. 
+
+$$ a \times b = \begin{Vmatrix} e_1 & e_2 & e_3 \\ a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \end{Vmatrix} = \begin{bmatrix} a_2b_3 - a_3 b_2 \\ a_3 b_1 - a_1 b_3 \\ a_1 b_2 - a_2 b_1 \end{bmatrix} = \begin{bmatrix} 0 & -a_3 & a_2 \\ a_3 & 0 & -a_1 \\ -a_2 & a_1 & 0 \end{bmatrix} b =  a \wedge b$$.
+The result of the outer product is a vector whose direction is perpendicular to the two vectors, and the length is 
+$|a||b|\sin(\<a,b\>)$
+, which is also the area of the quadrilateral of the two vectors. 
+
+From the outer product operation, we introduce the $\wedge$ operator here, which means writing $a$ as a <span class="glow"> *skew-symmetric matrix* </span>. You can take $\wedge$ as a skew-symmetric symbol. It turns the outer product $a \times b$ into the multiplication of the matrix and the vector $a \wedge b$ is a linear operation. 
+
+This symbol will be used frequently in the following sections. It is a one-to-one mapping, meaning that for any vector, it corresponds to a unique anti-symmetric matrix, and vice versa:
+
+$$ 
+a \wedge = \begin{bmatrix} 0 & -a_3 & a_2 \\ a_3 & 0 & -a_1 \\ -a_2 & a_1 & 0 \end{bmatrix}
+$$
+
+At the same time, note that the vector operations such as addition, subtraction, inner and outer products can be calculated even when we do not have their coordinates. For example, although the inner product can be expressed by the sum of the two vectors' product when we know the coordinates, the length and angle can also be calculated even if their coordinates are unknown. Therefore, the inner product result of the two vectors is independent of the selection of the coordinate system. 
+
+### Euclidean Transforms between Coordinate Systems
+
+![](/assets/images/rigid/1.png)
+
+We often define a variety of coordinate systems in the real scene. In robotics, you define one coordinate system for each link and joint; in 3D mapping, we also define a coordinate system for each cuboid and cylinder. 
+
+If we consider a moving robot, it is common practice to set a stationary inertial coordinate system (or world coordinate system), such as the $x_W, y_W, z_W$ defined in the picture above.
+
+Meanwhile, the camera or robot is a moving coordinate system, such as coordinate system defined by $x_C, y_C, z_C$. We might ask: <mark> a vector $p$ in the camera system may have coordinates $p_c$; and in the world coordinate system, its coordinates maybe $p_w$ </mark>. <span class="glow"> Then what is the conversion between two coordinates</span>?
+
+It is necessary to first obtain the coordinate values of the point in the camera system and then use the transform rule to do the coordinate transform. We need a mathematical way to describe this transformation. As we will see later, we can describe it with a transform matrix $T$.
+
+Intuitively, <span class="shine"> the motion between two coordinate systems consists of a rotation plus a translation , which is called *rigid body motion* </span>. Obviously, the camera movement is rigid. During the rigid body motion, the length and angle of the vector will not change. 
+
+Imagine that you throw your phone into the air and there may be differences in spatial position and orientation. But the length and the angle of each face will not change. At this point, we say that the phone's motion is *Euclidean*.
+
+The <span class="blue">Euclidean transform consists of rotation and translation </span>. Let's first consider the rotation. We have a unit-length orthogonal base $(e_1, e_2, e_3)$. After a rotation it becomes $(e_1', e_2', e_3')$. Then, for the same vector $a$ (the vector does not move with the rotation of the coordinate system). its coordinates in these two coordinate systems are $[a_1, a_2, a_3]^T$ and $[a_1', a_2', a_3]^T$. Because the vector itself has not changed, according to the definition of coordinates, there are:
+
+$$ 
+[e_1, e_2, e_3] \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} = [e_1', e_2', e_3'] \begin{bmatrix} a_1' \\ a_2' \\ a_3' \end{bmatrix}
+$$
+
+To describe the relationship between the two coordinates, we multiply the left and right side of the above equation by $\begin{bmatrix} e_1^T \\ e_2^T \\ e_3^T \end{bmatrix}$, then the matrix on the left becomes an identity matrix, so: 
+
+$$\begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} \triangleq Ra'$$.
+We take the intermediate matrix out and define it as a matrix $R$. This matrix consists of the inner product between the two sets of bases, describing the same vector's coordinate transformation relationship before and after the rotation.
+
+It can be said that <mark> the matrix $R$ describes the rotation itself </mark>. So we call it the *rotation matrix*. Meanwhile, the components of the matrix are the inner product of the two coordinate system bases.
+
+Since the base vector's length is $1$, it is actually the cosine of the angle between the base vectors. So this matrix is also called *direction cosine matrix*.
+
+The rotation matrix has some special properties. <span class="rainbow"> In fact, it is an *orthogonal* matrix with a determinant of </span> $1$. Conversely, an orthogonal matrix with a determinant of 1 is also a rotation matrix. So you can define a set of $n$ dimensional rotation matrices as follows:
+
+$$SO(n) = \\{ R \in \mathbb{R}^{n \times n}| RR^T = I, det(R) =1 \\} $$
+
+$SO(n)$ refers to the special orthogonal group. This set consists of a rotation matrix of $n$ dimensional space, in particular, $SO(3)$ refers to the rotation of the three-dimensional space. In this way, we can talk directly about the rotation transformation between the two coordinate systems without having to start from the bases. 
+
+Since the rotation matrix is orthogonal, its inverse (i.e., transpose) describes an opposite rotation. According to the above definition, there are:
+
+$$
+a' = R^{-1}a = R^Ta
+$$
+
+Obviously, the $R^T$ represents an opposite rotation. 
+
+In the Euclidean transformation, there is a translation in addition to rotation. Consider the vector $a$ in the world coordinate system. After a rotation (depicted by $R$) and a translation of $t$, we get $a'$. Then we can put the rotation and translation together, and have:
+$$a'= Ra+t$$,
+where $t$ is called a translation vector. 
+
+Compared to the rotation, <span class="highlight-pink"> the translation part simply adds the translation vector to the coordinates after the rotation </span>, which si very simple. By the above formula, we completely describe the coordinate transformation relationship using a rotation matrix $R$ and a translation vector $t$. 
+
+In practice, we may define the coordinate system 1 and 2, then the vector $a$ under the two coordinates is $a_1, a_2$. The relationship between the two systems should be: 
+$$a_1 = R_{12} a_2 + t_{12}$$.
+Here, $R_{12}$ means the "rotation of the vector from system 2 to system 1". About $t_{12}$, readers may just take it as a translation vector without wondering about its physical meaning. In fact, it corresponds to a vector from the system 1's origin pointing to system 2's origin, and the coordinates are taken under tsystem 1. So I suggest you to understand it as "a vector from 1 to 2". 
+
+But the reverse $t_{21}$, which is a vector from $2$'s origin to $1$'s origin, whose *coordinates are taken in system $2$*, is not equal to $-t_{12}$. It is also related to the rotation of the two systems. 
+
+Therefore, when beginners ask the question "What are my coordinates?", we need to clearly explain this sentence's meaning. Here, "my coordinates" normally refers to the vector from the world system $W$ pointing to the origin of the camera system $C$, and then take the coordinates in the world's base. Corresponding to the mathematical symbol, it should be the value of $t_{WC}$. For the same reason, it is not $-t_{CW}$ but actually $-R^T_{CW} t_{CW}$. 
+
+### Transform Matrix and Homogeneous Coordinates
+The formula $a' = Ra+t$ fully expresses the rotation and the translation of Euclidean space, but there is still a small problem: the transformation relationship here is not a linear relationship. 
+
+Suppose we made two transformations: $R_1,t_1$ and $R_2,t_2$:
+$$b = R_1 a + t_1, c = R_2 b + t_2$$. 
+So the transformation from $a$ to $c$ is: $$c = R_2 (R_1 a + t_1) + t_2$$.
+This form is not elegant after multiple transformations. Therefore, we introduce homogeneous coordinates and transformation matrices, rewriting the formula:
+$$ \begin{bmatrix} a' \\ 1 \end{bmatrix} = \begin{bmatrix} R & t \\ 0^T & 1 \end{bmatrix} \begin{bmatrix} a \\ 1 \end{bmatrix} \triangleq T \begin{bmatrix} a \\ 1 \end{bmatrix}$$. 
+This is a mathematical trick: we add $1$ at the end of the 3D vector and turn it into a 4D vector called *homogeneous coordinates*. For this four-dimensional vector, we can write the rotation and translation matrix, making the whole relationship a linear relationship. In this formula, the matrix $T$ is called *transform matrix*. 
+
+We temporarily use $\tilde{a}$ to represent the homogeneous coordinates of $a$. Then, relying on homogeneous coordinates and transformation matrices, the superposition of the two transformations can have a good form: 
+$$\tilde{b} = T_1 \tilde{a}, \tilde{c} = T_2 \tilde{b} \Rightarrow T_2 T_1 \tilde{a}$$.
+But the symbols that distinguish between homogeneous and non-homogeneous coordinates are annoying, because here we only need to add 1 at the end of the vector or remove 1 to turn it into a normal vector. So, without ambiguity, we will write it directly as $b = Ta$ and by default we just assume a homogeneous coordinate conversion is made if needed.
+
+The transformation matrix $T$ has a special structure: the upper left corner is the rotation matrix, the right side is the translation vector, the lower-left corner is $0$ vector, and the lower right corner is $1$. This set of transform matrix is also known as the *special Euclidean group*: 
+$$SE(3) = \\{ T = \begin{bmatrix} R & t \\ 0^T & 1 \end{bmatrix} \in \mathbb{R}^{4 \times 4}| R \in SO(3), t \in \mathbb{R}^3 \\}$$.
+Like $SO(3)$, the inverse of the transformation matrix represents an inverse transformation: 
+$$T^{-1} = \begin{bmatrix} R^T &  -R^T t \\ 0^T & 1 \end{bmatrix}$$.
+Again, we use the notation of $T_{12}$ to represent a transformation from 2 to 1. Because the conversion between homogeneous and non-homogeneous coordinates is actually very easy, it is assumed that the conversion from homogeneous coordinates to normal coordinates is already done. 
+
+## Summary
+First, we introduced the vector and its coordinate representation and introduced the operation between the vectors; then, the motion between the coordinate systems is described by the Euclidean transformation, which consists of translation and rotation. The rotation can be described by the rotation matrix $SO(3)$, while the translation is directly described by an $\mathbb{R}^3$ vector. Finally, if the translation and rotation are placed in a matrix, the transformation matrix $SE(3)$ is formed. 
+
+## References
+- [Introduction to Visual SLAM](https://www.springer.com/gp/book/9789811649387)
+
+

@@ -7,6 +7,8 @@ image: assets/images/depth/1.jpg
 tags: featured
 ---
 
+<!--more-->
+
 ## Introduction
 
 In computer vision, depth is extracted from 2 prevalent methodologies. Namely, *depth from monocular images* (static or sequential) or *depth from stereo images* by exploiting epipolar geometry. This article will focus on giving readers a background into depth estimation and the problems associated with it. 
@@ -111,7 +113,7 @@ Let's try to understand some of the fundamental problems of depth estimation. Th
 
 On many depth estimation paper, many authors mention that the problem of estimating depth from a single RGB image is ill-posed inverse problem. What this means is that many 3D scenes observed in the world can indeed correspond to the same 2D plane. 
 
-### Scale-Ambiguity for Monocular Depth Estimatio
+### Scale-Ambiguity for Monocular Depth Estimation
 
 ![](/assets/images/depth/8.png)
 

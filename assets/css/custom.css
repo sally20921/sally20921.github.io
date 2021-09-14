@@ -1,3 +1,4 @@
+
 .indent {
 	text-indent: 30px;
 }
@@ -5,6 +6,10 @@
 ::selection {
 	background: #EFEF8E;
 	color: #1f542d;
+}
+
+.hidden {
+	display: non !important;
 }
 
 .sidenote {
@@ -18,6 +23,7 @@
 	padding: 3px;
 	font-size: small;
 }
+
 
 article picture img {
 	object-fit: cover;
@@ -60,7 +66,9 @@ article ul li:nth-child(1):before {
 	display: inline-block;
 	width: 1em;
 	margin-left: -1em;
-	
+	.highlight{
+background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, rgba(255, 255, 255, 0));
+}
 }
 
 article ul li:nth-child(2):before {
@@ -97,6 +105,23 @@ article ul li:nth-child(5):before {
 article ul li:nth-child(6):before {
 	color: black;
 }
+
+article ol {
+  counter-reset: cupcake;
+  padding-left: 32px;
+}
+article ol li {
+  counter-increment: cupcake;
+}
+
+article ol li:before {
+  content: counters(cupcake, '.') ' ';
+  /* Whatever custom styles you want here */
+  color: hotpink;
+  font-weight: bold;
+  font-family: cursive;
+}
+
 
 .highlight-sketch{
   position:relative;
@@ -145,6 +170,10 @@ article ul li:nth-child(6):before {
 	font-size: 70%;
 	caption-side: bottom;
 	}
+
+.highlight {
+background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, rgba(255, 255, 255, 0));
+}
 
 .highlight-pink{
 	background: linear-gradient(120deg, #e4a0a1 0%, #e4a0a1 100%);
@@ -227,6 +256,23 @@ article ul li:nth-child(6):before {
 	cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
 	text-decoration: blink;
 }
+
+article mark.teal {
+	background-color: #008080;
+}
+
+article mark.gold {
+	background-color: #daa520;
+}
+
+article mark.blue {
+	background-color: #6495ed;
+}
+
+article.coral {
+	background-color: #f08080;
+}
+
 
 /* Theorem */
 .theorem {
@@ -339,6 +385,19 @@ article ul li:nth-child(6):before {
     blink-caret .75s step-end infinite;
 }
 
+.zoom {
+	animation: zoomup 2s linear infinite;
+  	animation-delay: calc(200ms * var(--i));
+}
+
+.flow {
+	animation: zoom 2s ease infinite;
+	display: inline-block;
+	animation-delay: calc(200ms * var(--i));
+	color: #de38c8;
+}
+
+
 .glow {
 	animation: glow-blue 2s ease-in-out infinite;
 	color: #4db1bc;
@@ -379,8 +438,6 @@ article ul li:nth-child(6):before {
 	/*animation-name: frozen-shine*/
 }
 
-
-
 .neon-green {
 	display: inline-flex;
 	background-color: black;
@@ -410,6 +467,7 @@ article ul li:nth-child(6):before {
       	0 0 102px #f09,
       	0 0 151px #f09;
 	animation: pulsate 0.11s ease-in-out infinite alternate;}
+
 
 @keyframes pulsate {
   100% {
@@ -503,7 +561,9 @@ article ul li:nth-child(6):before {
 }
 
 @keyframes slidein {
-    0% { margin-left:-800px; }
+ .highlight{
+background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, rgba(255, 255, 255, 0));
+}   0% { margin-left:-800px; }
     20% { margin-left:-800px; }
     35% { margin-left:0px; }
     100% { margin-left:0px; }
@@ -538,25 +598,36 @@ article ul li:nth-child(6):before {
   50% { border-color: orange; }
 }
 
-/*h1, h2 {
-    text-align: center;
-}*/
+@keyframes zoomup {
+  0%,
+  100% {
+    color: #00c2ba;
+    filter: blur(1px);
+    text-shadow: 0 0 10px #00c2ba, 0 0 20px #00c2ba, 0 0 30px #00c2ba,
+      0 0 40px #00c2ba, 0 0 60px #00c2ba, 0 0 80px #00c2ba, 0 0 100px #00c2ba,
+      0 0 120px #00c2ba;
+  }
 
-/*h2 {
-  text-align: center;     
+  5%,
+  95% {
+    filter: blur(0);
+    color: #fff;
+    text-shadow: none;
+  }
 }
-h2:before, h2:after {
-  font-family: "Some cool font with glyphs", serif;
-  content: "⭐"; 
-  color: #c83f3f;
-}
-h2:before {
-  margin-right: 10px;
-}
-h2:after {
-  margin-left: 10px;
-}*/
 
+@keyframes zoom {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2) translateY(-50px);
+    filter: blur(1px);
+    opacity: 0;
+  }
+}
 
 
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-14T16:10:22+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Dissecting the Camera Matrix (Part 2)</title><link href="http://localhost:4000/extrinsic.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 2)" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/extrinsic</id><content type="html" xml:base="http://localhost:4000/extrinsic.html">&lt;!--more--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-14T23:33:02+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Dissecting the Camera Matrix (Part 2)</title><link href="http://localhost:4000/extrinsic.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 2)" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/extrinsic</id><content type="html" xml:base="http://localhost:4000/extrinsic.html">&lt;!--more--&gt;
 
 &lt;picture&gt;&lt;img src=&quot;/assets/images/cali.png&quot; /&gt;&lt;/picture&gt;
 &lt;div class=&quot;caption&quot;&gt; Overview of the Camera Calibration Parameters &lt;/div&gt;
@@ -170,11 +170,7 @@ Another type of behavior you should look out for is when the generator oscillate
 
 &lt;blockquote&gt; I learned that hyperparameter tuning takes a lot of time and patience especially for training GANs. &lt;/blockquote&gt;
 
-&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
 
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
-&lt;/ul&gt;
 
 &lt;/div&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">Generative Adversarial Networks Ultimately, if everything goes well, the generator learns the true distribution of the training data and becomes really good at generating fake images. The discriminator should not be able to distinguish between real and fake images. Another way to look at the GAN setup is that the discriminator is trying to guide the generator by telling what real images look like. The two networks try to achieve what is called the Nash Equilibrium with respect to each other. Training GANs GAN networks are a dynamic system where the optimization process is seeking not a minimum, but a equilibrium between two forces. There are no good objective metrics for evaluating whether a GAN is performing well during training, e.g. reviewing the loss is not sufficient. Instead the best approach is to visually inspect the generated examples and use subjective evaluation. Other quantitative measures, such as Inception Score (IS) or Frechet Inception Distance (FID) rely on pretrained models with a specific set of object classes. They lack an upper bound (which means hypothetically the highest possible score is infinity). Look at the Loss In a discriminative model,the loss measures the accuracy of the prediction and we use it to monitor the progress of training. However, the loss in GAN measures how well we are doing compared with our opponent. Often, the generator cost increases but the image quality is actually improving. If you see the discriminator loss rapidly approaching, there is probably no chance of recovery and it is time to change something. Look at the Gradients Monitor the gradients along with the losses in the networks. These can give you a good idea about the progress of training and can even help in debugging if things are not really working well. Ideally, the generator should receive large gradients early in the training because it needs to learn how to generate real-looking data. The discriminator on the other hand does not always get large gradients early on, because it can easily distinguish real and fake images. If the gradients at the layer of generator are too small, learning might be slow or not happening at all. The generator should get large gradients early on and the discriminator getting consistently high gradients at the top layer once the generator has been trained enough. Detecting GAN Failure Modes The reason why GANs are difficult to train is that both generator and the discriminator are trained simultaneously in a zero-sum game. This means that improvements to one model come at the expense of the other model. The goal of training two models involves finding a point of equilibrium between the two competing concerns. It also means that everytime the parameters of one model are updated the nature of the optimization problem that is being solved is updated as well. The technical challenge of training two competing neural networks at the same time is that they can fail to converge. Convergence Failure The fact that GANs are composed by two networks, and each of them has its loss function leads to GANs unstability. In GAN architecture, the discriminator tries to minimize a cross-entropy while the generator tries to maximize it. When discriminator confidence is high and the discriminator starts to reject the samples that are produced by the generator, generator's gradient vanishes. This scenario happens when the generator score reaches near zero and the discriminator score reaches near one. The discriminator is overpowering the generator. If the score does not recover from these values for many iterations, it is better to stop training. Mode Collapse Mode collapse is when the GAN produces a small variety of images with many duplicates. This happens when the generator is unable to learn a rich feature representation because it learns to associate similar outputs to multiple different inputs. The most promising way to check for mode collapse is to inspect the generated images. If there is little diversity in the output and some of them are almost identical, there is likely mode collapse. If you observe this happening, you should try to increase the ability of the generator to create more diverse outputs or impair the discriminator by randomly giving false labels to real images. Another type of behavior you should look out for is when the generator oscillates between generating specific examples in the domain. They progress from generating one kind of sample to generating another kind of sample without eventually reaching equilibrium. Diminisheed Gradient This situation happens when the discriminator gets too successful that the generator gradient vanishes and learns nothing.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/gan.png" /><media:content medium="image" url="http://localhost:4000/assets/images/gan.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Advanced PyTorch: Things You Didn’t Know</title><link href="http://localhost:4000/pytorch.html" rel="alternate" type="text/html" title="Advanced PyTorch: Things You Didn’t Know" /><published>2021-09-12T00:00:00+09:00</published><updated>2021-09-12T00:00:00+09:00</updated><id>http://localhost:4000/pytorch</id><content type="html" xml:base="http://localhost:4000/pytorch.html">&lt;!--more--&gt;
 
@@ -666,7 +662,40 @@ $$
 &lt;h5&gt; Volume of a parallelpiped &lt;/h5&gt; 
 &lt;h5&gt; Sign and absolute value of the determinant &lt;/h5&gt;
 Calculating determinants can produce positive or negative numbers. 
-&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="linear algebra" /><category term="featured" /><summary type="html">This article goes through the fundamentals of linear algebra. Linear algebra is the branch of mathematics concerning linear equations and their representations in vector spaces. This ultimate guide will prove very useful or understanding deep learning techniques.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/linear.png" /><media:content medium="image" url="http://localhost:4000/assets/images/linear.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Batch Normalization and Group Normalization</title><link href="http://localhost:4000/group.html" rel="alternate" type="text/html" title="Batch Normalization and Group Normalization" /><published>2021-09-08T00:00:00+09:00</published><updated>2021-09-08T00:00:00+09:00</updated><id>http://localhost:4000/group</id><content type="html" xml:base="http://localhost:4000/group.html">&lt;!--more--&gt;
+&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="linear algebra" /><category term="featured" /><summary type="html">This article goes through the fundamentals of linear algebra. Linear algebra is the branch of mathematics concerning linear equations and their representations in vector spaces. This ultimate guide will prove very useful or understanding deep learning techniques.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/linear.png" /><media:content medium="image" url="http://localhost:4000/assets/images/linear.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Packing for Self-Supervised Depth Estimation</title><link href="http://localhost:4000/3d-packing.html" rel="alternate" type="text/html" title="3D Packing for Self-Supervised Depth Estimation" /><published>2021-09-09T00:00:00+09:00</published><updated>2021-09-09T00:00:00+09:00</updated><id>http://localhost:4000/3d-packing</id><content type="html" xml:base="http://localhost:4000/3d-packing.html">&lt;!--more--&gt;
+
+&lt;h2&gt; Self-Supervised Scale-Aware SfM &lt;/h2&gt;
+
+&lt;p&gt;Self-supervised monocular SfM training aims to learn the following:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt; a monocular &lt;u&gt;depth model&lt;/u&gt; $f_D: I \rightarrow D$ that predicts the scale ambiguous depth $\hat{D} = f_D(I(p))$ for every pixel $p$ in the target image $I$. &lt;/li&gt;
+&lt;li&gt; a monocular &lt;u&gt;egomotion estimator&lt;/u&gt; $ f_x: (I_t, I_S) \rightarrow x_{t \rightarrow s}$ that predicts the set of 6-DoF rigid transformations for all $s \in S$ given by $x_{t \rightarrow s} = \begin{bmatrix} R &amp;amp; t \\\ 0 &amp;amp; 1 \end{bmatrix} \in SE(3)$, between the target image $I_t$ and the set of source images $I_s \in I_S$ considered as part of the temporal context. &lt;/li&gt;
+
+&lt;h3&gt; Self-Supervised Objective &lt;/h3&gt;
+&lt;blockquote&gt; The overall objective loss is: 
+
+$$
+L(I_t, \hat{I_t}, v) = L(I_t, \hat{I_t}) + \lambda_2 L_v(t \rightarrow s, v)
+$$
+
+where 
+
+$$ 
+L(I_t, \hat{I_t}) = L_p(I_t, I_S) \odot 
+
+
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;sidenote&quot;&gt; why recover the inverse depth `$f_d: I \rightarrow f^{-1}_{D}(I)$`? features that are very far off would have a distance estimate of infinity. To get around it, the inverse of the distance is estimated, and all the infinity becomes zero &lt;/div&gt;
+
+The monocular &lt;b&gt; depth &lt;/b&gt; $f_d$ and &lt;b&gt; ego-motion &lt;/b&gt; estimators $f_x$ predict &lt;span class=&quot;glow&quot;&gt; scale-ambiguous &lt;/span&gt; values. All previous approaches resort to artificially incorporating this scale factor at testt time, using LiDAR measurements. 
+
+&lt;h3&gt; Velocity Supervision Loss &lt;/h3&gt;
+
+The authors directly incorporate &lt;span class=&quot;rainbow&quot;&gt; instantaneous velocity measurements &lt;/span&gt; in the self-supervised objective to learn a metrically accurate monocular depth estimator. 
+
+Additional velocity loss allows the &lt;u&gt; pose network &lt;/u&gt; to make metrically accurate predictions. Subsequently &lt;u&gt; the depth network &lt;/u&gt; also learns metrically accurate estimates to maintain consistency. 
+
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="paper" /><category term="featured" /><summary type="html">This paper proposes a self-supervised monocular depth estimation method leveraging 3D convolutions. It does not require pretraining on ImageNet and can run it in real-time.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/cnn.png" /><media:content medium="image" url="http://localhost:4000/assets/images/cnn.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Batch Normalization and Group Normalization</title><link href="http://localhost:4000/group-norm.html" rel="alternate" type="text/html" title="Batch Normalization and Group Normalization" /><published>2021-09-08T00:00:00+09:00</published><updated>2021-09-08T00:00:00+09:00</updated><id>http://localhost:4000/group-norm</id><content type="html" xml:base="http://localhost:4000/group-norm.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Batch Normalization: the Principles &lt;/h2&gt;
 
@@ -881,7 +910,51 @@ $C$ is a $3 \times 4$ matrix usually called the complete camera calibration matr
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt; 
 &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-from-disparity-via-deep-learning-part-0-458827141b23&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, SfM, optical flow, etc.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Rigid Body Motion (Part 1)</title><link href="http://localhost:4000/rigid.html" rel="alternate" type="text/html" title="3D Rigid Body Motion (Part 1)" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/rigid</id><content type="html" xml:base="http://localhost:4000/rigid.html">&lt;!--more--&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, SfM, optical flow, etc.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth Estimation: Basics and Intuition</title><link href="http://localhost:4000/depth.html" rel="alternate" type="text/html" title="Depth Estimation: Basics and Intuition" /><published>2021-09-02T00:00:00+09:00</published><updated>2021-09-02T00:00:00+09:00</updated><id>http://localhost:4000/depth</id><content type="html" xml:base="http://localhost:4000/depth.html">&lt;!--more--&gt;
+
+&lt;h2&gt; Depth Estimation in Computer Vision &lt;/h2&gt;
+
+&lt;p&gt;Depth estimation is also known as &lt;span class=&quot;blue&quot;&gt; the inverse problem &lt;/span&gt;, where we seek to recover unknowns given insufficient information.&lt;/p&gt;
+
+&lt;p&gt;So how do machines actually perceive depth? The earliest algorithm with impressive results began with depth estimation using stereo vision back in the 90s. A lot of progress was made on &lt;span class=&quot;highlight-green&quot;&gt; dense stereo correspondence algorithm &lt;/span&gt; Researchers were able to &lt;u&gt; utilize geometry &lt;/u&gt; to constrain and replicate the idea of &lt;b&gt; stereopsis &lt;/b&gt; mathematically.&lt;/p&gt;
+
+&lt;p&gt;As for monocular depth estimation, it recently started to gain popularity by using neural networks. We will talk about this shortly after discussing stereo vision.&lt;/p&gt;
+
+&lt;h3&gt; Depth Estimation from Stereo Vision &lt;/h3&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/asset/images/rect.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;The main idea of &lt;u&gt; solving depth using a stereo camera &lt;/u&gt; involves the concept of &lt;span class=&quot;rainbow&quot;&gt; triangulation and streo matching &lt;/span&gt;. The former depends on &lt;b&gt; good calibration and rectification &lt;/b&gt; to constrain the problem so that it can be modelled on a 2D plane known as &lt;span class=&quot;circle-sketch-highlight&quot;&gt; epipolar plane &lt;/span&gt;. Epipolar plane greatly reduces the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stereo matching problem&lt;/code&gt; to a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;line search&lt;/code&gt; along the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;epipolar line&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once we are able to &lt;span class=&quot;gif&quot;&gt; match pixel correspondences &lt;/span&gt; between 2 views, the next task is to &lt;span class=&quot;shine&quot;&gt; obtain a representation that encodes the difference &lt;/span&gt;. &lt;u&gt; This representation is known as &lt;span class=&quot;frozen&quot;&gt; disparity &lt;/span&gt;&lt;/u&gt;. The formula to obtain depth from disparity can be worked out from similar triangles.&lt;/p&gt;
+
+&lt;h2&gt; Why is Measuring Depth So Difficult? &lt;/h2&gt;
+
+&lt;p&gt;Before we move on, let’s try to understand some fundamental problems of depth estimation. The main culprit lies &lt;u&gt; in the projection of 3D views to 2D images where depth information is lost &lt;/u&gt;. Another problem is deeply seeded when &lt;u&gt; there are motion and moving objects &lt;/u&gt;.&lt;/p&gt;
+
+&lt;h3&gt; Depth Estimation is Ill-Posed &lt;/h3&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/ill.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Estimating depth from a single RGB image is an ill-posed inverse problem. What this means is that &lt;span class=&quot;highlight-yellow&quot;&gt; many 3D scenes observed in the 3D world can indeed correspond to the same 2D image plane.&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt; Scale Ambiguity for Monocular Depth Estimation &lt;/h3&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/scale.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;The uncertain scale factor require current methods to have an additional sensor like LiDAR to provide depth ground-truth or stereo camera as additional training input, which makes them difficult to implement.&lt;/p&gt;
+
+&lt;p&gt;Note that this issue exists only for &lt;u&gt; monocular-based techniques &lt;/u&gt;, as the scale can be recovered for a stereo rig with a known baseline.&lt;/p&gt;
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-estimation-1-basics-and-intuition-86f2c9538cd1&quot;&gt; medium article&lt;/a&gt; &lt;/li&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/self-supervised-depth-estimation-breaking-down-the-ideas-f212e4f05ffa&quot;&gt; medium article 2 &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/inverse-projection-transformation-c866ccedef1c&quot;&gt; medium article 3 &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://ras.papercept.net/images/temp/IROS/files/0898.pdf&quot;&gt; paper about absolute depth &lt;/a&gt;&lt;/li&gt;
+&lt;ul&gt; 
+
+
+&lt;/ul&gt;&lt;/ul&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This article focuses on giving readers a background into depth estimation and problem associated with it. We cover both methodolgies used to extract the depth information, namely 'depth from monocular images' (static or sequential) and 'depth from stereo images' by exploiting epipolar geometry.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Rigid Body Motion (Part 1)</title><link href="http://localhost:4000/rigid.html" rel="alternate" type="text/html" title="3D Rigid Body Motion (Part 1)" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/rigid</id><content type="html" xml:base="http://localhost:4000/rigid.html">&lt;!--more--&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
@@ -1015,117 +1088,4 @@ Again, we use the notation of $T_{12}$ to represent a transformation from 2 to 1
 &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.springer.com/gp/book/9789811649387&quot;&gt;Introduction to Visual SLAM&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">The goal of this article is to introduce the rigid body geometry in 3-dimensional spaace: rotation matrix, transformation matrix, quaternion and Euler angle.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/rigid.png" /><media:content medium="image" url="http://localhost:4000/assets/images/rigid.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Homogeneous Coordinates and Projective Geometry</title><link href="http://localhost:4000/homogeneous.html" rel="alternate" type="text/html" title="Homogeneous Coordinates and Projective Geometry" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/homogeneous</id><content type="html" xml:base="http://localhost:4000/homogeneous.html">&lt;h2 id=&quot;introduction-to-projective-geometry&quot;&gt;Introduction to Projective Geometry&lt;/h2&gt;
-&lt;p&gt;Most of the time when working with 3D, we are thinking in terms of Euclidean geometry-that is, coordinates in three-dimensional space ($X$, $Y$ and $Z$). However, there are certain situations where it is useful to think in terms of &lt;strong&gt;projective geometry&lt;/strong&gt; instead. Projective geometry has an extra dimension, called $W$, in addition to the $X$, $Y$, and $Z$ dimensions. This four-dimensional space is called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;projective space&lt;/code&gt; and coordinates in projective space are called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;homogenous coordinates&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;For the purposes of 3D software, the terms &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;projective&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;homogeous&lt;/code&gt; are basically interchangeable with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4D&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;not-quaternions&quot;&gt;Not Quaternions&lt;/h3&gt;
-
-&lt;p&gt;Quaternions look a lot like homogeneous coordinates. Both are 4D vectors, commonly depicted as $(X,Y,Z,W)$. However, quaternions and homogeneous coordinates are different concepts, with different uses.&lt;/p&gt;
-
-&lt;h2 id=&quot;an-analogy-in-2d&quot;&gt;An Analogy in 2D&lt;/h2&gt;
-&lt;p&gt;First, let’s look at how projective geometry works in 2D, before we move on to 3D.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/homo/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Imagine a projector that is projecting a 2D image onto a screen. It’s easy to identify the $X$ and $Y$ dimensions of the projected image.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/homo/2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now, if you step back from the 2D image and look at the projector and the screen, you can see the $W$ dimension, too. The $W$ dimension is the &lt;mark&gt; distance from the projector to the screen &lt;/mark&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/homo/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So what does the $W$ dimension do, exactly? Imagine what would happen to the 2D image if you increased or decreased $W$-that is, if you increased or decreased the distance between the projector and the screen. If you move the projector closer to the screen, the whole 2D image becomes smaller. If you move the projector away from the screen, the 2D image becomes larger. As you can see, the value of &lt;span class=&quot;highlight-green&quot;&gt; $W$ affects the size (a.k.a scale) of the image &lt;/span&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;applying-it-to-3d&quot;&gt;Applying it to 3D&lt;/h2&gt;
-&lt;p&gt;There is no such thing as a 3D projector (yet), so its’ harder to imagine projective geometry in 3D, but the $W$ value works exactly the same as it does in 2D. When $W$ increases, the coordinates expands (scales up). When $W$ decreases, the coordinates shrinks (scales down). The &lt;span class=&quot;highlight-green&quot;&gt; $W$ is basically a scaling transformation for the 3D coordinates &lt;/span&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;when-w--1&quot;&gt;When $W = 1$&lt;/h2&gt;
-&lt;p&gt;The usual advice for 3D programming beginners is to always set $W=1$ whenever converting a 3D coordinate to 4D coordinate. The reason for that is that when you scale a coordinate by a 1 it doesn’t shrink or grow, it just stays the same size. So, &lt;mark&gt; when $W=1$, it has no effect on the $X$, $Y$, or $Z$ values &lt;/mark&gt;.&lt;/p&gt;
-
-&lt;p&gt;For this reason, when it comes to 3D computer graphics, coordinates are said to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;correct&lt;/code&gt; only when $W=1$. If you tried to render with $W=0$ your program would crash when it attempted to divide by zero. With $W&amp;lt;0$ everything would flip unside-down and back-to-front.&lt;/p&gt;
-
-&lt;p&gt;Mathematically speaking, there is no such thing as an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;incorrect&lt;/code&gt; homogeneous coordinate. &lt;mark&gt; Using coordinates with $W=1$ is just a useful convention for the 3D computer grahics &lt;/mark&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-math&quot;&gt;The Math&lt;/h2&gt;
-&lt;p&gt;Now, let’s look at some actual numbers, to see how the math works.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/homo/4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Let’s say that the projector is $3$ meters away from the screen, and there is a dot on the 2D image at the coordinate $(15, 21)$. This gives us the projective coordinate vector $(X,Y,W) = (15,21,3)$.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/homo/5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now imagine that the projector was pushed closer to the screen so that the distance was $1$ meter. The closer the project gets to the screen, the smaller the image becomes. The projector has moved three times closer, so the image becomes three times smaller. If we take the original coordinate vector and divide all the values by three, we get the new vector where $W=1$:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;$$(\frac{15}{3}, \frac{21}{3}, \frac{3}{3}) = (5,7,1)$$.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The dot is now at coordinate $(5,7)$. This is how an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;incorrect&lt;/code&gt; homogeneous coordinate is converted to a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;correct&lt;/code&gt; coordinate: divide all the values by $W$. The process is exactly the same for 2D and 3D coordinates.&lt;/p&gt;
-
-&lt;p&gt;Dividing all the values in a vector is done by a scalar multiplication with the reciprocal of the divisor. Here is a 4D example:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;$$\frac{1}{5}(10, 20, 30, 5) = (\frac{10}{5}, \frac{20}{5}, \frac{30}{5}, \frac{5}{5}) = (2,4,6,1)$$&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;uses-of-homogeneous-coordinates-in-computer-graphics&quot;&gt;Uses of Homogeneous Coordinates in Computer Graphics&lt;/h2&gt;
-&lt;p&gt;As mentioned earlier, in regard to 3D computer graphics, homogeneous coordinates are useful in certain situations. We will look at some of those situations here.&lt;/p&gt;
-
-&lt;h3 id=&quot;translation-matrices-for-3d-coordinates&quot;&gt;Translation Matrices for 3D Coordinates&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;A four-column matrix can only be multiplied with a four-element vector, which is why we often use homogeneous 4D vectors instead of 3D vectors.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Rotation and scaling transformation matrices only require three columns. But, in order to do &lt;span class=&quot;rainbow&quot;&gt; translation, the matrices need to have at least four columns &lt;/span&gt;. This is why transformations are often $4 \times 4$ matices. However, a matrix with four columns cannot be multiplied by a 3D vector, due to the rules of matrix multiplication. A four-column matrix can only be mulitplied with a four-element vector, which is why we often use homogeneous 4D vectors instead of 3D vectors.&lt;/p&gt;
-
-&lt;p&gt;The 4th dimension $W$ is usually unchanged, when using homogeneous coordinates in matrix transformation. $W$ is set to $1$ when converting 3D coordinates into 4D, and is usually still $1$ after the transformation matrices are applied, at which point it can be converted back into a 3D coordinate by ignoring $W$. This is true for all translation, rotation, and scaling transformations, which by far are the most common types of transformations. The notable exception is projection matrices, which do affect the $W$ dimension.&lt;/p&gt;
-
-&lt;h3 id=&quot;perspective-transformation&quot;&gt;Perspective Transformation&lt;/h3&gt;
-&lt;p&gt;In 3D, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perspective&lt;/code&gt; is the phenomenon where an object appears smaller the further away it is from the camera. A far-away mountain can appear to be smaller than a cat, if the cat is close enough to the camera.&lt;/p&gt;
-
-&lt;p&gt;Perspective is implemented in 3D computer graphics by using a transformation matrix that changes the $W$ element of each vertex. After the camera matrix is applied to each vertex, but before the projection matrix is applied, the $Z$ element of each vertex represents the distance away from the camera. Therefore, the larger $Z$ is, the more the vertex should be scaled down. The $W$ dimension affects the scale, so the projection matrix just changes the $W$ based on the $Z$ value. Here is an example of a perspective projection matrix being applied to a homogeneous coordinate:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;$$ \begin{bmatrix} 1&amp;amp;0&amp;amp;0&amp;amp;0 \\ 0&amp;amp;1&amp;amp;0&amp;amp;0&amp;amp; \\ 0&amp;amp;0&amp;amp;1&amp;amp;0 \\ 0&amp;amp;0&amp;amp;1&amp;amp;0 \end{bmatrix} \begin{bmatrix} 2 \\ 3 \\ 4 \\ 1\end{bmatrix} = \begin{bmatrix} 2 \\ 3 \\ 4 \\ 1 \end{bmatrix} $$&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Notice how the $W$ value is changed to $4$, which comes from the $Z$ value.&lt;/p&gt;
-
-&lt;p&gt;After the perspective projection matrix is applied, each vertex undergoes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perspective division&lt;/code&gt;. Perspective division is just a specific term for converting the homogeneous coordinate back to $W=1$, as explained earlier in the article. Continuing with the example above, the perspective division step would look like this:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;$$\frac{1}{4}(2,3,4,4) = (0.5,0.75, 1,1)$$&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;After perspective division, the $W$ value is discarded, and we are left with a 3D coordinate that has been correctly scaled according to a 3D perspective projection.&lt;/p&gt;
-
-&lt;h3 id=&quot;positioning-directional-lights&quot;&gt;Positioning Directional Lights&lt;/h3&gt;
-
-&lt;p&gt;One property of homogeneous coordinates is that they allow you to have points at infinity (infinite length vectors), which is not possible with 3D coordinates. Points at infinity occur when $W=0$. If you try to convert a $W=0$ homogeneous coordinate into a normal $W=1$ coordinate, it results in a bunch of divide-by-zero operations:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;$$ \frac{1}{0}(2,3,4,0) = (\frac{2}{0}, \frac{3}{0}, \frac{4}{0}, \frac{0}{0})$$.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This means that homogeneous coordinates with $W=0$ can not be converted back into 3D coordinates.&lt;/p&gt;
-
-&lt;p&gt;What use does this have? Well, directional lights can be thought of as point lights that are infinitely far away. When a point light is infinitely far away, the rays of light become parallel, and all of the light travels in a single direction. This is basically the definition of a directional light.&lt;/p&gt;
-
-&lt;p&gt;So, traditionally, in 3D graphics, directional lights are differentiated from point lights by the value of $W$ in the position vector of the light. If $W=1$, then it is a point light. If $W=0$, then it is a directional light.&lt;/p&gt;
-
-&lt;p&gt;This is more of a traditional convention, rather than a useful way to write lighting code. Directional lights and point lights are usually implemented with separate code, because they behave differently.&lt;/p&gt;
-
-&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
-
-&lt;p&gt;Homogeneous coordinates have an extra dimension called $W$, which scales the $X$, $Y$, and $Z$ dimensions. Matrices for translation and perspective projection can only be applied to homogeneous coordinates, which is why they are so common in 3D computer graphics. The $X$, $Y$, and $Z$ values are said to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;correct&lt;/code&gt; when $W=1$. Any homogeneous coordinates can be converted to have $W=1$ by dividing all four dimensions by the $W$ value, except if $W=0$. When $W=0$, the coordinate represents a point at infinity (a vector with infinite length), and this is often used to denote the direction of directional lights.&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/&quot;&gt;Tomdalling’s Blog Post&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20172018/LectureNotes/MATH/homogenous.html&quot;&gt;Image Processing and Computer Vision Lecture Notes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="sticky" /><category term="featured" /><summary type="html">In this article, I'm going to explain homogeneous coordinates (a.k.a 4D coordinates) as simply as I can. We need projective geometry for that.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/home.png" /><media:content medium="image" url="http://localhost:4000/assets/images/home.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">The goal of this article is to introduce the rigid body geometry in 3-dimensional spaace: rotation matrix, transformation matrix, quaternion and Euler angle.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/rigid.png" /><media:content medium="image" url="http://localhost:4000/assets/images/rigid.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
