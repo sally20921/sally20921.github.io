@@ -1,82 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-14T15:54:35+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">All About Training GAN</title><link href="http://localhost:4000/gan.html" rel="alternate" type="text/html" title="All About Training GAN" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/gan</id><content type="html" xml:base="http://localhost:4000/gan.html">&lt;h2&gt; Generative Adversarial Networks &lt;/h2&gt;
-
-&lt;p&gt;Ultimately, if everything goes well, the generator learns the true distribution of the training data and becomes really good at generating fake images. The discriminator should not be able to distinguish between real and fake images.&lt;/p&gt;
-
-&lt;p&gt;Another way to look at the GAN setup is that the discriminator is trying to guide the generator by telling what real images look like. The two networks try to achieve what is called the Nash Equilibrium with respect to each other.&lt;/p&gt;
-
-&lt;h2&gt; Training GANs &lt;/h2&gt;
-
-&lt;p&gt;GAN networks are a dynamic system where the optimization process is seeking not a minimum, but a equilibrium between two forces. There are no good objective metrics for evaluating whether a GAN is performing well during training, e.g. reviewing the loss is not sufficient. Instead the best approach is to visually inspect the generated examples and use subjective evaluation.&lt;/p&gt;
-
-&lt;p&gt;Other quantitative measures, such as Inception Score (IS) or Frechet Inception Distance (FID) rely on pretrained models with a specific set of object classes. They lack an upper bound (which means hypothetically the highest possible score is infinity).&lt;/p&gt;
-
-&lt;h3&gt; Look at the Loss &lt;/h3&gt;
-
-&lt;p&gt;In a discriminative model,the loss measures the accuracy of the prediction and we use it to monitor the progress of training. However, the loss in GAN measures how well we are doing compared with our opponent. Often, the generator cost increases but the image quality is actually improving.&lt;/p&gt;
-
-&lt;p&gt;If you see the discriminator loss rapidly approaching, there is probably no chance of recovery and it is time to change something.&lt;/p&gt;
-
-&lt;h3&gt; Look at the Gradients &lt;/h3&gt;
-&lt;p&gt;Monitor the gradients along with the losses in the networks. These can give you a good idea about the progress of training and can even help in debugging if things are not really working well.&lt;/p&gt;
-
-&lt;p&gt;Ideally, the generator should receive large gradients early in the training because it needs to learn how to generate real-looking data. The discriminator on the other hand does not always get large gradients early on, because it can easily distinguish real and fake images.&lt;/p&gt;
-
-&lt;p&gt;If the gradients at the layer of generator are too small, learning might be slow or not happening at all. The generator should get large gradients early on and the discriminator getting consistently high gradients at the top layer once the generator has been trained enough.&lt;/p&gt;
-
-&lt;h2&gt; Detecting GAN Failure Modes &lt;/h2&gt;
-&lt;p&gt;The reason why GANs are difficult to train is that both generator and the discriminator are trained simultaneously in a zero-sum game. This means that improvements to one model come at the expense of the other model. 
-The goal of training two models involves finding a point of equilibrium between the two competing concerns. It also means that everytime the parameters of one model are updated the nature of the optimization problem that is being solved is updated as well. The technical challenge of training two competing neural networks at the same time is that they can fail to converge.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Convergence Failure&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;indent&quot;&gt; The fact that GANs are composed by two networks, and each of them has its loss function leads to GANs unstability. In GAN architecture, the discriminator tries to minimize a cross-entropy while the generator tries to maximize it. When discriminator confidence is high and the discriminator starts to reject the samples that are produced by the generator, generator's gradient vanishes. 
-
-This scenario happens when the generator score reaches near zero and the discriminator score reaches near one. The discriminator is overpowering the generator. If the score does not recover from these values for many iterations, it is better to stop training. &lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Mode Collapse&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;indent&quot;&gt; Mode collapse is when the GAN produces a small variety of images with many duplicates. This happens when the generator is unable to learn a rich feature representation because  it learns to associate similar outputs to multiple different inputs. The most promising way to check for mode collapse is to inspect the generated images. If there is little diversity in the output and some of them are almost identical, there is likely mode collapse. If you observe this happening, you should try to increase the ability of the generator to create more diverse outputs or impair the discriminator by randomly giving false labels to real images.
-
-Another type of behavior you should look out for is when the generator oscillates between generating specific examples in the domain. They progress from generating one kind of sample to generating another kind of sample without eventually reaching equilibrium.
-&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Diminisheed Gradient&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;indent&quot;&gt; This situation happens when the discriminator gets too successful that the generator gradient vanishes and learns nothing.
-
-&lt;!--more--&gt;
-&lt;h2&gt; Lessons I Learned &lt;/h2&gt;
-&lt;div class=&quot;theorem&quot;&gt; Use a batch size smaller than or equal to 64.&lt;/div&gt;
-&lt;div class=&quot;indent&quot;&gt; In my experience, using bigger batch sizes often hurt the performance. I suspect it fuels the problem of discriminator getting too good at discriminating the real and fake images, since large batch size means providing a lot of examples to train on. &lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt; Add noise to both real and synthetic data. &lt;/div&gt;
-&lt;div class=&quot;indent&quot;&gt; It is well known that making the training of discriminator more difficult is beneficial for the overall stability. Adding noise increases the complexity of the discriminator training and stabilizes the data distribution of the two competing networks. &lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt; Use Label Smoothing &lt;/div&gt;
-&lt;div class=&quot;indent&quot;&gt; If the label for real images is set to 1, change it to a lower value like 0.9. This solution discourages the discriminator from being overconfident. &lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt; Different learning rates for the generator and discriminator a.k.a. Two Time-Scale Update Rule &lt;/div&gt;
-&lt;div class=&quot;indent&quot;&gt; In my experience, choosing a higher learning rate for the discriminator(i.e. 0.0004) and a lower one(i.e. 0.0001) for the generator works well in practice. I guess the reason is that the generator has to make small steps to fool the discriminator so it does not choose fast but not precise solutions to win the adversarial game. &lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt; Use some kind of normalization method &lt;/div&gt;
-&lt;div class=&quot;indent&quot;&gt; For me, applying Spectral Normalization, a particular kind of normalization applied on the convolutional kernels, greatly helped the stability of training.&lt;/div&gt;
-
-&lt;blockquote&gt; I learned that hyperparameter tuning takes a lot of time and patience especially for training GANs. &lt;/blockquote&gt;
-
-&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
-
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/div&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">Generative Adversarial Networks Ultimately, if everything goes well, the generator learns the true distribution of the training data and becomes really good at generating fake images. The discriminator should not be able to distinguish between real and fake images. Another way to look at the GAN setup is that the discriminator is trying to guide the generator by telling what real images look like. The two networks try to achieve what is called the Nash Equilibrium with respect to each other. Training GANs GAN networks are a dynamic system where the optimization process is seeking not a minimum, but a equilibrium between two forces. There are no good objective metrics for evaluating whether a GAN is performing well during training, e.g. reviewing the loss is not sufficient. Instead the best approach is to visually inspect the generated examples and use subjective evaluation. Other quantitative measures, such as Inception Score (IS) or Frechet Inception Distance (FID) rely on pretrained models with a specific set of object classes. They lack an upper bound (which means hypothetically the highest possible score is infinity). Look at the Loss In a discriminative model,the loss measures the accuracy of the prediction and we use it to monitor the progress of training. However, the loss in GAN measures how well we are doing compared with our opponent. Often, the generator cost increases but the image quality is actually improving. If you see the discriminator loss rapidly approaching, there is probably no chance of recovery and it is time to change something. Look at the Gradients Monitor the gradients along with the losses in the networks. These can give you a good idea about the progress of training and can even help in debugging if things are not really working well. Ideally, the generator should receive large gradients early in the training because it needs to learn how to generate real-looking data. The discriminator on the other hand does not always get large gradients early on, because it can easily distinguish real and fake images. If the gradients at the layer of generator are too small, learning might be slow or not happening at all. The generator should get large gradients early on and the discriminator getting consistently high gradients at the top layer once the generator has been trained enough. Detecting GAN Failure Modes The reason why GANs are difficult to train is that both generator and the discriminator are trained simultaneously in a zero-sum game. This means that improvements to one model come at the expense of the other model. The goal of training two models involves finding a point of equilibrium between the two competing concerns. It also means that everytime the parameters of one model are updated the nature of the optimization problem that is being solved is updated as well. The technical challenge of training two competing neural networks at the same time is that they can fail to converge. Convergence Failure The fact that GANs are composed by two networks, and each of them has its loss function leads to GANs unstability. In GAN architecture, the discriminator tries to minimize a cross-entropy while the generator tries to maximize it. When discriminator confidence is high and the discriminator starts to reject the samples that are produced by the generator, generator's gradient vanishes. This scenario happens when the generator score reaches near zero and the discriminator score reaches near one. The discriminator is overpowering the generator. If the score does not recover from these values for many iterations, it is better to stop training. Mode Collapse Mode collapse is when the GAN produces a small variety of images with many duplicates. This happens when the generator is unable to learn a rich feature representation because it learns to associate similar outputs to multiple different inputs. The most promising way to check for mode collapse is to inspect the generated images. If there is little diversity in the output and some of them are almost identical, there is likely mode collapse. If you observe this happening, you should try to increase the ability of the generator to create more diverse outputs or impair the discriminator by randomly giving false labels to real images. Another type of behavior you should look out for is when the generator oscillates between generating specific examples in the domain. They progress from generating one kind of sample to generating another kind of sample without eventually reaching equilibrium. Diminisheed Gradient This situation happens when the discriminator gets too successful that the generator gradient vanishes and learns nothing.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/gan.png" /><media:content medium="image" url="http://localhost:4000/assets/images/gan.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Image Processing: the Basics</title><link href="http://localhost:4000/template.html" rel="alternate" type="text/html" title="Image Processing: the Basics" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/template</id><content type="html" xml:base="http://localhost:4000/template.html">&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
-
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">References &amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dissecting the Camera Matrix (Part 2)</title><link href="http://localhost:4000/extrinsic.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 2)" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/extrinsic</id><content type="html" xml:base="http://localhost:4000/extrinsic.html">&lt;!--more--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-14T16:10:22+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Dissecting the Camera Matrix (Part 2)</title><link href="http://localhost:4000/extrinsic.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 2)" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/extrinsic</id><content type="html" xml:base="http://localhost:4000/extrinsic.html">&lt;!--more--&gt;
 
 &lt;picture&gt;&lt;img src=&quot;/assets/images/cali.png&quot; /&gt;&lt;/picture&gt;
 &lt;div class=&quot;caption&quot;&gt; Overview of the Camera Calibration Parameters &lt;/div&gt;
@@ -180,7 +102,81 @@ t = -RC
 &lt;ul&gt; 
 &lt;li&gt;&lt;a href=&quot;https://ksimek.github.io/2012/08/14/decompose/&quot;&gt; ksimek blog &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://prateekvjoshi.com/2014/05/31/understanding-camera-calibration/&quot;&gt; prateekvjoshi blog &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This is the second part of our journey to master the camera matrix. In this blog post, we will study the extrinsic camera parameters. Extrinsic matrix describes the camera's location in the world.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/extrinsic.png" /><media:content medium="image" url="http://localhost:4000/assets/images/extrinsic.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Advanced PyTorch: Things You Didn’t Know</title><link href="http://localhost:4000/pytorch.html" rel="alternate" type="text/html" title="Advanced PyTorch: Things You Didn’t Know" /><published>2021-09-12T00:00:00+09:00</published><updated>2021-09-12T00:00:00+09:00</updated><id>http://localhost:4000/pytorch</id><content type="html" xml:base="http://localhost:4000/pytorch.html">&lt;!--more--&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This is the second part of our journey to master the camera matrix. In this blog post, we will study the extrinsic camera parameters. Extrinsic matrix describes the camera's location in the world.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/extrinsic.png" /><media:content medium="image" url="http://localhost:4000/assets/images/extrinsic.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">All About Training GAN</title><link href="http://localhost:4000/gan.html" rel="alternate" type="text/html" title="All About Training GAN" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/gan</id><content type="html" xml:base="http://localhost:4000/gan.html">&lt;h2&gt; Generative Adversarial Networks &lt;/h2&gt;
+
+&lt;p&gt;Ultimately, if everything goes well, the generator learns the true distribution of the training data and becomes really good at generating fake images. The discriminator should not be able to distinguish between real and fake images.&lt;/p&gt;
+
+&lt;p&gt;Another way to look at the GAN setup is that the discriminator is trying to guide the generator by telling what real images look like. The two networks try to achieve what is called the Nash Equilibrium with respect to each other.&lt;/p&gt;
+
+&lt;h2&gt; Training GANs &lt;/h2&gt;
+
+&lt;p&gt;GAN networks are a dynamic system where the optimization process is seeking not a minimum, but a equilibrium between two forces. There are no good objective metrics for evaluating whether a GAN is performing well during training, e.g. reviewing the loss is not sufficient. Instead the best approach is to visually inspect the generated examples and use subjective evaluation.&lt;/p&gt;
+
+&lt;p&gt;Other quantitative measures, such as Inception Score (IS) or Frechet Inception Distance (FID) rely on pretrained models with a specific set of object classes. They lack an upper bound (which means hypothetically the highest possible score is infinity).&lt;/p&gt;
+
+&lt;h3&gt; Look at the Loss &lt;/h3&gt;
+
+&lt;p&gt;In a discriminative model,the loss measures the accuracy of the prediction and we use it to monitor the progress of training. However, the loss in GAN measures how well we are doing compared with our opponent. Often, the generator cost increases but the image quality is actually improving.&lt;/p&gt;
+
+&lt;p&gt;If you see the discriminator loss rapidly approaching, there is probably no chance of recovery and it is time to change something.&lt;/p&gt;
+
+&lt;h3&gt; Look at the Gradients &lt;/h3&gt;
+&lt;p&gt;Monitor the gradients along with the losses in the networks. These can give you a good idea about the progress of training and can even help in debugging if things are not really working well.&lt;/p&gt;
+
+&lt;p&gt;Ideally, the generator should receive large gradients early in the training because it needs to learn how to generate real-looking data. The discriminator on the other hand does not always get large gradients early on, because it can easily distinguish real and fake images.&lt;/p&gt;
+
+&lt;p&gt;If the gradients at the layer of generator are too small, learning might be slow or not happening at all. The generator should get large gradients early on and the discriminator getting consistently high gradients at the top layer once the generator has been trained enough.&lt;/p&gt;
+
+&lt;h2&gt; Detecting GAN Failure Modes &lt;/h2&gt;
+&lt;p&gt;The reason why GANs are difficult to train is that both generator and the discriminator are trained simultaneously in a zero-sum game. This means that improvements to one model come at the expense of the other model. 
+The goal of training two models involves finding a point of equilibrium between the two competing concerns. It also means that everytime the parameters of one model are updated the nature of the optimization problem that is being solved is updated as well. The technical challenge of training two competing neural networks at the same time is that they can fail to converge.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Convergence Failure&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;indent&quot;&gt; The fact that GANs are composed by two networks, and each of them has its loss function leads to GANs unstability. In GAN architecture, the discriminator tries to minimize a cross-entropy while the generator tries to maximize it. When discriminator confidence is high and the discriminator starts to reject the samples that are produced by the generator, generator's gradient vanishes. 
+
+This scenario happens when the generator score reaches near zero and the discriminator score reaches near one. The discriminator is overpowering the generator. If the score does not recover from these values for many iterations, it is better to stop training. &lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Mode Collapse&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;indent&quot;&gt; Mode collapse is when the GAN produces a small variety of images with many duplicates. This happens when the generator is unable to learn a rich feature representation because  it learns to associate similar outputs to multiple different inputs. The most promising way to check for mode collapse is to inspect the generated images. If there is little diversity in the output and some of them are almost identical, there is likely mode collapse. If you observe this happening, you should try to increase the ability of the generator to create more diverse outputs or impair the discriminator by randomly giving false labels to real images.
+
+Another type of behavior you should look out for is when the generator oscillates between generating specific examples in the domain. They progress from generating one kind of sample to generating another kind of sample without eventually reaching equilibrium.
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Diminisheed Gradient&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;indent&quot;&gt; This situation happens when the discriminator gets too successful that the generator gradient vanishes and learns nothing.
+
+&lt;!--more--&gt;
+&lt;h2&gt; Lessons I Learned &lt;/h2&gt;
+&lt;div class=&quot;theorem&quot;&gt; Use a batch size smaller than or equal to 64.&lt;/div&gt;
+&lt;div class=&quot;indent&quot;&gt; In my experience, using bigger batch sizes often hurt the performance. I suspect it fuels the problem of discriminator getting too good at discriminating the real and fake images, since large batch size means providing a lot of examples to train on. &lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt; Add noise to both real and synthetic data. &lt;/div&gt;
+&lt;div class=&quot;indent&quot;&gt; It is well known that making the training of discriminator more difficult is beneficial for the overall stability. Adding noise increases the complexity of the discriminator training and stabilizes the data distribution of the two competing networks. &lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt; Use Label Smoothing &lt;/div&gt;
+&lt;div class=&quot;indent&quot;&gt; If the label for real images is set to 1, change it to a lower value like 0.9. This solution discourages the discriminator from being overconfident. &lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt; Different learning rates for the generator and discriminator a.k.a. Two Time-Scale Update Rule &lt;/div&gt;
+&lt;div class=&quot;indent&quot;&gt; In my experience, choosing a higher learning rate for the discriminator(i.e. 0.0004) and a lower one(i.e. 0.0001) for the generator works well in practice. I guess the reason is that the generator has to make small steps to fool the discriminator so it does not choose fast but not precise solutions to win the adversarial game. &lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt; Use some kind of normalization method &lt;/div&gt;
+&lt;div class=&quot;indent&quot;&gt; For me, applying Spectral Normalization, a particular kind of normalization applied on the convolutional kernels, greatly helped the stability of training.&lt;/div&gt;
+
+&lt;blockquote&gt; I learned that hyperparameter tuning takes a lot of time and patience especially for training GANs. &lt;/blockquote&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">Generative Adversarial Networks Ultimately, if everything goes well, the generator learns the true distribution of the training data and becomes really good at generating fake images. The discriminator should not be able to distinguish between real and fake images. Another way to look at the GAN setup is that the discriminator is trying to guide the generator by telling what real images look like. The two networks try to achieve what is called the Nash Equilibrium with respect to each other. Training GANs GAN networks are a dynamic system where the optimization process is seeking not a minimum, but a equilibrium between two forces. There are no good objective metrics for evaluating whether a GAN is performing well during training, e.g. reviewing the loss is not sufficient. Instead the best approach is to visually inspect the generated examples and use subjective evaluation. Other quantitative measures, such as Inception Score (IS) or Frechet Inception Distance (FID) rely on pretrained models with a specific set of object classes. They lack an upper bound (which means hypothetically the highest possible score is infinity). Look at the Loss In a discriminative model,the loss measures the accuracy of the prediction and we use it to monitor the progress of training. However, the loss in GAN measures how well we are doing compared with our opponent. Often, the generator cost increases but the image quality is actually improving. If you see the discriminator loss rapidly approaching, there is probably no chance of recovery and it is time to change something. Look at the Gradients Monitor the gradients along with the losses in the networks. These can give you a good idea about the progress of training and can even help in debugging if things are not really working well. Ideally, the generator should receive large gradients early in the training because it needs to learn how to generate real-looking data. The discriminator on the other hand does not always get large gradients early on, because it can easily distinguish real and fake images. If the gradients at the layer of generator are too small, learning might be slow or not happening at all. The generator should get large gradients early on and the discriminator getting consistently high gradients at the top layer once the generator has been trained enough. Detecting GAN Failure Modes The reason why GANs are difficult to train is that both generator and the discriminator are trained simultaneously in a zero-sum game. This means that improvements to one model come at the expense of the other model. The goal of training two models involves finding a point of equilibrium between the two competing concerns. It also means that everytime the parameters of one model are updated the nature of the optimization problem that is being solved is updated as well. The technical challenge of training two competing neural networks at the same time is that they can fail to converge. Convergence Failure The fact that GANs are composed by two networks, and each of them has its loss function leads to GANs unstability. In GAN architecture, the discriminator tries to minimize a cross-entropy while the generator tries to maximize it. When discriminator confidence is high and the discriminator starts to reject the samples that are produced by the generator, generator's gradient vanishes. This scenario happens when the generator score reaches near zero and the discriminator score reaches near one. The discriminator is overpowering the generator. If the score does not recover from these values for many iterations, it is better to stop training. Mode Collapse Mode collapse is when the GAN produces a small variety of images with many duplicates. This happens when the generator is unable to learn a rich feature representation because it learns to associate similar outputs to multiple different inputs. The most promising way to check for mode collapse is to inspect the generated images. If there is little diversity in the output and some of them are almost identical, there is likely mode collapse. If you observe this happening, you should try to increase the ability of the generator to create more diverse outputs or impair the discriminator by randomly giving false labels to real images. Another type of behavior you should look out for is when the generator oscillates between generating specific examples in the domain. They progress from generating one kind of sample to generating another kind of sample without eventually reaching equilibrium. Diminisheed Gradient This situation happens when the discriminator gets too successful that the generator gradient vanishes and learns nothing.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/gan.png" /><media:content medium="image" url="http://localhost:4000/assets/images/gan.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Advanced PyTorch: Things You Didn’t Know</title><link href="http://localhost:4000/pytorch.html" rel="alternate" type="text/html" title="Advanced PyTorch: Things You Didn’t Know" /><published>2021-09-12T00:00:00+09:00</published><updated>2021-09-12T00:00:00+09:00</updated><id>http://localhost:4000/pytorch</id><content type="html" xml:base="http://localhost:4000/pytorch.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Flatten Operation for a Batch of Image Inputs to a CNN 
 &lt;/h2&gt;
@@ -670,151 +666,7 @@ $$
 &lt;h5&gt; Volume of a parallelpiped &lt;/h5&gt; 
 &lt;h5&gt; Sign and absolute value of the determinant &lt;/h5&gt;
 Calculating determinants can produce positive or negative numbers. 
-&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="linear algebra" /><category term="featured" /><summary type="html">This article goes through the fundamentals of linear algebra. Linear algebra is the branch of mathematics concerning linear equations and their representations in vector spaces. This ultimate guide will prove very useful or understanding deep learning techniques.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/linear.png" /><media:content medium="image" url="http://localhost:4000/assets/images/linear.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dense 3D Point Cloud Representation of a Scene Using Uncalibrated Monocular Vision</title><link href="http://localhost:4000/point-cloud.html" rel="alternate" type="text/html" title="Dense 3D Point Cloud Representation of a Scene Using Uncalibrated Monocular Vision" /><published>2021-09-09T00:00:00+09:00</published><updated>2021-09-09T00:00:00+09:00</updated><id>http://localhost:4000/point-cloud</id><content type="html" xml:base="http://localhost:4000/point-cloud.html">&lt;h2&gt; Introduction &lt;/h2&gt;
-&lt;p&gt;In this blog post, we describe the challenges and existing solutions within the research community regarding reconstructing of a scene using a single camera. Imagery is affected by a variety of components. From the electro-optic sensors to the image resolution, contrast, exposure and blurriness variables, all add to the complexity of analyzing a scene and processing the imagery.&lt;/p&gt;
-
-&lt;h2&gt; Monocular Vision &lt;/h2&gt;
-&lt;p&gt;Traditional stereoscopy systems, such as human visual system, utilize multiple viewing angles of the same object in order to do triangulation and get a depth perception. Monocular vision, better described as vision through a single camera source, presents new challenges when compared to stereo vision or a multi-camera system. In a stereo system, similar to human vision, distances between the cameras (the baseline) and their orientation is known and in most circumstances remains constant. In order to generate various viewing angles with a monocular system, the camera must continuously be moving. With a moving camera, the system obtains two different viewing angles form two points in time. The challenge becomes to accurately compute the distance the camera has traveled or the exact location of the camera at each frame of video. In addition, the orientation of the camera at each point in time must be computed from the scene.&lt;/p&gt;
-
-&lt;h2&gt; Visual Structure from Motion &lt;/h2&gt;
-&lt;p&gt;In his work, Wu et al. describes the methodology of Visual Structure from Motion as following. Using a set of image feature locations and correspondences, the goal of bundle adjustment is to find 3D point positions and camera parameters that minimize the re-projection error. This optimization problem is constructed as a non-linear least squares problem, where the error is the squared $L_2$ norm of the difference between the observed feature location and the projection of the corresponding 3D point on the image plane of the camera.&lt;/p&gt;
-
-&lt;p&gt;Wu explains by letting $x$ be a vector of parameters and $f(x) = [f_1(x), /dots, f_k(x)]$ be the vector of residual errors for 3D reconstruction. Then the optimization problem he wishes to solve is the non-linear least squares problem shown in the below equation.
-\(x* = \argmin_{x} \sum_{i=1}^{k} \lVert f_i(x) \rVert^2\)&lt;/p&gt;
-
-&lt;p&gt;The Levenberg-Marquardt (LM) algorithm is an extremely popular algorithm for solving non-linear least squares problems and is the algorithm choice for bundle adjustment. LM operates by computing a series of regularized linear approximations to the original nonlinear problem. Let $J(x)$ be the Jacobian of $f(x)$, then in each iteration LM solves a linear least squares problem of the form
-\(\delta* = \argmin_{\delta} \lVert J(x)\delta + f(x) \rVert^2 + \lambda \lVert D(x) \delta \rVert^2\)
-and updates $x \lefta.rrow x + \delta&lt;em&gt;$ if $\lVert f(x+\delta&lt;/em&gt;)\rVert &amp;lt; \lVert f(x) \rVert$. Here $D(x)$ is a non-negative diagonal matrix, typically the square root of the diagonal of the matrix $J(x)^TJ(x)$ and $\lambda$ is a nonnegative parameter that controls the strength of regularization. Wu explains that the regularization is needed to ensure a convergent algorithm. LM updates the value of $\lambda$ at each step based on how well the Jacobian $J(x)$ approximates $f(x)$.&lt;/p&gt;
-
-&lt;h2&gt; SIFT Features &lt;/h2&gt;
-
-&lt;p&gt;The SIFT algorithm can be broken down into four main stages:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;scale-space peak selection&lt;/li&gt;
-  &lt;li&gt;point localization&lt;/li&gt;
-  &lt;li&gt;orientation assignment&lt;/li&gt;
-  &lt;li&gt;point descriptor
-The first stage is to search for interest points over location and scale. The image is constructed in a Gaussian Pyramid, where the image is downsampled and blurred at each level. These blurred images at each level are used to compute the Difference of Gaussians (DoG), which locate edges and corners within an image. Interesting points are then extracted in stage 2 by locating the maxima/minimal pixels within different scales of DoG at sub-pixel accuracy. Once interest points have been located, an orientation is assigned based on the gradient orientation of the pixels around the interest point.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Once orientation and scale have been addressed, the final stage is the generation of point descriptors.&lt;/p&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">Introduction In this blog post, we describe the challenges and existing solutions within the research community regarding reconstructing of a scene using a single camera. Imagery is affected by a variety of components. From the electro-optic sensors to the image resolution, contrast, exposure and blurriness variables, all add to the complexity of analyzing a scene and processing the imagery. Monocular Vision Traditional stereoscopy systems, such as human visual system, utilize multiple viewing angles of the same object in order to do triangulation and get a depth perception. Monocular vision, better described as vision through a single camera source, presents new challenges when compared to stereo vision or a multi-camera system. In a stereo system, similar to human vision, distances between the cameras (the baseline) and their orientation is known and in most circumstances remains constant. In order to generate various viewing angles with a monocular system, the camera must continuously be moving. With a moving camera, the system obtains two different viewing angles form two points in time. The challenge becomes to accurately compute the distance the camera has traveled or the exact location of the camera at each frame of video. In addition, the orientation of the camera at each point in time must be computed from the scene. Visual Structure from Motion In his work, Wu et al. describes the methodology of Visual Structure from Motion as following. Using a set of image feature locations and correspondences, the goal of bundle adjustment is to find 3D point positions and camera parameters that minimize the re-projection error. This optimization problem is constructed as a non-linear least squares problem, where the error is the squared $L_2$ norm of the difference between the observed feature location and the projection of the corresponding 3D point on the image plane of the camera. Wu explains by letting $x$ be a vector of parameters and $f(x) = [f_1(x), /dots, f_k(x)]$ be the vector of residual errors for 3D reconstruction. Then the optimization problem he wishes to solve is the non-linear least squares problem shown in the below equation. \(x* = \argmin_{x} \sum_{i=1}^{k} \lVert f_i(x) \rVert^2\) The Levenberg-Marquardt (LM) algorithm is an extremely popular algorithm for solving non-linear least squares problems and is the algorithm choice for bundle adjustment. LM operates by computing a series of regularized linear approximations to the original nonlinear problem. Let $J(x)$ be the Jacobian of $f(x)$, then in each iteration LM solves a linear least squares problem of the form \(\delta* = \argmin_{\delta} \lVert J(x)\delta + f(x) \rVert^2 + \lambda \lVert D(x) \delta \rVert^2\) and updates $x \lefta.rrow x + \delta$ if $\lVert f(x+\delta)\rVert &amp;lt; \lVert f(x) \rVert$. Here $D(x)$ is a non-negative diagonal matrix, typically the square root of the diagonal of the matrix $J(x)^TJ(x)$ and $\lambda$ is a nonnegative parameter that controls the strength of regularization. Wu explains that the regularization is needed to ensure a convergent algorithm. LM updates the value of $\lambda$ at each step based on how well the Jacobian $J(x)$ approximates $f(x)$. SIFT Features The SIFT algorithm can be broken down into four main stages: scale-space peak selection point localization orientation assignment point descriptor The first stage is to search for interest points over location and scale. The image is constructed in a Gaussian Pyramid, where the image is downsampled and blurred at each level. These blurred images at each level are used to compute the Difference of Gaussians (DoG), which locate edges and corners within an image. Interesting points are then extracted in stage 2 by locating the maxima/minimal pixels within different scales of DoG at sub-pixel accuracy. Once interest points have been located, an orientation is assigned based on the gradient orientation of the pixels around the interest point. Once orientation and scale have been addressed, the final stage is the generation of point descriptors.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/cnn.png" /><media:content medium="image" url="http://localhost:4000/assets/images/cnn.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth Estimation - An Introduction</title><link href="http://localhost:4000/depth-intro.html" rel="alternate" type="text/html" title="Depth Estimation - An Introduction" /><published>2021-09-09T00:00:00+09:00</published><updated>2021-09-09T00:00:00+09:00</updated><id>http://localhost:4000/depth-intro</id><content type="html" xml:base="http://localhost:4000/depth-intro.html">&lt;h3&gt; Paradigms for 3D Images Representation over a Plane &lt;/h3&gt;
-&lt;p&gt;As we saw in the previous section, the projection onto a plane forces the loss of the depth dimension of the scene. However, the depth information should be able to be represented in a plane, for printing purposes, for example.&lt;/p&gt;
-
-&lt;p&gt;There are three widely used modes for depth representation:&lt;/p&gt;
-&lt;ul&gt;&lt;li&gt; Gray scale 2.5D representation. This paradigm uses the gray scale intensity to represent the depth of each pixel in the image. Thus, the color, texture and luminosity of the original image are lost in this representation. The name &quot;2.5D&quot; refers to the fact that this kind of images has the depth information directly in each pixel, while it is represented over a 2D space. In this paradigm, the gray level represents the inverse of the distance. Thus, more a pixel is bright, closer is the point represented. Vice versa, the darker is a pixel, further is the represented point. This is most commonly used way for depth representation. &lt;/li&gt;
-&lt;li&gt; Color 2.5D representation. This representation is similar to the previous one. The difference is the use of colors to represent depth. In the following image, red-black colors represent closer points, and blue-dark colors the further points. However, other color representations are available in the literature. &lt;/li&gt;
-&lt;li&gt; Pseudo-3D representation. This representation provides different points of view of the reconstructed space. &lt;/li&gt;
-
-The main advantage of the first two methods is the possibility of implementing objective comparison among algorithms, as it is done in the Middlebury database and test system. 
-
-&lt;h3&gt; Important terms and issues in depth estimation &lt;/h3&gt;
-The depth estimation world is quite complex research field, where many techniques and setups have been proposed. The set of algorithms which solve the depth map estimation problem deals with many different mathematical concepts which should be briefly explained for a minimum overall comprehension of the matter. In this section, we will review some important points about image processing applied to depth estimation.
-
-&lt;h4&gt; Standard Test Beds &lt;/h4&gt;
-The availability of common tests and comparable results is a mandatory constraint in active and widely explored fields. Likewise, the possibility of objective comparisons make easier to classify different proposals.
-
-In depth estimation, and more specifically in stereo vision, one of the most important test bed is the Middlebury database and test bed. The test beds provides both eyes images of a 3D scene, as well as the ground truth map. The same test allow, as said, algorithms classification.
-
-&lt;h4&gt; Color or Grayscale Images? &lt;/h4&gt;
-The first point when we want to process an image, whichever is the goal, is to decide what to process. In this case, color or grayscale images. As it can be seen in the following figure, color images have much more information than gray scale images. Color images should, hence, be more appropriate for data extraction, among them, depth information. 
-
-However, the color images have an important disadvantage: for a 256 level definition, they are represented by 3 bytes (24-bit representation), while grayscale images with the same level only require one single byte. The consequence is obvious: color image processing requires much more time and operations.
-
-&lt;h4&gt; The Epipolar Geometry &lt;/h4&gt;
-When dealing with stereo vision setups, we have to face the epipolar geometry problem. Let $C_l$ and $C_r$ be the focal centers of the left and right sensors (or eyes), and $L$ and $R$ the left and right image planes. Finally, $P$ will be a physical point of the scene and $p_l$ and $p_r$ the projections of $P$ over $L$ and $R$, respectively. 
-
-&lt;picture&gt;
-&lt;img src=&quot;/assets/images/epipolar.png&quot; /&gt;
-&lt;/picture&gt;
-
-In this figure, we can also see both &quot;epipoles&quot;, i.e., the points where the line connecting both focal centers intersect the image planes. They are noted as $e_l$ and $e_r$.
-
-The geometrical properties of this setup force that every point of the line $Pp_l$ lies on the line $p_re_r$ which is called &quot;epipole line&quot;. The correspondence ofa poitn seen in one image must be searched in the corresponding epipolar line in the other one. A simplified version of the geometry arise when the image planes are parallel. This is the base of the so-called fronto-parallel hypothesis.
-
-&lt;h4&gt; The Fronto-Parallel Hypothesis &lt;/h4&gt;
-The epipolar geometry of two sensors can be simplified, as said, positioning both planes parallel, arriving to the following setup:
-
-&lt;picture&gt;
-&lt;img src=&quot;/assets/images/fronto.png&quot; /&gt;
-&lt;/picture&gt;
-
-The epipoles are placed in the infinite, and the epipolar (and search) lines become horizontal. The point (except the occluded ones) are only decaled horizontally. 
-
-This geometrical setup can be implemented by properly orienting the sensors, or by means of mathematical transformation fo the original images. If the last option is the case, the result is called &quot;rectified image&quot;. 
-
-The most important consequences of this geometry, regarding the Cartesian plane can be written as follows:
-&lt;ul&gt;&lt;li&gt; $y_l = y_r$. The height of a physical point is the same in both images. &lt;/li&gt;
-&lt;li&gt; $x_l = x_r + \nabla d$. The abcissa of a physical point is decaled by the so-called &lt;span class=&quot;blue&quot;&gt; parallax &lt;/span&gt; or &lt;span class=&quot;blue&quot;&gt; disparity &lt;/span&gt;, which is inversely related to the depth. &lt;/li&gt;
-&lt;li&gt; A point in the infinite has identical abscissa coordinates in both image planes. &lt;/li&gt;&lt;/ul&gt;
-
-&lt;h4&gt; Matching &lt;/h4&gt;
-When different viewpoints from the same scene are compared, a further problem arises that is associated with the mutual identification of images. The solution to this problem is commonly referrred to as matching. The matching process consists of identifying each physical points within different images. However, matching techniques are not only used in stereo or multivision procedures but also widely used for image retrieval or fingerprint identification where it is important to allow rotational and scalar distortions.
-
-There are also various constraints that are generally satisfied by true matches thus simplifying the depth estimation algorithm, such as similarity, smoothness, ordering and uniqueness. 
-
-As we will see, the matching process is a conceptual approach to identify similar characteristics in different images. It is, then, subjected to errors. The matching is, hence, implemented by means of comparators allowing different identification strategies such as minimum square errors (MSE), sum of absolute differences (SAD) or sum of squared differences (SSD). The characteristic compared through the matching process can be anything quantifiable. Thus, we will see algorithms matching points, edges, regions or other image cues. 
-
-
-
-
-
-
-
-
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt; 
-&lt;li&gt;&lt;a href=&quot;https://ksimek.github.io/2012/08/14/decompose/&quot;&gt; ksimek blog &lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://prateekvjoshi.com/2014/05/31/understanding-camera-calibration/&quot;&gt; prateekvjoshi blog &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">Paradigms for 3D Images Representation over a Plane As we saw in the previous section, the projection onto a plane forces the loss of the depth dimension of the scene. However, the depth information should be able to be represented in a plane, for printing purposes, for example. There are three widely used modes for depth representation: Gray scale 2.5D representation. This paradigm uses the gray scale intensity to represent the depth of each pixel in the image. Thus, the color, texture and luminosity of the original image are lost in this representation. The name &quot;2.5D&quot; refers to the fact that this kind of images has the depth information directly in each pixel, while it is represented over a 2D space. In this paradigm, the gray level represents the inverse of the distance. Thus, more a pixel is bright, closer is the point represented. Vice versa, the darker is a pixel, further is the represented point. This is most commonly used way for depth representation. Color 2.5D representation. This representation is similar to the previous one. The difference is the use of colors to represent depth. In the following image, red-black colors represent closer points, and blue-dark colors the further points. However, other color representations are available in the literature. Pseudo-3D representation. This representation provides different points of view of the reconstructed space. The main advantage of the first two methods is the possibility of implementing objective comparison among algorithms, as it is done in the Middlebury database and test system. Important terms and issues in depth estimation The depth estimation world is quite complex research field, where many techniques and setups have been proposed. The set of algorithms which solve the depth map estimation problem deals with many different mathematical concepts which should be briefly explained for a minimum overall comprehension of the matter. In this section, we will review some important points about image processing applied to depth estimation. Standard Test Beds The availability of common tests and comparable results is a mandatory constraint in active and widely explored fields. Likewise, the possibility of objective comparisons make easier to classify different proposals. In depth estimation, and more specifically in stereo vision, one of the most important test bed is the Middlebury database and test bed. The test beds provides both eyes images of a 3D scene, as well as the ground truth map. The same test allow, as said, algorithms classification. Color or Grayscale Images? The first point when we want to process an image, whichever is the goal, is to decide what to process. In this case, color or grayscale images. As it can be seen in the following figure, color images have much more information than gray scale images. Color images should, hence, be more appropriate for data extraction, among them, depth information. However, the color images have an important disadvantage: for a 256 level definition, they are represented by 3 bytes (24-bit representation), while grayscale images with the same level only require one single byte. The consequence is obvious: color image processing requires much more time and operations. The Epipolar Geometry When dealing with stereo vision setups, we have to face the epipolar geometry problem. Let $C_l$ and $C_r$ be the focal centers of the left and right sensors (or eyes), and $L$ and $R$ the left and right image planes. Finally, $P$ will be a physical point of the scene and $p_l$ and $p_r$ the projections of $P$ over $L$ and $R$, respectively. In this figure, we can also see both &quot;epipoles&quot;, i.e., the points where the line connecting both focal centers intersect the image planes. They are noted as $e_l$ and $e_r$. The geometrical properties of this setup force that every point of the line $Pp_l$ lies on the line $p_re_r$ which is called &quot;epipole line&quot;. The correspondence ofa poitn seen in one image must be searched in the corresponding epipolar line in the other one. A simplified version of the geometry arise when the image planes are parallel. This is the base of the so-called fronto-parallel hypothesis. The Fronto-Parallel Hypothesis The epipolar geometry of two sensors can be simplified, as said, positioning both planes parallel, arriving to the following setup: The epipoles are placed in the infinite, and the epipolar (and search) lines become horizontal. The point (except the occluded ones) are only decaled horizontally. This geometrical setup can be implemented by properly orienting the sensors, or by means of mathematical transformation fo the original images. If the last option is the case, the result is called &quot;rectified image&quot;. The most important consequences of this geometry, regarding the Cartesian plane can be written as follows: $y_l = y_r$. The height of a physical point is the same in both images. $x_l = x_r + \nabla d$. The abcissa of a physical point is decaled by the so-called parallax or disparity , which is inversely related to the depth. A point in the infinite has identical abscissa coordinates in both image planes. Matching When different viewpoints from the same scene are compared, a further problem arises that is associated with the mutual identification of images. The solution to this problem is commonly referrred to as matching. The matching process consists of identifying each physical points within different images. However, matching techniques are not only used in stereo or multivision procedures but also widely used for image retrieval or fingerprint identification where it is important to allow rotational and scalar distortions. There are also various constraints that are generally satisfied by true matches thus simplifying the depth estimation algorithm, such as similarity, smoothness, ordering and uniqueness. As we will see, the matching process is a conceptual approach to identify similar characteristics in different images. It is, then, subjected to errors. The matching is, hence, implemented by means of comparators allowing different identification strategies such as minimum square errors (MSE), sum of absolute differences (SAD) or sum of squared differences (SSD). The characteristic compared through the matching process can be anything quantifiable. Thus, we will see algorithms matching points, edges, regions or other image cues. References ksimek blog prateekvjoshi blog</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/camera/camera.jpeg" /><media:content medium="image" url="http://localhost:4000/assets/images/camera/camera.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Packing for Self-Supervised Depth Estimation</title><link href="http://localhost:4000/3d-packing.html" rel="alternate" type="text/html" title="3D Packing for Self-Supervised Depth Estimation" /><published>2021-09-09T00:00:00+09:00</published><updated>2021-09-09T00:00:00+09:00</updated><id>http://localhost:4000/3d-packing</id><content type="html" xml:base="http://localhost:4000/3d-packing.html">&lt;h2&gt; Self-Supervised Scale-Aware SfM &lt;/h2&gt;
-
-&lt;p&gt;In self-supervised monocular SfM training, we aim to learn: &amp;lt;ul&amp;gt;&amp;lt;li&amp;gt; a monocular depth model $f_D = I \rightarrow D$ that predicts the scale-ambiguous depth $\hat{D} = f_D(I(p))$ for every pixel $p$ in the target image $I$;&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt; a monocular ego-motion estimator $f_x: (I_t, I_s) \rightarrow x_{t \rightarrow s}$ that predicts the set of 6-DoF rigid transformations for all $s \in S$ given by $x_{t \rightarrow s} = \begin{pmatrix} R &amp;amp; t \\ 0 &amp;amp; 1 \end{pmatrix} \in SE(3)$, between the target image $I_t$ and a set of source images $I_s \in I_S$ considered as part of the temporal context.&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt; In practice, we use the frames $I_{t-1}$ and $I_{t+1}$ as source images, although using a larger context is possible. Note that in the case of monocular SfM, both depth and pose are estimated up to an unknown scale factor, due to the inherent ambiguity of the photometric loss.&lt;/p&gt;
-
-&lt;h3&gt; Self-Supervised Objective &lt;/h3&gt;
-&lt;p&gt;Following the work of Zhou et al., we train the depth and pose network simultaneously in a self-supervised manner. In this work, however, we learn to recover the inverse depth $f_d: I \rightarrow f_D^{-1}(I)$ instead, along with the ego-motion estimator $f_x$. The overall self-supervised objective consists of an appearance matching loss term $L_p$ that is imposed between the synthesized image $\hat{I_t}$ and the target image $I_t$, and a depth regularization term $L_s$ that ensures edge-aware smoothing in the depth estimates $\hat{D_t}$. The objective takes the following form:&lt;/p&gt;
-
-\[L(I_t, \hat{I_t}) = L_p(I_t, I_s) \bigodot M_p \bigodot M_t + \lambdda_1 L_s(\hat{D_t})\]
-
-&lt;p&gt;where $M_t$ is a binary mask that avoids computing the photometric loss on the pixels that do not have a valid mapping, and $\bigodot$ denotes element-wise multiplication. Additionally, $\lambda_1$ enforces a weighted depth regularization on the objective. The overall loss is averaged per-pixel, pyramid-scale and image batch during training.&lt;/p&gt;
-
-&lt;picture&gt;
-&lt;img src=&quot;/assets/images/packnet.png&quot; /&gt;
-&lt;/picture&gt;
-&lt;p&gt;&lt;span class=&quot;caption&quot;&gt; The proposed scale-aware self-supervised monocular structure-from-motion architecture. This paper introduces PackNet as a novel depth network, and optionally include weak velocity supervision at training time to produce scale-aware depth and pose models.&lt;/span&gt;&lt;/p&gt;
-
-&lt;h4&gt; Appearance Matching Loss &lt;/h4&gt;
-&lt;p&gt;The pixel-level similarity between the target image $I_t$ and the synthesized target image $\hat{I_t}$ is estimated using the Structural Similarity (SSIM) term combined with a L1 pixel-wise loss term, inducing an overall photometric loss given by the equation below.&lt;/p&gt;
-
-\[L_p(I_t, \hat{I_t}) = \alpha \frac{1-SSIM(I_t, \hat{I_t})}{2} + (1 - \alpha) \lVert I_t - \hat{I_t} \rVert\]
-
-&lt;p&gt;While multi-view projective geometry provides strong cues for self-supervision, errors due to parallax in the scene have an undesirable effect incurred on the photometric loss. We mitigate these undesirable effects by calculating the minimum photometric loss per pixel for each source image in the context $I_S$, so that:&lt;/p&gt;
-
-\[L_p(I_t, I_S) = \min_{I_S} (I_t, \hat{I_t})\]
-
-&lt;p&gt;The intuition is that the same pixel level will not be occluded or out-of-bounds in all context images, and that the association with minimal photometric loss should be the correct one. Furthermore, we also mask out static pixels by removing those which have a warped $L_p(I_t, \hat{I_t})$ higher than their corresponding unwarped photometric loss $L_p(I_t, I_s)$, calculated using the original source image without view synthesis. This auto-mask removes pixels whose appearance does not change between frames, which include static scenes and dynamic objects with no relative motion, since these will have smaller photometric loss when assuming no ego-motion.&lt;/p&gt;
-
-\[M_p = \min_{I_S} L_p(I_t, I_s) \geq L_p(I_t, \hat{I_t})\]
-
-&lt;h4&gt; Depth Smoothness Loss &lt;/h4&gt;
-&lt;p&gt;In order to regularize the depth in texture-less low-image gradient regions, we incorporate an edge-aware term. The loss is weighted for each of the pyramid-levels, and is decayed by a factor of 2 on down-sampling, starting with a weight of 1 for the 0th pyramid level.&lt;/p&gt;
-
-\[L\_s\(\hat{D\_t}) = |\delta\_x \hat{D\_t}|e^{-|\delta\_x I\_t|} + |\delta\_y \hat{D\_t}| e^{|\delta\_y I\_t|}\]
-
-&lt;h3&gt; Scale-Aware SfM &lt;/h3&gt;
-&lt;p&gt;As previously mentioned, both the monocular depth and ego-motion estimators $f_d$ and $f_x$ predict scale-ambiguous values, due to the limitations of the monocular SfM training objective. In other words, the scene depth and the camera ego-motion can only be estimated up to an unknown and ambiguous scale factor. This is also reflected in the overall learning objective, where the photometric loss is agnostic to the metric depth of the scene. Furthermore, we note that all previous approaches which operate in the self-supervised monocular regime suffer from this limitation, and resort to artificially incorporating this scale factor at test-time, using LiDAR measurements.&lt;/p&gt;
-
-&lt;h4&gt; Velocity Supervision Loss &lt;/h4&gt;
-
-&lt;h2&gt; PackNet: 3D Packing for Depth Estimation &lt;/h2&gt;
-&lt;p&gt;Standard convolutional architectures use aggresive striding and pooling to increase their receptive field size. However, this potentially decreases the model performance for tasks requiring fine-grained representations. Similarly, traditional upsampling strategies fail to propagate and preserve sufficient details at the decoder layers to recover accurate depth predictions. In contrast, we propose a novel encoder-decoder architecture, called PackNet, that introduces new 3D packing and unpacking blocks to leran to jointly preserve and recover important spatial information for depth estimation. This is in alignments with recent observations that information loss is not a necessary condition to learn representations capable of generalizing to different scenarios. In fact, progressive expansion and contraction in a fully invertible manner, without discarding &lt;span class=&quot;highlight-pink&quot;&gt; uninformative &lt;/span&gt; input variability, has been shown to increase performance in a variety of tasks. We first describe the different blocks of our proposed architecture, and then proceed to show how they are integrated together in a single model for monocular depth estimation.&lt;/p&gt;
-
-&lt;h3&gt; Packing Block &lt;/h3&gt;
-&lt;p&gt;The packing block starts by folding the spatial dimensions of convolutional feature maps into extra feature channels via a &lt;span class=&quot;monospace&quot;&gt; Space2Depth &lt;/span&gt; operation. The resulting tensor is at a reduced resolution, but in contrast to striding or pooling, this transformation is invertible and comes at no loss. Next, we learn to compress this concatenated feature space in order to reduce its dimensionality to a desired number of output channels. As shown in experiments, 2D convolutions are not designed to directly leverage the tiled structure of this feature space. Instead, we propose to first learn to expand this structured representation via a 3D covolutional layer. The resulting higher dimensional feature space is then flattened (by simple reshaping) before a final 2D convolutional contraction layer. This structured feature expansion-contraction, inspired by invertible networks, although we do not ensure invertibility, allows our architecture to dedicate more parameters to learn how to compress key spatial details that need to be preserved for high resolution depth decoding.&lt;/p&gt;
-
-&lt;h3&gt; Unpacking Block &lt;/h3&gt;
-&lt;p&gt;Symmetrically, the unpacking block learns to decompress and unfold packed convolutional feature channels back into higher resolution spatial dimensions during the decoding process. The unpacking block replaces convolutional feature upsampling, typically performed via nearest-neighbor or with learnable transposed convolutional weights.&lt;/p&gt;</content><author><name>seri</name></author><category term="paper" /><category term="featured" /><summary type="html">Self-Supervised Scale-Aware SfM In self-supervised monocular SfM training, we aim to learn: &amp;lt;ul&amp;gt;&amp;lt;li&amp;gt; a monocular depth model $f_D = I \rightarrow D$ that predicts the scale-ambiguous depth $\hat{D} = f_D(I(p))$ for every pixel $p$ in the target image $I$;&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt; a monocular ego-motion estimator $f_x: (I_t, I_s) \rightarrow x_{t \rightarrow s}$ that predicts the set of 6-DoF rigid transformations for all $s \in S$ given by $x_{t \rightarrow s} = \begin{pmatrix} R &amp;amp; t \ 0 &amp;amp; 1 \end{pmatrix} \in SE(3)$, between the target image $I_t$ and a set of source images $I_s \in I_S$ considered as part of the temporal context.&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt; In practice, we use the frames $I_{t-1}$ and $I_{t+1}$ as source images, although using a larger context is possible. Note that in the case of monocular SfM, both depth and pose are estimated up to an unknown scale factor, due to the inherent ambiguity of the photometric loss. Self-Supervised Objective Following the work of Zhou et al., we train the depth and pose network simultaneously in a self-supervised manner. In this work, however, we learn to recover the inverse depth $f_d: I \rightarrow f_D^{-1}(I)$ instead, along with the ego-motion estimator $f_x$. The overall self-supervised objective consists of an appearance matching loss term $L_p$ that is imposed between the synthesized image $\hat{I_t}$ and the target image $I_t$, and a depth regularization term $L_s$ that ensures edge-aware smoothing in the depth estimates $\hat{D_t}$. The objective takes the following form: \[L(I_t, \hat{I_t}) = L_p(I_t, I_s) \bigodot M_p \bigodot M_t + \lambdda_1 L_s(\hat{D_t})\] where $M_t$ is a binary mask that avoids computing the photometric loss on the pixels that do not have a valid mapping, and $\bigodot$ denotes element-wise multiplication. Additionally, $\lambda_1$ enforces a weighted depth regularization on the objective. The overall loss is averaged per-pixel, pyramid-scale and image batch during training. The proposed scale-aware self-supervised monocular structure-from-motion architecture. This paper introduces PackNet as a novel depth network, and optionally include weak velocity supervision at training time to produce scale-aware depth and pose models. Appearance Matching Loss The pixel-level similarity between the target image $I_t$ and the synthesized target image $\hat{I_t}$ is estimated using the Structural Similarity (SSIM) term combined with a L1 pixel-wise loss term, inducing an overall photometric loss given by the equation below. \[L_p(I_t, \hat{I_t}) = \alpha \frac{1-SSIM(I_t, \hat{I_t})}{2} + (1 - \alpha) \lVert I_t - \hat{I_t} \rVert\] While multi-view projective geometry provides strong cues for self-supervision, errors due to parallax in the scene have an undesirable effect incurred on the photometric loss. We mitigate these undesirable effects by calculating the minimum photometric loss per pixel for each source image in the context $I_S$, so that: \[L_p(I_t, I_S) = \min_{I_S} (I_t, \hat{I_t})\] The intuition is that the same pixel level will not be occluded or out-of-bounds in all context images, and that the association with minimal photometric loss should be the correct one. Furthermore, we also mask out static pixels by removing those which have a warped $L_p(I_t, \hat{I_t})$ higher than their corresponding unwarped photometric loss $L_p(I_t, I_s)$, calculated using the original source image without view synthesis. This auto-mask removes pixels whose appearance does not change between frames, which include static scenes and dynamic objects with no relative motion, since these will have smaller photometric loss when assuming no ego-motion. \[M_p = \min_{I_S} L_p(I_t, I_s) \geq L_p(I_t, \hat{I_t})\] Depth Smoothness Loss In order to regularize the depth in texture-less low-image gradient regions, we incorporate an edge-aware term. The loss is weighted for each of the pyramid-levels, and is decayed by a factor of 2 on down-sampling, starting with a weight of 1 for the 0th pyramid level. \[L_s(\hat{D_t}) = |\delta_x \hat{D_t}|e^{-|\delta_x I_t|} + |\delta_y \hat{D_t}| e^{|\delta_y I_t|}\] Scale-Aware SfM As previously mentioned, both the monocular depth and ego-motion estimators $f_d$ and $f_x$ predict scale-ambiguous values, due to the limitations of the monocular SfM training objective. In other words, the scene depth and the camera ego-motion can only be estimated up to an unknown and ambiguous scale factor. This is also reflected in the overall learning objective, where the photometric loss is agnostic to the metric depth of the scene. Furthermore, we note that all previous approaches which operate in the self-supervised monocular regime suffer from this limitation, and resort to artificially incorporating this scale factor at test-time, using LiDAR measurements. Velocity Supervision Loss PackNet: 3D Packing for Depth Estimation Standard convolutional architectures use aggresive striding and pooling to increase their receptive field size. However, this potentially decreases the model performance for tasks requiring fine-grained representations. Similarly, traditional upsampling strategies fail to propagate and preserve sufficient details at the decoder layers to recover accurate depth predictions. In contrast, we propose a novel encoder-decoder architecture, called PackNet, that introduces new 3D packing and unpacking blocks to leran to jointly preserve and recover important spatial information for depth estimation. This is in alignments with recent observations that information loss is not a necessary condition to learn representations capable of generalizing to different scenarios. In fact, progressive expansion and contraction in a fully invertible manner, without discarding uninformative input variability, has been shown to increase performance in a variety of tasks. We first describe the different blocks of our proposed architecture, and then proceed to show how they are integrated together in a single model for monocular depth estimation. Packing Block The packing block starts by folding the spatial dimensions of convolutional feature maps into extra feature channels via a Space2Depth operation. The resulting tensor is at a reduced resolution, but in contrast to striding or pooling, this transformation is invertible and comes at no loss. Next, we learn to compress this concatenated feature space in order to reduce its dimensionality to a desired number of output channels. As shown in experiments, 2D convolutions are not designed to directly leverage the tiled structure of this feature space. Instead, we propose to first learn to expand this structured representation via a 3D covolutional layer. The resulting higher dimensional feature space is then flattened (by simple reshaping) before a final 2D convolutional contraction layer. This structured feature expansion-contraction, inspired by invertible networks, although we do not ensure invertibility, allows our architecture to dedicate more parameters to learn how to compress key spatial details that need to be preserved for high resolution depth decoding. Unpacking Block Symmetrically, the unpacking block learns to decompress and unfold packed convolutional feature channels back into higher resolution spatial dimensions during the decoding process. The unpacking block replaces convolutional feature upsampling, typically performed via nearest-neighbor or with learnable transposed convolutional weights.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/cnn.png" /><media:content medium="image" url="http://localhost:4000/assets/images/cnn.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Batch Normalization and Group Normalization</title><link href="http://localhost:4000/group.html" rel="alternate" type="text/html" title="Batch Normalization and Group Normalization" /><published>2021-09-08T00:00:00+09:00</published><updated>2021-09-08T00:00:00+09:00</updated><id>http://localhost:4000/group</id><content type="html" xml:base="http://localhost:4000/group.html">&lt;!--more--&gt;
+&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="linear algebra" /><category term="featured" /><summary type="html">This article goes through the fundamentals of linear algebra. Linear algebra is the branch of mathematics concerning linear equations and their representations in vector spaces. This ultimate guide will prove very useful or understanding deep learning techniques.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/linear.png" /><media:content medium="image" url="http://localhost:4000/assets/images/linear.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Batch Normalization and Group Normalization</title><link href="http://localhost:4000/group.html" rel="alternate" type="text/html" title="Batch Normalization and Group Normalization" /><published>2021-09-08T00:00:00+09:00</published><updated>2021-09-08T00:00:00+09:00</updated><id>http://localhost:4000/group</id><content type="html" xml:base="http://localhost:4000/group.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Batch Normalization: the Principles &lt;/h2&gt;
 
@@ -883,71 +735,397 @@ As we will see, the matching process is a conceptual approach to identify simila
 &lt;li&gt;&lt;a href=&quot;https://amaarora.github.io/2020/08/09/groupnorm.html&quot;&gt; blog post &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/what-is-group-normalization-45fe27307be7&quot;&gt; medium article &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/batch-normalization-in-3-levels-of-understanding-14c2da90a338&quot;&gt; medium article2 &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="deep learning" /><category term="featured" /><summary type="html">Batch normalization is used in most state-of-the-art computer vision techniques to stabilize training, but it also suffers from drawbacks. Group normalization can be an awesome alternative when the batch size is too small.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/bn.png" /><media:content medium="image" url="http://localhost:4000/assets/images/bn.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">An Intuitive Overview of Linear Algebra Fundamentals</title><link href="http://localhost:4000/linear.html" rel="alternate" type="text/html" title="An Intuitive Overview of Linear Algebra Fundamentals" /><published>2021-09-08T00:00:00+09:00</published><updated>2021-09-08T00:00:00+09:00</updated><id>http://localhost:4000/linear</id><content type="html" xml:base="http://localhost:4000/linear.html">&lt;h2&gt; Introduction &lt;/h2&gt;
-&lt;h3&gt; Why Learn Linear Algebra? &lt;/h3&gt;
-&lt;p&gt;This write up is an overview of some of the linear algebra fundamentals. It focuses on providing an intuitive/geometric review of some of the main concepts. The coverage is by no means comprehensive or complete. It’s meant to serve as review material for those who haven’t touched it in a very long time, or as a brief intro for those who want an over-the-top view of the landscape.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="deep learning" /><category term="featured" /><summary type="html">Batch normalization is used in most state-of-the-art computer vision techniques to stabilize training, but it also suffers from drawbacks. Group normalization can be an awesome alternative when the batch size is too small.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/bn.png" /><media:content medium="image" url="http://localhost:4000/assets/images/bn.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dissecting the Camera Matrix (Part 1)</title><link href="http://localhost:4000/camera.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 1)" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/camera</id><content type="html" xml:base="http://localhost:4000/camera.html">&lt;!--This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices, and and I will try to untangle the issues that can crop-up with different coordinate conventions.--&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;Linear algebra is the study of vectors and linear functions &lt;/blockquote&gt;
+&lt;h2&gt; Camera Calibration and Decomposition &lt;/h2&gt;
+&lt;p&gt;Primarily, camera calibration is about finding the quantities internal to the camera that affect the imaging process. Here are some of the factors that will be taken care of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; image center &lt;/span&gt;: we need to find the position of the image center in the image. Wait, isn't the image center located at $(width/2, height/2)$? Well, no. Unless we calibrate the camera, the image will almost always appear to be off-center.&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; focal length &lt;/span&gt;: this is a very important parameter. Remember how people using DSLR cameras tend to &lt;mark&gt; focus &lt;/mark&gt; on things before capturing the image? this parameter is directly related to the &lt;mark&gt; focus &lt;/mark&gt; of the camera and it is very critical.&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; scaling factors &lt;/span&gt;: the scaling factors for row pixels and column pixels might be different. If we don't take care of this thing, the image will look stretched (either horizontally or vertically).&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; skew factor &lt;/span&gt;: this refers to shearing. the image will look like a parallelogram otherwise.&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; lens distortion &lt;/span&gt;: this refers to the pseudo zoom effect that we see near the center of any image. &lt;/li&gt; 
 
-&lt;p&gt;Functions are computations/transformations taht take a set of inputs and produce an output. Functions of several variables are often presented in one line such as:&lt;/p&gt;
+&lt;small class=&quot;sidenote&quot;&gt; &lt;span class=&quot;highlight-sketch&quot;&gt;shearing &lt;/span&gt; refers to a transformation in which all points along a given line $L$ remain fixed while other points are shifted parallel to $L$ by a distance proportional to their perpendicular distance from $L$. &lt;/small&gt;
+&lt;br /&gt;
 
-\[f(x,y) = 3x + 5y\]
+&lt;h2&gt; Pinhole Camera Model &lt;/h2&gt;
+&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole.png&quot; /&gt;&lt;/picture&gt;
 
-&lt;p&gt;In mathematics, the concept of linearity plays a very important role. Mathematically, a linear function, or linear map, or linear operator, $f$ is a function that satisfies:&lt;/p&gt;
+Before we jump into anything, let's see where this all began. When we capture an image, we are basically mapping the 3D scene to a 2D scene. It means that every point in the 3D world gets mapped to the 2D plane of our image. This is called the &lt;span class=&quot;red&quot;&gt; pinhole camera model &lt;/span&gt;. It basically describes the relationship between the coordinates of the 3D point and its projection on the 2D image. This, of course, is the ideal case where &lt;span class=&quot;highlight-yellow&quot;&gt; there is absolutely no distortion &lt;/span&gt; of any kind. Every camera is modeled based on this, and every camera aspires to simulate this as close as possible. But in the real world, we have to deal with things like geometric distortions, blurring, finite sized apertures, etc. 
 
-&lt;ol&gt;
-  &lt;li&gt;$f(x,y) = f(x) + f(y)$ for any input $x$ and $y$&lt;/li&gt;
-  &lt;li&gt;$f(cx) = cf(x)$ for any input $x$ and any scalar $c$&lt;/li&gt;
-&lt;/ol&gt;
+&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole2.png&quot; /&gt;&lt;/picture&gt;
 
-&lt;p&gt;Put into words, the first condition means that the output of a function acting on a sum of inputs is just equal to the sum of the individual outputs. The second implies that the output of a scaled input is just the scaled output of the original input.&lt;/p&gt;
+The figure shown here depicts a pinhole camera model. The camera is placed at the origin $O$. The point $P$ represents a point in the real world. We are trying to capture that onto a 2D plane. The &lt;span class=&quot;rainbow&quot;&gt; image plane &lt;/span&gt; represents the 2D plane that you get after capturing the image. The image plane actually contains the image that you see after capturing a picture. So basically, we are trying to map every 3D point to a point on the image plane. In this case, the point $P$ gets mapped to $P_c$. The distance between the origin $O$ and this image plane is called the &lt;span class=&quot;highlight-sketch&quot;&gt; focal length &lt;/span&gt; of the camera. This is the parameter you modify when you adjst the &lt;mark&gt; focus &lt;/mark&gt; of the camera. 
 
-&lt;p&gt;Linear functions are those whose graph is a straight line. A linear function has the following form:&lt;/p&gt;
+&lt;h2&gt; Intrinsic and Extrinsic Parameters &lt;/h2&gt; 
+In the above figure, we want to estimate $(u,v)$ from $(X,Y,Z)$. Let's say the focal length is denoted by $f$. If you look at the triangle formed using the origin-$P_c$-and the $Z$-axis with the origin-$P$ and $Z$-axis, you will notice that they are similar triangles. This means that $u$ depends on the $f$, $X$ and $Z$. Similarly, $v$ depends on $f$, $Y$ and $Z$. 
 
-\[y = f(x) = a+bx\]
+$$
 
-&lt;p&gt;Here, $x$ is our independent variable and $y$ is our dependent variable (since the result $y$ depends on the transformation we perform on $x$).&lt;/p&gt;
+\displaylines{
+u = fX/Z \\\
+v = fY/Z
+}
 
-&lt;p&gt;Notice that although we classify one variable as being dependent on the other, in reality, both variables are linked and dependent on each other. We simply choose to classify the variable which takes an input as the ‘independent’ one. In our example above, we can just as easily choose to exchange our variables and make $y$ the independent variable and $x$ the dependent one.&lt;/p&gt;
+$$
 
-&lt;p&gt;Let’s take $y = f(x) = 3x+1$ as an example. We can choose to model the above function in terms of $y$ by taking the inverse, so we get:
-\(y = 3x+1
-y-1 = 3x
-x = f(y) = y/3 - 1/3\)&lt;/p&gt;
+Next, if the origin of the 2D image coordinate system does not coincide with where the $Z$-axis intersects the image plane, we need to translate $P_c$ into the desired origin. Let this translation be defined by $(t_u, t_v)$. So now, $u$ and $v$ are given by:
 
-&lt;p&gt;In either case, you get the point. Our linear function can be viewed as representing a linear relationship between two or more variables. The relationship between these variables are the relationships we model in linear algebra.&lt;/p&gt;
+$$
+\displaylines{
+u = fX/Z + t_u \\\
+v = fY/Z + t_v
+}
+$$
 
-&lt;p&gt;To make things easier to grasp, we usually represent our variable relationship visually by projecting input variable $x$ on a horizontal axis (which we call the $x$-axis) and showing its mapping to variable $y$ on a vertical axis (which we call the $y$-axis). This lets us get a visual intuition of how our function works in transforming inputs to outputs, and lets us model our linear transformations geometrically.&lt;/p&gt;
+So up until now, we have something that can translate $(X,Y,Z)$ to $(u,v)$. Let's denote this matrix $M$. So we can write:
 
-&lt;p&gt;Some graphical examples of linear functions are provided below:&lt;/p&gt;
-&lt;picture&gt;
-&lt;img src=&quot;/assets/images/linear.png&quot; /&gt;
-&lt;/picture&gt;
+$$ 
+P_c = MP
+$$
 
-&lt;p&gt;Of course, linear functions aren’t the only types of functions. Non-linear functions don’t have a linear mapping and are not represented by straight lines. Some examples of non-linear functions are provided below:&lt;/p&gt;
-&lt;picture&gt;
-&lt;img src=&quot;/assets/images/non.png&quot; /&gt;
-&lt;/picture&gt;
 
-&lt;h2&gt; Vectors &lt;/h2&gt;
-&lt;p&gt;The key starting point of linear algebra is the concept of vectors. In high school physics, chances are you’ve already seen that concept as being nothing more than “a number and a direction”. This isn’t false, but it’s definitely not the whole story. It’s rather intuitive way of introducing vectors, hence why we’ll use this analogy extensively.&lt;/p&gt;
+Since this is a camera image, we need to express it in inches. For this, we will need to know the resolution of the camera in pixels/inch. If the pixels are square the resolution will be identical in both $u$ and $v$ directions of the camera image coordinates. However, for a more general case, we assume rectangular pixels with resolution $m_u$ and $m_v$ pixels/inch in $u$ and $v$ directions respectively. Therefore, to measure $P_c$ in pixels, its $u$ and $v$ coordinates should be multiplied by $m_u$ and $m_v$ respectively. So now, this new transformation matrix depends on $f, X, Y, Z, t_u, t_v, m_u, m_v$. Let's denote this by:
 
-&lt;p&gt;From a mathematical perspective, vectors are just a way of stacking numbers together in a column or a row. For example, 
-\(\begin{bmatrix} 2 \\ 3 \end{bmatrix}
-\begin{bmatrix} i \\ 3 \\ -3 \end{bmatrix}
-\begin{bmatrix} 5 &amp;amp; 2.1 \end{bmatrix}
-\begin{bmatrix} -3 &amp;amp; \frac{1}{2} &amp;amp; 4 \end{bmatrix}\)&lt;/p&gt;
+$$
+P_c = KP
+$$
 
-&lt;p&gt;The first two vector examples are naturally referred to as column vectors and the last two as row vectors.&lt;/p&gt;
+Here, $K$ is called the &lt;span class=&quot;typewriter&quot;&gt; intrinsic parameter matrix &lt;/span&gt; for the camera.
 
-&lt;p&gt;The amount of numbers is referred to as the dimension of the vector. Even if you’ve never explicitly learned about vectors until now, you’ve already seen them. A 2-dimensional vector of real numbers is analogous to the Cartesian coordinates. For example, a 2-dimensional vector looks like:&lt;/p&gt;
-&lt;picture&gt;
-&lt;img src=&quot;/assets/images/2dim.png&quot; /&gt;
-&lt;/picture&gt;
+Now, if the camera does not have its center of projection at $(0,0,0)$ and is oriented in an arbitrary fashion (not necessarily $z$-perpendicular to the image plane), then we need roation and translation to make the camera coordinate system coincide with the configuration in that pinhole camera figure. Let the rotation applied to coincide the principal axis with $Z$-axis given by a $3 \times 3$ rotation matrix $R$. Then the matrix is formed by first applying the translation followed by the rotation is given by the $3 \times 4$ matrix.
 
-&lt;p&gt;A 3-dimensional vector of real numbers is analogous to the spatial coordinates in three dimensions. You can always think of a vector with $n$ numbers as a point in $n$-dimensional “hyperspace”.&lt;/p&gt;
+$$
+E = \\( R|RT \\)
+$$
 
-&lt;p&gt;For simplicity, we’ll generally use 2 and 3 dimensional vectors from now on, but everything we explain below applies to vectors of arbitrary sizes.&lt;/p&gt;
+This is called the &lt;span class=&quot;typewriter&quot;&gt; extrinsic parameter matrix for the camera &lt;/span&gt;. So, the complete camera transformation can now be represented as: 
 
-&lt;h3&gt; Vector Addition &lt;/h3&gt;
-&lt;p&gt;Since we just defined a new mathematical concept, it’s natural to ask the question: can we add and multiply vectors?&lt;/p&gt;</content><author><name>seri</name></author><category term="linear algebra" /><category term="featured" /><summary type="html">Introduction Why Learn Linear Algebra? This write up is an overview of some of the linear algebra fundamentals. It focuses on providing an intuitive/geometric review of some of the main concepts. The coverage is by no means comprehensive or complete. It’s meant to serve as review material for those who haven’t touched it in a very long time, or as a brief intro for those who want an over-the-top view of the landscape. Linear algebra is the study of vectors and linear functions Functions are computations/transformations taht take a set of inputs and produce an output. Functions of several variables are often presented in one line such as: \[f(x,y) = 3x + 5y\] In mathematics, the concept of linearity plays a very important role. Mathematically, a linear function, or linear map, or linear operator, $f$ is a function that satisfies: $f(x,y) = f(x) + f(y)$ for any input $x$ and $y$ $f(cx) = cf(x)$ for any input $x$ and any scalar $c$ Put into words, the first condition means that the output of a function acting on a sum of inputs is just equal to the sum of the individual outputs. The second implies that the output of a scaled input is just the scaled output of the original input. Linear functions are those whose graph is a straight line. A linear function has the following form: \[y = f(x) = a+bx\] Here, $x$ is our independent variable and $y$ is our dependent variable (since the result $y$ depends on the transformation we perform on $x$). Notice that although we classify one variable as being dependent on the other, in reality, both variables are linked and dependent on each other. We simply choose to classify the variable which takes an input as the ‘independent’ one. In our example above, we can just as easily choose to exchange our variables and make $y$ the independent variable and $x$ the dependent one. Let’s take $y = f(x) = 3x+1$ as an example. We can choose to model the above function in terms of $y$ by taking the inverse, so we get: \(y = 3x+1 y-1 = 3x x = f(y) = y/3 - 1/3\) In either case, you get the point. Our linear function can be viewed as representing a linear relationship between two or more variables. The relationship between these variables are the relationships we model in linear algebra. To make things easier to grasp, we usually represent our variable relationship visually by projecting input variable $x$ on a horizontal axis (which we call the $x$-axis) and showing its mapping to variable $y$ on a vertical axis (which we call the $y$-axis). This lets us get a visual intuition of how our function works in transforming inputs to outputs, and lets us model our linear transformations geometrically. Some graphical examples of linear functions are provided below: Of course, linear functions aren’t the only types of functions. Non-linear functions don’t have a linear mapping and are not represented by straight lines. Some examples of non-linear functions are provided below: Vectors The key starting point of linear algebra is the concept of vectors. In high school physics, chances are you’ve already seen that concept as being nothing more than “a number and a direction”. This isn’t false, but it’s definitely not the whole story. It’s rather intuitive way of introducing vectors, hence why we’ll use this analogy extensively. From a mathematical perspective, vectors are just a way of stacking numbers together in a column or a row. For example, \(\begin{bmatrix} 2 \\ 3 \end{bmatrix} \begin{bmatrix} i \\ 3 \\ -3 \end{bmatrix} \begin{bmatrix} 5 &amp;amp; 2.1 \end{bmatrix} \begin{bmatrix} -3 &amp;amp; \frac{1}{2} &amp;amp; 4 \end{bmatrix}\) The first two vector examples are naturally referred to as column vectors and the last two as row vectors. The amount of numbers is referred to as the dimension of the vector. Even if you’ve never explicitly learned about vectors until now, you’ve already seen them. A 2-dimensional vector of real numbers is analogous to the Cartesian coordinates. For example, a 2-dimensional vector looks like: A 3-dimensional vector of real numbers is analogous to the spatial coordinates in three dimensions. You can always think of a vector with $n$ numbers as a point in $n$-dimensional “hyperspace”. For simplicity, we’ll generally use 2 and 3 dimensional vectors from now on, but everything we explain below applies to vectors of arbitrary sizes. Vector Addition Since we just defined a new mathematical concept, it’s natural to ask the question: can we add and multiply vectors?</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/linear.png" /><media:content medium="image" url="http://localhost:4000/assets/images/linear.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+$$ 
+K \\( R|RT \\) = KR \\( I|T \\)
+$$
+
+Hence, $P_c$ the projection of $P$ is given by:
+
+$$
+P\_c = KR \\( I|T \\) P = CP
+$$
+
+$C$ is a $3 \times 4$ matrix usually called the complete camera calibration matrix. So basically, camera calibration matrix is used to transform a 3D point in the real world to a 2D point on the image plane considering all the things like focal length of the camera, distortion, resolution, shifting of origin, etc. 
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt; 
+&lt;li&gt;&lt;a href=&quot;https://ksimek.github.io/2012/08/14/decompose/&quot;&gt; ksimek blog &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://prateekvjoshi.com/2014/05/31/understanding-camera-calibration/&quot;&gt; prateekvjoshi blog &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices. We will untangle the issues that arise due to different coordinate conventions.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/camera2.png" /><media:content medium="image" url="http://localhost:4000/assets/images/camera2.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/disparity.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/disparity</id><content type="html" xml:base="http://localhost:4000/disparity.html">&lt;!--We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.--&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;&lt;h2 class=&quot;glow&quot;&gt;🌟 3D Reconstruction from 2D Signals &lt;/h2&gt;&lt;/div&gt;
+
+&lt;p&gt;We are going to look at depth estimation as a multi-view problem. Multi-view problems can span into different domains including stereo vision, Structure from Motion and optical flow. Although each carries great importance in the problem of Virtual Reality (VR) and robotics, we will focus on stereo vision in this multi-part series. Specifically, the progress of deep learning in stereo vision technology.&lt;/p&gt;
+
+&lt;p&gt;How can we automatically &lt;span class=&quot;highlight-sketch&quot;&gt; compute 3D geometry from images &lt;/span&gt;? What cues in the image provide 3D information? Before looking at binocular, let’s consider single view characteristics.&lt;/p&gt;
+
+&lt;p&gt;Well, we humans do so naturally. Here are several cues we use to infer depth information:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; shading &lt;/li&gt;
+&lt;li&gt; texture &lt;/li&gt; 
+&lt;li&gt; focus &lt;/li&gt;
+&lt;li&gt; motion &lt;/li&gt; 
+&lt;li&gt; perspective &lt;/li&gt;
+&lt;li&gt; occlusion &lt;/li&gt; 
+&lt;li&gt; symmetry &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/single.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Nonetheless, structure and depth are inherently ambiguous from a single view. As seen from the optical center (i.e., camera location), $P1$ and $P2$ are projected onto the image plane as equivalent.&lt;/p&gt;
+
+&lt;h2&gt; The Stereo Problem &lt;/h2&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/stereo.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Stereo vision systems reference the knowledge of two images captured simultaneously from a pair of cameras (left and right) with camera parameters (extrinsic and intrinsic). Stereo is heavily motivated by biology. Classic stereo problem include disparity, depth, occlusion, Structure from Motion, motion parallax etc. Provided left and right images, the ambiguity problem of the aforementioned is satisfied via triangulation from the two image planes by matching correspondences of a point in the world coordinate to the ones that can be seen in both images.&lt;/p&gt;
+
+&lt;p&gt;The basic principle of triangulation is shown above: the reconstruction via the intersection of two rays. Requirements? Calibration and correspondences.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/epipolar.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Furthermore,  &lt;span class=&quot;rainbow&quot;&gt; the Epipolar Constraint &lt;/span&gt; reduces the correspondence problem to $1D$ search along &lt;span class=&quot;frozen&quot;&gt; conjugate epipolar lines &lt;/span&gt; shown in the above figure.&lt;/p&gt;
+
+&lt;p&gt;Thus, &lt;span class=&quot;rainbow&quot;&gt; Epipolar Constraint &lt;/span&gt; assumes that stereo pairs are rectified images, meaning the same &lt;span class=&quot;frozen&quot;&gt; epipolar line &lt;/span&gt; aligns across rows such that it is orthogonal to both and aligned with one another. Rectification is achieved by learning a transformation based on intrinsic and extrinsic parameters: a process that dates back several decades.&lt;/p&gt;
+
+&lt;p&gt;From the rectified image pair, the depth $Z$ can be determined by its inversely proportionate relationhip with disparity $d$, where the disparity is defined as the pixel difference along the horizontal when comparing correspondences of left and right. This can be written as:&lt;/p&gt;
+
+\[I(x,y) = D(x+d, y)\]
+
+&lt;p&gt;This relationship is easiest to grasp visually. Provided a point in the left image plane $P_L(x,y)$ along with the correspondence in the right image plane and the world coordinates $(X,Y,Z)$ projected as a point in a 3D scene, our goal is to reconstruct the missing $Z$ (depth) provided the stereo pair.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;We set the relative coordinates (red axis) along with having known baseline $b$ between the two camera centers. Then $/frac{x_L}{f}$ can be expressed as $\frac{X+b/2}{Z}$ and $\frac{x_R}{f} = \frac{X-b/2}{Z}$. Therefore,&lt;/p&gt;
+
+\[\frac{y_L}{f} = \frac{y_R}{f} = \frac{Y}{Z}\]
+
+&lt;p&gt;and the world coordinate can be expressed as&lt;/p&gt;
+
+\[X = \frac{b(x_L+x_R)}{2(x_L - x_R)} Y = \frac{b(y_L + y_R}{2(x_L-x_R} Z = \frac{bf}{(x_L - x_R)}\]
+
+&lt;blockquote class=&quot;black&quot;&gt; $d = x_L - x_R$ is the &lt;span class=&quot;neon-green&quot;&gt;disparity&lt;/span&gt; between corresponding left and right image points &lt;/blockquote&gt;
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt; 
+&lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-from-disparity-via-deep-learning-part-0-458827141b23&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, SfM, optical flow, etc.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Rigid Body Motion (Part 1)</title><link href="http://localhost:4000/rigid.html" rel="alternate" type="text/html" title="3D Rigid Body Motion (Part 1)" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/rigid</id><content type="html" xml:base="http://localhost:4000/rigid.html">&lt;!--more--&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;In this article, I will introduce one of the fundamental problems of visual SLAM: &lt;span class=&quot;blue&quot;&gt; How to describe a rigid body’s motion in 3-dimensional space &lt;/span&gt;? Intuitively, we certainly know that this consists of &lt;span class=&quot;circle-sketch-highlight&quot;&gt; one rotation plus one translation &lt;/span&gt;. The translation part does not really have any problems, but the rotation part is questionable. I will introduce the meaning of &lt;b&gt; rotation matrices, quaternions, Euler angles &lt;/b&gt; and how they are computed and transformed.&lt;/p&gt;
+
+&lt;h2 id=&quot;rotation-matrix&quot;&gt;Rotation Matrix&lt;/h2&gt;
+&lt;h3 id=&quot;points-vectors-and-coordinate-systems&quot;&gt;Points, Vectors, and Coordinate Systems&lt;/h3&gt;
+&lt;p&gt;The space of our daily life is 3-dimensional, so we are born to be used to 3D movements. The 3D space consists of three axes, so the position of one spatial point can be specified by three coordinates. However, we should now consider a &lt;b&gt; rigid body &lt;/b&gt;, which has its &lt;span class=&quot;rainbow&quot;&gt; &lt;em&gt;position&lt;/em&gt; and &lt;em&gt;orientation&lt;/em&gt; &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;The camera can also be viewed as a rigid body in three dimensions, so what we care about in Visual SLAM are the problem of the camera’s position and orientation. Combined, we can say, “the camera is at the $(0,0,0)$ point, facing the front”. Let’s describe this in a mathematical term.&lt;/p&gt;
+
+&lt;p&gt;We start from the basic content: &lt;em&gt;points&lt;/em&gt; and &lt;em&gt;vectors&lt;/em&gt;. Points are the basic element in space, no length, no volume. Connecting the two points forms a vector. A vector can be thought of as an arrow pointing from one point to another. Here we need to warn you not to confuse the vector with its coordinates.&lt;/p&gt;
+
+&lt;p&gt;A vector is one thing in space, such as $a$. Here, $a$ does not need to be associated with several real numbers. We can naturally talk about the plus or minus operation of two vectors, without relating to any real numbers.&lt;/p&gt;
+
+&lt;p&gt;Only when we specify a coordinate system in this 3D space can we talk about the vector’s coordinates in this system, finding several real numbers corresponding to this vector.&lt;/p&gt;
+
+&lt;p&gt;With the knowledge of linear algebra, &lt;mark&gt; the coordinates of a point in 3D space can be described as $\mathbb{R}^3$&lt;/mark&gt;. How to do we describe this? Suppose that in this linear space, we fined &lt;b&gt;a set of base $(e_1, e_2, e_3)$ &lt;/b&gt;, then, an arbitrary vector $a$ has a &lt;em&gt;coordinate&lt;/em&gt; under this base:&lt;/p&gt;
+
+&lt;p&gt;$$ a = \begin{bmatrix} e_1 &amp;amp; e_2 &amp;amp; e_3 \end{bmatrix} \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} = a_1 e_1 + a_2 e_2 + a_3 e_3 $$.
+Here, &lt;b&gt;$(a_1, a_2, a_3)^T$ is called $a$’s coordinates&lt;/b&gt;. The coordinates’ specific values are related to the vector itself and the selection of the bases. In $\mathbb{R}^3$, the coordinate system usually consists of $3$ orthogonal coordinate axes (it can also be non-orthogonal, but it is rare in practice).&lt;/p&gt;
+
+&lt;p&gt;For example, given $x$ and $y$ axis, the $z$ axis can be determined using the right-hand (or left-hand) rule. According to different definitions, the coordinate system is divided into left-handed and right-handed. The third axis of the left-hand rule is opposite to the right-hand rule. Most 3D libraries use right-handed coordinates.&lt;/p&gt;
+
+&lt;p&gt;Based on basic linear algebra knowledge, we can talk about the operations between vectors/vectors, vectors/numbers, such as scalar multiplication, vector addition, subtraction, inner product, outer product and so on.&lt;/p&gt;
+
+&lt;p&gt;For $a,b \in \mathbb{R}^3$, the &lt;b&gt;inner product of $a,b$&lt;/b&gt; can be written as:&lt;/p&gt;
+&lt;blockquote&gt;
+\$\$ a \cdot b = a^Tb = \sum_{i=1}^3 a_i b_i = |a\||b| \cos(&amp;lt;a,b&amp;gt;)\$\$
+&lt;/blockquote&gt;
+&lt;p&gt;where $ &amp;lt;a.b&amp;gt; $ refers to the angle between the vector $a, b$. The inner product can also describe the projection relationship between vectors.&lt;/p&gt;
+
+&lt;p&gt;$$ a \times b = \begin{Vmatrix} e_1 &amp;amp; e_2 &amp;amp; e_3 \\ a_1 &amp;amp; a_2 &amp;amp; a_3 \\ b_1 &amp;amp; b_2 &amp;amp; b_3 \end{Vmatrix} = \begin{bmatrix} a_2b_3 - a_3 b_2 \\ a_3 b_1 - a_1 b_3 \\ a_1 b_2 - a_2 b_1 \end{bmatrix} = \begin{bmatrix} 0 &amp;amp; -a_3 &amp;amp; a_2 \\ a_3 &amp;amp; 0 &amp;amp; -a_1 \\ -a_2 &amp;amp; a_1 &amp;amp; 0 \end{bmatrix} b =  a \wedge b$$.
+The result of the outer product is a vector whose direction is perpendicular to the two vectors, and the length is 
+$|a||b|\sin(&amp;lt;a,b&amp;gt;)$
+, which is also the area of the quadrilateral of the two vectors.&lt;/p&gt;
+
+&lt;p&gt;From the outer product operation, we introduce the $\wedge$ operator here, which means writing $a$ as a &lt;span class=&quot;glow&quot;&gt; &lt;em&gt;skew-symmetric matrix&lt;/em&gt; &lt;/span&gt;. You can take $\wedge$ as a skew-symmetric symbol. It turns the outer product $a \times b$ into the multiplication of the matrix and the vector $a \wedge b$ is a linear operation.&lt;/p&gt;
+
+&lt;p&gt;This symbol will be used frequently in the following sections. It is a one-to-one mapping, meaning that for any vector, it corresponds to a unique anti-symmetric matrix, and vice versa:&lt;/p&gt;
+
+\[a \wedge = \begin{bmatrix} 0 &amp;amp; -a_3 &amp;amp; a_2 \\ a_3 &amp;amp; 0 &amp;amp; -a_1 \\ -a_2 &amp;amp; a_1 &amp;amp; 0 \end{bmatrix}\]
+
+&lt;p&gt;At the same time, note that the vector operations such as addition, subtraction, inner and outer products can be calculated even when we do not have their coordinates. For example, although the inner product can be expressed by the sum of the two vectors’ product when we know the coordinates, the length and angle can also be calculated even if their coordinates are unknown. Therefore, the inner product result of the two vectors is independent of the selection of the coordinate system.&lt;/p&gt;
+
+&lt;h3 id=&quot;euclidean-transforms-between-coordinate-systems&quot;&gt;Euclidean Transforms between Coordinate Systems&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rigid/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We often define a variety of coordinate systems in the real scene. In robotics, you define one coordinate system for each link and joint; in 3D mapping, we also define a coordinate system for each cuboid and cylinder.&lt;/p&gt;
+
+&lt;p&gt;If we consider a moving robot, it is common practice to set a stationary inertial coordinate system (or world coordinate system), such as the $x_W, y_W, z_W$ defined in the picture above.&lt;/p&gt;
+
+&lt;p&gt;Meanwhile, the camera or robot is a moving coordinate system, such as coordinate system defined by $x_C, y_C, z_C$. We might ask: &lt;mark&gt; a vector $p$ in the camera system may have coordinates $p_c$; and in the world coordinate system, its coordinates maybe $p_w$ &lt;/mark&gt;. &lt;span class=&quot;glow&quot;&gt; Then what is the conversion between two coordinates&lt;/span&gt;?&lt;/p&gt;
+
+&lt;p&gt;It is necessary to first obtain the coordinate values of the point in the camera system and then use the transform rule to do the coordinate transform. We need a mathematical way to describe this transformation. As we will see later, we can describe it with a transform matrix $T$.&lt;/p&gt;
+
+&lt;p&gt;Intuitively, &lt;span class=&quot;shine&quot;&gt; the motion between two coordinate systems consists of a rotation plus a translation , which is called &lt;em&gt;rigid body motion&lt;/em&gt; &lt;/span&gt;. Obviously, the camera movement is rigid. During the rigid body motion, the length and angle of the vector will not change.&lt;/p&gt;
+
+&lt;p&gt;Imagine that you throw your phone into the air and there may be differences in spatial position and orientation. But the length and the angle of each face will not change. At this point, we say that the phone’s motion is &lt;em&gt;Euclidean&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;span class=&quot;blue&quot;&gt;Euclidean transform consists of rotation and translation &lt;/span&gt;. Let’s first consider the rotation. We have a unit-length orthogonal base $(e_1, e_2, e_3)$. After a rotation it becomes $(e_1’, e_2’, e_3’)$. Then, for the same vector $a$ (the vector does not move with the rotation of the coordinate system). its coordinates in these two coordinate systems are $[a_1, a_2, a_3]^T$ and $[a_1’, a_2’, a_3]^T$. Because the vector itself has not changed, according to the definition of coordinates, there are:&lt;/p&gt;
+
+\[[e_1, e_2, e_3] \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} = [e_1', e_2', e_3'] \begin{bmatrix} a_1' \\ a_2' \\ a_3' \end{bmatrix}\]
+
+&lt;p&gt;To describe the relationship between the two coordinates, we multiply the left and right side of the above equation by $\begin{bmatrix} e_1^T \\ e_2^T \\ e_3^T \end{bmatrix}$, then the matrix on the left becomes an identity matrix, so:&lt;/p&gt;
+
+&lt;p&gt;$$\begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} \triangleq Ra’$$.
+We take the intermediate matrix out and define it as a matrix $R$. This matrix consists of the inner product between the two sets of bases, describing the same vector’s coordinate transformation relationship before and after the rotation.&lt;/p&gt;
+
+&lt;p&gt;It can be said that &lt;mark&gt; the matrix $R$ describes the rotation itself &lt;/mark&gt;. So we call it the &lt;em&gt;rotation matrix&lt;/em&gt;. Meanwhile, the components of the matrix are the inner product of the two coordinate system bases.&lt;/p&gt;
+
+&lt;p&gt;Since the base vector’s length is $1$, it is actually the cosine of the angle between the base vectors. So this matrix is also called &lt;em&gt;direction cosine matrix&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The rotation matrix has some special properties. &lt;span class=&quot;rainbow&quot;&gt; In fact, it is an &lt;em&gt;orthogonal&lt;/em&gt; matrix with a determinant of &lt;/span&gt; $1$. Conversely, an orthogonal matrix with a determinant of 1 is also a rotation matrix. So you can define a set of $n$ dimensional rotation matrices as follows:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$$SO(n) = \{ R \in \mathbb{R}^{n \times n}&lt;/td&gt;
+      &lt;td&gt;RR^T = I, det(R) =1 \} $$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;$SO(n)$ refers to the special orthogonal group. This set consists of a rotation matrix of $n$ dimensional space, in particular, $SO(3)$ refers to the rotation of the three-dimensional space. In this way, we can talk directly about the rotation transformation between the two coordinate systems without having to start from the bases.&lt;/p&gt;
+
+&lt;p&gt;Since the rotation matrix is orthogonal, its inverse (i.e., transpose) describes an opposite rotation. According to the above definition, there are:&lt;/p&gt;
+
+\[a' = R^{-1}a = R^Ta\]
+
+&lt;p&gt;Obviously, the $R^T$ represents an opposite rotation.&lt;/p&gt;
+
+&lt;p&gt;In the Euclidean transformation, there is a translation in addition to rotation. Consider the vector $a$ in the world coordinate system. After a rotation (depicted by $R$) and a translation of $t$, we get $a’$. Then we can put the rotation and translation together, and have:
+$$a’= Ra+t$$,
+where $t$ is called a translation vector.&lt;/p&gt;
+
+&lt;p&gt;Compared to the rotation, &lt;span class=&quot;highlight-pink&quot;&gt; the translation part simply adds the translation vector to the coordinates after the rotation &lt;/span&gt;, which si very simple. By the above formula, we completely describe the coordinate transformation relationship using a rotation matrix $R$ and a translation vector $t$.&lt;/p&gt;
+
+&lt;p&gt;In practice, we may define the coordinate system 1 and 2, then the vector $a$ under the two coordinates is $a_1, a_2$. The relationship between the two systems should be: 
+$$a_1 = R_{12} a_2 + t_{12}$$.
+Here, $R_{12}$ means the “rotation of the vector from system 2 to system 1”. About $t_{12}$, readers may just take it as a translation vector without wondering about its physical meaning. In fact, it corresponds to a vector from the system 1’s origin pointing to system 2’s origin, and the coordinates are taken under tsystem 1. So I suggest you to understand it as “a vector from 1 to 2”.&lt;/p&gt;
+
+&lt;p&gt;But the reverse $t_{21}$, which is a vector from $2$’s origin to $1$’s origin, whose &lt;em&gt;coordinates are taken in system $2$&lt;/em&gt;, is not equal to $-t_{12}$. It is also related to the rotation of the two systems.&lt;/p&gt;
+
+&lt;p&gt;Therefore, when beginners ask the question “What are my coordinates?”, we need to clearly explain this sentence’s meaning. Here, “my coordinates” normally refers to the vector from the world system $W$ pointing to the origin of the camera system $C$, and then take the coordinates in the world’s base. Corresponding to the mathematical symbol, it should be the value of $t_{WC}$. For the same reason, it is not $-t_{CW}$ but actually $-R^T_{CW} t_{CW}$.&lt;/p&gt;
+
+&lt;h3 id=&quot;transform-matrix-and-homogeneous-coordinates&quot;&gt;Transform Matrix and Homogeneous Coordinates&lt;/h3&gt;
+&lt;p&gt;The formula $a’ = Ra+t$ fully expresses the rotation and the translation of Euclidean space, but there is still a small problem: the transformation relationship here is not a linear relationship.&lt;/p&gt;
+
+&lt;p&gt;Suppose we made two transformations: $R_1,t_1$ and $R_2,t_2$:
+$$b = R_1 a + t_1, c = R_2 b + t_2$$. 
+So the transformation from $a$ to $c$ is: $$c = R_2 (R_1 a + t_1) + t_2$$.
+This form is not elegant after multiple transformations. Therefore, we introduce homogeneous coordinates and transformation matrices, rewriting the formula:
+$$ \begin{bmatrix} a’ \\ 1 \end{bmatrix} = \begin{bmatrix} R &amp;amp; t \\ 0^T &amp;amp; 1 \end{bmatrix} \begin{bmatrix} a \\ 1 \end{bmatrix} \triangleq T \begin{bmatrix} a \\ 1 \end{bmatrix}$$. 
+This is a mathematical trick: we add $1$ at the end of the 3D vector and turn it into a 4D vector called &lt;em&gt;homogeneous coordinates&lt;/em&gt;. For this four-dimensional vector, we can write the rotation and translation matrix, making the whole relationship a linear relationship. In this formula, the matrix $T$ is called &lt;em&gt;transform matrix&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;We temporarily use $\tilde{a}$ to represent the homogeneous coordinates of $a$. Then, relying on homogeneous coordinates and transformation matrices, the superposition of the two transformations can have a good form: 
+$$\tilde{b} = T_1 \tilde{a}, \tilde{c} = T_2 \tilde{b} \Rightarrow T_2 T_1 \tilde{a}$$.
+But the symbols that distinguish between homogeneous and non-homogeneous coordinates are annoying, because here we only need to add 1 at the end of the vector or remove 1 to turn it into a normal vector. So, without ambiguity, we will write it directly as $b = Ta$ and by default we just assume a homogeneous coordinate conversion is made if needed.&lt;/p&gt;
+
+&lt;p&gt;The transformation matrix $T$ has a special structure: the upper left corner is the rotation matrix, the right side is the translation vector, the lower-left corner is $0$ vector, and the lower right corner is $1$. This set of transform matrix is also known as the &lt;em&gt;special Euclidean group&lt;/em&gt;: 
+$$SE(3) = \{ T = \begin{bmatrix} R &amp;amp; t \\ 0^T &amp;amp; 1 \end{bmatrix} \in \mathbb{R}^{4 \times 4}| R \in SO(3), t \in \mathbb{R}^3 \}$$.
+Like $SO(3)$, the inverse of the transformation matrix represents an inverse transformation: 
+$$T^{-1} = \begin{bmatrix} R^T &amp;amp;  -R^T t \\ 0^T &amp;amp; 1 \end{bmatrix}$$.
+Again, we use the notation of $T_{12}$ to represent a transformation from 2 to 1. Because the conversion between homogeneous and non-homogeneous coordinates is actually very easy, it is assumed that the conversion from homogeneous coordinates to normal coordinates is already done.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;First, we introduced the vector and its coordinate representation and introduced the operation between the vectors; then, the motion between the coordinate systems is described by the Euclidean transformation, which consists of translation and rotation. The rotation can be described by the rotation matrix $SO(3)$, while the translation is directly described by an $\mathbb{R}^3$ vector. Finally, if the translation and rotation are placed in a matrix, the transformation matrix $SE(3)$ is formed.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.springer.com/gp/book/9789811649387&quot;&gt;Introduction to Visual SLAM&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">The goal of this article is to introduce the rigid body geometry in 3-dimensional spaace: rotation matrix, transformation matrix, quaternion and Euler angle.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/rigid.png" /><media:content medium="image" url="http://localhost:4000/assets/images/rigid.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Homogeneous Coordinates and Projective Geometry</title><link href="http://localhost:4000/homogeneous.html" rel="alternate" type="text/html" title="Homogeneous Coordinates and Projective Geometry" /><published>2021-08-31T00:00:00+09:00</published><updated>2021-08-31T00:00:00+09:00</updated><id>http://localhost:4000/homogeneous</id><content type="html" xml:base="http://localhost:4000/homogeneous.html">&lt;h2 id=&quot;introduction-to-projective-geometry&quot;&gt;Introduction to Projective Geometry&lt;/h2&gt;
+&lt;p&gt;Most of the time when working with 3D, we are thinking in terms of Euclidean geometry-that is, coordinates in three-dimensional space ($X$, $Y$ and $Z$). However, there are certain situations where it is useful to think in terms of &lt;strong&gt;projective geometry&lt;/strong&gt; instead. Projective geometry has an extra dimension, called $W$, in addition to the $X$, $Y$, and $Z$ dimensions. This four-dimensional space is called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;projective space&lt;/code&gt; and coordinates in projective space are called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;homogenous coordinates&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;For the purposes of 3D software, the terms &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;projective&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;homogeous&lt;/code&gt; are basically interchangeable with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4D&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;not-quaternions&quot;&gt;Not Quaternions&lt;/h3&gt;
+
+&lt;p&gt;Quaternions look a lot like homogeneous coordinates. Both are 4D vectors, commonly depicted as $(X,Y,Z,W)$. However, quaternions and homogeneous coordinates are different concepts, with different uses.&lt;/p&gt;
+
+&lt;h2 id=&quot;an-analogy-in-2d&quot;&gt;An Analogy in 2D&lt;/h2&gt;
+&lt;p&gt;First, let’s look at how projective geometry works in 2D, before we move on to 3D.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/homo/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Imagine a projector that is projecting a 2D image onto a screen. It’s easy to identify the $X$ and $Y$ dimensions of the projected image.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/homo/2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, if you step back from the 2D image and look at the projector and the screen, you can see the $W$ dimension, too. The $W$ dimension is the &lt;mark&gt; distance from the projector to the screen &lt;/mark&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/homo/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So what does the $W$ dimension do, exactly? Imagine what would happen to the 2D image if you increased or decreased $W$-that is, if you increased or decreased the distance between the projector and the screen. If you move the projector closer to the screen, the whole 2D image becomes smaller. If you move the projector away from the screen, the 2D image becomes larger. As you can see, the value of &lt;span class=&quot;highlight-green&quot;&gt; $W$ affects the size (a.k.a scale) of the image &lt;/span&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;applying-it-to-3d&quot;&gt;Applying it to 3D&lt;/h2&gt;
+&lt;p&gt;There is no such thing as a 3D projector (yet), so its’ harder to imagine projective geometry in 3D, but the $W$ value works exactly the same as it does in 2D. When $W$ increases, the coordinates expands (scales up). When $W$ decreases, the coordinates shrinks (scales down). The &lt;span class=&quot;highlight-green&quot;&gt; $W$ is basically a scaling transformation for the 3D coordinates &lt;/span&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;when-w--1&quot;&gt;When $W = 1$&lt;/h2&gt;
+&lt;p&gt;The usual advice for 3D programming beginners is to always set $W=1$ whenever converting a 3D coordinate to 4D coordinate. The reason for that is that when you scale a coordinate by a 1 it doesn’t shrink or grow, it just stays the same size. So, &lt;mark&gt; when $W=1$, it has no effect on the $X$, $Y$, or $Z$ values &lt;/mark&gt;.&lt;/p&gt;
+
+&lt;p&gt;For this reason, when it comes to 3D computer graphics, coordinates are said to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;correct&lt;/code&gt; only when $W=1$. If you tried to render with $W=0$ your program would crash when it attempted to divide by zero. With $W&amp;lt;0$ everything would flip unside-down and back-to-front.&lt;/p&gt;
+
+&lt;p&gt;Mathematically speaking, there is no such thing as an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;incorrect&lt;/code&gt; homogeneous coordinate. &lt;mark&gt; Using coordinates with $W=1$ is just a useful convention for the 3D computer grahics &lt;/mark&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-math&quot;&gt;The Math&lt;/h2&gt;
+&lt;p&gt;Now, let’s look at some actual numbers, to see how the math works.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/homo/4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s say that the projector is $3$ meters away from the screen, and there is a dot on the 2D image at the coordinate $(15, 21)$. This gives us the projective coordinate vector $(X,Y,W) = (15,21,3)$.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/homo/5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now imagine that the projector was pushed closer to the screen so that the distance was $1$ meter. The closer the project gets to the screen, the smaller the image becomes. The projector has moved three times closer, so the image becomes three times smaller. If we take the original coordinate vector and divide all the values by three, we get the new vector where $W=1$:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;$$(\frac{15}{3}, \frac{21}{3}, \frac{3}{3}) = (5,7,1)$$.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The dot is now at coordinate $(5,7)$. This is how an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;incorrect&lt;/code&gt; homogeneous coordinate is converted to a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;correct&lt;/code&gt; coordinate: divide all the values by $W$. The process is exactly the same for 2D and 3D coordinates.&lt;/p&gt;
+
+&lt;p&gt;Dividing all the values in a vector is done by a scalar multiplication with the reciprocal of the divisor. Here is a 4D example:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;$$\frac{1}{5}(10, 20, 30, 5) = (\frac{10}{5}, \frac{20}{5}, \frac{30}{5}, \frac{5}{5}) = (2,4,6,1)$$&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;uses-of-homogeneous-coordinates-in-computer-graphics&quot;&gt;Uses of Homogeneous Coordinates in Computer Graphics&lt;/h2&gt;
+&lt;p&gt;As mentioned earlier, in regard to 3D computer graphics, homogeneous coordinates are useful in certain situations. We will look at some of those situations here.&lt;/p&gt;
+
+&lt;h3 id=&quot;translation-matrices-for-3d-coordinates&quot;&gt;Translation Matrices for 3D Coordinates&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A four-column matrix can only be multiplied with a four-element vector, which is why we often use homogeneous 4D vectors instead of 3D vectors.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Rotation and scaling transformation matrices only require three columns. But, in order to do &lt;span class=&quot;rainbow&quot;&gt; translation, the matrices need to have at least four columns &lt;/span&gt;. This is why transformations are often $4 \times 4$ matices. However, a matrix with four columns cannot be multiplied by a 3D vector, due to the rules of matrix multiplication. A four-column matrix can only be mulitplied with a four-element vector, which is why we often use homogeneous 4D vectors instead of 3D vectors.&lt;/p&gt;
+
+&lt;p&gt;The 4th dimension $W$ is usually unchanged, when using homogeneous coordinates in matrix transformation. $W$ is set to $1$ when converting 3D coordinates into 4D, and is usually still $1$ after the transformation matrices are applied, at which point it can be converted back into a 3D coordinate by ignoring $W$. This is true for all translation, rotation, and scaling transformations, which by far are the most common types of transformations. The notable exception is projection matrices, which do affect the $W$ dimension.&lt;/p&gt;
+
+&lt;h3 id=&quot;perspective-transformation&quot;&gt;Perspective Transformation&lt;/h3&gt;
+&lt;p&gt;In 3D, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perspective&lt;/code&gt; is the phenomenon where an object appears smaller the further away it is from the camera. A far-away mountain can appear to be smaller than a cat, if the cat is close enough to the camera.&lt;/p&gt;
+
+&lt;p&gt;Perspective is implemented in 3D computer graphics by using a transformation matrix that changes the $W$ element of each vertex. After the camera matrix is applied to each vertex, but before the projection matrix is applied, the $Z$ element of each vertex represents the distance away from the camera. Therefore, the larger $Z$ is, the more the vertex should be scaled down. The $W$ dimension affects the scale, so the projection matrix just changes the $W$ based on the $Z$ value. Here is an example of a perspective projection matrix being applied to a homogeneous coordinate:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;$$ \begin{bmatrix} 1&amp;amp;0&amp;amp;0&amp;amp;0 \\ 0&amp;amp;1&amp;amp;0&amp;amp;0&amp;amp; \\ 0&amp;amp;0&amp;amp;1&amp;amp;0 \\ 0&amp;amp;0&amp;amp;1&amp;amp;0 \end{bmatrix} \begin{bmatrix} 2 \\ 3 \\ 4 \\ 1\end{bmatrix} = \begin{bmatrix} 2 \\ 3 \\ 4 \\ 1 \end{bmatrix} $$&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Notice how the $W$ value is changed to $4$, which comes from the $Z$ value.&lt;/p&gt;
+
+&lt;p&gt;After the perspective projection matrix is applied, each vertex undergoes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perspective division&lt;/code&gt;. Perspective division is just a specific term for converting the homogeneous coordinate back to $W=1$, as explained earlier in the article. Continuing with the example above, the perspective division step would look like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;$$\frac{1}{4}(2,3,4,4) = (0.5,0.75, 1,1)$$&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After perspective division, the $W$ value is discarded, and we are left with a 3D coordinate that has been correctly scaled according to a 3D perspective projection.&lt;/p&gt;
+
+&lt;h3 id=&quot;positioning-directional-lights&quot;&gt;Positioning Directional Lights&lt;/h3&gt;
+
+&lt;p&gt;One property of homogeneous coordinates is that they allow you to have points at infinity (infinite length vectors), which is not possible with 3D coordinates. Points at infinity occur when $W=0$. If you try to convert a $W=0$ homogeneous coordinate into a normal $W=1$ coordinate, it results in a bunch of divide-by-zero operations:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;$$ \frac{1}{0}(2,3,4,0) = (\frac{2}{0}, \frac{3}{0}, \frac{4}{0}, \frac{0}{0})$$.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This means that homogeneous coordinates with $W=0$ can not be converted back into 3D coordinates.&lt;/p&gt;
+
+&lt;p&gt;What use does this have? Well, directional lights can be thought of as point lights that are infinitely far away. When a point light is infinitely far away, the rays of light become parallel, and all of the light travels in a single direction. This is basically the definition of a directional light.&lt;/p&gt;
+
+&lt;p&gt;So, traditionally, in 3D graphics, directional lights are differentiated from point lights by the value of $W$ in the position vector of the light. If $W=1$, then it is a point light. If $W=0$, then it is a directional light.&lt;/p&gt;
+
+&lt;p&gt;This is more of a traditional convention, rather than a useful way to write lighting code. Directional lights and point lights are usually implemented with separate code, because they behave differently.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;Homogeneous coordinates have an extra dimension called $W$, which scales the $X$, $Y$, and $Z$ dimensions. Matrices for translation and perspective projection can only be applied to homogeneous coordinates, which is why they are so common in 3D computer graphics. The $X$, $Y$, and $Z$ values are said to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;correct&lt;/code&gt; when $W=1$. Any homogeneous coordinates can be converted to have $W=1$ by dividing all four dimensions by the $W$ value, except if $W=0$. When $W=0$, the coordinate represents a point at infinity (a vector with infinite length), and this is often used to denote the direction of directional lights.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/&quot;&gt;Tomdalling’s Blog Post&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20172018/LectureNotes/MATH/homogenous.html&quot;&gt;Image Processing and Computer Vision Lecture Notes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="sticky" /><category term="featured" /><summary type="html">In this article, I'm going to explain homogeneous coordinates (a.k.a 4D coordinates) as simply as I can. We need projective geometry for that.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/home.png" /><media:content medium="image" url="http://localhost:4000/assets/images/home.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
