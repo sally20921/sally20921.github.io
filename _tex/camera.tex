@@ -1,0 +1,29 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[latin1]{inputenc}
+
+\title{Dissecting the Camera Matrix}
+\author{Seri Lee}
+\date{09/14/21}
+
+\maketitle
+
+\section{Introduction: Camera Decomposition}
+The camera matrix by itself is useful for projecting 3D points into 2D, but it has several drawbacks.
+\begin{itemize}
+\item It doesn't tell you about the camera pose.
+\item It does not tell you about the camera's internal geometry.
+\end{itemize}
+
+To address these drawbacks, a camera matrix can be decomposed into the product of two matrices: an intrinsic matrix, $K$ and an extrinsic matrix $[R|-RC]$.
+
+\begin{equation}
+P = K[R|-RC]
+\end{equation}
+
+The matrix $K$ is a $3 \times 3$ upper-triangular matrix that describes the camera's internal parameters like focal length. $R$ is a $3 \times 3$ r
+
+
+\end{document}

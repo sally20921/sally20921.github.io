@@ -75,9 +75,14 @@ $$
 
 <h3> The Camera Frustum: A Pinhole Camera Made Simple </h3>
 
-As we discussed earlier, only the arrangement of the pinhole and the film matter, so the physical box surrounding the camera is irrelevant. For this reason, many discussions of camera geometry use a simpler visual representation: the camera frustum.
+To put it simply, camera frustum is a visual representation where we use virtual image that has the same properties as the film image. Unlike the true image, the virtual image appears in front of the camera, and the projected image is unflipped. 
+
+So the pinhole has been replaced by the tip of the visibility cone, and the film, and the film is now represented by the virtual image plane. 
 
 <h3> Intrinsic Parameters as 2D Transformations </h3>
+
+We can interpret these 3D-vectors as 2D homogeneous coordinates which are transformed to a new set of 2D points. This gives us a new view of the intrinsic matrix: a sequence of 2D affine transformations. 
+
 
 It also emphasizes that the <span class="highlight-green"> intrinsic camera transformation occurs <b> post-projection </b></span>.
 

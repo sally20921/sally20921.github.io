@@ -16,6 +16,7 @@
 	margin-left: 2px;
 	margin-right: 2px;
 	padding: 3px;
+	font-size: small;
 }
 
 article picture img {
@@ -164,6 +165,7 @@ article ul li:nth-child(6):before {
 
 .monospace {
 	font-family: monospace;
+	font-weight: bold;
 }
 
 
@@ -256,7 +258,7 @@ article ul li:nth-child(6):before {
 .proof {
   display: block;
   margin: 12px 0;
-  font-style: normal;
+  font-style: italic;
   position: relative;
 }
 .proof::before {
@@ -275,7 +277,7 @@ article ul li:nth-child(6):before {
   counter-increment: definition;
   display: block;
   margin: 12px 0;
-  font-style: normal;
+  font-style: italic;
 }
 .definition::before {
   content: 'Definition ' counter(definition) '. ';
@@ -326,6 +328,7 @@ article ul li:nth-child(6):before {
 }
 
 .typewriter {
+  font-weight: bold;
   overflow: hidden; /* Ensures the content is not revealed until the animation */ text-align: center;
   border-right: .15em solid orange; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
@@ -347,6 +350,7 @@ article ul li:nth-child(6):before {
  	color: transparent;
   	-moz-background-clip: text;
   	-webkit-background-clip: text;
+	font-weight: bold;
   }
 
 
