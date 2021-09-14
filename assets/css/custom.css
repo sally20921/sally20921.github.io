@@ -1,4 +1,5 @@
 
+
 .indent {
 	text-indent: 30px;
 }
@@ -6,10 +7,6 @@
 ::selection {
 	background: #EFEF8E;
 	color: #1f542d;
-}
-
-.hidden {
-	display: non !important;
 }
 
 .sidenote {
@@ -23,7 +20,6 @@
 	padding: 3px;
 	font-size: small;
 }
-
 
 article picture img {
 	object-fit: cover;
@@ -106,22 +102,29 @@ article ul li:nth-child(6):before {
 	color: black;
 }
 
-article ol {
-  counter-reset: cupcake;
-  padding-left: 32px;
-}
-article ol li {
-  counter-increment: cupcake;
+.three {
+  color: darkgrey;
+  white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3em;
+  font-family: sans-serif;
+  letter-spacing: 0.1em;
+  transition: 0.3s;
+  text-shadow: 1px 1px 0 grey, 1px 2px 0 grey, 1px 3px 0 grey, 1px 4px 0 grey,
+    1px 5px 0 grey, 1px 6px 0 grey, 1px 7px 0 grey, 1px 8px 0 grey,
+    5px 13px 15px black;
 }
 
-article ol li:before {
-  content: counters(cupcake, '.') ' ';
-  /* Whatever custom styles you want here */
-  color: hotpink;
-  font-weight: bold;
-  font-family: cursive;
+.three:hover {
+  transition: 0.3s;
+  transform: scale(1.1)translate(-50%, -50%);
+  text-shadow: 1px -1px 0 grey, 1px -2px 0 grey, 1px -3px 0 grey,
+    1px -4px 0 grey, 1px -5px 0 grey, 1px -6px 0 grey, 1px -7px 0 grey,
+    1px -8px 0 grey, 5px -13px 15px black, 5px -13px 25px #808080;
 }
-
 
 .highlight-sketch{
   position:relative;
@@ -171,11 +174,77 @@ article ol li:before {
 	caption-side: bottom;
 	}
 
+
 .highlight {
-background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, rgba(255, 255, 255, 0));
+	background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, rgba(255, 255, 255, 0));
 }
 
-.highlight-pink{
+
+.highlight-skew {
+	background: linear-gradient(to right, mediumturquoise, mediumpurple;
+	display: inline-block;
+}
+
+.highlight-gradient {
+	background-position: 0 -0.1em;
+	background-image: linear-gradient(to right, yellow 0, lightgreen 100%);
+	font-weight: bold;
+}
+
+.highlight:hover, .highlight-skew:hover, .highlight-gradient:hover {
+	transform: skewX(-10deg);
+}
+
+.underline-move {
+	color: #4287f5;
+	background-image: linear-gradient(#ffd900, #ffd900);
+	background-repeat: no-repeat;
+	background-position: 0% 100%;
+	background-size: 100% 2px;
+	transition: background-size .5s, background-position .3s ease-in .5s;
+}
+
+.underline-move:hover {
+	background-size: 100% 100%;
+	background-position: 0% 0%;
+	transition: background-position .5s, background-size .3s, ease-in .5s;
+}
+
+.arrow-highlight{
+  position:relative;
+  margin:0 0.5em;
+  padding:0 0.2em;
+}
+.arrow-highlight:before{
+  content:"";
+  z-index:-1;
+  left:-0.5em;
+  top:0.1em;
+  border-width:0.5em;
+  border-style:solid;
+  border-color:orange;
+  position:absolute;
+  width:calc(100% - 0.5em);
+  border-left-color:transparent;
+}
+
+.arrow-highlight:after{
+  content:"";
+  z-index:-1;
+  right:0;
+  top:0.1em;
+  border-width:0.5em;
+  border-style:solid;
+  border-color:orange;
+  position:absolute;
+  border-top-color:transparent;
+  border-bottom-color:transparent;
+  border-left-color:transparent;
+  transform:rotate(180deg);
+  transform-origin:center right;
+}
+
+.highlight-pink {
 	background: linear-gradient(120deg, #e4a0a1 0%, #e4a0a1 100%);
     	background-repeat: no-repeat;
     	background-size: 100% 20%;
@@ -187,6 +256,7 @@ background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, r
 	background: #7DFFB3;
 }
 
+
 .highlight-yellow {
     background-color: #fff2ac;
     background-image: linear-gradient(to right, #ffe359 0%, #fff2ac 100%);
@@ -195,12 +265,18 @@ background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, r
 .monospace {
 	font-family: monospace;
 	font-weight: bold;
+	animation: bounce .6s;
 }
 
 
 .underline {
 	text-decoration: underline;
 }
+
+.neon {
+	transform: translate(-50%,-50%);
+	color: blue;
+
 
 
 .rainbow { /*color: rgb(0,0,225);*/
@@ -215,6 +291,7 @@ background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, r
         #F18F43 50%, 
         #8B9862 50%, 
         #8B9862 66.666%, 
+i
         #476098 66.666%, 
         #476098 83.333%, 
         #A7489B 83.333%);
@@ -228,7 +305,7 @@ background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, r
   	-webkit-background-clip: text;
   	-webkit-text-fill-color: transparent;
 	animation: blink;
-	}
+}
 
 .red { color: #ea2f65;
        font-style: italic;
@@ -256,6 +333,8 @@ background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, r
 	cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
 	text-decoration: blink;
 }
+
+
 
 article mark.teal {
 	background-color: #008080;
