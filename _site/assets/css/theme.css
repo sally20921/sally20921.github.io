@@ -669,11 +669,13 @@ article {
     color: #222222;
 }
 
+/*
 .shape {
 	width: 300px;
 	float: left;
 	shape-outside: circle(50%);
 }
+*/
 
 article code,article p,article pre, article blockquote, article iframed,article embed {margin-bottom:2rem;}
 
@@ -682,6 +684,7 @@ article figure, article img {
 	margin-bottom: 2rem;
 }
 
+/*
 article blockquote {
     font-family: Georgia, serif;
     position: relative;
@@ -689,7 +692,11 @@ article blockquote {
     padding: 0.5em 2em 0.5em 3em; 
     text-align: center;
 }
+*/
+
 /* Thanks: http://callmenick.com/post/styling-blockquotes-with-css-pseudo-classes */
+
+/*
 article blockquote:before {
     font-family: Georgia, serif;
     position: absolute;
@@ -699,11 +706,12 @@ article blockquote:before {
     left: 0;
     content: "\201C";
 }
+*/
 
+/*
 article blockquote:after {
     font-family: Georgia, serif;
     position: absolute;
-   /* display: block; don't use this, it raised the quote too high from the bottom - defeated line-height? */
     float:right;
     font-size:6em;
     line-height: 1;
@@ -711,6 +719,7 @@ article blockquote:after {
     bottom:-0.5em;
     content: "\201D";
 }
+*/
 
 /*article:first-letter {
 	float:left;
