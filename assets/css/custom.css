@@ -1,24 +1,3 @@
-article ol {
-	counter-reset: item;
-	list-style-type: none;
-}
-
-article ol li {
-	display: block;
-}
-
-article ol li:before {
-	content: counter(item) ". ";
-	counter-increment: item;
-	color: #f9dd94;
-}
-
-article ol li:hover {
-	background: #E9E4E0;
-	font-weight: bold;
-}
-
-
 .indent {
 	text-indent: 30px;
 }
