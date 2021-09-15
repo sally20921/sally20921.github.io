@@ -1,3 +1,11 @@
+```python
+
+{% highlight python %}
+{% endhighlight %}
+
+highlighter: rouge 
+
+```
 
 ## supported text style
 

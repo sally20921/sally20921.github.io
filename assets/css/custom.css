@@ -30,16 +30,6 @@
 	font-size: small;
 }
 
-article blockquote {
-	display: block;
-	background: #f9f9f9;
-	border-left: 10px solid #ccc;
-	font-family: cursive;
-	position: relative;
-	margin: 2em 1em 2em 1em;
-	padding: 0.5em 2em 0.5em 3em;
-}
-
 .half-gallery {
 	width: 100%;
 	display: grid;
@@ -118,7 +108,6 @@ article ul {
 	margin: 1em;
 	padding: 0;
 }
-
 
 article ul li:hover {
 	/*background: linear-gradient(to right, green, violet, red);
