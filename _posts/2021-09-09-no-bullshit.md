@@ -353,6 +353,25 @@ $$
 area = \begin{vmatrix} v_1 & v_2 \\ w_1 & w_2 \end{vmatrix} = v_1 w_2 - v_2 w_1 
 $$
 
-<h5> Volume of a parallelpiped </h5> 
-<h5> Sign and absolute value of the determinant </h5>
-Calculating determinants can produce positive or negative numbers. 
+<h2> Theoretical Linear Algebra </h2>
+The things we are going to learn now are less concerned with calculations and more about mind expansion. This section extends what we know about the vector space $\mathbb{R}^n$ to the realm of <span class="blue"> abstract vector spaces </span> of <u>vector-like mathematical objects. </u>
+
+<h3> Eigenvalues and Eigenvectors </h3>
+The set of <u> eignevectors </u> of a matrix is a special set of input vectors for which the action of the matrix is described as <u> simple scaling </u>. 
+
+Decomposing a matrix in terms of its eigenvalues and its eigenvectors gives valuable insights into the properties of the matrix. Certain matrix calculations, like <b> computing the power of the matrix</b>, become much easier when use the <u> eigendecomposition of the matrix </u>
+
+For example, suppose we're given a square matrix $A$ and want to compute $A^7$. To make this example more concrete, we'll analyze the matrix 
+$$
+A = \begin{bmatrix} 9 & -2 \\ -2 & 6 \end{bmatrix}
+$$
+
+We want to compute $A^7$. That would be an awful lot of matrix multiplications. Every matrix corresponds to some linear operation. This means it's legit to ask, <u> "what does the matrix A do?" </u> Once we figure out this part, we can compute $A^{77}$ by simply doing what $A$ does $77$ times. 
+
+The best way to see what a matrix does is to look inside it and see what it's made of. To understand the matrix $A$, you must find it its eigenvectors and its eigenvalues. The eigenvectors of a matrix are a <span class="rainbow"> natural basis </span> for describing the action ofthe matrix. The eigendecomposition is a change-of-basis operation that expresses the matrix $A$ with respect to its eigenbasis (own-basis). The eigendecompositions of the matrix $A$ is a product of three matrices:
+
+
+
+
+
+

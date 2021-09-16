@@ -19,6 +19,14 @@
 	font-size: small;
 }
 
+.textbox {
+	display: block;
+	border: 1px solid #000;
+	margin: 0px 2px 10px 2px;
+	padding: 0.5rem 1em 0.5em 1em;
+}
+
+
 .sidenote-pretty {
 	display: block;
 	border: 2px dashed #2ecc71;
@@ -29,6 +37,32 @@
 	padding: 0.5em 2em 0.5em 3em;
 	font-size: small;
 }
+
+article blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+  font-family: cursive;
+
+
+}
+
+article blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+article blockquote p {
+  display: inline;
+}
+
+
 
 .half-gallery {
 	width: 100%;
@@ -99,9 +133,6 @@ article picture img {
 	background: linear-gradient(135deg, #eee 0%, #888 100%);
 }
 
-article h1, article h2, article h3, article h4 {
-	text-align: center;
-}
 
 article ul {
 	list-style: none;
@@ -136,7 +167,7 @@ article ul li:nth-child(1):before {
 
 .highlight {
 	background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, rgba(255, 255, 255, 0));
-
+	display: inline;
 }
 
 article ul li:nth-child(2):before {
@@ -175,24 +206,28 @@ article ul li:nth-child(6):before {
 }
 
 .three {
-  color: darkgrey;
-  white-space: nowrap;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3em;
+  color: black;
+  position: relative;
   font-family: sans-serif;
-  letter-spacing: 0.1em;
+  display: inline-block;
+  text-align: center;
   transition: 0.3s;
   text-shadow: 1px 1px 0 grey, 1px 2px 0 grey, 1px 3px 0 grey, 1px 4px 0 grey,
     1px 5px 0 grey, 1px 6px 0 grey, 1px 7px 0 grey, 1px 8px 0 grey,
     5px 13px 15px black;
 }
 
+.three:before {
+	content: "⭐️";
+}
+
+.three:after {
+	content: "⭐️";
+}
+
 .three:hover {
   transition: 0.3s;
-  transform: scale(1.1)translate(-50%, -50%);
+  transform: scale(1.1);
   text-shadow: 1px -1px 0 grey, 1px -2px 0 grey, 1px -3px 0 grey,
     1px -4px 0 grey, 1px -5px 0 grey, 1px -6px 0 grey, 1px -7px 0 grey,
     1px -8px 0 grey, 5px -13px 15px black, 5px -13px 25px #808080;
@@ -244,12 +279,8 @@ article ul li:nth-child(6):before {
 	text-align: center;
 	font-size: 70%;
 	caption-side: bottom;
-	}
-
-
-.highlight {
-	background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, rgba(255, 255, 255, 0));
 }
+
 
 
 .highlight-skew {

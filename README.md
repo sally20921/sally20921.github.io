@@ -10,12 +10,12 @@ highlighter: rouge
 ## supported text style
 
 ```python
-basic = {indent, sidenote, sidenote-pretty, picture, picture img, ul, li, caption, ol, li, blockquote-pretty}
+basic = {indent, sidenote, sidenote-pretty, picture, picture img, ul, li, caption, ol, li, blockquote-pretty, textbox}
 simple = {monospace, underline, hidden, underline-move, underline-blue, underline-pink, underline-grad} 
-highlight = {highlight, highlight-gradient, highlight-skew, highlight-sketch, highlight-pink, highlight-green, highlight-yellow, circle-sketch-highlight, arrow-highlight}
+highlight = {three, highlight, highlight-gradient, highlight-skew, highlight-sketch, highlight-pink, highlight-green, highlight-yellow, circle-sketch-highlight, arrow-highlight}
 text = {rainbow, red, blue, black, gradient, shadow, stroke, shadow-blue, shadow-white}
 math = {theorem, lemma, proof, defintion}
-dynamic = {three, typewriter, zoom, flow, glow, gif, showup, reveal, slidein, shine, blink, frozen, neon-green, neon-pink}
+dynamic = {typewriter, zoom, flow, glow, gif, showup, reveal, slidein, shine, blink, frozen, neon-green, neon-pink}
 mark = {teal, gold, blue, coral}
 
 img = {half-gallery, half-img1, half-img2, half-img3, triple-gallery, triple-img1, triple-img2, triple-img3}
