@@ -12,3 +12,5 @@ package.json
 .gem
 vendor/bundle
 _site
+.vscode
+.template

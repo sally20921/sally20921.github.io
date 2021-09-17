@@ -62,8 +62,6 @@ article blockquote p {
   display: inline;
 }
 
-
-
 .half-gallery {
 	width: 100%;
 	display: grid;
@@ -80,7 +78,7 @@ article blockquote p {
 	justify-content: space-evenly;
 }
 
-.half-gallery img {
+.half-gallery img1, .half-gallery img2 {
 	width: 100%;
 	height: 100%;
 	display: block;
@@ -89,7 +87,7 @@ article blockquote p {
 	background: linear-gradient(135deg, #eee 0%, #888 100%);
 }
 
-.triple-gallery img {
+.triple-gallery img1, .triple-gallery img2, .triple-gallery img3 {
 	width: 100%;
 	height: 100%;
 	display: block;
@@ -133,6 +131,15 @@ article picture img {
 	background: linear-gradient(135deg, #eee 0%, #888 100%);
 }
 
+.img-small-center {
+  width: 350px !important;
+  max-width: 350px !important; 
+  height: auto;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+}
 
 article ul {
 	list-style: none;
@@ -284,7 +291,7 @@ article ul li:nth-child(6):before {
 
 
 .highlight-skew {
-	background: linear-gradient(to right, mediumturquoise, mediumpurple;
+	background: linear-gradient(to right, mediumturquoise, mediumpurple);
 	display: inline-block;
 }
 
@@ -449,7 +456,7 @@ article ul li:nth-child(6):before {
 .neon {
 	transform: translate(-50%,-50%);
 	color: blue;
-
+}
 
 
 .rainbow { /*color: rgb(0,0,225);*/
@@ -475,7 +482,8 @@ i
 
   /* Use the text as a mask for the background. */
   /* This will show the gradient as a text color rather than element bg. */
-  	-webkit-background-clip: text;
+    background-clip: text;
+    -webkit-background-clip: text;
   	-webkit-text-fill-color: transparent;
 	animation: blink;
 }
@@ -659,8 +667,9 @@ article.coral {
 	background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
   	background-size: cover;
  	color: transparent;
-  	-moz-background-clip: text;
-  	-webkit-background-clip: text;
+   background-clip: text;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
 	font-weight: bold;
   }
 
@@ -683,9 +692,10 @@ article.coral {
 
 .frozen {
 	background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/6963bbf342d87b3a2150bd8f59682b89.jpg);
-    	-webkit-background-clip: text;
-  	background-size: contain;
-  	width: 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-size: contain;
+  width: 100%;
 	color: transparent;
 	/*animation-name: frozen-shine*/
 }
@@ -818,14 +828,6 @@ article.coral {
     100% {opacity:0;}
 }
 
-@keyframes slidein {
- .highlight{
-background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, rgba(255, 255, 255, 0));
-}   0% { margin-left:-800px; }
-    20% { margin-left:-800px; }
-    35% { margin-left:0px; }
-    100% { margin-left:0px; }
-}
 
 @keyframes reveal {
     0% {opacity:0;width:0px;}

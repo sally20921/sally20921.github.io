@@ -16,7 +16,7 @@ Traditional stereoscopy systems, such as human visual system, utilize multiple v
 <h2> Visual Structure from Motion </h2>
 In his work, Wu et al. describes the methodology of Visual Structure from Motion as following. Using a set of image feature locations and correspondences, the goal of bundle adjustment is to find 3D point positions and camera parameters that minimize the re-projection error. This optimization problem is constructed as a non-linear least squares problem, where the error is the squared $L_2$ norm of the difference between the observed feature location and the projection of the corresponding 3D point on the image plane of the camera.
 
-Wu explains by letting $x$ be a vector of parameters and $f(x) = \[f_1(x), /dots, f_k(x)\]$ be the vector of residual errors for 3D reconstruction. Then the optimization problem he wishes to solve is the non-linear least squares problem shown in the below equation.
+Wu explains by letting $x$ be a vector of parameters and $f(x) = [f_1(x), \dots, f_k(x)]$ be the vector of residual errors for 3D reconstruction. Then the optimization problem he wishes to solve is the non-linear least squares problem shown in the below equation.
 $$
 x* = \argmin_{x} \sum_{i=1}^{k} \lVert f_i(x) \rVert^2
 $$
@@ -25,7 +25,7 @@ The Levenberg-Marquardt (LM) algorithm is an extremely popular algorithm for sol
 $$
 \delta* = \argmin_{\delta} \lVert J(x)\delta + f(x) \rVert^2 + \lambda \lVert D(x) \delta \rVert^2
 $$
-and updates $x \lefta.rrow x + \delta*$ if $\lVert f(x+\delta*)\rVert < \lVert f(x) \rVert$. Here $D(x)$ is a non-negative diagonal matrix, typically the square root of the diagonal of the matrix $J(x)^TJ(x)$ and $\lambda$ is a nonnegative parameter that controls the strength of regularization. Wu explains that the regularization is needed to ensure a convergent algorithm. LM updates the value of $\lambda$ at each step based on how well the Jacobian $J(x)$ approximates $f(x)$.
+and updates $x \leftarrow x + \delta*$ if $\lVert f(x+\delta*)\rVert < \lVert f(x) \rVert$. Here $D(x)$ is a non-negative diagonal matrix, typically the square root of the diagonal of the matrix $J(x)^TJ(x)$ and $\lambda$ is a nonnegative parameter that controls the strength of regularization. Wu explains that the regularization is needed to ensure a convergent algorithm. LM updates the value of $\lambda$ at each step based on how well the Jacobian $J(x)$ approximates $f(x)$.
 
 <h2> SIFT Features </h2>
 
