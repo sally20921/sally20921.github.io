@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-17T21:00:10+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Sparse Convolutional Networks</title><link href="http://localhost:4000/sparse-cnn.html" rel="alternate" type="text/html" title="Sparse Convolutional Networks" /><published>2021-09-17T00:00:00+09:00</published><updated>2021-09-17T00:00:00+09:00</updated><id>http://localhost:4000/sparse-cnn</id><content type="html" xml:base="http://localhost:4000/sparse-cnn.html">&lt;!--more--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-18T11:25:38+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Sparse Convolutional Networks</title><link href="http://localhost:4000/sparse-cnn.html" rel="alternate" type="text/html" title="Sparse Convolutional Networks" /><published>2021-09-17T00:00:00+09:00</published><updated>2021-09-17T00:00:00+09:00</updated><id>http://localhost:4000/sparse-cnn</id><content type="html" xml:base="http://localhost:4000/sparse-cnn.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Introduction &lt;/h2&gt;
 &lt;p&gt;Convolutional Neural Network (CNN) has been proved very effective for 2D image signal processing. However, for 3D point cloud signals, the extra dimension $Z$ increases the calculation significantly. On the other hand, unlike regular images, most of the voxels of the 3D point cloud are empty, which makes point cloud data in the 3D voxels often a sparse signals. The question is whether we can only calculate the convolution with the sparse data efficiently instead of scanning all the image pixels or spatial voxels.&lt;/p&gt;
@@ -12,16 +12,140 @@
 &lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;https://towardsdatascience.com/how-does-sparse-convolution-work-3257a0a8fd1&quot;&amp;gt; medium article &amp;lt;/a&amp;gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Neural Networks: Back to the Basics</title><link href="http://localhost:4000/know-nn.html" rel="alternate" type="text/html" title="Neural Networks: Back to the Basics" /><published>2021-09-17T00:00:00+09:00</published><updated>2021-09-17T00:00:00+09:00</updated><id>http://localhost:4000/know-nn</id><content type="html" xml:base="http://localhost:4000/know-nn.html">&lt;!--more--&gt;
 &lt;h2&gt; Introduction &lt;/h2&gt;
+&lt;h2&gt; Perceptron &lt;/h2&gt;
+&lt;p&gt;What is a neural network? To get started, I’ll explain a type of artificial neuron called a &lt;span class=&quot;blue&quot;&gt; perceptron &lt;/span&gt;. Today, it’s more common to use other models of artificial neurons. The main neural model used is called the &lt;span class=&quot;red&quot;&gt; sigmoid neuron &lt;/span&gt;. We will get to sigmoid neurons shortly. But to understand why sigmoid neurons are defined the way they are, it’s worth taking the time to first understand perceptrons.&lt;/p&gt;
 
-&lt;p&gt;What is a neural network? To get started, I’ll explain&lt;/p&gt;
+&lt;p&gt;So who do perceptrons work? A perceptron takes several binary inputs $x_1, x_2, \dots $ and produces a single binary output:&lt;/p&gt;
+
 &lt;picture&gt;&lt;img src=&quot;/assets/svg/perceptron.svg&quot; class=&quot;img-small-center&quot; /&gt;&lt;/picture&gt;
 
-&lt;h2&gt; Perceptrons &lt;/h2&gt;
+&lt;p&gt;In the example shown, the perceptron has three inputs $x_1, x_2, x_3$. In general, it could have more or fewer inputs. Rosenblatt, the inventor of perceptron, introduced &lt;span class=&quot;highlight&quot;&gt; weights &lt;/span&gt;, $w_1, w_2, \dots$, real numbers expressing the importance of the respective inputs to the outputs.&lt;/p&gt;
 
-&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
+&lt;p&gt;The neuron’s output, 0 or 1, is determined by whether the weighted sum $\sum_{j}w_j x_j$ is less or greater than some &lt;span class=&quot;shadow-blue&quot;&gt; threshold value &lt;/span&gt;. Just like the weights, the threshold is a real number which is a parameter of the neuron.&lt;/p&gt;
+
+&lt;p&gt;To put it in more precise algebraic terms:&lt;/p&gt;
+
+\[\text{output} = \begin{cases} 0 &amp;amp; \text{if $\sum_j w_j x_j \leq threshold$} \\ 1 &amp;amp; \text{if $\sum_j w_j x_j &amp;gt; threshold$}\end{cases}\]
+
+&lt;p&gt;That’s all there is to how a perceptron works!&lt;/p&gt;
+
+&lt;div class=&quot;textbox&quot;&gt; A way you can think about the perceptron is that it's a device that &lt;u&gt; makes decisions &lt;/u&gt; by &lt;u&gt; weighing up evidence &lt;/u&gt;. &lt;/div&gt;
+
+&lt;p&gt;By varying the weights and the threshold, we can get different models of decision-making.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt; Obviously, the perceptron isn’t a complete model of human decision-making. &lt;/small&gt; But what the example illustrates is &lt;u&gt; how a perceptron can weigh up different kinds of evidence &lt;/u&gt; in order to make decisions.&lt;/p&gt;
+
+&lt;p&gt;So it should seem plausible that &lt;span class=&quot;highlight-yellow&quot;&gt; a complex network of perceptrons could make quite subtle decisions &lt;/span&gt;.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img class=&quot;img-small-center&quot; src=&quot;/assets/images/mlp.png&quot; /&gt; &lt;/picture&gt;
+
+&lt;p&gt;In this network, the first layer of perceptrons is making three very simple decisions by weighing the input evidence. The perceptrons in the second layer is making a decision by &lt;u&gt; weighing up the results from the first layer of decision-making &lt;/u&gt;. In this way, a perceptron in the second layer &lt;span highlight=&quot;highlight-skew&quot;&gt; can make a decision at a more complex and abstract level &lt;/span&gt; than perceptrons in the first layer.&lt;/p&gt;
+
+&lt;p&gt;Even more complex decisions can be made by the perceptron in the third layer.  In this way, &lt;span class=&quot;underline-pink&quot;&gt; many layers of perceptrons can engage in sophisticated decision making. &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s simplify the way we describe perceptrons. The condition $\sum_j w_j x_j &amp;gt; \text{threshold}$ is cumbersome, so we can make a change to simplify it. We will move the threshold to the other side of the inequality, and replace it by what is known as the perceptron’s &lt;span class=&quot;highlight-sketch&quot;&gt; bias &lt;/span&gt;, $ b \equiv - \text{threshold} $. Using this bias instead of the threshold, the perceptron rule can be written as:&lt;/p&gt;
+
+\[\text{output} = \begin{cases} 0 &amp;amp; \text{if $w \cdot x + b \leq 0$} \\ 1 &amp;amp; \text{ if $w \cdot x + b &amp;gt; 0$} \end{cases}\]
+
+&lt;p&gt;You can think of the bias as &lt;span class=&quot;underline-move&quot;&gt; as a measure of how easy it is to get the perceptron to output a $1$ &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;For a perceptron with &lt;u&gt; a really big bias &lt;/u&gt;, it’s extremely easy for the perceptron to &lt;b&gt; output a $1$ &lt;/b&gt;. But if the bias is negative, it’s difficult for the perceptron to output a $1$.&lt;/p&gt;
+
+&lt;p&gt;I’ve described perceptrons as &lt;span class=&quot;highlight-gradient&quot;&gt; a method for weighing evidence to make decisions &lt;/span&gt;. Another way perceptrons can be used is &lt;span class=&quot;underline&quot;&gt; to compute the elementary logcal functions &lt;/span&gt; we usually think of as underlying computation, functions such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AND&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OR&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NAND&lt;/code&gt;.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img class=&quot;img-small-center&quot; src=&quot;/assets/svg/example.svg&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;For example, suppose we have a perceptron with weight $-2$, and an overall bias of $3$. We can see that input $00$ produces the value $3$, so the output is $1$.&lt;/p&gt;
+
+&lt;p&gt;Similar calculations show that $01$ or $10$ produces output $1$. But the input $11$ produces the value -1, hence the output $0$. So our perceptron is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NAND&lt;/code&gt; gate!&lt;/p&gt;
+
+&lt;p&gt;In fact, we can &lt;span class=&quot;neon-green&quot;&gt; use networks of perceptrons to compute any logical function at all &lt;/span&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;textbox&quot;&gt; The reason is that the `NAND` gate is universal for computation. We can build any computation up out of `NAND` gates. &lt;/div&gt;
+
+&lt;p&gt;Becaue &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NAND&lt;/code&gt; gates are universal for computation, perceptrons are also &lt;span class=&quot;gold&quot;&gt; universal for computation &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;It turns out that we can device &lt;span class=&quot;neon-pink&quot;&gt; learning algorithms &lt;/span&gt; which can &lt;u&gt; automatically tune the weights and biases of a network &lt;/u&gt; of artificial neurons.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt; This tuning happens in responsce to external stimuli, without direct intervention by a programmer. These learning algorithms enable us to use artifical neurons in a way which is radically different to conventional logic gates. &lt;/small&gt;&lt;/p&gt;
+
+&lt;h2&gt; Sigmoid Neurons &lt;/h2&gt;
+
+&lt;p&gt;How can we device such &lt;span class=&quot;neon-pink&quot;&gt; learning algorithms &lt;/span&gt; for a neural network?&lt;/p&gt;
+
+&lt;p&gt;Well, what we’d like to see is for a small change in weight (or bias) to cause only a small corresponding change in the output from the network. This property makes learning possible.&lt;/p&gt;
+
+\[w + \nabla w \rightarrow \text{output} + \nabla \text{output}\]
+
+&lt;p&gt;The problem is that a small change in weights or bias of any single perceptron in the network can sometimes cause the output of that perceptron to completely flip, say 0 to 1.&lt;/p&gt;
+
+&lt;p&gt;We can overcome this problem by introducing a new type of artificial neuron called a &lt;span class=&quot;shine&quot;&gt; sigmoid neuron &lt;/span&gt;. Sigmoid neurons are similar to perceptrons, but modified so that &lt;u&gt; small changes in their weights and biases casue only a small change in their output.&lt;/u&gt;&lt;/p&gt;
+
+&lt;p&gt;We can depict the sigmoid neurons in the same way we depicted perceptrons. Just like a perceptron, the sigmoid neuron has inputs $x_1, x_2, \dots$, but instead of being just $0$ or $1$, these inputs can take on any values between $0$ and $1$.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/sigmoid.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Just like a perceptron, the sigmoid neuron has weights for each input $w_1, w_2, \dots$ and an overall bias $b$. But the output is not $0$ or $1$ but instead $\sigma(w \cdot x + b)$, where $\sigma$ is called the &lt;span class=&quot;flow&quot;&gt; sigmoid function &lt;/span&gt; which is defined by:&lt;/p&gt;
+
+\[\sigma(z) \equiv \frac{1}{1+e^{-z}}\]
+
+&lt;p&gt;To put it more explicitly,&lt;/p&gt;
+
+\[\frac{1}{1+ \exp(-\sum_j w_j x_j - b)}\]
+
+&lt;p&gt;To understand the similarity to the perceptron model, suppose $z \equiv w \cdot x + b$ is a large positive number. Then $e^{-z} \approx 0$ and so $\sigma(z) \approx 1$.&lt;/p&gt;
+
+&lt;p&gt;In other words, neuron is approximately $1$, if $z = w \cdot x + b$ is large and positive.  If $z = w \cdot + b$ is negative, $e^{-z} \rightarrow \infty$ and $\sigma(z) \approx 0$.&lt;/p&gt;
+
+&lt;div class=&quot;textbox&quot; style=&quot;text-align: center !important;&quot;&gt; &lt;picture&gt;&lt;img src=&quot;/assets/images/euler.png&quot; style=&quot;width: 350px !important;&quot; /&gt;&lt;/picture&gt; &lt;p style=&quot;font-size: 70% !important; text-align: left !important;&quot;&gt; Remember our exponential function with Euler's number? $e = \lim_{n\to\infty} (1+1/n)^n = 1+ \frac{1}{1!}+ \frac{1}{2!} + \frac{1}{3!}+ \cdots \approx 2.718$. The gradient function of $y = e^x$ is equal to $e^x$. It is a natural choice as a logarithmic base.&lt;/p&gt; &lt;/div&gt;
+
+&lt;p&gt;The exact algebraic form of $\sigma$ isn’t so important-what really matters is the shape of the function when plotted as in the above figure.&lt;/p&gt;
+
+&lt;div class=&quot;textbox&quot; style=&quot;text-align: center !important;&quot;&gt;&lt;picture&gt;&lt;img src=&quot;/assets/images/sigmoid.png&quot; style=&quot;width:500px !important;&quot; /&gt;&lt;/picture&gt;&lt;p style=&quot;font-size: 90% !important; text-align: left !important;&quot;&gt;The left figure also show the graph of the derivative of sigmoid function in pink color. The sigmoid function is also called a squashing function as its domain is the set of all real numbers ranging $(0,1)$. When the activation function for a neuron is a sigmoid function, it is guaranteed that the output unit will always be  between 0 and 1.&lt;/p&gt; &lt;/div&gt;
+
+&lt;div class=&quot;textbox&quot;&gt;&lt;p&gt;&lt;b&gt; Why Is the Sigmoid Function Important in Neural Networks?&lt;/b&gt; The sigmoid is a non-linear function, thus the ouput of this unit would be a non-linear function of the weighted sum of inputs. For a linearly separable problem in an $n$-dimensional space, the linear decision boundary is described by the equation of a hyperplane. The right figure shows a non-linearly separable problem, where a non-linear decision boundary is required. &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;If we use a linear activation function in a neural network, then this model can only leran linearly separable problems. The addition of one hidden layer and a sigmoid activation function in the hidden layer, the neural network can eaily learn a non-linearly separable problem.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/sigmoid-neuron.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;&lt;span class=&quot;underline-grad&quot;&gt; The only non-linear function that can be used as an activation function is one which is monotonically increasing. &lt;/span&gt; The function also requires to be &lt;span class=&quot;shine&quot;&gt; continuous &lt;/span&gt; and &lt;span class=&quot;reveal&quot;&gt; differentiable &lt;/span&gt; over the entire space of real numbers.&lt;/p&gt;
+
+&lt;p&gt;The fact that sigmoid function is monotonic, continuous and differentiable everywhere, coupled with the property that its derivatives can be expressed in terms of itself, makes the learning process easier when using the back-propagation algorithm.&lt;/p&gt;
+
+&lt;p&gt;Indeed, its the smoothness of the $\sigma$ function that is the crucial fact. The smoothness of $\sigma$ means that small changes $\nabla w_j$ in the weights and $\nabla b$ in the bias will produce a small change of $\nabla \text{output}$ from the neuron.&lt;/p&gt;
+
+&lt;h2&gt; The architecture of Neural Networks &lt;/h2&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/nn4.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;The following four-layer network has two hidden layers. Somewhat confusingly, and for historical reasons, such multiple layer networks are sometimes called &lt;span class=&quot;rainbow&quot;&gt; multi-layer perceptrons &lt;/span&gt; or &lt;b&gt; MLPs &lt;/b&gt; despite being made up of sigmoid neurons, not perceptrons.&lt;/p&gt;
+
+&lt;p&gt;While the design of the input and output layers of a neural network is often straighforward, there can be quite an art to &lt;u&gt; the design of the hidden layers &lt;/u&gt;. Researchers have developed many design heuristics for the hidden layers. Up to now, we’ve discussing neural networks where &lt;span class=&quot;underline-fancy&quot;&gt; the output from one layer is used as input to the next layer &lt;/span&gt;. Such netwokrs are called &lt;span class=&quot;blue&quot;&gt; feedforward neural networks&lt;/span&gt;. This means that &lt;span class=&quot;underline-fancy&quot;&gt; there are no loops in the network &lt;/span&gt;-&lt;span class=&quot;underline-move&quot;&gt; information is always fed forward, never fed back &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt; There are other models of artificial neural networks in which feedback loops are possible. These models are called &lt;mark class=&quot;gold&quot;&gt; recurrent neural networks &lt;/mark&gt;.&lt;/small&gt;&lt;/p&gt;
+
+&lt;h2&gt; Backpropagation Algorithm &lt;/h2&gt;
+
+&lt;h3&gt; The Cost Function &lt;/h3&gt;
+
+&lt;p&gt;The goal of back-propagation is &lt;u&gt; to compute the partial derivatives $\frac{\partial C}{\partial w}$ and $\frac{\partial C}{\partial b}$ of the cost function $C$ with respect to any weight $w$ or bias $b$ in the network &lt;/u&gt;.&lt;/p&gt;
+
+&lt;p&gt;For back-propagation to work we need to make &lt;span class=&quot;three&quot;&gt; two main assumptions &lt;/span&gt; about the form of the cost function.&lt;/p&gt;
+
+&lt;p&gt;It’s useful to have a cost function in mind, so we’ll set a quadratic cost function which has the form ($n$ is the number of training examples; $x$ is the sum over individual training examples; $y(x)$ is the corresponding desired output; $L$ denotes the number of layer in the network; $a^L(x)$ is the vector of activations output from the network when $x$ is the input).&lt;/p&gt;
+
+\[C = \frac{1}{2n} \sum_x \lVert y(x) - a^L(x) \rVert^2\]
+
+&lt;p&gt;The first assumption about the cost function $C$ is that the cost function can be written as &lt;span class=&quot;highlight-gradient&quot;&gt; an average $C = \frac{1}{n} \sum_x C_x$ over cost function $C_x$ for individual training examples $x$ &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;The reason we need this assumption is because what back-propagation actually lets us do is &lt;mark class=&quot;coral&quot;&gt; is compute the partial derivatives $\partial C_x / \partial w$ and $\partial C_x / \partial b$ for a single training example. We then recover $\partial C / \partial w$ and $\partial C / \partial b$ by averaing over training examples.&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;For example, for the quadratic cost function’s cost for a single training example
+The second assumption we make about the cost is that it can be written as a function of the outputs from the neural network:&lt;/p&gt;
 
 &lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://neuralnetworksanddeeplearning.com/chap1.html&quot;&gt; online book &lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>seri</name></author><category term="deep learning" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/neuron.png" /><media:content medium="image" url="http://localhost:4000/assets/images/neuron.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Guide to Linear Algebra (Part 2)</title><link href="http://localhost:4000/bullshit-two.html" rel="alternate" type="text/html" title="Guide to Linear Algebra (Part 2)" /><published>2021-09-15T00:00:00+09:00</published><updated>2021-09-15T00:00:00+09:00</updated><id>http://localhost:4000/bullshit-two</id><content type="html" xml:base="http://localhost:4000/bullshit-two.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Hilbert Space &lt;/h2&gt;
