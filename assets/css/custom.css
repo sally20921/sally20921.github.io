@@ -207,7 +207,7 @@ article ul li:nth-child(6):before {
   color: black;
   position: relative;
   font-family: sans-serif;
-  display: inline-block;
+  display: inline;
   text-align: center;
   transition: 0.3s;
   text-shadow: 1px 1px 0 grey, 1px 2px 0 grey, 1px 3px 0 grey, 1px 4px 0 grey,
@@ -296,9 +296,11 @@ article ul li:nth-child(6):before {
 	transform: skewX(-10deg);
 }
 
+
 .underline-move {
-	color: #4287f5;
-	background-image: linear-gradient(#ffd900, #ffd900);
+  font-style: italic;
+  font-weight: bold;
+	background-image: linear-gradient(#daa520, #daa520);
 	background-repeat: no-repeat;
 	background-position: 0% 100%;
 	background-size: 100% 2px;
@@ -313,8 +315,8 @@ article ul li:nth-child(6):before {
 }
 
 .underline-fancy {
-	display: inline-block;
-	background-image: linear-gradient( transparent 50%, #67b3e8 50%);
+	display: inline;
+	background-image: linear-gradient(transparent 50%, skyblue 50%);
 }
 	
 .underline-blue {
@@ -424,7 +426,10 @@ article ul li:nth-child(6):before {
 }
 
 .highlight-green {
-	background: #7DFFB3;
+  font-style: bold;
+  font-style: italic;
+	background-color: #F0FFF0;
+  background-image: linear-gradient(to right, #F0FFF0 0%, #E0FFFF 100%);
 }
 
 
@@ -441,7 +446,12 @@ article ul li:nth-child(6):before {
 
 
 .underline {
-	text-decoration: underline;
+  text-decoration: underline;
+  text-shadow: 
+    0.3px -0.1px 0.1px rgb(255,0,0), 
+    0.2px 0.1px 0 rgb(0,255,0), 
+    -0.1px 0.2px 0 rgb(0,0,255);
+  transition: 0.2s cubic-bezier(0.5,200,0.5,-200);
 }
 
 .neon {
@@ -451,7 +461,7 @@ article ul li:nth-child(6):before {
 
 
 .rainbow { /*color: rgb(0,0,225);*/
-	font-style: italic;
+  font-style: italic;
 	font-weight: bolder;
 	background-image: linear-gradient(
         45deg,
@@ -462,21 +472,19 @@ article ul li:nth-child(6):before {
         #F18F43 50%, 
         #8B9862 50%, 
         #8B9862 66.666%, 
-i
         #476098 66.666%, 
         #476098 83.333%, 
         #A7489B 83.333%);
   
   /* Set the background size and repeat properties. */
-  	background-size: 100%;
-  	background-repeat: repeat;
-
+  background-size: 100%;
+  background-repeat: repeat;
+  color: transparent;
   /* Use the text as a mask for the background. */
   /* This will show the gradient as a text color rather than element bg. */
-    background-clip: text;
-    -webkit-background-clip: text;
-  	-webkit-text-fill-color: transparent;
-	animation: blink;
+  background-clip: text;  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .red { color: #ea2f65;
@@ -506,22 +514,31 @@ i
 	text-decoration: blink;
 }
 
-
-
 article mark.teal {
-	background-color: #008080;
+  background-color: #E0FFFF;
+	text-decoration-color: #008080;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
 }
 
 article mark.gold {
-	background-color: #daa520;
+	text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #daa520;
 }
 
 article mark.blue {
-	background-color: #6495ed;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  background-color: #F5FFFA;
+	text-decoration-color: #6495ed;
 }
 
 article mark.coral {
-	background-color: #f08080;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  background-color: #FFE4E1;
+  text-decoration-color: #f08080;
 }
 
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-18T11:25:38+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Sparse Convolutional Networks</title><link href="http://localhost:4000/sparse-cnn.html" rel="alternate" type="text/html" title="Sparse Convolutional Networks" /><published>2021-09-17T00:00:00+09:00</published><updated>2021-09-17T00:00:00+09:00</updated><id>http://localhost:4000/sparse-cnn</id><content type="html" xml:base="http://localhost:4000/sparse-cnn.html">&lt;!--more--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-20T06:01:59+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Sparse Convolutional Networks</title><link href="http://localhost:4000/sparse-cnn.html" rel="alternate" type="text/html" title="Sparse Convolutional Networks" /><published>2021-09-17T00:00:00+09:00</published><updated>2021-09-17T00:00:00+09:00</updated><id>http://localhost:4000/sparse-cnn</id><content type="html" xml:base="http://localhost:4000/sparse-cnn.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Introduction &lt;/h2&gt;
 &lt;p&gt;Convolutional Neural Network (CNN) has been proved very effective for 2D image signal processing. However, for 3D point cloud signals, the extra dimension $Z$ increases the calculation significantly. On the other hand, unlike regular images, most of the voxels of the 3D point cloud are empty, which makes point cloud data in the 3D voxels often a sparse signals. The question is whether we can only calculate the convolution with the sparse data efficiently instead of scanning all the image pixels or spatial voxels.&lt;/p&gt;
@@ -124,12 +124,35 @@
 &lt;p&gt;While the design of the input and output layers of a neural network is often straighforward, there can be quite an art to &lt;u&gt; the design of the hidden layers &lt;/u&gt;. Researchers have developed many design heuristics for the hidden layers. Up to now, we’ve discussing neural networks where &lt;span class=&quot;underline-fancy&quot;&gt; the output from one layer is used as input to the next layer &lt;/span&gt;. Such netwokrs are called &lt;span class=&quot;blue&quot;&gt; feedforward neural networks&lt;/span&gt;. This means that &lt;span class=&quot;underline-fancy&quot;&gt; there are no loops in the network &lt;/span&gt;-&lt;span class=&quot;underline-move&quot;&gt; information is always fed forward, never fed back &lt;/span&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;small&gt; There are other models of artificial neural networks in which feedback loops are possible. These models are called &lt;mark class=&quot;gold&quot;&gt; recurrent neural networks &lt;/mark&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;h2&gt; A Simple Network for Digit Recognition &lt;/h2&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/digit.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;We are going to use a three-layer neural network to recognize individual digits.&lt;/p&gt;
+
+&lt;p&gt;The input layer of the network contains neurons encoding the values of the input pixels. As discussed in the next section, our training data for the network will consist of many 28 by 28 pixel images of scanned handwritten digits, and so the input layer contains $784 = 28 \times 28$ neurons. For simplicity I’ve omitted most of the 784 input neurons in the diagram above. The input pixels are grayscale, with a value of $0.0$ representing white, a value of $1.0$ representing black, and in between values representing gradually darkening shades of gray.&lt;/p&gt;
+
+&lt;p&gt;The second layer of the network is a hidden layer. We denote the number of neurons in the hidden layer by $n$, and we’ll experiment with different values for $n$. The example above illustrates a small hidden layer, containing just $n=15$ neurons.&lt;/p&gt;
+
+&lt;p&gt;The output layer of the network contains $10$ neurons. If the first neuron fires, i.e. has an $\text{output} \approx 1$, then that will indicate that the network thinks the digit is a $0$. We number the output neurons from $0$ through $9$ and figure out which neuron has the highest activation value.&lt;/p&gt;
+
+&lt;p&gt;You might wonder why we use $10$ output neurons. A seemingly natural way of doing that is to use just $4$ output neurons, treating each neuron as taking on a binary value. Why should our network use $10$ neurons instead? The ultimate justification is empirical: we can try out both network designs, and it turns out that, for this particular problem, &lt;span class=&quot;highlight-green&quot;&gt; the network with 10 output neurons learns to recognize digits better &lt;/span&gt; than the network with $4$ output neurons.&lt;/p&gt;
+
+&lt;p&gt;We can give a plausible explanation for why it’s better to have $10$ outputs from the network, rather than $4$ because if we had 4 outputs, the first output neuron would be trying to decide what the most significant bit of the digit was. And there’s no easy way to relate that most significant bit to simple shapes.&lt;/p&gt;
+
+&lt;h2&gt; Learning with Gradient Descent &lt;/h2&gt;
+
+&lt;p&gt;The first thing we’ll need is a dataset to learn from. The MNIST data, which we are going to use, comes in two parts. The first part contains 60,000 images to be used as training data. The images are grayscale and $28 \times 28$ images.&lt;/p&gt;
+
+&lt;p&gt;We’ll use the test data to evaluate how well our neural network has learned to recognize digits.&lt;/p&gt;
+
+&lt;p&gt;We’ll use the notation $x$ to denote a training input. It’ll be convenient to regard each training input $x$ as a $28 \times 28 = 784$ -dimensional vector. Each entry in the vector represents the gray value for a single pixel in the image. We’ll denote the corresponding desired output by $y(x)$, where $y$ is a 10-dimensional vector.&lt;/p&gt;
 
 &lt;h2&gt; Backpropagation Algorithm &lt;/h2&gt;
 
 &lt;h3&gt; The Cost Function &lt;/h3&gt;
 
-&lt;p&gt;The goal of back-propagation is &lt;u&gt; to compute the partial derivatives $\frac{\partial C}{\partial w}$ and $\frac{\partial C}{\partial b}$ of the cost function $C$ with respect to any weight $w$ or bias $b$ in the network &lt;/u&gt;.&lt;/p&gt;
+&lt;p&gt;The goal of back-propagation is &lt;mark class=&quot;gold&quot;&gt; to compute the partial derivatives $\frac{\partial C}{\partial w}$ and $\frac{\partial C}{\partial b}$ of the cost function $C$ with respect to any weight $w$ or bias $b$ in the network &lt;/mark&gt;.&lt;/p&gt;
 
 &lt;p&gt;For back-propagation to work we need to make &lt;span class=&quot;three&quot;&gt; two main assumptions &lt;/span&gt; about the form of the cost function.&lt;/p&gt;
 
