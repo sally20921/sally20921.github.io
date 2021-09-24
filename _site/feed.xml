@@ -1,4 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-20T06:01:59+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Sparse Convolutional Networks</title><link href="http://localhost:4000/sparse-cnn.html" rel="alternate" type="text/html" title="Sparse Convolutional Networks" /><published>2021-09-17T00:00:00+09:00</published><updated>2021-09-17T00:00:00+09:00</updated><id>http://localhost:4000/sparse-cnn</id><content type="html" xml:base="http://localhost:4000/sparse-cnn.html">&lt;!--more--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-25T01:23:13+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Image Processing: the Basics</title><link href="http://localhost:4000/optimization.html" rel="alternate" type="text/html" title="Image Processing: the Basics" /><published>2021-09-23T00:00:00+09:00</published><updated>2021-09-23T00:00:00+09:00</updated><id>http://localhost:4000/optimization</id><content type="html" xml:base="http://localhost:4000/optimization.html">&lt;!--more--&gt;
+
+&lt;h2&gt; The Basics of Optimization &lt;/h2&gt;
+
+&lt;p&gt;An optimization problem has an &lt;span class=&quot;blue&quot;&gt; objective function &lt;/span&gt; that is defined in terms of a set of variables, referred to as &lt;span class=&quot;red&quot;&gt; optimization variables &lt;/span&gt;. The goal of the optimization problem is to &lt;span class=&quot;underline&quot;&gt; compute the values of the variables at which the objective function is either maximized or minimized &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;It is common to use a &lt;mark class=&quot;coral&quot;&gt; minimization form of the objective function &lt;/mark&gt; in machine learning, and the corresponding objective function is often referred to as a &lt;span class=&quot;three&quot;&gt; loss function &lt;/span&gt;. A loss function is always associated with a minimization of objective function, and it is often interpreted as a &lt;mark class=&quot;teal&quot;&gt; cost with a nonnegative value &lt;/mark&gt;.&lt;/p&gt;
+
+&lt;p&gt;Most objective functions in machine learning are multivariate loss functions over many variables. First, we will consider the simple case of optimizations defined on &lt;span class=&quot;highlight&quot;&gt; a single variable &lt;/span&gt;.&lt;/p&gt;
+
+&lt;h3&gt; Univariate Optimization &lt;/h3&gt;
+
+&lt;p&gt;Consider a single-variable objective function $f(x)$ as follows:&lt;/p&gt;
+
+\[f(x) = x^2 - 2x + 3\]
+
+&lt;p&gt;This objective function is an &lt;span class=&quot;circle-sketch-highlight&quot;&gt; upright parabola &lt;/span&gt;, which can be expressed in the form $f(x) = (x-1)^2 + 2$. It clearly takes on its minimum value $x=1$, where the nonnegative term $(x-1)^2$ drops to $0$.&lt;/p&gt;
+
+&lt;p&gt;Note that at the &lt;span class=&quot;circle-sketch-highlight&quot;&gt; minimum value &lt;/span&gt;, the rate of change of $f(x)$ with respect to $x$ is zero, as &lt;mark color=&quot;gold&quot;&gt; the tangent to the plot at that point is horizontal &amp;lt;/span&amp;gt;.&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;One can also find this optimal value by computing the first derivative $f’(x)$ of the function $f(x)$ with respect to $x$ and setting it to $0$:&lt;/p&gt;
+
+\[f'(x) = \frac{df(x)}{dx} = 2x - 2 = 0\]
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">A Machine Learning Primer</title><link href="http://localhost:4000/primer.html" rel="alternate" type="text/html" title="A Machine Learning Primer" /><published>2021-09-23T00:00:00+09:00</published><updated>2021-09-23T00:00:00+09:00</updated><id>http://localhost:4000/primer</id><content type="html" xml:base="http://localhost:4000/primer.html">&lt;!--more--&gt;
+
+&lt;h2&gt; Fundamentals of Linear Regression &lt;/h2&gt;
+
+&lt;p&gt;In this section, we investigate one of the most common and widely used machine learning techniques: &lt;span class=&quot;arrow-highlight&quot;&gt; linear regression &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;Linear regression is a very intuitive supervised learning algorithm and as its name suggests, it is a &lt;span class=&quot;gradient&quot;&gt; regression technique &lt;/span&gt;. This means it is used when we have &lt;u&gt; labels that are continuous values &lt;/u&gt; such as car prices or the temperature in a room. Furthermore, as its name also suggests, &lt;b&gt; linear regression seeks to find fits of data that are lines &lt;/b&gt;. What does this mean?&lt;/p&gt;
+
+&lt;h3&gt; Motivations &lt;/h3&gt;
+&lt;p&gt;Imagine that you received a dataset consisting of cars, where for each car you had the number of miles a car had driven along with its price. In this case, let’s assume that you are trying to train a machine learning system that takes in the information about each car, namely the number of miles driven along with its associated price.&lt;/p&gt;
+
+&lt;p&gt;Here, for a given car, the miles driven is the input and the price is the output. This data could be represented as $(X,Y)$ coordinates.&lt;/p&gt;
+
+&lt;p&gt;In this case, it seems that there is a &lt;span class=&quot;shadow&quot;&gt; linear relationship &lt;/span&gt; between the miles driven and the price. We could describe the model for our car price dataset as a mathematical function of the form:&lt;/p&gt;
+
+\[F(X) = A_1 \cdot X + A_0\]
+
+&lt;p&gt;Here, $A_1$ and $A_0$ are called &lt;span class=&quot;shadow-blue&quot;&gt; weights &lt;/span&gt; and these are values that determine how our linear function behaves on different inputs. All supervised learning algorithms have some set of weights that determine how the algorithm behaves on different inputs, and &lt;u&gt; determining the right weights &lt;/u&gt; is really at the core of what we call &lt;span class=&quot;shadow-white&quot;&gt; learning &lt;/span&gt;.&lt;/p&gt;
+
+&lt;h3&gt; A Training Paradigm &lt;/h3&gt;
+&lt;p&gt;These varieties of linear fits raise the question: how do we actually &lt;u&gt; learn the weights of this model &lt;/u&gt; or any machine learning model in general? In particular, how can we leverage the fact that &lt;b&gt; we have the correct labels for the cars &lt;/b&gt; in our dataset?&lt;/p&gt;
+
+&lt;p&gt;Training and evaluating a machine learning model involves using something called a &lt;span class=&quot;glow&quot;&gt; cost function &lt;/span&gt;. In the case of supervised learning, a cost function is a measure of how much the &lt;span class=&quot;neon&quot;&gt; predicted labels &lt;/span&gt; outputted by our model deviate from the &lt;span class=&quot;neon-pink&quot;&gt; true labels &lt;/span&gt;. Ideally we would like the deviation between the two to be small, and so we want to &lt;span class=&quot;highlight-skew&quot;&gt; minimize the value of our cost function &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;A common cost function used for evaluating linear regression models is called the &lt;span class=&quot;showup&quot;&gt; least-squares cost function &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s say that we have $n$ datapoints in our dataset. This could look like $[(X_1, Y_1), (X_2, Y_2), \dots, (X_n, Y_n)]$. If we are learning a function like $F(X)$, the least-squares regression model seeks to minimize:&lt;/p&gt;
+
+\[C(X) = \frac{1}{2} \cdot \sum_{i=1}^n (F(X_i) - Y_i)^2\]
+
+&lt;p&gt;The deviation between our predicted output ($F(X)$) and the true output $Y$ is defined as a &lt;span class=&quot;shine&quot;&gt; residual &lt;/span&gt;. The least-squares cost is trying to minimize the sum of the squares of the residuals (multiplied by a constant in this case).&lt;/p&gt;
+
+&lt;p&gt;Here, it is important to note that $F(X)$ is a function of the weights of our model. In our motivating example, $F(X)$ would be a function of $A_1$ and $A_0$. The values of $A_1$ and $A_0$ that produce our optimal model are the values &lt;u&gt; which achieve teh minimal value of $C(X)$ &lt;/u&gt;.&lt;/p&gt;
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Sparse Convolutional Networks</title><link href="http://localhost:4000/sparse-cnn.html" rel="alternate" type="text/html" title="Sparse Convolutional Networks" /><published>2021-09-17T00:00:00+09:00</published><updated>2021-09-17T00:00:00+09:00</updated><id>http://localhost:4000/sparse-cnn</id><content type="html" xml:base="http://localhost:4000/sparse-cnn.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Introduction &lt;/h2&gt;
 &lt;p&gt;Convolutional Neural Network (CNN) has been proved very effective for 2D image signal processing. However, for 3D point cloud signals, the extra dimension $Z$ increases the calculation significantly. On the other hand, unlike regular images, most of the voxels of the 3D point cloud are empty, which makes point cloud data in the 3D voxels often a sparse signals. The question is whether we can only calculate the convolution with the sparse data efficiently instead of scanning all the image pixels or spatial voxels.&lt;/p&gt;
@@ -148,28 +212,132 @@
 
 &lt;p&gt;We’ll use the notation $x$ to denote a training input. It’ll be convenient to regard each training input $x$ as a $28 \times 28 = 784$ -dimensional vector. Each entry in the vector represents the gray value for a single pixel in the image. We’ll denote the corresponding desired output by $y(x)$, where $y$ is a 10-dimensional vector.&lt;/p&gt;
 
+&lt;p&gt;What we’d like is an algorithm which lets us find weights and biases so that the output from the network approximates $y(x)$ for all training inputs $x$. To quantify how well we’re achieving this goal we define a cost function:&lt;/p&gt;
+
+&lt;div class=&quot;textbox&quot;&gt;
+
+$$ 
+C(w,b) \equiv \frac{1}{n}\sum_x \lVert y(x) - a \rVert^2
+$$
+
+&lt;/div&gt;
+
+&lt;p&gt;Here, $w$ denotes the collection of all weights in the network, $b$ all the biases, $n$ is the total number of training inputs, $a$ is the vector of outputs from the network when $x$ is the input. The notation $\lVert v \rVert$ just denotes the usual length function for a vector $v$. We’ll call $C$ the &lt;span class=&quot;highlight-sketch&quot;&gt; quadratic cost function &lt;/span&gt;; it’s also sometimes known as the &lt;span class=&quot;shadow-blue&quot;&gt; mean squared error &lt;/span&gt; or just &lt;span class=&quot;shadow-blue&quot;&gt; MSE &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;Inspecting the form of the quadratic cost function, we see that $C(w,b)$ is non-negative, since every term in the sum is non-negative. Furthermore, the cost $C(w,b)$ becomes small, i.e., $C(w,b) \approx 0$, precisely when $y(x)$ is approximately equal to the output $a$, for all training inputs, $x$.&lt;/p&gt;
+
+&lt;p&gt;So our training algorithm has done a good job if it can find weights and biases so that $C(w,b) \equiv 0$. By contrast, it’s not doing so well when $C(w,b)$ is large-that would mean that $y(x)$ is not close to the output $a$ for a large number ofinputs.&lt;/p&gt;
+
+&lt;p&gt;The aim of our training algorithm will be to minimize the cost $C(w,b)$ as a function of weights and biases. In other words, we want to find a set of weights and biases which make the cost as small as possible. We’ll do that using an algorithm known as &lt;span class=&quot;shadow-white&quot;&gt; gradient descent &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;Why introduce the &lt;span class=&quot;shadow-blue&quot;&gt; quadratic cost &lt;/span&gt;? After all, aren’t we primarily interested in the number of images correctly classified by the network? Why not try to maximize that number directly, rather than minimizing a proxy measure like the &lt;span class=&quot;shadow-blue&quot;&gt; quadratic cost &lt;/span&gt;?&lt;/p&gt;
+
+&lt;p&gt;The problem with that is that the number of images correctly classified is &lt;span class=&quot;underline-pink&quot;&gt; not a smooth function of weights and biases in the network &lt;/span&gt;.  For the most part, making small changes to the weights and biases won’t cause any change at all in the number of training images classified correctly. That makes it difficult to figure out how to change the weights and biases to get improved performance.&lt;/p&gt;
+
+&lt;p&gt;Even given that we want to use a &lt;span class=&quot;underline-pink&quot;&gt; smooth cost function &lt;/span&gt;, you may still wonder why we choose the quadratic cost function used in the equation above. This is a &lt;span class=&quot;highlight-skew&quot;&gt; valid concern, and later we’ll revisit the cost function, and make some modifications &lt;span&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, let’s just imagine we’ve simply been given a function of many variables and we want to minimize that function $C(v)$. This could be any real-valued function of many variables, $v = v_1, v_2, \dots $. Note that I’ve replaced $w$ and $b$ notation by $v$ to emphasize that this could be any function-we’re not specifically thinking in the neural network context anymore. To minimize $C(v)$, it helps to imagine $C$ as a function of just two variables, which we’ll call $v_1$ and $v_2$:&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/valley.png&quot; class=&quot;img-small-center&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;What we’d like to find &lt;span class=&quot;stroke&quot;&gt; where $C$ achieves its global minimum. &lt;/span&gt; Now, of course, for the function plotted above, we can eyeball the graph and find the minimum. A general function $C$, however may be a complicated function of many variables, and &lt;mark color=&quot;teal&quot;&gt; it won't usually be possible to just eyeball the graph to find the minimum &lt;/mark&gt;.&lt;/p&gt;
+
+&lt;p&gt;We start by thinking of our function as a kind of valley. And we imagine a &lt;span class=&quot;underline-blue&quot;&gt; ball rolling down the slope of the valley &lt;/span&gt;. We’d randomly choose a starting point for an (imaginary) ball, and then simulate the motion of the ball as it rolled down to the bottom of the valley. We could do this simulation simply by &lt;span class=&quot;neon&quot;&gt; computing derivatives &lt;/span&gt; &lt;mark class=&quot;coral&quot;&gt; (and perhaps some second derivatives) &lt;/mark&gt; of $C$-those derivatives would tell us everything we need to know about the &lt;span class=&quot;zoom&quot;&gt; local shape &lt;/span&gt; of the valley, and therefore how our ball should roll.&lt;/p&gt;
+
+&lt;p&gt;Let’s think about what happens when we move the ball a small amount $\Delta v_1$ in the $v_1$ direction, and a small amount $\Delta v_2$ in the $v_2$ direction. Calculus tells us that $C$ changes as follows:&lt;/p&gt;
+
+\[\Delta C \approx \frac{\partial C}{\partial v_1}\Delta v_1 + \frac{\partial C}{\partial v_2} \Delta v_2\]
+
+&lt;p&gt;We’re going to find a way of choosing $\Delta v_1$ and $\Delta v_2$ so as to make &lt;mark color=&quot;coral&quot;&gt; $\Delta C$ negative; &amp;lt;/span&amp;gt; We'll choose them so the ball is rolling down into the valley.&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;To figure out how to make such a choice it helps to define $\Delta v$ to be the vector of changes in $v$, $\Delta v \equiv (\Delta v_1, \Delta v_2)^T$ .
+j&lt;/p&gt;
+
+&lt;p&gt;We’ll also define the &lt;span class=&quot;shadow&quot;&gt; gradient of $C$ ($\nabla C$) &lt;/span&gt; to be the vector of partial derivatives, $(\frac{\partial C}{\partial v_1}, \frac{\partial C}{\partial v_2})^T$ . We denote the gradient vector by $\nabla C$, i.e.,&lt;/p&gt;
+
+\[\nabla C = (\frac{\partial C}{\partial v_1}, \frac{\partial C}{\partial v_2})^T\]
+
+&lt;p&gt;&lt;mark class=&quot;coral&quot;&gt; In a moment we'll rewrite the change $\Delta C$ in terms of $\Delta v$ and the gradient $\nabla C$.&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;Before getting to that, though, &lt;b&gt; I want to clarify something that sometimes gets people hung up on the gradient &lt;/b&gt;. When meeting the $\nabla C$ notation for the first time, people sometimes wonder how they should think about the $\nabla$ symbol.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt; What, exactly, does $\nabla$ mean? &lt;/b&gt; In fact, it’s perfectly fine to think of $\nabla $C$ as a single mathematical object-the vector defined above-which ahppens to be written using two symbols. In this point of view, &lt;mark class=&quot;gold&quot;&gt; $\nabla$ is just a piece of notational flag, telling you &quot;hey, &lt;span class=&quot;three&quot;&gt; $\nabla C$ is a gradient vector &lt;/span&gt;&quot;.&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;With these definitions, $\Delta C$ can be rewritten as&lt;/p&gt;
+
+&lt;div class=&quot;textbox&quot;&gt;
+
+$$
+\Delta C \approx \nabla C \cdot \Delta v
+$$
+
+&lt;/div&gt;
+
+&lt;p&gt;This equation helps use explain why $\nabla C$ is called the gradient vector: &lt;mark class=&quot;blue&quot;&gt; $\nabla C$ relates changes in $v$ to changes in $C$, just as we'd expect something called a gradient to do &lt;/mark&gt;.&lt;/p&gt;
+
+&lt;p&gt;But what’s really exciting about the equation is that it lets us see &lt;span class=&quot;highlight-yellow&quot;&gt; how to choose $/Delta v$ so as to make $\Delta C$ negative. &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Suppose we choose&lt;/p&gt;
+
+&lt;div class=&quot;neon-green&quot;&gt;
+
+$$
+\Delta v = - \eta \nabla C
+$$
+
+&lt;/div&gt;
+
+&lt;p&gt;where $\eta$ is a small, positive parameter (known as the &lt;span class=&quot;reveal&quot;&gt; learning rate &lt;/span&gt;). Then the above equation tells us that $\Delta C \approx - \eta \nabla C = - \eta \lVert \nabla C \rVert^2$ .&lt;/p&gt;
+
+&lt;p&gt;Because $\lVert \nabla C \rVert^2$, this guarantees that $\Delta C \leq 0$, i.e., &lt;span class=&quot;blink&quot;&gt; $C$ will always decrease &lt;/span&gt;, never increase, if we change $\Delta v = - \eta \nabla C$ in $\Delta C = \nabla C \cdot \Delta v$ .&lt;/p&gt;
+
+&lt;p&gt;&lt;u&gt; This is exactly the property we wanted! &lt;/u&gt; So we’ll use the equation $\Delta v = - \eta \nabla C$ to compute a value for $/Delta v$, then move the ball’s position $v$ by that amount:&lt;/p&gt;
+
+\[v \rightarrow v' = v - \eta \nabla C\]
+
+&lt;p&gt;&lt;span class=&quot;arrow-highlight&quot;&gt; We’ll use this update rule again, to make another move. &lt;/span&gt; &lt;b&gt; If we keep doing this, over and over, we’ll keep decreasing $C$ until-we hope-we reach a &lt;u&gt;global minimum &lt;/u&gt;&lt;/b&gt;.&lt;/p&gt;
+
+&lt;p&gt;The way the &lt;span class=&quot;typewriter&quot;&gt; gradient descent algorithm &lt;/span&gt; works is to &lt;u&gt; repeatedly compute the gradient $\nabla C$ &lt;/u&gt;, and then move in the &lt;span class=&quot;shadow-white&quot;&gt; opposite direction &lt;/span&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;falling down&lt;/code&gt; the slope of the valley.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/valley-ball.png&quot; class=&quot;img-small-center&quot; /&gt;&amp;lt;/span&amp;gt;
+
+&lt;mark class=&quot;blue&quot;&gt; Notice that, with this rule, the gradient descent doesn't reproduce real physical motion &lt;/mark&gt;. In real life a ball has &lt;span class=&quot;gif&quot;&gt; momentum &lt;/span&gt;, and that momentum may allow it to &lt;span class=&quot;monospace&quot;&gt; roll across the slope, or even (momentarily) roll uphill &lt;/span&gt;. It's only after the effects of friction st in that the ball is guaranteed to roll down into the valley. 
+
+By contrast, our rule for choosing $\Delta v$ just says `go down, right now`. That's still a pretty good rule for finding the minimum!
+
+&lt;div class=&quot;textbox&quot;&gt;
+&lt;span class=&quot;neon-green&quot;&gt; Gradient &lt;/span&gt; &lt;ul&gt;&lt;li&gt;Gradient measures how much the output of a function changes if you change the inputs a little bit. &lt;/li&gt;&lt;li&gt;You can also think of a gradient as the slope of a function.&lt;/li&gt;&lt;li&gt; In mathematical terms, a gradient is a partial derivative with respect to its inputs. &lt;/li&gt;
+&amp;lt;/div&amp;gt;
+
+
+
 &lt;h2&gt; Backpropagation Algorithm &lt;/h2&gt;
 
 &lt;h3&gt; The Cost Function &lt;/h3&gt;
 
-&lt;p&gt;The goal of back-propagation is &lt;mark class=&quot;gold&quot;&gt; to compute the partial derivatives $\frac{\partial C}{\partial w}$ and $\frac{\partial C}{\partial b}$ of the cost function $C$ with respect to any weight $w$ or bias $b$ in the network &lt;/mark&gt;.&lt;/p&gt;
+The goal of back-propagation is &lt;mark class=&quot;gold&quot;&gt; to compute the partial derivatives $\frac{\partial C}{\partial w}$ and $\frac{\partial C}{\partial b}$ of the cost function $C$ with respect to any weight $w$ or bias $b$ in the network &lt;/mark&gt;. 
 
-&lt;p&gt;For back-propagation to work we need to make &lt;span class=&quot;three&quot;&gt; two main assumptions &lt;/span&gt; about the form of the cost function.&lt;/p&gt;
+For back-propagation to work we need to make &lt;span class=&quot;three&quot;&gt; two main assumptions &lt;/span&gt; about the form of the cost function. 
 
-&lt;p&gt;It’s useful to have a cost function in mind, so we’ll set a quadratic cost function which has the form ($n$ is the number of training examples; $x$ is the sum over individual training examples; $y(x)$ is the corresponding desired output; $L$ denotes the number of layer in the network; $a^L(x)$ is the vector of activations output from the network when $x$ is the input).&lt;/p&gt;
+It's useful to have a cost function in mind, so we'll set a quadratic cost function which has the form ($n$ is the number of training examples; $x$ is the sum over individual training examples; $y(x)$ is the corresponding desired output; $L$ denotes the number of layer in the network; $a^L(x)$ is the vector of activations output from the network when $x$ is the input).
 
-\[C = \frac{1}{2n} \sum_x \lVert y(x) - a^L(x) \rVert^2\]
+$$
+C = \frac{1}{2n} \sum_x \lVert y(x) - a^L(x) \rVert^2
+$$
 
-&lt;p&gt;The first assumption about the cost function $C$ is that the cost function can be written as &lt;span class=&quot;highlight-gradient&quot;&gt; an average $C = \frac{1}{n} \sum_x C_x$ over cost function $C_x$ for individual training examples $x$ &lt;/span&gt;.&lt;/p&gt;
+The first assumption about the cost function $C$ is that the cost function can be written as &lt;span class=&quot;highlight-gradient&quot;&gt; an average $C = \frac{1}{n} \sum_x C_x$ over cost function $C_x$ for individual training examples $x$ &lt;/span&gt;.
 
-&lt;p&gt;The reason we need this assumption is because what back-propagation actually lets us do is &lt;mark class=&quot;coral&quot;&gt; is compute the partial derivatives $\partial C_x / \partial w$ and $\partial C_x / \partial b$ for a single training example. We then recover $\partial C / \partial w$ and $\partial C / \partial b$ by averaing over training examples.&lt;/mark&gt;&lt;/p&gt;
+The reason we need this assumption is because what back-propagation actually lets us do is &lt;mark class=&quot;coral&quot;&gt; is compute the partial derivatives $\partial C_x / \partial w$ and $\partial C_x / \partial b$ for a single training example. We then recover $\partial C / \partial w$ and $\partial C / \partial b$ by averaing over training examples. 
 
-&lt;p&gt;For example, for the quadratic cost function’s cost for a single training example
-The second assumption we make about the cost is that it can be written as a function of the outputs from the neural network:&lt;/p&gt;
+For example, for the quadratic cost function's cost for a single training example
+The second assumption we make about the cost is that it can be written as a function of the outputs from the neural network:
+
 
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://neuralnetworksanddeeplearning.com/chap1.html&quot;&gt; online book &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="deep learning" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/neuron.png" /><media:content medium="image" url="http://localhost:4000/assets/images/neuron.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Guide to Linear Algebra (Part 2)</title><link href="http://localhost:4000/bullshit-two.html" rel="alternate" type="text/html" title="Guide to Linear Algebra (Part 2)" /><published>2021-09-15T00:00:00+09:00</published><updated>2021-09-15T00:00:00+09:00</updated><id>http://localhost:4000/bullshit-two</id><content type="html" xml:base="http://localhost:4000/bullshit-two.html">&lt;!--more--&gt;
+&lt;/ul&gt;
+
+&lt;/mark&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/picture&gt;</content><author><name>seri</name></author><category term="deep learning" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/neuron.png" /><media:content medium="image" url="http://localhost:4000/assets/images/neuron.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Guide to Linear Algebra (Part 2)</title><link href="http://localhost:4000/bullshit-two.html" rel="alternate" type="text/html" title="Guide to Linear Algebra (Part 2)" /><published>2021-09-15T00:00:00+09:00</published><updated>2021-09-15T00:00:00+09:00</updated><id>http://localhost:4000/bullshit-two</id><content type="html" xml:base="http://localhost:4000/bullshit-two.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Hilbert Space &lt;/h2&gt;
 &lt;p&gt;&lt;span class=&quot;blue&quot;&gt; The Euclidean space we consider in everyday life is mathematically called the Hilbert Space. &lt;/span&gt; Any general metric graph is a Hilbert Space. Any $n$ dimensional Hilbert space is sand to be in $\mathbb{R}^n$ which indicates that all the numbers represented in this space are real.&lt;/p&gt;
@@ -178,73 +346,13 @@ The second assumption we make about the cost is that it can be written as a func
 
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="linear algebra" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/linear.png" /><media:content medium="image" url="http://localhost:4000/assets/images/linear.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">All About Training GAN</title><link href="http://localhost:4000/gan.html" rel="alternate" type="text/html" title="All About Training GAN" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/gan</id><content type="html" xml:base="http://localhost:4000/gan.html">&lt;!--more--&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="linear algebra" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/linear.png" /><media:content medium="image" url="http://localhost:4000/assets/images/linear.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Image Processing: the Basics</title><link href="http://localhost:4000/template.html" rel="alternate" type="text/html" title="Image Processing: the Basics" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/template</id><content type="html" xml:base="http://localhost:4000/template.html">&lt;!--more--&gt;
 
-&lt;h2&gt; 1.  Generative Adversarial Networks &lt;/h2&gt;
+&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
 
-&lt;p&gt;Ultimately, if everything goes well, the generator learns the true distribution of the training data and becomes really good at generating fake images. The discriminator should not be able to distinguish between real and fake images.&lt;/p&gt;
-
-&lt;p&gt;Another way to look at the GAN setup is that the discriminator is trying to guide the generator by telling what real images look like. The two networks try to achieve what is called the Nash Equilibrium with respect to each other.&lt;/p&gt;
-
-&lt;h2&gt; 2.  Training GANs &lt;/h2&gt;
-
-&lt;p&gt;GAN networks are a dynamic system where the optimization process is seeking not a minimum, but a equilibrium between two forces. There are no good objective metrics for evaluating whether a GAN is performing well during training, e.g. reviewing the loss is not sufficient. Instead the best approach is to visually inspect the generated examples and use subjective evaluation.&lt;/p&gt;
-
-&lt;p&gt;Other quantitative measures, such as Inception Score (IS) or Frechet Inception Distance (FID) rely on pretrained models with a specific set of object classes. They lack an upper bound (which means hypothetically the highest possible score is infinity).&lt;/p&gt;
-
-&lt;h3&gt; 2.1  Look at the Loss &lt;/h3&gt;
-
-&lt;p&gt;In a discriminative model,the loss measures the accuracy of the prediction and we use it to monitor the progress of training. However, the loss in GAN measures how well we are doing compared with our opponent. Often, the generator cost increases but the image quality is actually improving.&lt;/p&gt;
-
-&lt;p&gt;If you see the discriminator loss rapidly approaching, there is probably no chance of recovery and it is time to change something.&lt;/p&gt;
-
-&lt;h3&gt; 2.1  Look at the Gradients &lt;/h3&gt;
-&lt;p&gt;Monitor the gradients along with the losses in the networks. These can give you a good idea about the progress of training and can even help in debugging if things are not really working well.&lt;/p&gt;
-
-&lt;p&gt;Ideally, the generator should receive large gradients early in the training because it needs to learn how to generate real-looking data. The discriminator on the other hand does not always get large gradients early on, because it can easily distinguish real and fake images.&lt;/p&gt;
-
-&lt;p&gt;If the gradients at the layer of generator are too small, learning might be slow or not happening at all. The generator should get large gradients early on and the discriminator getting consistently high gradients at the top layer once the generator has been trained enough.&lt;/p&gt;
-
-&lt;h2&gt; 3. Detecting GAN Failure Modes &lt;/h2&gt;
-&lt;p&gt;The reason why GANs are difficult to train is that both generator and the discriminator are trained simultaneously in a zero-sum game. This means that improvements to one model come at the expense of the other model. 
-The goal of training two models involves finding a point of equilibrium between the two competing concerns. It also means that everytime the parameters of one model are updated the nature of the optimization problem that is being solved is updated as well. The technical challenge of training two competing neural networks at the same time is that they can fail to converge.&lt;/p&gt;
-
-&lt;ul&gt;&lt;li class=&quot;highlight&quot;&gt; &lt;b&gt; Convergence Failure &lt;/b&gt;&lt;/li&gt;
-&lt;div class=&quot;indent&quot;&gt; The fact that GANs are composed by two networks, and each of them has its loss function leads to GANs unstability. In GAN architecture, the discriminator tries to minimize a cross-entropy while the generator tries to maximize it. When discriminator confidence is high and the discriminator starts to reject the samples that are produced by the generator, generator's gradient vanishes. 
-
-This scenario happens when the generator score reaches near zero and the discriminator score reaches near one. The discriminator is overpowering the generator. If the score does not recover from these values for many iterations, it is better to stop training. &lt;/div&gt;
-
-&lt;li class=&quot;highlight&quot;&gt;&lt;b&gt; Mode Collapse &lt;/b&gt; &lt;/li&gt;
-&lt;div class=&quot;indent&quot;&gt; Mode collapse is when the GAN produces a small variety of images with many duplicates. This happens when the generator is unable to learn a rich feature representation because  it learns to associate similar outputs to multiple different inputs. The most promising way to check for mode collapse is to inspect the generated images. If there is little diversity in the output and some of them are almost identical, there is likely mode collapse. If you observe this happening, you should try to increase the ability of the generator to create more diverse outputs or impair the discriminator by randomly giving false labels to real images.
-
-Another type of behavior you should look out for is when the generator oscillates between generating specific examples in the domain. They progress from generating one kind of sample to generating another kind of sample without eventually reaching equilibrium.
-&lt;/div&gt;
-
-&lt;li class=&quot;highlight&quot;&gt; &lt;b&gt; Diminisheed Gradient &lt;/b&gt; &lt;/li&gt;&lt;/ul&gt;
-&lt;div class=&quot;indent&quot;&gt; This situation happens when the discriminator gets too successful that the generator gradient vanishes and learns nothing.
-
-
-&lt;h2&gt; Lessons I Learned &lt;/h2&gt;
-&lt;div class=&quot;three&quot;&gt; Use a batch size smaller than or equal to 64.&lt;/div&gt;
-&lt;div class=&quot;textbox&quot;&gt; In my experience, using bigger batch sizes often hurt the performance. I suspect it fuels the problem of discriminator getting too good at discriminating the real and fake images, since large batch size means providing a lot of examples to train on. &lt;/div&gt;
-
-&lt;div class=&quot;three&quot;&gt; Add noise to both real and synthetic data. &lt;/div&gt;
-&lt;div class=&quot;textbox&quot;&gt; It is well known that making the training of discriminator more difficult is beneficial for the overall stability. Adding noise increases the complexity of the discriminator training and stabilizes the data distribution of the two competing networks. &lt;/div&gt;
-
-&lt;div class=&quot;three&quot;&gt; Use Label Smoothing &lt;/div&gt;
-&lt;div class=&quot;textbox&quot;&gt; If the label for real images is set to 1, change it to a lower value like 0.9. This solution discourages the discriminator from being overconfident. &lt;/div&gt;
-
-&lt;div class=&quot;three&quot;&gt; Different learning rates for the generator and discriminator a.k.a. Two Time-Scale Update Rule &lt;/div&gt;
-&lt;div class=&quot;textbox&quot;&gt; In my experience, choosing a higher learning rate for the discriminator(i.e. 0.0004) and a lower one(i.e. 0.0001) for the generator works well in practice. I guess the reason is that the generator has to make small steps to fool the discriminator so it does not choose fast but not precise solutions to win the adversarial game. &lt;/div&gt;
-
-&lt;div class=&quot;three&quot;&gt; Use some kind of normalization method &lt;/div&gt;
-&lt;div class=&quot;textbox&quot;&gt; For me, applying Spectral Normalization, a particular kind of normalization applied on the convolutional kernels, greatly helped the stability of training.&lt;/div&gt;
-
-&lt;blockquote&gt; I learned that hyperparameter tuning takes a lot of time and patience especially for training GANs. &lt;/blockquote&gt;
-
-
-
-&lt;/div&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">I wrote a short article about what I learned training GANs. GAN is well known for its instability in training and there are pitfalls worth knowing.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/gan.png" /><media:content medium="image" url="http://localhost:4000/assets/images/gan.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dissecting the Camera Matrix (Part 2)</title><link href="http://localhost:4000/extrinsic.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 2)" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/extrinsic</id><content type="html" xml:base="http://localhost:4000/extrinsic.html">&lt;!--more--&gt;
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dissecting the Camera Matrix (Part 2)</title><link href="http://localhost:4000/extrinsic.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 2)" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/extrinsic</id><content type="html" xml:base="http://localhost:4000/extrinsic.html">&lt;!--more--&gt;
 
 &lt;picture&gt;&lt;img src=&quot;/assets/images/cali.png&quot; /&gt;&lt;/picture&gt;
 &lt;div class=&quot;caption&quot;&gt; Overview of the Camera Calibration Parameters &lt;/div&gt;
@@ -348,13 +456,73 @@ t = -RC
 &lt;ul&gt; 
 &lt;li&gt;&lt;a href=&quot;https://ksimek.github.io/2012/08/14/decompose/&quot;&gt; ksimek blog &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://prateekvjoshi.com/2014/05/31/understanding-camera-calibration/&quot;&gt; prateekvjoshi blog &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This is the second part of our journey to master the camera matrix. In this blog post, we will study the extrinsic camera parameters. Extrinsic matrix describes the camera's location in the world.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/extrinsic.png" /><media:content medium="image" url="http://localhost:4000/assets/images/extrinsic.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Image Processing: the Basics</title><link href="http://localhost:4000/template.html" rel="alternate" type="text/html" title="Image Processing: the Basics" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/template</id><content type="html" xml:base="http://localhost:4000/template.html">&lt;!--more--&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This is the second part of our journey to master the camera matrix. In this blog post, we will study the extrinsic camera parameters. Extrinsic matrix describes the camera's location in the world.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/extrinsic.png" /><media:content medium="image" url="http://localhost:4000/assets/images/extrinsic.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">All About Training GAN</title><link href="http://localhost:4000/gan.html" rel="alternate" type="text/html" title="All About Training GAN" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/gan</id><content type="html" xml:base="http://localhost:4000/gan.html">&lt;!--more--&gt;
 
-&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
+&lt;h2&gt; 1.  Generative Adversarial Networks &lt;/h2&gt;
 
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Introduction to Visual SLAM: From Theory to Practice</title><link href="http://localhost:4000/slam.html" rel="alternate" type="text/html" title="Introduction to Visual SLAM: From Theory to Practice" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/slam</id><content type="html" xml:base="http://localhost:4000/slam.html">&lt;!--more--&gt;
+&lt;p&gt;Ultimately, if everything goes well, the generator learns the true distribution of the training data and becomes really good at generating fake images. The discriminator should not be able to distinguish between real and fake images.&lt;/p&gt;
+
+&lt;p&gt;Another way to look at the GAN setup is that the discriminator is trying to guide the generator by telling what real images look like. The two networks try to achieve what is called the Nash Equilibrium with respect to each other.&lt;/p&gt;
+
+&lt;h2&gt; 2.  Training GANs &lt;/h2&gt;
+
+&lt;p&gt;GAN networks are a dynamic system where the optimization process is seeking not a minimum, but a equilibrium between two forces. There are no good objective metrics for evaluating whether a GAN is performing well during training, e.g. reviewing the loss is not sufficient. Instead the best approach is to visually inspect the generated examples and use subjective evaluation.&lt;/p&gt;
+
+&lt;p&gt;Other quantitative measures, such as Inception Score (IS) or Frechet Inception Distance (FID) rely on pretrained models with a specific set of object classes. They lack an upper bound (which means hypothetically the highest possible score is infinity).&lt;/p&gt;
+
+&lt;h3&gt; 2.1  Look at the Loss &lt;/h3&gt;
+
+&lt;p&gt;In a discriminative model,the loss measures the accuracy of the prediction and we use it to monitor the progress of training. However, the loss in GAN measures how well we are doing compared with our opponent. Often, the generator cost increases but the image quality is actually improving.&lt;/p&gt;
+
+&lt;p&gt;If you see the discriminator loss rapidly approaching, there is probably no chance of recovery and it is time to change something.&lt;/p&gt;
+
+&lt;h3&gt; 2.1  Look at the Gradients &lt;/h3&gt;
+&lt;p&gt;Monitor the gradients along with the losses in the networks. These can give you a good idea about the progress of training and can even help in debugging if things are not really working well.&lt;/p&gt;
+
+&lt;p&gt;Ideally, the generator should receive large gradients early in the training because it needs to learn how to generate real-looking data. The discriminator on the other hand does not always get large gradients early on, because it can easily distinguish real and fake images.&lt;/p&gt;
+
+&lt;p&gt;If the gradients at the layer of generator are too small, learning might be slow or not happening at all. The generator should get large gradients early on and the discriminator getting consistently high gradients at the top layer once the generator has been trained enough.&lt;/p&gt;
+
+&lt;h2&gt; 3. Detecting GAN Failure Modes &lt;/h2&gt;
+&lt;p&gt;The reason why GANs are difficult to train is that both generator and the discriminator are trained simultaneously in a zero-sum game. This means that improvements to one model come at the expense of the other model. 
+The goal of training two models involves finding a point of equilibrium between the two competing concerns. It also means that everytime the parameters of one model are updated the nature of the optimization problem that is being solved is updated as well. The technical challenge of training two competing neural networks at the same time is that they can fail to converge.&lt;/p&gt;
+
+&lt;ul&gt;&lt;li class=&quot;highlight&quot;&gt; &lt;b&gt; Convergence Failure &lt;/b&gt;&lt;/li&gt;
+&lt;div class=&quot;indent&quot;&gt; The fact that GANs are composed by two networks, and each of them has its loss function leads to GANs unstability. In GAN architecture, the discriminator tries to minimize a cross-entropy while the generator tries to maximize it. When discriminator confidence is high and the discriminator starts to reject the samples that are produced by the generator, generator's gradient vanishes. 
+
+This scenario happens when the generator score reaches near zero and the discriminator score reaches near one. The discriminator is overpowering the generator. If the score does not recover from these values for many iterations, it is better to stop training. &lt;/div&gt;
+
+&lt;li class=&quot;highlight&quot;&gt;&lt;b&gt; Mode Collapse &lt;/b&gt; &lt;/li&gt;
+&lt;div class=&quot;indent&quot;&gt; Mode collapse is when the GAN produces a small variety of images with many duplicates. This happens when the generator is unable to learn a rich feature representation because  it learns to associate similar outputs to multiple different inputs. The most promising way to check for mode collapse is to inspect the generated images. If there is little diversity in the output and some of them are almost identical, there is likely mode collapse. If you observe this happening, you should try to increase the ability of the generator to create more diverse outputs or impair the discriminator by randomly giving false labels to real images.
+
+Another type of behavior you should look out for is when the generator oscillates between generating specific examples in the domain. They progress from generating one kind of sample to generating another kind of sample without eventually reaching equilibrium.
+&lt;/div&gt;
+
+&lt;li class=&quot;highlight&quot;&gt; &lt;b&gt; Diminisheed Gradient &lt;/b&gt; &lt;/li&gt;&lt;/ul&gt;
+&lt;div class=&quot;indent&quot;&gt; This situation happens when the discriminator gets too successful that the generator gradient vanishes and learns nothing.
+
+
+&lt;h2&gt; Lessons I Learned &lt;/h2&gt;
+&lt;div class=&quot;three&quot;&gt; Use a batch size smaller than or equal to 64.&lt;/div&gt;
+&lt;div class=&quot;textbox&quot;&gt; In my experience, using bigger batch sizes often hurt the performance. I suspect it fuels the problem of discriminator getting too good at discriminating the real and fake images, since large batch size means providing a lot of examples to train on. &lt;/div&gt;
+
+&lt;div class=&quot;three&quot;&gt; Add noise to both real and synthetic data. &lt;/div&gt;
+&lt;div class=&quot;textbox&quot;&gt; It is well known that making the training of discriminator more difficult is beneficial for the overall stability. Adding noise increases the complexity of the discriminator training and stabilizes the data distribution of the two competing networks. &lt;/div&gt;
+
+&lt;div class=&quot;three&quot;&gt; Use Label Smoothing &lt;/div&gt;
+&lt;div class=&quot;textbox&quot;&gt; If the label for real images is set to 1, change it to a lower value like 0.9. This solution discourages the discriminator from being overconfident. &lt;/div&gt;
+
+&lt;div class=&quot;three&quot;&gt; Different learning rates for the generator and discriminator a.k.a. Two Time-Scale Update Rule &lt;/div&gt;
+&lt;div class=&quot;textbox&quot;&gt; In my experience, choosing a higher learning rate for the discriminator(i.e. 0.0004) and a lower one(i.e. 0.0001) for the generator works well in practice. I guess the reason is that the generator has to make small steps to fool the discriminator so it does not choose fast but not precise solutions to win the adversarial game. &lt;/div&gt;
+
+&lt;div class=&quot;three&quot;&gt; Use some kind of normalization method &lt;/div&gt;
+&lt;div class=&quot;textbox&quot;&gt; For me, applying Spectral Normalization, a particular kind of normalization applied on the convolutional kernels, greatly helped the stability of training.&lt;/div&gt;
+
+&lt;blockquote&gt; I learned that hyperparameter tuning takes a lot of time and patience especially for training GANs. &lt;/blockquote&gt;
+
+
+
+&lt;/div&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">I wrote a short article about what I learned training GANs. GAN is well known for its instability in training and there are pitfalls worth knowing.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/gan.png" /><media:content medium="image" url="http://localhost:4000/assets/images/gan.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Introduction to Visual SLAM: From Theory to Practice</title><link href="http://localhost:4000/slam.html" rel="alternate" type="text/html" title="Introduction to Visual SLAM: From Theory to Practice" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/slam</id><content type="html" xml:base="http://localhost:4000/slam.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Monocular Dense Reconstruction &lt;/h2&gt;
 &lt;h3&gt; Stereo Vision &lt;/h3&gt;
@@ -523,105 +691,4 @@ t = -RC
 &lt;p&gt;Reduction operations in general allow us to compute aggregate values across data structures. But do reduction operations always reduce to a tensor with a single element? The answer is no. In fact, we often reduce specific axes at a time. This process is important.&lt;/p&gt;
 
 &lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://deeplizard.com/learn/video/K3lX3Cltt4c&quot;&gt; deeplizard &lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="PyTorch" /><category term="featured" /><summary type="html">This blog post is for those who know the basics of PyTorch but want to go a step further. We will be diving into principles and applications of deep learning via PyTorch.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/pytorch.png" /><media:content medium="image" url="http://localhost:4000/assets/images/pytorch.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth Estimation - An Introduction</title><link href="http://localhost:4000/depth-intro.html" rel="alternate" type="text/html" title="Depth Estimation - An Introduction" /><published>2021-09-09T00:00:00+09:00</published><updated>2021-09-09T00:00:00+09:00</updated><id>http://localhost:4000/depth-intro</id><content type="html" xml:base="http://localhost:4000/depth-intro.html">&lt;h3&gt; Paradigms for 3D Images Representation over a Plane &lt;/h3&gt;
-&lt;p&gt;As we saw in the previous section, the projection onto a plane forces the loss of the depth dimension of the scene. However, the depth information should be able to be represented in a plane, for printing purposes, for example.&lt;/p&gt;
-
-&lt;p&gt;There are three widely used modes for depth representation:&lt;/p&gt;
-&lt;ul&gt;&lt;li&gt; Gray scale 2.5D representation. This paradigm uses the gray scale intensity to represent the depth of each pixel in the image. Thus, the color, texture and luminosity of the original image are lost in this representation. The name &quot;2.5D&quot; refers to the fact that this kind of images has the depth information directly in each pixel, while it is represented over a 2D space. In this paradigm, the gray level represents the inverse of the distance. Thus, more a pixel is bright, closer is the point represented. Vice versa, the darker is a pixel, further is the represented point. This is most commonly used way for depth representation. &lt;/li&gt;
-&lt;li&gt; Color 2.5D representation. This representation is similar to the previous one. The difference is the use of colors to represent depth. In the following image, red-black colors represent closer points, and blue-dark colors the further points. However, other color representations are available in the literature. &lt;/li&gt;
-&lt;li&gt; Pseudo-3D representation. This representation provides different points of view of the reconstructed space. &lt;/li&gt;
-
-The main advantage of the first two methods is the possibility of implementing objective comparison among algorithms, as it is done in the Middlebury database and test system. 
-
-&lt;h3&gt; Important terms and issues in depth estimation &lt;/h3&gt;
-The depth estimation world is quite complex research field, where many techniques and setups have been proposed. The set of algorithms which solve the depth map estimation problem deals with many different mathematical concepts which should be briefly explained for a minimum overall comprehension of the matter. In this section, we will review some important points about image processing applied to depth estimation.
-
-&lt;h4&gt; Standard Test Beds &lt;/h4&gt;
-The availability of common tests and comparable results is a mandatory constraint in active and widely explored fields. Likewise, the possibility of objective comparisons make easier to classify different proposals.
-
-In depth estimation, and more specifically in stereo vision, one of the most important test bed is the Middlebury database and test bed. The test beds provides both eyes images of a 3D scene, as well as the ground truth map. The same test allow, as said, algorithms classification.
-
-&lt;h4&gt; Color or Grayscale Images? &lt;/h4&gt;
-The first point when we want to process an image, whichever is the goal, is to decide what to process. In this case, color or grayscale images. As it can be seen in the following figure, color images have much more information than gray scale images. Color images should, hence, be more appropriate for data extraction, among them, depth information. 
-
-However, the color images have an important disadvantage: for a 256 level definition, they are represented by 3 bytes (24-bit representation), while grayscale images with the same level only require one single byte. The consequence is obvious: color image processing requires much more time and operations.
-
-&lt;h4&gt; The Epipolar Geometry &lt;/h4&gt;
-When dealing with stereo vision setups, we have to face the epipolar geometry problem. Let $C_l$ and $C_r$ be the focal centers of the left and right sensors (or eyes), and $L$ and $R$ the left and right image planes. Finally, $P$ will be a physical point of the scene and $p_l$ and $p_r$ the projections of $P$ over $L$ and $R$, respectively. 
-
-&lt;picture&gt;
-&lt;img src=&quot;/assets/images/epipolar.png&quot; /&gt;
-&lt;/picture&gt;
-
-In this figure, we can also see both &quot;epipoles&quot;, i.e., the points where the line connecting both focal centers intersect the image planes. They are noted as $e_l$ and $e_r$.
-
-The geometrical properties of this setup force that every point of the line $Pp_l$ lies on the line $p_re_r$ which is called &quot;epipole line&quot;. The correspondence ofa poitn seen in one image must be searched in the corresponding epipolar line in the other one. A simplified version of the geometry arise when the image planes are parallel. This is the base of the so-called fronto-parallel hypothesis.
-
-&lt;h4&gt; The Fronto-Parallel Hypothesis &lt;/h4&gt;
-The epipolar geometry of two sensors can be simplified, as said, positioning both planes parallel, arriving to the following setup:
-
-&lt;picture&gt;
-&lt;img src=&quot;/assets/images/fronto.png&quot; /&gt;
-&lt;/picture&gt;
-
-The epipoles are placed in the infinite, and the epipolar (and search) lines become horizontal. The point (except the occluded ones) are only decaled horizontally. 
-
-This geometrical setup can be implemented by properly orienting the sensors, or by means of mathematical transformation fo the original images. If the last option is the case, the result is called &quot;rectified image&quot;. 
-
-The most important consequences of this geometry, regarding the Cartesian plane can be written as follows:
-&lt;ul&gt;&lt;li&gt; $y_l = y_r$. The height of a physical point is the same in both images. &lt;/li&gt;
-&lt;li&gt; $x_l = x_r + \nabla d$. The abcissa of a physical point is decaled by the so-called &lt;span class=&quot;blue&quot;&gt; parallax &lt;/span&gt; or &lt;span class=&quot;blue&quot;&gt; disparity &lt;/span&gt;, which is inversely related to the depth. &lt;/li&gt;
-&lt;li&gt; A point in the infinite has identical abscissa coordinates in both image planes. &lt;/li&gt;&lt;/ul&gt;
-
-&lt;h4&gt; Matching &lt;/h4&gt;
-When different viewpoints from the same scene are compared, a further problem arises that is associated with the mutual identification of images. The solution to this problem is commonly referrred to as matching. The matching process consists of identifying each physical points within different images. However, matching techniques are not only used in stereo or multivision procedures but also widely used for image retrieval or fingerprint identification where it is important to allow rotational and scalar distortions.
-
-There are also various constraints that are generally satisfied by true matches thus simplifying the depth estimation algorithm, such as similarity, smoothness, ordering and uniqueness. 
-
-As we will see, the matching process is a conceptual approach to identify similar characteristics in different images. It is, then, subjected to errors. The matching is, hence, implemented by means of comparators allowing different identification strategies such as minimum square errors (MSE), sum of absolute differences (SAD) or sum of squared differences (SSD). The characteristic compared through the matching process can be anything quantifiable. Thus, we will see algorithms matching points, edges, regions or other image cues. 
-
-
-
-
-
-
-
-
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt; 
-&lt;li&gt;&lt;a href=&quot;https://ksimek.github.io/2012/08/14/decompose/&quot;&gt; ksimek blog &lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://prateekvjoshi.com/2014/05/31/understanding-camera-calibration/&quot;&gt; prateekvjoshi blog &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">Paradigms for 3D Images Representation over a Plane As we saw in the previous section, the projection onto a plane forces the loss of the depth dimension of the scene. However, the depth information should be able to be represented in a plane, for printing purposes, for example. There are three widely used modes for depth representation: Gray scale 2.5D representation. This paradigm uses the gray scale intensity to represent the depth of each pixel in the image. Thus, the color, texture and luminosity of the original image are lost in this representation. The name &quot;2.5D&quot; refers to the fact that this kind of images has the depth information directly in each pixel, while it is represented over a 2D space. In this paradigm, the gray level represents the inverse of the distance. Thus, more a pixel is bright, closer is the point represented. Vice versa, the darker is a pixel, further is the represented point. This is most commonly used way for depth representation. Color 2.5D representation. This representation is similar to the previous one. The difference is the use of colors to represent depth. In the following image, red-black colors represent closer points, and blue-dark colors the further points. However, other color representations are available in the literature. Pseudo-3D representation. This representation provides different points of view of the reconstructed space. The main advantage of the first two methods is the possibility of implementing objective comparison among algorithms, as it is done in the Middlebury database and test system. Important terms and issues in depth estimation The depth estimation world is quite complex research field, where many techniques and setups have been proposed. The set of algorithms which solve the depth map estimation problem deals with many different mathematical concepts which should be briefly explained for a minimum overall comprehension of the matter. In this section, we will review some important points about image processing applied to depth estimation. Standard Test Beds The availability of common tests and comparable results is a mandatory constraint in active and widely explored fields. Likewise, the possibility of objective comparisons make easier to classify different proposals. In depth estimation, and more specifically in stereo vision, one of the most important test bed is the Middlebury database and test bed. The test beds provides both eyes images of a 3D scene, as well as the ground truth map. The same test allow, as said, algorithms classification. Color or Grayscale Images? The first point when we want to process an image, whichever is the goal, is to decide what to process. In this case, color or grayscale images. As it can be seen in the following figure, color images have much more information than gray scale images. Color images should, hence, be more appropriate for data extraction, among them, depth information. However, the color images have an important disadvantage: for a 256 level definition, they are represented by 3 bytes (24-bit representation), while grayscale images with the same level only require one single byte. The consequence is obvious: color image processing requires much more time and operations. The Epipolar Geometry When dealing with stereo vision setups, we have to face the epipolar geometry problem. Let $C_l$ and $C_r$ be the focal centers of the left and right sensors (or eyes), and $L$ and $R$ the left and right image planes. Finally, $P$ will be a physical point of the scene and $p_l$ and $p_r$ the projections of $P$ over $L$ and $R$, respectively. In this figure, we can also see both &quot;epipoles&quot;, i.e., the points where the line connecting both focal centers intersect the image planes. They are noted as $e_l$ and $e_r$. The geometrical properties of this setup force that every point of the line $Pp_l$ lies on the line $p_re_r$ which is called &quot;epipole line&quot;. The correspondence ofa poitn seen in one image must be searched in the corresponding epipolar line in the other one. A simplified version of the geometry arise when the image planes are parallel. This is the base of the so-called fronto-parallel hypothesis. The Fronto-Parallel Hypothesis The epipolar geometry of two sensors can be simplified, as said, positioning both planes parallel, arriving to the following setup: The epipoles are placed in the infinite, and the epipolar (and search) lines become horizontal. The point (except the occluded ones) are only decaled horizontally. This geometrical setup can be implemented by properly orienting the sensors, or by means of mathematical transformation fo the original images. If the last option is the case, the result is called &quot;rectified image&quot;. The most important consequences of this geometry, regarding the Cartesian plane can be written as follows: $y_l = y_r$. The height of a physical point is the same in both images. $x_l = x_r + \nabla d$. The abcissa of a physical point is decaled by the so-called parallax or disparity , which is inversely related to the depth. A point in the infinite has identical abscissa coordinates in both image planes. Matching When different viewpoints from the same scene are compared, a further problem arises that is associated with the mutual identification of images. The solution to this problem is commonly referrred to as matching. The matching process consists of identifying each physical points within different images. However, matching techniques are not only used in stereo or multivision procedures but also widely used for image retrieval or fingerprint identification where it is important to allow rotational and scalar distortions. There are also various constraints that are generally satisfied by true matches thus simplifying the depth estimation algorithm, such as similarity, smoothness, ordering and uniqueness. As we will see, the matching process is a conceptual approach to identify similar characteristics in different images. It is, then, subjected to errors. The matching is, hence, implemented by means of comparators allowing different identification strategies such as minimum square errors (MSE), sum of absolute differences (SAD) or sum of squared differences (SSD). The characteristic compared through the matching process can be anything quantifiable. Thus, we will see algorithms matching points, edges, regions or other image cues. References ksimek blog prateekvjoshi blog</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/camera/camera.jpeg" /><media:content medium="image" url="http://localhost:4000/assets/images/camera/camera.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dense 3D Point Cloud Representation of a Scene Using Uncalibrated Monocular Vision</title><link href="http://localhost:4000/point-cloud_.html" rel="alternate" type="text/html" title="Dense 3D Point Cloud Representation of a Scene Using Uncalibrated Monocular Vision" /><published>2021-09-09T00:00:00+09:00</published><updated>2021-09-09T00:00:00+09:00</updated><id>http://localhost:4000/point-cloud_</id><content type="html" xml:base="http://localhost:4000/point-cloud_.html">&lt;h2&gt; Introduction &lt;/h2&gt;
-&lt;p&gt;In this blog post, we describe the challenges and existing solutions within the research community regarding reconstructing of a scene using a single camera. Imagery is affected by a variety of components. From the electro-optic sensors to the image resolution, contrast, exposure and blurriness variables, all add to the complexity of analyzing a scene and processing the imagery.&lt;/p&gt;
-
-&lt;h2&gt; Monocular Vision &lt;/h2&gt;
-&lt;p&gt;Traditional stereoscopy systems, such as human visual system, utilize multiple viewing angles of the same object in order to do triangulation and get a depth perception. Monocular vision, better described as vision through a single camera source, presents new challenges when compared to stereo vision or a multi-camera system. In a stereo system, similar to human vision, distances between the cameras (the baseline) and their orientation is known and in most circumstances remains constant. In order to generate various viewing angles with a monocular system, the camera must continuously be moving. With a moving camera, the system obtains two different viewing angles form two points in time. The challenge becomes to accurately compute the distance the camera has traveled or the exact location of the camera at each frame of video. In addition, the orientation of the camera at each point in time must be computed from the scene.&lt;/p&gt;
-
-&lt;h2&gt; Visual Structure from Motion &lt;/h2&gt;
-&lt;p&gt;In his work, Wu et al. describes the methodology of Visual Structure from Motion as following. Using a set of image feature locations and correspondences, the goal of bundle adjustment is to find 3D point positions and camera parameters that minimize the re-projection error. This optimization problem is constructed as a non-linear least squares problem, where the error is the squared &lt;img src=&quot;https://latex.codecogs.com/gif.latex?L_2&quot; /&gt; norm of the difference between the observed feature location and the projection of the corresponding 3D point on the image plane of the camera.&lt;/p&gt;
-
-&lt;p&gt;Wu explains by letting &lt;img src=&quot;https://latex.codecogs.com/gif.latex?x&quot; /&gt; be a vector of parameters and &lt;img src=&quot;https://latex.codecogs.com/gif.latex?f(x)%20=%20[f_1(x),%20&amp;#x5C;dots,%20f_k(x)]&quot; /&gt; be the vector of residual errors for 3D reconstruction. Then the optimization problem he wishes to solve is the non-linear least squares problem shown in the below equation.&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;https://latex.codecogs.com/gif.latex?x*%20=%20&amp;#x5C;argmin_{x}%20&amp;#x5C;sum_{i=1}^{k}%20&amp;#x5C;lVert%20f_i(x)%20&amp;#x5C;rVert^2&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The Levenberg-Marquardt (LM) algorithm is an extremely popular algorithm for solving non-linear least squares problems and is the algorithm choice for bundle adjustment. LM operates by computing a series of regularized linear approximations to the original nonlinear problem. Let &lt;img src=&quot;https://latex.codecogs.com/gif.latex?J(x)&quot; /&gt; be the Jacobian of &lt;img src=&quot;https://latex.codecogs.com/gif.latex?f(x)&quot; /&gt;, then in each iteration LM solves a linear least squares problem of the form&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;https://latex.codecogs.com/gif.latex?&amp;#x5C;delta*%20=%20&amp;#x5C;argmin_{&amp;#x5C;delta}%20&amp;#x5C;lVert%20J(x)&amp;#x5C;delta%20+%20f(x)%20&amp;#x5C;rVert^2%20+%20&amp;#x5C;lambda%20&amp;#x5C;lVert%20D(x)%20&amp;#x5C;delta%20&amp;#x5C;rVert^2&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;and updates &lt;img src=&quot;https://latex.codecogs.com/gif.latex?x%20&amp;#x5C;leftarrow%20x%20+%20&amp;#x5C;delta*&quot; /&gt; if &lt;img src=&quot;https://latex.codecogs.com/gif.latex?&amp;#x5C;lVert%20f(x+&amp;#x5C;delta*)&amp;#x5C;rVert%20&amp;lt;%20&amp;#x5C;lVert%20f(x)%20&amp;#x5C;rVert&quot; /&gt;. Here &lt;img src=&quot;https://latex.codecogs.com/gif.latex?D(x)&quot; /&gt; is a non-negative diagonal matrix, typically the square root of the diagonal of the matrix &lt;img src=&quot;https://latex.codecogs.com/gif.latex?J(x)^TJ(x)&quot; /&gt; and &lt;img src=&quot;https://latex.codecogs.com/gif.latex?&amp;#x5C;lambda&quot; /&gt; is a nonnegative parameter that controls the strength of regularization. Wu explains that the regularization is needed to ensure a convergent algorithm. LM updates the value of &lt;img src=&quot;https://latex.codecogs.com/gif.latex?&amp;#x5C;lambda&quot; /&gt; at each step based on how well the Jacobian &lt;img src=&quot;https://latex.codecogs.com/gif.latex?J(x)&quot; /&gt; approximates &lt;img src=&quot;https://latex.codecogs.com/gif.latex?f(x)&quot; /&gt;.&lt;/p&gt;
-
-&lt;h2&gt; SIFT Features &lt;/h2&gt;
-
-&lt;p&gt;The SIFT algorithm can be broken down into four main stages:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;scale-space peak selection&lt;/li&gt;
-  &lt;li&gt;point localization&lt;/li&gt;
-  &lt;li&gt;orientation assignment&lt;/li&gt;
-  &lt;li&gt;point descriptor
-The first stage is to search for interest points over location and scale. The image is constructed in a Gaussian Pyramid, where the image is downsampled and blurred at each level. These blurred images at each level are used to compute the Difference of Gaussians (DoG), which locate edges and corners within an image. Interesting points are then extracted in stage 2 by locating the maxima/minimal pixels within different scales of DoG at sub-pixel accuracy. Once interest points have been located, an orientation is assigned based on the gradient orientation of the pixels around the interest point.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Once orientation and scale have been addressed, the final stage is the generation of point descriptors.&lt;/p&gt;
-
-&lt;p&gt;d&lt;/p&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">Introduction In this blog post, we describe the challenges and existing solutions within the research community regarding reconstructing of a scene using a single camera. Imagery is affected by a variety of components. From the electro-optic sensors to the image resolution, contrast, exposure and blurriness variables, all add to the complexity of analyzing a scene and processing the imagery. Monocular Vision Traditional stereoscopy systems, such as human visual system, utilize multiple viewing angles of the same object in order to do triangulation and get a depth perception. Monocular vision, better described as vision through a single camera source, presents new challenges when compared to stereo vision or a multi-camera system. In a stereo system, similar to human vision, distances between the cameras (the baseline) and their orientation is known and in most circumstances remains constant. In order to generate various viewing angles with a monocular system, the camera must continuously be moving. With a moving camera, the system obtains two different viewing angles form two points in time. The challenge becomes to accurately compute the distance the camera has traveled or the exact location of the camera at each frame of video. In addition, the orientation of the camera at each point in time must be computed from the scene. Visual Structure from Motion In his work, Wu et al. describes the methodology of Visual Structure from Motion as following. Using a set of image feature locations and correspondences, the goal of bundle adjustment is to find 3D point positions and camera parameters that minimize the re-projection error. This optimization problem is constructed as a non-linear least squares problem, where the error is the squared norm of the difference between the observed feature location and the projection of the corresponding 3D point on the image plane of the camera. Wu explains by letting be a vector of parameters and be the vector of residual errors for 3D reconstruction. Then the optimization problem he wishes to solve is the non-linear least squares problem shown in the below equation. The Levenberg-Marquardt (LM) algorithm is an extremely popular algorithm for solving non-linear least squares problems and is the algorithm choice for bundle adjustment. LM operates by computing a series of regularized linear approximations to the original nonlinear problem. Let be the Jacobian of , then in each iteration LM solves a linear least squares problem of the form and updates if . Here is a non-negative diagonal matrix, typically the square root of the diagonal of the matrix and is a nonnegative parameter that controls the strength of regularization. Wu explains that the regularization is needed to ensure a convergent algorithm. LM updates the value of at each step based on how well the Jacobian approximates . SIFT Features The SIFT algorithm can be broken down into four main stages: scale-space peak selection point localization orientation assignment point descriptor The first stage is to search for interest points over location and scale. The image is constructed in a Gaussian Pyramid, where the image is downsampled and blurred at each level. These blurred images at each level are used to compute the Difference of Gaussians (DoG), which locate edges and corners within an image. Interesting points are then extracted in stage 2 by locating the maxima/minimal pixels within different scales of DoG at sub-pixel accuracy. Once interest points have been located, an orientation is assigned based on the gradient orientation of the pixels around the interest point. Once orientation and scale have been addressed, the final stage is the generation of point descriptors. d</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/cnn.png" /><media:content medium="image" url="http://localhost:4000/assets/images/cnn.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://deeplizard.com/learn/video/K3lX3Cltt4c&quot;&gt; deeplizard &lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="PyTorch" /><category term="featured" /><summary type="html">This blog post is for those who know the basics of PyTorch but want to go a step further. We will be diving into principles and applications of deep learning via PyTorch.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/pytorch.png" /><media:content medium="image" url="http://localhost:4000/assets/images/pytorch.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
