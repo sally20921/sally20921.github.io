@@ -1,358 +1,131 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-25T01:23:13+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Image Processing: the Basics</title><link href="http://localhost:4000/optimization.html" rel="alternate" type="text/html" title="Image Processing: the Basics" /><published>2021-09-23T00:00:00+09:00</published><updated>2021-09-23T00:00:00+09:00</updated><id>http://localhost:4000/optimization</id><content type="html" xml:base="http://localhost:4000/optimization.html">&lt;!--more--&gt;
-
-&lt;h2&gt; The Basics of Optimization &lt;/h2&gt;
-
-&lt;p&gt;An optimization problem has an &lt;span class=&quot;blue&quot;&gt; objective function &lt;/span&gt; that is defined in terms of a set of variables, referred to as &lt;span class=&quot;red&quot;&gt; optimization variables &lt;/span&gt;. The goal of the optimization problem is to &lt;span class=&quot;underline&quot;&gt; compute the values of the variables at which the objective function is either maximized or minimized &lt;/span&gt;.&lt;/p&gt;
-
-&lt;p&gt;It is common to use a &lt;mark class=&quot;coral&quot;&gt; minimization form of the objective function &lt;/mark&gt; in machine learning, and the corresponding objective function is often referred to as a &lt;span class=&quot;three&quot;&gt; loss function &lt;/span&gt;. A loss function is always associated with a minimization of objective function, and it is often interpreted as a &lt;mark class=&quot;teal&quot;&gt; cost with a nonnegative value &lt;/mark&gt;.&lt;/p&gt;
-
-&lt;p&gt;Most objective functions in machine learning are multivariate loss functions over many variables. First, we will consider the simple case of optimizations defined on &lt;span class=&quot;highlight&quot;&gt; a single variable &lt;/span&gt;.&lt;/p&gt;
-
-&lt;h3&gt; Univariate Optimization &lt;/h3&gt;
-
-&lt;p&gt;Consider a single-variable objective function $f(x)$ as follows:&lt;/p&gt;
-
-\[f(x) = x^2 - 2x + 3\]
-
-&lt;p&gt;This objective function is an &lt;span class=&quot;circle-sketch-highlight&quot;&gt; upright parabola &lt;/span&gt;, which can be expressed in the form $f(x) = (x-1)^2 + 2$. It clearly takes on its minimum value $x=1$, where the nonnegative term $(x-1)^2$ drops to $0$.&lt;/p&gt;
-
-&lt;p&gt;Note that at the &lt;span class=&quot;circle-sketch-highlight&quot;&gt; minimum value &lt;/span&gt;, the rate of change of $f(x)$ with respect to $x$ is zero, as &lt;mark color=&quot;gold&quot;&gt; the tangent to the plot at that point is horizontal &amp;lt;/span&amp;gt;.&lt;/mark&gt;&lt;/p&gt;
-
-&lt;p&gt;One can also find this optimal value by computing the first derivative $f’(x)$ of the function $f(x)$ with respect to $x$ and setting it to $0$:&lt;/p&gt;
-
-\[f'(x) = \frac{df(x)}{dx} = 2x - 2 = 0\]
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-16T09:49:41+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Image Processing: the Basics</title><link href="http://localhost:4000/paradox.html" rel="alternate" type="text/html" title="Image Processing: the Basics" /><published>2021-09-16T00:00:00+09:00</published><updated>2021-09-16T00:00:00+09:00</updated><id>http://localhost:4000/paradox</id><content type="html" xml:base="http://localhost:4000/paradox.html">&lt;!--more--&gt;
 
 &lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
 
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">A Machine Learning Primer</title><link href="http://localhost:4000/primer.html" rel="alternate" type="text/html" title="A Machine Learning Primer" /><published>2021-09-23T00:00:00+09:00</published><updated>2021-09-23T00:00:00+09:00</updated><id>http://localhost:4000/primer</id><content type="html" xml:base="http://localhost:4000/primer.html">&lt;!--more--&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Geometry</title><link href="http://localhost:4000/geometry.html" rel="alternate" type="text/html" title="Geometry" /><published>2021-09-16T00:00:00+09:00</published><updated>2021-09-16T00:00:00+09:00</updated><id>http://localhost:4000/geometry</id><content type="html" xml:base="http://localhost:4000/geometry.html">&lt;!--more--&gt;
+&lt;h2&gt; Coordinate Systems &lt;/h2&gt;
 
-&lt;h2&gt; Fundamentals of Linear Regression &lt;/h2&gt;
+&lt;h3&gt; Introducing Coordinate Systems &lt;/h3&gt;
 
-&lt;p&gt;In this section, we investigate one of the most common and widely used machine learning techniques: &lt;span class=&quot;arrow-highlight&quot;&gt; linear regression &lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Coordinate systems play an essential role in the graphics pipeline. They are not complicated; However, learning a few things about them will make it easier to understand matrices.&lt;/p&gt;
 
-&lt;p&gt;Linear regression is a very intuitive supervised learning algorithm and as its name suggests, it is a &lt;span class=&quot;gradient&quot;&gt; regression technique &lt;/span&gt;. This means it is used when we have &lt;u&gt; labels that are continuous values &lt;/u&gt; such as car prices or the temperature in a room. Furthermore, as its name also suggests, &lt;b&gt; linear regression seeks to find fits of data that are lines &lt;/b&gt;. What does this mean?&lt;/p&gt;
+&lt;p&gt;I mentioned that points and vectors (as used in computer vision/graphics) are represented with 3 real numbers. But what do these numbers mean? Each number represents &lt;span class=&quot;blue&quot;&gt; a signed distance &lt;/span&gt; from the origin of a line to the position of the point on that line.&lt;/p&gt;
 
-&lt;h3&gt; Motivations &lt;/h3&gt;
-&lt;p&gt;Imagine that you received a dataset consisting of cars, where for each car you had the number of miles a car had driven along with its price. In this case, let’s assume that you are trying to train a machine learning system that takes in the information about each car, namely the number of miles driven along with its associated price.&lt;/p&gt;
+&lt;p&gt;Consider drawing a line and putting a mark in the middle. We will call this mark origin. This mark becomes our point of reference: the position from which we will measure the distance to any other points. If a point lies to the right side of the origin, we take the signed distance to be greater than zero. On the other hand, if it is on the left side of the origin, the values will be negative.&lt;/p&gt;
 
-&lt;p&gt;Here, for a given car, the miles driven is the input and the price is the output. This data could be represented as $(X,Y)$ coordinates.&lt;/p&gt;
+&lt;p&gt;Now that we have a line and an origin, we add some additional marks at a regular interval (unit length) on each side of the origin, effectively turning our line into a ruler. With the ruler established, we can simply use it to measure the coordinate of a point from the origin (coordinate is another way of saying the signed distance from the origin to the point). In mathematics, the ruler defines what we call &lt;span class=&quot;red&quot;&gt; axis &lt;/span&gt;. We have just learned to define the coordinate of a point along an axis.&lt;/p&gt;
 
-&lt;p&gt;In this case, it seems that there is a &lt;span class=&quot;shadow&quot;&gt; linear relationship &lt;/span&gt; between the miles driven and the price. We could describe the model for our car price dataset as a mathematical function of the form:&lt;/p&gt;
+&lt;h3&gt; Dimensions and Cartesian Coordinate Systems &lt;/h3&gt;
 
-\[F(X) = A_1 \cdot X + A_0\]
+&lt;p&gt;By placing two axes called $x$-axis and $y$-axis, we have defined a two dimensional space called a &lt;span class=&quot;neon&quot;&gt; plane &lt;/span&gt;. These two axes are said to define a coordinate system. &lt;span class=&quot;underline&quot;&gt; If these two rulers are perpendicular to each other, they define what we call a Cartesian coordinate system. &lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;Here, $A_1$ and $A_0$ are called &lt;span class=&quot;shadow-blue&quot;&gt; weights &lt;/span&gt; and these are values that determine how our linear function behaves on different inputs. All supervised learning algorithms have some set of weights that determine how the algorithm behaves on different inputs, and &lt;u&gt; determining the right weights &lt;/u&gt; is really at the core of what we call &lt;span class=&quot;shadow-white&quot;&gt; learning &lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;We now know how to make a two-dimensional Cartesian coordinate system and define the coordinates of a 2D point in that coordinate system. Note that &lt;mark class=&quot;gold&quot;&gt; the coordinates of points defined in a coordinate system are unique &amp;lt;/span&amp;gt;. The same point cannot be represented by two different sets of coordinates in one system. We are free to choose any coordinate system that we please.&lt;/mark&gt;&lt;/p&gt;
 
-&lt;h3&gt; A Training Paradigm &lt;/h3&gt;
-&lt;p&gt;These varieties of linear fits raise the question: how do we actually &lt;u&gt; learn the weights of this model &lt;/u&gt; or any machine learning model in general? In particular, how can we leverage the fact that &lt;b&gt; we have the correct labels for the cars &lt;/b&gt; in our dataset?&lt;/p&gt;
+&lt;picture&gt;&lt;img src=&quot;/assets/images/axis2d.png&quot; style=&quot;width: 300px !important;float: left !important; margin: 0px 0px 25px 25px !important;&quot; /&gt;&lt;img src=&quot;/assets/images/coor.png&quot; style=&quot;width: 300px !important; float: left !important; margin: 0px 0px 25px 25px !important;&quot; /&gt;&lt;/picture&gt;
 
-&lt;p&gt;Training and evaluating a machine learning model involves using something called a &lt;span class=&quot;glow&quot;&gt; cost function &lt;/span&gt;. In the case of supervised learning, a cost function is a measure of how much the &lt;span class=&quot;neon&quot;&gt; predicted labels &lt;/span&gt; outputted by our model deviate from the &lt;span class=&quot;neon-pink&quot;&gt; true labels &lt;/span&gt;. Ideally we would like the deviation between the two to be small, and so we want to &lt;span class=&quot;highlight-skew&quot;&gt; minimize the value of our cost function &lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;In fact, we can choose to define infinitely many coordinate systems in a plane. Let’s assume we drew two Cartesian coordinate system like the figure above. On this paper, we place one point. &lt;span class=&quot;stroke&quot;&gt; The coordinates of that point will be different &lt;/span&gt; depending on which of the two coordinate system we consider.&lt;/p&gt;
 
-&lt;p&gt;A common cost function used for evaluating linear regression models is called the &lt;span class=&quot;showup&quot;&gt; least-squares cost function &lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;highlight-gradient&quot;&gt; If you know the coordinates of $P$ in coordinate system $A$, &lt;/span&gt; what do you need to do &lt;span class=&quot;underline-pink&quot;&gt; to find the coordinate of the same point in another coordinate system $B$? &lt;/span&gt; This represents an extremely important operation in computer vision, and we will soon learn why and how to find the map which translates the coordinates of a point from one coordinate system to another.&lt;/p&gt;
 
-&lt;p&gt;Let’s say that we have $n$ datapoints in our dataset. This could look like $[(X_1, Y_1), (X_2, Y_2), \dots, (X_n, Y_n)]$. If we are learning a function like $F(X)$, the least-squares regression model seeks to minimize:&lt;/p&gt;
+&lt;p&gt;Another common operation is to move the point in the coordinate system $A$ to another location in the same coordinate system. This is called a &lt;span class=&quot;gradient&quot;&gt; translation &lt;/span&gt; and is certainly one of the basic operations you can do on points.&lt;/p&gt;
 
-\[C(X) = \frac{1}{2} \cdot \sum_{i=1}^n (F(X_i) - Y_i)^2\]
+&lt;p&gt;Note that all sorts of other linear operators can be applied to point coordinates. A multiplication of a real number to the coordinate of point produces &lt;span class=&quot;blue&quot;&gt; scale &lt;/span&gt;. A scale moves $P$ along the line that is going through the point and the origin. That is because when we are transforming a point we are actually transforming the vector going from origin to the point.&lt;/p&gt;
 
-&lt;p&gt;The deviation between our predicted output ($F(X)$) and the true output $Y$ is defined as a &lt;span class=&quot;shine&quot;&gt; residual &lt;/span&gt;. The least-squares cost is trying to minimize the sum of the squares of the residuals (multiplied by a constant in this case).&lt;/p&gt;
+&lt;h3&gt; The Third Dimension &lt;/h3&gt;
 
-&lt;p&gt;Here, it is important to note that $F(X)$ is a function of the weights of our model. In our motivating example, $F(X)$ would be a function of $A_1$ and $A_0$. The values of $A_1$ and $A_0$ that produce our optimal model are the values &lt;u&gt; which achieve teh minimal value of $C(X)$ &lt;/u&gt;.&lt;/p&gt;
+&lt;p&gt;The 3D coordinate system is a simple extension of the 2D case. We will be adding a third axis orthogonal to both the $x$- and $y$-axis called the $z$-axis (representative of depth). In geometry, 3D coordinate system defines what is more formally known as &lt;span class=&quot;blink&quot;&gt; Euclidean Space &lt;/span&gt;. In linear algebra, the three axes from what we call the &lt;span class=&quot;flow&quot;&gt; basis &lt;/span&gt; of that coordinate system.&lt;/p&gt;
+
+&lt;p&gt;A basis is a set of linearly independent vectors that, in a linear combination, can represent every vector (or point) in a given vector space (the coordinate system).&lt;/p&gt;
+
+&lt;div class=&quot;sidenote&quot;&gt; Vectors from a set are said to be linearly independent if and only if none of the vectors in the set can be written as a linear combination of other vectors in that set. &lt;/div&gt;
+
+&lt;p&gt;Change of basis, or change of coordinate system, is a common operation in mathematics and computer vision pipeline.&lt;/p&gt;
+
+&lt;h3&gt; Left-Handed vs Right-Handed Coordinate Systems &lt;/h3&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/rhlh.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Unfortunately, due to various conventions concerning handedness, coordinate systems are not that simple. The problem can be illustrated in the following figure: when the up and forward vectors are oriented in the same way, an appropriate right vector can either point to the left or to the right.&lt;/p&gt;
+
+&lt;p&gt;To differentiate the two conventions, we call the first coordinate system the left-handed coordinate system, and the other, the right-handed coordinate system.&lt;/p&gt;
+
+&lt;p&gt;&lt;mark class=&quot;coral&quot;&gt; Remember that the middle finger always represent the right vector when checking the coordinate handedness. &lt;/mark&gt;&lt;/p&gt;
+
+&lt;div class=&quot;blockquote&quot;&gt; The handedness of the coordinate system also plays a role in the orientation of normals computed from the edges of polygonal faces. If the orientation is right-handed, then polygons whose vertices were specified in counterclockwise order will be front-facing. This will be explained in the part on rendering polygon objects. &lt;/div&gt;
+
+&lt;h3&gt; The Right, Up and Forward Vectors &lt;/h3&gt;
 
 &lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Sparse Convolutional Networks</title><link href="http://localhost:4000/sparse-cnn.html" rel="alternate" type="text/html" title="Sparse Convolutional Networks" /><published>2021-09-17T00:00:00+09:00</published><updated>2021-09-17T00:00:00+09:00</updated><id>http://localhost:4000/sparse-cnn</id><content type="html" xml:base="http://localhost:4000/sparse-cnn.html">&lt;!--more--&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.scratchapixel.com&quot;&gt; scratchpixel &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/pointvec.png" /><media:content medium="image" url="http://localhost:4000/assets/images/pointvec.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">All About Training GAN</title><link href="http://localhost:4000/gan.html" rel="alternate" type="text/html" title="All About Training GAN" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/gan</id><content type="html" xml:base="http://localhost:4000/gan.html">&lt;!--more--&gt;
 
-&lt;h2&gt; Introduction &lt;/h2&gt;
-&lt;p&gt;Convolutional Neural Network (CNN) has been proved very effective for 2D image signal processing. However, for 3D point cloud signals, the extra dimension $Z$ increases the calculation significantly. On the other hand, unlike regular images, most of the voxels of the 3D point cloud are empty, which makes point cloud data in the 3D voxels often a sparse signals. The question is whether we can only calculate the convolution with the sparse data efficiently instead of scanning all the image pixels or spatial voxels.&lt;/p&gt;
+&lt;h2&gt; 1.  Generative Adversarial Networks &lt;/h2&gt;
 
-&lt;p&gt;One intuitive thinking is, regular image signals are stored as matrix or tensor. The corresponding convolution is calculated as a dense matrix multiplication. The sparse signals are normally represented as data lists and index lists. We could develop a sparse convolution schema that uses the advantage of sparse signal representation.&lt;/p&gt;
+&lt;p&gt;Ultimately, if everything goes well, the generator learns the true distribution of the training data and becomes really good at generating fake images. The discriminator should not be able to distinguish between real and fake images.&lt;/p&gt;
 
-&lt;h2&gt; Sparse Convolution Model &lt;/h2&gt;
-&lt;p&gt;In a short&lt;/p&gt;
+&lt;p&gt;Another way to look at the GAN setup is that the discriminator is trying to guide the generator by telling what real images look like. The two networks try to achieve what is called the Nash Equilibrium with respect to each other.&lt;/p&gt;
 
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;https://towardsdatascience.com/how-does-sparse-convolution-work-3257a0a8fd1&quot;&amp;gt; medium article &amp;lt;/a&amp;gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Neural Networks: Back to the Basics</title><link href="http://localhost:4000/know-nn.html" rel="alternate" type="text/html" title="Neural Networks: Back to the Basics" /><published>2021-09-17T00:00:00+09:00</published><updated>2021-09-17T00:00:00+09:00</updated><id>http://localhost:4000/know-nn</id><content type="html" xml:base="http://localhost:4000/know-nn.html">&lt;!--more--&gt;
-&lt;h2&gt; Introduction &lt;/h2&gt;
-&lt;h2&gt; Perceptron &lt;/h2&gt;
-&lt;p&gt;What is a neural network? To get started, I’ll explain a type of artificial neuron called a &lt;span class=&quot;blue&quot;&gt; perceptron &lt;/span&gt;. Today, it’s more common to use other models of artificial neurons. The main neural model used is called the &lt;span class=&quot;red&quot;&gt; sigmoid neuron &lt;/span&gt;. We will get to sigmoid neurons shortly. But to understand why sigmoid neurons are defined the way they are, it’s worth taking the time to first understand perceptrons.&lt;/p&gt;
+&lt;h2&gt; 2.  Training GANs &lt;/h2&gt;
 
-&lt;p&gt;So who do perceptrons work? A perceptron takes several binary inputs $x_1, x_2, \dots $ and produces a single binary output:&lt;/p&gt;
+&lt;p&gt;GAN networks are a dynamic system where the optimization process is seeking not a minimum, but a equilibrium between two forces. There are no good objective metrics for evaluating whether a GAN is performing well during training, e.g. reviewing the loss is not sufficient. Instead the best approach is to visually inspect the generated examples and use subjective evaluation.&lt;/p&gt;
 
-&lt;picture&gt;&lt;img src=&quot;/assets/svg/perceptron.svg&quot; class=&quot;img-small-center&quot; /&gt;&lt;/picture&gt;
+&lt;p&gt;Other quantitative measures, such as Inception Score (IS) or Frechet Inception Distance (FID) rely on pretrained models with a specific set of object classes. They lack an upper bound (which means hypothetically the highest possible score is infinity).&lt;/p&gt;
 
-&lt;p&gt;In the example shown, the perceptron has three inputs $x_1, x_2, x_3$. In general, it could have more or fewer inputs. Rosenblatt, the inventor of perceptron, introduced &lt;span class=&quot;highlight&quot;&gt; weights &lt;/span&gt;, $w_1, w_2, \dots$, real numbers expressing the importance of the respective inputs to the outputs.&lt;/p&gt;
+&lt;h3&gt; 2.1  Look at the Loss &lt;/h3&gt;
 
-&lt;p&gt;The neuron’s output, 0 or 1, is determined by whether the weighted sum $\sum_{j}w_j x_j$ is less or greater than some &lt;span class=&quot;shadow-blue&quot;&gt; threshold value &lt;/span&gt;. Just like the weights, the threshold is a real number which is a parameter of the neuron.&lt;/p&gt;
+&lt;p&gt;In a discriminative model,the loss measures the accuracy of the prediction and we use it to monitor the progress of training. However, the loss in GAN measures how well we are doing compared with our opponent. Often, the generator cost increases but the image quality is actually improving.&lt;/p&gt;
 
-&lt;p&gt;To put it in more precise algebraic terms:&lt;/p&gt;
+&lt;p&gt;If you see the discriminator loss rapidly approaching, there is probably no chance of recovery and it is time to change something.&lt;/p&gt;
 
-\[\text{output} = \begin{cases} 0 &amp;amp; \text{if $\sum_j w_j x_j \leq threshold$} \\ 1 &amp;amp; \text{if $\sum_j w_j x_j &amp;gt; threshold$}\end{cases}\]
+&lt;h3&gt; 2.1  Look at the Gradients &lt;/h3&gt;
+&lt;p&gt;Monitor the gradients along with the losses in the networks. These can give you a good idea about the progress of training and can even help in debugging if things are not really working well.&lt;/p&gt;
 
-&lt;p&gt;That’s all there is to how a perceptron works!&lt;/p&gt;
+&lt;p&gt;Ideally, the generator should receive large gradients early in the training because it needs to learn how to generate real-looking data. The discriminator on the other hand does not always get large gradients early on, because it can easily distinguish real and fake images.&lt;/p&gt;
 
-&lt;div class=&quot;textbox&quot;&gt; A way you can think about the perceptron is that it's a device that &lt;u&gt; makes decisions &lt;/u&gt; by &lt;u&gt; weighing up evidence &lt;/u&gt;. &lt;/div&gt;
+&lt;p&gt;If the gradients at the layer of generator are too small, learning might be slow or not happening at all. The generator should get large gradients early on and the discriminator getting consistently high gradients at the top layer once the generator has been trained enough.&lt;/p&gt;
 
-&lt;p&gt;By varying the weights and the threshold, we can get different models of decision-making.&lt;/p&gt;
+&lt;h2&gt; 3. Detecting GAN Failure Modes &lt;/h2&gt;
+&lt;p&gt;The reason why GANs are difficult to train is that both generator and the discriminator are trained simultaneously in a zero-sum game. This means that improvements to one model come at the expense of the other model. 
+The goal of training two models involves finding a point of equilibrium between the two competing concerns. It also means that everytime the parameters of one model are updated the nature of the optimization problem that is being solved is updated as well. The technical challenge of training two competing neural networks at the same time is that they can fail to converge.&lt;/p&gt;
 
-&lt;p&gt;&lt;small&gt; Obviously, the perceptron isn’t a complete model of human decision-making. &lt;/small&gt; But what the example illustrates is &lt;u&gt; how a perceptron can weigh up different kinds of evidence &lt;/u&gt; in order to make decisions.&lt;/p&gt;
+&lt;ul&gt;&lt;li class=&quot;highlight&quot;&gt; &lt;b&gt; Convergence Failure &lt;/b&gt;&lt;/li&gt;
+&lt;div class=&quot;indent&quot;&gt; The fact that GANs are composed by two networks, and each of them has its loss function leads to GANs unstability. In GAN architecture, the discriminator tries to minimize a cross-entropy while the generator tries to maximize it. When discriminator confidence is high and the discriminator starts to reject the samples that are produced by the generator, generator's gradient vanishes. 
 
-&lt;p&gt;So it should seem plausible that &lt;span class=&quot;highlight-yellow&quot;&gt; a complex network of perceptrons could make quite subtle decisions &lt;/span&gt;.&lt;/p&gt;
+This scenario happens when the generator score reaches near zero and the discriminator score reaches near one. The discriminator is overpowering the generator. If the score does not recover from these values for many iterations, it is better to stop training. &lt;/div&gt;
 
-&lt;picture&gt;&lt;img class=&quot;img-small-center&quot; src=&quot;/assets/images/mlp.png&quot; /&gt; &lt;/picture&gt;
+&lt;li class=&quot;highlight&quot;&gt;&lt;b&gt; Mode Collapse &lt;/b&gt; &lt;/li&gt;
+&lt;div class=&quot;indent&quot;&gt; Mode collapse is when the GAN produces a small variety of images with many duplicates. This happens when the generator is unable to learn a rich feature representation because  it learns to associate similar outputs to multiple different inputs. The most promising way to check for mode collapse is to inspect the generated images. If there is little diversity in the output and some of them are almost identical, there is likely mode collapse. If you observe this happening, you should try to increase the ability of the generator to create more diverse outputs or impair the discriminator by randomly giving false labels to real images.
 
-&lt;p&gt;In this network, the first layer of perceptrons is making three very simple decisions by weighing the input evidence. The perceptrons in the second layer is making a decision by &lt;u&gt; weighing up the results from the first layer of decision-making &lt;/u&gt;. In this way, a perceptron in the second layer &lt;span highlight=&quot;highlight-skew&quot;&gt; can make a decision at a more complex and abstract level &lt;/span&gt; than perceptrons in the first layer.&lt;/p&gt;
-
-&lt;p&gt;Even more complex decisions can be made by the perceptron in the third layer.  In this way, &lt;span class=&quot;underline-pink&quot;&gt; many layers of perceptrons can engage in sophisticated decision making. &lt;/span&gt;.&lt;/p&gt;
-
-&lt;p&gt;Let’s simplify the way we describe perceptrons. The condition $\sum_j w_j x_j &amp;gt; \text{threshold}$ is cumbersome, so we can make a change to simplify it. We will move the threshold to the other side of the inequality, and replace it by what is known as the perceptron’s &lt;span class=&quot;highlight-sketch&quot;&gt; bias &lt;/span&gt;, $ b \equiv - \text{threshold} $. Using this bias instead of the threshold, the perceptron rule can be written as:&lt;/p&gt;
-
-\[\text{output} = \begin{cases} 0 &amp;amp; \text{if $w \cdot x + b \leq 0$} \\ 1 &amp;amp; \text{ if $w \cdot x + b &amp;gt; 0$} \end{cases}\]
-
-&lt;p&gt;You can think of the bias as &lt;span class=&quot;underline-move&quot;&gt; as a measure of how easy it is to get the perceptron to output a $1$ &lt;/span&gt;.&lt;/p&gt;
-
-&lt;p&gt;For a perceptron with &lt;u&gt; a really big bias &lt;/u&gt;, it’s extremely easy for the perceptron to &lt;b&gt; output a $1$ &lt;/b&gt;. But if the bias is negative, it’s difficult for the perceptron to output a $1$.&lt;/p&gt;
-
-&lt;p&gt;I’ve described perceptrons as &lt;span class=&quot;highlight-gradient&quot;&gt; a method for weighing evidence to make decisions &lt;/span&gt;. Another way perceptrons can be used is &lt;span class=&quot;underline&quot;&gt; to compute the elementary logcal functions &lt;/span&gt; we usually think of as underlying computation, functions such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AND&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OR&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NAND&lt;/code&gt;.&lt;/p&gt;
-
-&lt;picture&gt;&lt;img class=&quot;img-small-center&quot; src=&quot;/assets/svg/example.svg&quot; /&gt;&lt;/picture&gt;
-
-&lt;p&gt;For example, suppose we have a perceptron with weight $-2$, and an overall bias of $3$. We can see that input $00$ produces the value $3$, so the output is $1$.&lt;/p&gt;
-
-&lt;p&gt;Similar calculations show that $01$ or $10$ produces output $1$. But the input $11$ produces the value -1, hence the output $0$. So our perceptron is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NAND&lt;/code&gt; gate!&lt;/p&gt;
-
-&lt;p&gt;In fact, we can &lt;span class=&quot;neon-green&quot;&gt; use networks of perceptrons to compute any logical function at all &lt;/span&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;textbox&quot;&gt; The reason is that the `NAND` gate is universal for computation. We can build any computation up out of `NAND` gates. &lt;/div&gt;
-
-&lt;p&gt;Becaue &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NAND&lt;/code&gt; gates are universal for computation, perceptrons are also &lt;span class=&quot;gold&quot;&gt; universal for computation &lt;/span&gt;.&lt;/p&gt;
-
-&lt;p&gt;It turns out that we can device &lt;span class=&quot;neon-pink&quot;&gt; learning algorithms &lt;/span&gt; which can &lt;u&gt; automatically tune the weights and biases of a network &lt;/u&gt; of artificial neurons.&lt;/p&gt;
-
-&lt;p&gt;&lt;small&gt; This tuning happens in responsce to external stimuli, without direct intervention by a programmer. These learning algorithms enable us to use artifical neurons in a way which is radically different to conventional logic gates. &lt;/small&gt;&lt;/p&gt;
-
-&lt;h2&gt; Sigmoid Neurons &lt;/h2&gt;
-
-&lt;p&gt;How can we device such &lt;span class=&quot;neon-pink&quot;&gt; learning algorithms &lt;/span&gt; for a neural network?&lt;/p&gt;
-
-&lt;p&gt;Well, what we’d like to see is for a small change in weight (or bias) to cause only a small corresponding change in the output from the network. This property makes learning possible.&lt;/p&gt;
-
-\[w + \nabla w \rightarrow \text{output} + \nabla \text{output}\]
-
-&lt;p&gt;The problem is that a small change in weights or bias of any single perceptron in the network can sometimes cause the output of that perceptron to completely flip, say 0 to 1.&lt;/p&gt;
-
-&lt;p&gt;We can overcome this problem by introducing a new type of artificial neuron called a &lt;span class=&quot;shine&quot;&gt; sigmoid neuron &lt;/span&gt;. Sigmoid neurons are similar to perceptrons, but modified so that &lt;u&gt; small changes in their weights and biases casue only a small change in their output.&lt;/u&gt;&lt;/p&gt;
-
-&lt;p&gt;We can depict the sigmoid neurons in the same way we depicted perceptrons. Just like a perceptron, the sigmoid neuron has inputs $x_1, x_2, \dots$, but instead of being just $0$ or $1$, these inputs can take on any values between $0$ and $1$.&lt;/p&gt;
-
-&lt;picture&gt;&lt;img src=&quot;/assets/images/sigmoid.png&quot; /&gt;&lt;/picture&gt;
-
-&lt;p&gt;Just like a perceptron, the sigmoid neuron has weights for each input $w_1, w_2, \dots$ and an overall bias $b$. But the output is not $0$ or $1$ but instead $\sigma(w \cdot x + b)$, where $\sigma$ is called the &lt;span class=&quot;flow&quot;&gt; sigmoid function &lt;/span&gt; which is defined by:&lt;/p&gt;
-
-\[\sigma(z) \equiv \frac{1}{1+e^{-z}}\]
-
-&lt;p&gt;To put it more explicitly,&lt;/p&gt;
-
-\[\frac{1}{1+ \exp(-\sum_j w_j x_j - b)}\]
-
-&lt;p&gt;To understand the similarity to the perceptron model, suppose $z \equiv w \cdot x + b$ is a large positive number. Then $e^{-z} \approx 0$ and so $\sigma(z) \approx 1$.&lt;/p&gt;
-
-&lt;p&gt;In other words, neuron is approximately $1$, if $z = w \cdot x + b$ is large and positive.  If $z = w \cdot + b$ is negative, $e^{-z} \rightarrow \infty$ and $\sigma(z) \approx 0$.&lt;/p&gt;
-
-&lt;div class=&quot;textbox&quot; style=&quot;text-align: center !important;&quot;&gt; &lt;picture&gt;&lt;img src=&quot;/assets/images/euler.png&quot; style=&quot;width: 350px !important;&quot; /&gt;&lt;/picture&gt; &lt;p style=&quot;font-size: 70% !important; text-align: left !important;&quot;&gt; Remember our exponential function with Euler's number? $e = \lim_{n\to\infty} (1+1/n)^n = 1+ \frac{1}{1!}+ \frac{1}{2!} + \frac{1}{3!}+ \cdots \approx 2.718$. The gradient function of $y = e^x$ is equal to $e^x$. It is a natural choice as a logarithmic base.&lt;/p&gt; &lt;/div&gt;
-
-&lt;p&gt;The exact algebraic form of $\sigma$ isn’t so important-what really matters is the shape of the function when plotted as in the above figure.&lt;/p&gt;
-
-&lt;div class=&quot;textbox&quot; style=&quot;text-align: center !important;&quot;&gt;&lt;picture&gt;&lt;img src=&quot;/assets/images/sigmoid.png&quot; style=&quot;width:500px !important;&quot; /&gt;&lt;/picture&gt;&lt;p style=&quot;font-size: 90% !important; text-align: left !important;&quot;&gt;The left figure also show the graph of the derivative of sigmoid function in pink color. The sigmoid function is also called a squashing function as its domain is the set of all real numbers ranging $(0,1)$. When the activation function for a neuron is a sigmoid function, it is guaranteed that the output unit will always be  between 0 and 1.&lt;/p&gt; &lt;/div&gt;
-
-&lt;div class=&quot;textbox&quot;&gt;&lt;p&gt;&lt;b&gt; Why Is the Sigmoid Function Important in Neural Networks?&lt;/b&gt; The sigmoid is a non-linear function, thus the ouput of this unit would be a non-linear function of the weighted sum of inputs. For a linearly separable problem in an $n$-dimensional space, the linear decision boundary is described by the equation of a hyperplane. The right figure shows a non-linearly separable problem, where a non-linear decision boundary is required. &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;
-
-&lt;p&gt;If we use a linear activation function in a neural network, then this model can only leran linearly separable problems. The addition of one hidden layer and a sigmoid activation function in the hidden layer, the neural network can eaily learn a non-linearly separable problem.&lt;/p&gt;
-
-&lt;picture&gt;&lt;img src=&quot;/assets/images/sigmoid-neuron.png&quot; /&gt;&lt;/picture&gt;
-
-&lt;p&gt;&lt;span class=&quot;underline-grad&quot;&gt; The only non-linear function that can be used as an activation function is one which is monotonically increasing. &lt;/span&gt; The function also requires to be &lt;span class=&quot;shine&quot;&gt; continuous &lt;/span&gt; and &lt;span class=&quot;reveal&quot;&gt; differentiable &lt;/span&gt; over the entire space of real numbers.&lt;/p&gt;
-
-&lt;p&gt;The fact that sigmoid function is monotonic, continuous and differentiable everywhere, coupled with the property that its derivatives can be expressed in terms of itself, makes the learning process easier when using the back-propagation algorithm.&lt;/p&gt;
-
-&lt;p&gt;Indeed, its the smoothness of the $\sigma$ function that is the crucial fact. The smoothness of $\sigma$ means that small changes $\nabla w_j$ in the weights and $\nabla b$ in the bias will produce a small change of $\nabla \text{output}$ from the neuron.&lt;/p&gt;
-
-&lt;h2&gt; The architecture of Neural Networks &lt;/h2&gt;
-
-&lt;picture&gt;&lt;img src=&quot;/assets/images/nn4.png&quot; /&gt;&lt;/picture&gt;
-
-&lt;p&gt;The following four-layer network has two hidden layers. Somewhat confusingly, and for historical reasons, such multiple layer networks are sometimes called &lt;span class=&quot;rainbow&quot;&gt; multi-layer perceptrons &lt;/span&gt; or &lt;b&gt; MLPs &lt;/b&gt; despite being made up of sigmoid neurons, not perceptrons.&lt;/p&gt;
-
-&lt;p&gt;While the design of the input and output layers of a neural network is often straighforward, there can be quite an art to &lt;u&gt; the design of the hidden layers &lt;/u&gt;. Researchers have developed many design heuristics for the hidden layers. Up to now, we’ve discussing neural networks where &lt;span class=&quot;underline-fancy&quot;&gt; the output from one layer is used as input to the next layer &lt;/span&gt;. Such netwokrs are called &lt;span class=&quot;blue&quot;&gt; feedforward neural networks&lt;/span&gt;. This means that &lt;span class=&quot;underline-fancy&quot;&gt; there are no loops in the network &lt;/span&gt;-&lt;span class=&quot;underline-move&quot;&gt; information is always fed forward, never fed back &lt;/span&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;small&gt; There are other models of artificial neural networks in which feedback loops are possible. These models are called &lt;mark class=&quot;gold&quot;&gt; recurrent neural networks &lt;/mark&gt;.&lt;/small&gt;&lt;/p&gt;
-&lt;h2&gt; A Simple Network for Digit Recognition &lt;/h2&gt;
-
-&lt;picture&gt;&lt;img src=&quot;/assets/images/digit.png&quot; /&gt;&lt;/picture&gt;
-
-&lt;p&gt;We are going to use a three-layer neural network to recognize individual digits.&lt;/p&gt;
-
-&lt;p&gt;The input layer of the network contains neurons encoding the values of the input pixels. As discussed in the next section, our training data for the network will consist of many 28 by 28 pixel images of scanned handwritten digits, and so the input layer contains $784 = 28 \times 28$ neurons. For simplicity I’ve omitted most of the 784 input neurons in the diagram above. The input pixels are grayscale, with a value of $0.0$ representing white, a value of $1.0$ representing black, and in between values representing gradually darkening shades of gray.&lt;/p&gt;
-
-&lt;p&gt;The second layer of the network is a hidden layer. We denote the number of neurons in the hidden layer by $n$, and we’ll experiment with different values for $n$. The example above illustrates a small hidden layer, containing just $n=15$ neurons.&lt;/p&gt;
-
-&lt;p&gt;The output layer of the network contains $10$ neurons. If the first neuron fires, i.e. has an $\text{output} \approx 1$, then that will indicate that the network thinks the digit is a $0$. We number the output neurons from $0$ through $9$ and figure out which neuron has the highest activation value.&lt;/p&gt;
-
-&lt;p&gt;You might wonder why we use $10$ output neurons. A seemingly natural way of doing that is to use just $4$ output neurons, treating each neuron as taking on a binary value. Why should our network use $10$ neurons instead? The ultimate justification is empirical: we can try out both network designs, and it turns out that, for this particular problem, &lt;span class=&quot;highlight-green&quot;&gt; the network with 10 output neurons learns to recognize digits better &lt;/span&gt; than the network with $4$ output neurons.&lt;/p&gt;
-
-&lt;p&gt;We can give a plausible explanation for why it’s better to have $10$ outputs from the network, rather than $4$ because if we had 4 outputs, the first output neuron would be trying to decide what the most significant bit of the digit was. And there’s no easy way to relate that most significant bit to simple shapes.&lt;/p&gt;
-
-&lt;h2&gt; Learning with Gradient Descent &lt;/h2&gt;
-
-&lt;p&gt;The first thing we’ll need is a dataset to learn from. The MNIST data, which we are going to use, comes in two parts. The first part contains 60,000 images to be used as training data. The images are grayscale and $28 \times 28$ images.&lt;/p&gt;
-
-&lt;p&gt;We’ll use the test data to evaluate how well our neural network has learned to recognize digits.&lt;/p&gt;
-
-&lt;p&gt;We’ll use the notation $x$ to denote a training input. It’ll be convenient to regard each training input $x$ as a $28 \times 28 = 784$ -dimensional vector. Each entry in the vector represents the gray value for a single pixel in the image. We’ll denote the corresponding desired output by $y(x)$, where $y$ is a 10-dimensional vector.&lt;/p&gt;
-
-&lt;p&gt;What we’d like is an algorithm which lets us find weights and biases so that the output from the network approximates $y(x)$ for all training inputs $x$. To quantify how well we’re achieving this goal we define a cost function:&lt;/p&gt;
-
-&lt;div class=&quot;textbox&quot;&gt;
-
-$$ 
-C(w,b) \equiv \frac{1}{n}\sum_x \lVert y(x) - a \rVert^2
-$$
-
+Another type of behavior you should look out for is when the generator oscillates between generating specific examples in the domain. They progress from generating one kind of sample to generating another kind of sample without eventually reaching equilibrium.
 &lt;/div&gt;
 
-&lt;p&gt;Here, $w$ denotes the collection of all weights in the network, $b$ all the biases, $n$ is the total number of training inputs, $a$ is the vector of outputs from the network when $x$ is the input. The notation $\lVert v \rVert$ just denotes the usual length function for a vector $v$. We’ll call $C$ the &lt;span class=&quot;highlight-sketch&quot;&gt; quadratic cost function &lt;/span&gt;; it’s also sometimes known as the &lt;span class=&quot;shadow-blue&quot;&gt; mean squared error &lt;/span&gt; or just &lt;span class=&quot;shadow-blue&quot;&gt; MSE &lt;/span&gt;.&lt;/p&gt;
+&lt;li class=&quot;highlight&quot;&gt; &lt;b&gt; Diminisheed Gradient &lt;/b&gt; &lt;/li&gt;&lt;/ul&gt;
+&lt;div class=&quot;indent&quot;&gt; This situation happens when the discriminator gets too successful that the generator gradient vanishes and learns nothing.
 
-&lt;p&gt;Inspecting the form of the quadratic cost function, we see that $C(w,b)$ is non-negative, since every term in the sum is non-negative. Furthermore, the cost $C(w,b)$ becomes small, i.e., $C(w,b) \approx 0$, precisely when $y(x)$ is approximately equal to the output $a$, for all training inputs, $x$.&lt;/p&gt;
 
-&lt;p&gt;So our training algorithm has done a good job if it can find weights and biases so that $C(w,b) \equiv 0$. By contrast, it’s not doing so well when $C(w,b)$ is large-that would mean that $y(x)$ is not close to the output $a$ for a large number ofinputs.&lt;/p&gt;
+&lt;h2&gt; Lessons I Learned &lt;/h2&gt;
+&lt;div class=&quot;three&quot;&gt; Use a batch size smaller than or equal to 64.&lt;/div&gt;
+&lt;div class=&quot;textbox&quot;&gt; In my experience, using bigger batch sizes often hurt the performance. I suspect it fuels the problem of discriminator getting too good at discriminating the real and fake images, since large batch size means providing a lot of examples to train on. &lt;/div&gt;
 
-&lt;p&gt;The aim of our training algorithm will be to minimize the cost $C(w,b)$ as a function of weights and biases. In other words, we want to find a set of weights and biases which make the cost as small as possible. We’ll do that using an algorithm known as &lt;span class=&quot;shadow-white&quot;&gt; gradient descent &lt;/span&gt;.&lt;/p&gt;
+&lt;div class=&quot;three&quot;&gt; Add noise to both real and synthetic data. &lt;/div&gt;
+&lt;div class=&quot;textbox&quot;&gt; It is well known that making the training of discriminator more difficult is beneficial for the overall stability. Adding noise increases the complexity of the discriminator training and stabilizes the data distribution of the two competing networks. &lt;/div&gt;
 
-&lt;p&gt;Why introduce the &lt;span class=&quot;shadow-blue&quot;&gt; quadratic cost &lt;/span&gt;? After all, aren’t we primarily interested in the number of images correctly classified by the network? Why not try to maximize that number directly, rather than minimizing a proxy measure like the &lt;span class=&quot;shadow-blue&quot;&gt; quadratic cost &lt;/span&gt;?&lt;/p&gt;
+&lt;div class=&quot;three&quot;&gt; Use Label Smoothing &lt;/div&gt;
+&lt;div class=&quot;textbox&quot;&gt; If the label for real images is set to 1, change it to a lower value like 0.9. This solution discourages the discriminator from being overconfident. &lt;/div&gt;
 
-&lt;p&gt;The problem with that is that the number of images correctly classified is &lt;span class=&quot;underline-pink&quot;&gt; not a smooth function of weights and biases in the network &lt;/span&gt;.  For the most part, making small changes to the weights and biases won’t cause any change at all in the number of training images classified correctly. That makes it difficult to figure out how to change the weights and biases to get improved performance.&lt;/p&gt;
+&lt;div class=&quot;three&quot;&gt; Different learning rates for the generator and discriminator a.k.a. Two Time-Scale Update Rule &lt;/div&gt;
+&lt;div class=&quot;textbox&quot;&gt; In my experience, choosing a higher learning rate for the discriminator(i.e. 0.0004) and a lower one(i.e. 0.0001) for the generator works well in practice. I guess the reason is that the generator has to make small steps to fool the discriminator so it does not choose fast but not precise solutions to win the adversarial game. &lt;/div&gt;
 
-&lt;p&gt;Even given that we want to use a &lt;span class=&quot;underline-pink&quot;&gt; smooth cost function &lt;/span&gt;, you may still wonder why we choose the quadratic cost function used in the equation above. This is a &lt;span class=&quot;highlight-skew&quot;&gt; valid concern, and later we’ll revisit the cost function, and make some modifications &lt;span&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;three&quot;&gt; Use some kind of normalization method &lt;/div&gt;
+&lt;div class=&quot;textbox&quot;&gt; For me, applying Spectral Normalization, a particular kind of normalization applied on the convolutional kernels, greatly helped the stability of training.&lt;/div&gt;
 
-&lt;p&gt;Now, let’s just imagine we’ve simply been given a function of many variables and we want to minimize that function $C(v)$. This could be any real-valued function of many variables, $v = v_1, v_2, \dots $. Note that I’ve replaced $w$ and $b$ notation by $v$ to emphasize that this could be any function-we’re not specifically thinking in the neural network context anymore. To minimize $C(v)$, it helps to imagine $C$ as a function of just two variables, which we’ll call $v_1$ and $v_2$:&lt;/p&gt;
-
-&lt;picture&gt;&lt;img src=&quot;/assets/images/valley.png&quot; class=&quot;img-small-center&quot; /&gt;&lt;/picture&gt;
-
-&lt;p&gt;What we’d like to find &lt;span class=&quot;stroke&quot;&gt; where $C$ achieves its global minimum. &lt;/span&gt; Now, of course, for the function plotted above, we can eyeball the graph and find the minimum. A general function $C$, however may be a complicated function of many variables, and &lt;mark color=&quot;teal&quot;&gt; it won't usually be possible to just eyeball the graph to find the minimum &lt;/mark&gt;.&lt;/p&gt;
-
-&lt;p&gt;We start by thinking of our function as a kind of valley. And we imagine a &lt;span class=&quot;underline-blue&quot;&gt; ball rolling down the slope of the valley &lt;/span&gt;. We’d randomly choose a starting point for an (imaginary) ball, and then simulate the motion of the ball as it rolled down to the bottom of the valley. We could do this simulation simply by &lt;span class=&quot;neon&quot;&gt; computing derivatives &lt;/span&gt; &lt;mark class=&quot;coral&quot;&gt; (and perhaps some second derivatives) &lt;/mark&gt; of $C$-those derivatives would tell us everything we need to know about the &lt;span class=&quot;zoom&quot;&gt; local shape &lt;/span&gt; of the valley, and therefore how our ball should roll.&lt;/p&gt;
-
-&lt;p&gt;Let’s think about what happens when we move the ball a small amount $\Delta v_1$ in the $v_1$ direction, and a small amount $\Delta v_2$ in the $v_2$ direction. Calculus tells us that $C$ changes as follows:&lt;/p&gt;
-
-\[\Delta C \approx \frac{\partial C}{\partial v_1}\Delta v_1 + \frac{\partial C}{\partial v_2} \Delta v_2\]
-
-&lt;p&gt;We’re going to find a way of choosing $\Delta v_1$ and $\Delta v_2$ so as to make &lt;mark color=&quot;coral&quot;&gt; $\Delta C$ negative; &amp;lt;/span&amp;gt; We'll choose them so the ball is rolling down into the valley.&lt;/mark&gt;&lt;/p&gt;
-
-&lt;p&gt;To figure out how to make such a choice it helps to define $\Delta v$ to be the vector of changes in $v$, $\Delta v \equiv (\Delta v_1, \Delta v_2)^T$ .
-j&lt;/p&gt;
-
-&lt;p&gt;We’ll also define the &lt;span class=&quot;shadow&quot;&gt; gradient of $C$ ($\nabla C$) &lt;/span&gt; to be the vector of partial derivatives, $(\frac{\partial C}{\partial v_1}, \frac{\partial C}{\partial v_2})^T$ . We denote the gradient vector by $\nabla C$, i.e.,&lt;/p&gt;
-
-\[\nabla C = (\frac{\partial C}{\partial v_1}, \frac{\partial C}{\partial v_2})^T\]
-
-&lt;p&gt;&lt;mark class=&quot;coral&quot;&gt; In a moment we'll rewrite the change $\Delta C$ in terms of $\Delta v$ and the gradient $\nabla C$.&lt;/mark&gt;&lt;/p&gt;
-
-&lt;p&gt;Before getting to that, though, &lt;b&gt; I want to clarify something that sometimes gets people hung up on the gradient &lt;/b&gt;. When meeting the $\nabla C$ notation for the first time, people sometimes wonder how they should think about the $\nabla$ symbol.&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt; What, exactly, does $\nabla$ mean? &lt;/b&gt; In fact, it’s perfectly fine to think of $\nabla $C$ as a single mathematical object-the vector defined above-which ahppens to be written using two symbols. In this point of view, &lt;mark class=&quot;gold&quot;&gt; $\nabla$ is just a piece of notational flag, telling you &quot;hey, &lt;span class=&quot;three&quot;&gt; $\nabla C$ is a gradient vector &lt;/span&gt;&quot;.&lt;/mark&gt;&lt;/p&gt;
-
-&lt;p&gt;With these definitions, $\Delta C$ can be rewritten as&lt;/p&gt;
-
-&lt;div class=&quot;textbox&quot;&gt;
-
-$$
-\Delta C \approx \nabla C \cdot \Delta v
-$$
-
-&lt;/div&gt;
-
-&lt;p&gt;This equation helps use explain why $\nabla C$ is called the gradient vector: &lt;mark class=&quot;blue&quot;&gt; $\nabla C$ relates changes in $v$ to changes in $C$, just as we'd expect something called a gradient to do &lt;/mark&gt;.&lt;/p&gt;
-
-&lt;p&gt;But what’s really exciting about the equation is that it lets us see &lt;span class=&quot;highlight-yellow&quot;&gt; how to choose $/Delta v$ so as to make $\Delta C$ negative. &lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Suppose we choose&lt;/p&gt;
-
-&lt;div class=&quot;neon-green&quot;&gt;
-
-$$
-\Delta v = - \eta \nabla C
-$$
-
-&lt;/div&gt;
-
-&lt;p&gt;where $\eta$ is a small, positive parameter (known as the &lt;span class=&quot;reveal&quot;&gt; learning rate &lt;/span&gt;). Then the above equation tells us that $\Delta C \approx - \eta \nabla C = - \eta \lVert \nabla C \rVert^2$ .&lt;/p&gt;
-
-&lt;p&gt;Because $\lVert \nabla C \rVert^2$, this guarantees that $\Delta C \leq 0$, i.e., &lt;span class=&quot;blink&quot;&gt; $C$ will always decrease &lt;/span&gt;, never increase, if we change $\Delta v = - \eta \nabla C$ in $\Delta C = \nabla C \cdot \Delta v$ .&lt;/p&gt;
-
-&lt;p&gt;&lt;u&gt; This is exactly the property we wanted! &lt;/u&gt; So we’ll use the equation $\Delta v = - \eta \nabla C$ to compute a value for $/Delta v$, then move the ball’s position $v$ by that amount:&lt;/p&gt;
-
-\[v \rightarrow v' = v - \eta \nabla C\]
-
-&lt;p&gt;&lt;span class=&quot;arrow-highlight&quot;&gt; We’ll use this update rule again, to make another move. &lt;/span&gt; &lt;b&gt; If we keep doing this, over and over, we’ll keep decreasing $C$ until-we hope-we reach a &lt;u&gt;global minimum &lt;/u&gt;&lt;/b&gt;.&lt;/p&gt;
-
-&lt;p&gt;The way the &lt;span class=&quot;typewriter&quot;&gt; gradient descent algorithm &lt;/span&gt; works is to &lt;u&gt; repeatedly compute the gradient $\nabla C$ &lt;/u&gt;, and then move in the &lt;span class=&quot;shadow-white&quot;&gt; opposite direction &lt;/span&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;falling down&lt;/code&gt; the slope of the valley.&lt;/p&gt;
-
-&lt;picture&gt;&lt;img src=&quot;/assets/images/valley-ball.png&quot; class=&quot;img-small-center&quot; /&gt;&amp;lt;/span&amp;gt;
-
-&lt;mark class=&quot;blue&quot;&gt; Notice that, with this rule, the gradient descent doesn't reproduce real physical motion &lt;/mark&gt;. In real life a ball has &lt;span class=&quot;gif&quot;&gt; momentum &lt;/span&gt;, and that momentum may allow it to &lt;span class=&quot;monospace&quot;&gt; roll across the slope, or even (momentarily) roll uphill &lt;/span&gt;. It's only after the effects of friction st in that the ball is guaranteed to roll down into the valley. 
-
-By contrast, our rule for choosing $\Delta v$ just says `go down, right now`. That's still a pretty good rule for finding the minimum!
-
-&lt;div class=&quot;textbox&quot;&gt;
-&lt;span class=&quot;neon-green&quot;&gt; Gradient &lt;/span&gt; &lt;ul&gt;&lt;li&gt;Gradient measures how much the output of a function changes if you change the inputs a little bit. &lt;/li&gt;&lt;li&gt;You can also think of a gradient as the slope of a function.&lt;/li&gt;&lt;li&gt; In mathematical terms, a gradient is a partial derivative with respect to its inputs. &lt;/li&gt;
-&amp;lt;/div&amp;gt;
+&lt;blockquote&gt; I learned that hyperparameter tuning takes a lot of time and patience especially for training GANs. &lt;/blockquote&gt;
 
 
 
-&lt;h2&gt; Backpropagation Algorithm &lt;/h2&gt;
-
-&lt;h3&gt; The Cost Function &lt;/h3&gt;
-
-The goal of back-propagation is &lt;mark class=&quot;gold&quot;&gt; to compute the partial derivatives $\frac{\partial C}{\partial w}$ and $\frac{\partial C}{\partial b}$ of the cost function $C$ with respect to any weight $w$ or bias $b$ in the network &lt;/mark&gt;. 
-
-For back-propagation to work we need to make &lt;span class=&quot;three&quot;&gt; two main assumptions &lt;/span&gt; about the form of the cost function. 
-
-It's useful to have a cost function in mind, so we'll set a quadratic cost function which has the form ($n$ is the number of training examples; $x$ is the sum over individual training examples; $y(x)$ is the corresponding desired output; $L$ denotes the number of layer in the network; $a^L(x)$ is the vector of activations output from the network when $x$ is the input).
-
-$$
-C = \frac{1}{2n} \sum_x \lVert y(x) - a^L(x) \rVert^2
-$$
-
-The first assumption about the cost function $C$ is that the cost function can be written as &lt;span class=&quot;highlight-gradient&quot;&gt; an average $C = \frac{1}{n} \sum_x C_x$ over cost function $C_x$ for individual training examples $x$ &lt;/span&gt;.
-
-The reason we need this assumption is because what back-propagation actually lets us do is &lt;mark class=&quot;coral&quot;&gt; is compute the partial derivatives $\partial C_x / \partial w$ and $\partial C_x / \partial b$ for a single training example. We then recover $\partial C / \partial w$ and $\partial C / \partial b$ by averaing over training examples. 
-
-For example, for the quadratic cost function's cost for a single training example
-The second assumption we make about the cost is that it can be written as a function of the outputs from the neural network:
-
-
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://neuralnetworksanddeeplearning.com/chap1.html&quot;&gt; online book &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/mark&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/picture&gt;</content><author><name>seri</name></author><category term="deep learning" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/neuron.png" /><media:content medium="image" url="http://localhost:4000/assets/images/neuron.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Guide to Linear Algebra (Part 2)</title><link href="http://localhost:4000/bullshit-two.html" rel="alternate" type="text/html" title="Guide to Linear Algebra (Part 2)" /><published>2021-09-15T00:00:00+09:00</published><updated>2021-09-15T00:00:00+09:00</updated><id>http://localhost:4000/bullshit-two</id><content type="html" xml:base="http://localhost:4000/bullshit-two.html">&lt;!--more--&gt;
-
-&lt;h2&gt; Hilbert Space &lt;/h2&gt;
-&lt;p&gt;&lt;span class=&quot;blue&quot;&gt; The Euclidean space we consider in everyday life is mathematically called the Hilbert Space. &lt;/span&gt; Any general metric graph is a Hilbert Space. Any $n$ dimensional Hilbert space is sand to be in $\mathbb{R}^n$ which indicates that all the numbers represented in this space are real.&lt;/p&gt;
-
-&lt;p&gt;Note that &lt;span class=&quot;red&quot;&gt; Cartesian space is different from Hilbert space &lt;/span&gt; and is a subset of it. Mathematically, a Hilbert space is an abstract vector space which preserves the structure of an inner product. In non-math terms, it just means that &lt;u&gt; one can measure length and angle in this space &lt;/u&gt;.&lt;/p&gt;
-
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="linear algebra" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/linear.png" /><media:content medium="image" url="http://localhost:4000/assets/images/linear.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Image Processing: the Basics</title><link href="http://localhost:4000/template.html" rel="alternate" type="text/html" title="Image Processing: the Basics" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/template</id><content type="html" xml:base="http://localhost:4000/template.html">&lt;!--more--&gt;
-
-&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
-
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dissecting the Camera Matrix (Part 2)</title><link href="http://localhost:4000/extrinsic.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 2)" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/extrinsic</id><content type="html" xml:base="http://localhost:4000/extrinsic.html">&lt;!--more--&gt;
+&lt;/div&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">I wrote a short article about what I learned training GANs. GAN is well known for its instability in training and there are pitfalls worth knowing.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/gan.png" /><media:content medium="image" url="http://localhost:4000/assets/images/gan.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dissecting the Camera Matrix (Part 2)</title><link href="http://localhost:4000/extrinsic.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 2)" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/extrinsic</id><content type="html" xml:base="http://localhost:4000/extrinsic.html">&lt;!--more--&gt;
 
 &lt;picture&gt;&lt;img src=&quot;/assets/images/cali.png&quot; /&gt;&lt;/picture&gt;
 &lt;div class=&quot;caption&quot;&gt; Overview of the Camera Calibration Parameters &lt;/div&gt;
@@ -456,82 +229,13 @@ t = -RC
 &lt;ul&gt; 
 &lt;li&gt;&lt;a href=&quot;https://ksimek.github.io/2012/08/14/decompose/&quot;&gt; ksimek blog &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://prateekvjoshi.com/2014/05/31/understanding-camera-calibration/&quot;&gt; prateekvjoshi blog &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This is the second part of our journey to master the camera matrix. In this blog post, we will study the extrinsic camera parameters. Extrinsic matrix describes the camera's location in the world.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/extrinsic.png" /><media:content medium="image" url="http://localhost:4000/assets/images/extrinsic.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">All About Training GAN</title><link href="http://localhost:4000/gan.html" rel="alternate" type="text/html" title="All About Training GAN" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/gan</id><content type="html" xml:base="http://localhost:4000/gan.html">&lt;!--more--&gt;
-
-&lt;h2&gt; 1.  Generative Adversarial Networks &lt;/h2&gt;
-
-&lt;p&gt;Ultimately, if everything goes well, the generator learns the true distribution of the training data and becomes really good at generating fake images. The discriminator should not be able to distinguish between real and fake images.&lt;/p&gt;
-
-&lt;p&gt;Another way to look at the GAN setup is that the discriminator is trying to guide the generator by telling what real images look like. The two networks try to achieve what is called the Nash Equilibrium with respect to each other.&lt;/p&gt;
-
-&lt;h2&gt; 2.  Training GANs &lt;/h2&gt;
-
-&lt;p&gt;GAN networks are a dynamic system where the optimization process is seeking not a minimum, but a equilibrium between two forces. There are no good objective metrics for evaluating whether a GAN is performing well during training, e.g. reviewing the loss is not sufficient. Instead the best approach is to visually inspect the generated examples and use subjective evaluation.&lt;/p&gt;
-
-&lt;p&gt;Other quantitative measures, such as Inception Score (IS) or Frechet Inception Distance (FID) rely on pretrained models with a specific set of object classes. They lack an upper bound (which means hypothetically the highest possible score is infinity).&lt;/p&gt;
-
-&lt;h3&gt; 2.1  Look at the Loss &lt;/h3&gt;
-
-&lt;p&gt;In a discriminative model,the loss measures the accuracy of the prediction and we use it to monitor the progress of training. However, the loss in GAN measures how well we are doing compared with our opponent. Often, the generator cost increases but the image quality is actually improving.&lt;/p&gt;
-
-&lt;p&gt;If you see the discriminator loss rapidly approaching, there is probably no chance of recovery and it is time to change something.&lt;/p&gt;
-
-&lt;h3&gt; 2.1  Look at the Gradients &lt;/h3&gt;
-&lt;p&gt;Monitor the gradients along with the losses in the networks. These can give you a good idea about the progress of training and can even help in debugging if things are not really working well.&lt;/p&gt;
-
-&lt;p&gt;Ideally, the generator should receive large gradients early in the training because it needs to learn how to generate real-looking data. The discriminator on the other hand does not always get large gradients early on, because it can easily distinguish real and fake images.&lt;/p&gt;
-
-&lt;p&gt;If the gradients at the layer of generator are too small, learning might be slow or not happening at all. The generator should get large gradients early on and the discriminator getting consistently high gradients at the top layer once the generator has been trained enough.&lt;/p&gt;
-
-&lt;h2&gt; 3. Detecting GAN Failure Modes &lt;/h2&gt;
-&lt;p&gt;The reason why GANs are difficult to train is that both generator and the discriminator are trained simultaneously in a zero-sum game. This means that improvements to one model come at the expense of the other model. 
-The goal of training two models involves finding a point of equilibrium between the two competing concerns. It also means that everytime the parameters of one model are updated the nature of the optimization problem that is being solved is updated as well. The technical challenge of training two competing neural networks at the same time is that they can fail to converge.&lt;/p&gt;
-
-&lt;ul&gt;&lt;li class=&quot;highlight&quot;&gt; &lt;b&gt; Convergence Failure &lt;/b&gt;&lt;/li&gt;
-&lt;div class=&quot;indent&quot;&gt; The fact that GANs are composed by two networks, and each of them has its loss function leads to GANs unstability. In GAN architecture, the discriminator tries to minimize a cross-entropy while the generator tries to maximize it. When discriminator confidence is high and the discriminator starts to reject the samples that are produced by the generator, generator's gradient vanishes. 
-
-This scenario happens when the generator score reaches near zero and the discriminator score reaches near one. The discriminator is overpowering the generator. If the score does not recover from these values for many iterations, it is better to stop training. &lt;/div&gt;
-
-&lt;li class=&quot;highlight&quot;&gt;&lt;b&gt; Mode Collapse &lt;/b&gt; &lt;/li&gt;
-&lt;div class=&quot;indent&quot;&gt; Mode collapse is when the GAN produces a small variety of images with many duplicates. This happens when the generator is unable to learn a rich feature representation because  it learns to associate similar outputs to multiple different inputs. The most promising way to check for mode collapse is to inspect the generated images. If there is little diversity in the output and some of them are almost identical, there is likely mode collapse. If you observe this happening, you should try to increase the ability of the generator to create more diverse outputs or impair the discriminator by randomly giving false labels to real images.
-
-Another type of behavior you should look out for is when the generator oscillates between generating specific examples in the domain. They progress from generating one kind of sample to generating another kind of sample without eventually reaching equilibrium.
-&lt;/div&gt;
-
-&lt;li class=&quot;highlight&quot;&gt; &lt;b&gt; Diminisheed Gradient &lt;/b&gt; &lt;/li&gt;&lt;/ul&gt;
-&lt;div class=&quot;indent&quot;&gt; This situation happens when the discriminator gets too successful that the generator gradient vanishes and learns nothing.
-
-
-&lt;h2&gt; Lessons I Learned &lt;/h2&gt;
-&lt;div class=&quot;three&quot;&gt; Use a batch size smaller than or equal to 64.&lt;/div&gt;
-&lt;div class=&quot;textbox&quot;&gt; In my experience, using bigger batch sizes often hurt the performance. I suspect it fuels the problem of discriminator getting too good at discriminating the real and fake images, since large batch size means providing a lot of examples to train on. &lt;/div&gt;
-
-&lt;div class=&quot;three&quot;&gt; Add noise to both real and synthetic data. &lt;/div&gt;
-&lt;div class=&quot;textbox&quot;&gt; It is well known that making the training of discriminator more difficult is beneficial for the overall stability. Adding noise increases the complexity of the discriminator training and stabilizes the data distribution of the two competing networks. &lt;/div&gt;
-
-&lt;div class=&quot;three&quot;&gt; Use Label Smoothing &lt;/div&gt;
-&lt;div class=&quot;textbox&quot;&gt; If the label for real images is set to 1, change it to a lower value like 0.9. This solution discourages the discriminator from being overconfident. &lt;/div&gt;
-
-&lt;div class=&quot;three&quot;&gt; Different learning rates for the generator and discriminator a.k.a. Two Time-Scale Update Rule &lt;/div&gt;
-&lt;div class=&quot;textbox&quot;&gt; In my experience, choosing a higher learning rate for the discriminator(i.e. 0.0004) and a lower one(i.e. 0.0001) for the generator works well in practice. I guess the reason is that the generator has to make small steps to fool the discriminator so it does not choose fast but not precise solutions to win the adversarial game. &lt;/div&gt;
-
-&lt;div class=&quot;three&quot;&gt; Use some kind of normalization method &lt;/div&gt;
-&lt;div class=&quot;textbox&quot;&gt; For me, applying Spectral Normalization, a particular kind of normalization applied on the convolutional kernels, greatly helped the stability of training.&lt;/div&gt;
-
-&lt;blockquote&gt; I learned that hyperparameter tuning takes a lot of time and patience especially for training GANs. &lt;/blockquote&gt;
-
-
-
-&lt;/div&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">I wrote a short article about what I learned training GANs. GAN is well known for its instability in training and there are pitfalls worth knowing.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/gan.png" /><media:content medium="image" url="http://localhost:4000/assets/images/gan.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Introduction to Visual SLAM: From Theory to Practice</title><link href="http://localhost:4000/slam.html" rel="alternate" type="text/html" title="Introduction to Visual SLAM: From Theory to Practice" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/slam</id><content type="html" xml:base="http://localhost:4000/slam.html">&lt;!--more--&gt;
-
-&lt;h2&gt; Monocular Dense Reconstruction &lt;/h2&gt;
-&lt;h3&gt; Stereo Vision &lt;/h3&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This is the second part of our journey to master the camera matrix. In this blog post, we will study the extrinsic camera parameters. Extrinsic matrix describes the camera's location in the world.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/extrinsic.png" /><media:content medium="image" url="http://localhost:4000/assets/images/extrinsic.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Image Processing: the Basics</title><link href="http://localhost:4000/template.html" rel="alternate" type="text/html" title="Image Processing: the Basics" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/template</id><content type="html" xml:base="http://localhost:4000/template.html">&lt;!--more--&gt;
 
 &lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
 
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Advanced PyTorch: Things You Didn’t Know</title><link href="http://localhost:4000/pytorch.html" rel="alternate" type="text/html" title="Advanced PyTorch: Things You Didn’t Know" /><published>2021-09-12T00:00:00+09:00</published><updated>2021-09-12T00:00:00+09:00</updated><id>http://localhost:4000/pytorch</id><content type="html" xml:base="http://localhost:4000/pytorch.html">&lt;!--more--&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Advanced PyTorch: Things You Didn’t Know</title><link href="http://localhost:4000/pytorch.html" rel="alternate" type="text/html" title="Advanced PyTorch: Things You Didn’t Know" /><published>2021-09-12T00:00:00+09:00</published><updated>2021-09-12T00:00:00+09:00</updated><id>http://localhost:4000/pytorch</id><content type="html" xml:base="http://localhost:4000/pytorch.html">&lt;!--more--&gt;
 
 &lt;h2&gt; Flatten Operation for a Batch of Image Inputs to a CNN 
 &lt;/h2&gt;
@@ -691,4 +395,569 @@ Another type of behavior you should look out for is when the generator oscillate
 &lt;p&gt;Reduction operations in general allow us to compute aggregate values across data structures. But do reduction operations always reduce to a tensor with a single element? The answer is no. In fact, we often reduce specific axes at a time. This process is important.&lt;/p&gt;
 
 &lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://deeplizard.com/learn/video/K3lX3Cltt4c&quot;&gt; deeplizard &lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="PyTorch" /><category term="featured" /><summary type="html">This blog post is for those who know the basics of PyTorch but want to go a step further. We will be diving into principles and applications of deep learning via PyTorch.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/pytorch.png" /><media:content medium="image" url="http://localhost:4000/assets/images/pytorch.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://deeplizard.com/learn/video/K3lX3Cltt4c&quot;&gt; deeplizard &lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="PyTorch" /><category term="featured" /><summary type="html">This blog post is for those who know the basics of PyTorch but want to go a step further. We will be diving into principles and applications of deep learning via PyTorch.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/pytorch.png" /><media:content medium="image" url="http://localhost:4000/assets/images/pytorch.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Guide to Linear Algebra (Part 1)</title><link href="http://localhost:4000/no-bullshit.html" rel="alternate" type="text/html" title="Guide to Linear Algebra (Part 1)" /><published>2021-09-09T00:00:00+09:00</published><updated>2021-09-09T00:00:00+09:00</updated><id>http://localhost:4000/no-bullshit</id><content type="html" xml:base="http://localhost:4000/no-bullshit.html">&lt;!--more--&gt;
+
+&lt;h2&gt; Computational Linear Algebra &lt;/h2&gt;
+
+&lt;p&gt;This chapter covers the computational aspects of performing matrix calculations. Understanding matrix computations is important because all later chapters depend on them. Suppose we’re given a huge matrix $ A \in R^{n \times n} $ with $ n=1000 $. Hidden behind the innocent-looking mathematical notation of the matrix inverse $A^{-1}$, the matrix product $AA$, and the matrix determinant $ | A |$, lie monster coputations involving all the $1000 \times 1000 = 1$ million entries of the matrix $A$. Millions of arithmetic operations must be performed, so I hope you have at least a thousand pencil ready!&lt;/p&gt;
+
+&lt;p&gt;Okay, calm down. I won’t actually make you calculate millions of arithmetic operations. In fact, to learn linear algebra, it is sufficient to know how to carry out calculations with $3 \times 3$ and $4 \times 4$ matrices. Even for such moderately sized matrices, computing products, inverses, and determinants by hand are serious computational tasks. If you’re ever required to take a linear algebra final exam, you need to make sure you can do these calculations quickly. Even if no exam looms in your imminent future, it’s important to practice matrix operations by hand to get a feel for them.&lt;/p&gt;
+
+&lt;p&gt;This chapter will introduce you to the following computational tasks involving matrices:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;span class=&quot;blue&quot;&gt;Gauss-Jordan elimination &lt;/span&gt; Suppose we're trying to solve two equations in two unknowns $x$ and $y$:
+
+$$ 
+\displaylines{
+ax+by = c \\\
+dx+ ey= f
+}
+$$
+
+If we add $\alpha$\times the first equation to the second equation, we obtain an equivalent system of equations:
+
+$$
+\displaylines{
+ax + by = c \\\
+(d + \alpha a)x + (e + \alpha b)y = f + \alpha c
+}
+$$
+
+This is called a &lt;span class=&quot;highlight-sketch&quot;&gt; row operation &lt;/span&gt;: we added $\alpha$-times the first row to the second row. Row operations change the coefficient of the system of equations, but leave the solution unchanged. Gauss-Jordan elimination is a systematic procedure for solving systems of linear equations using row operations. &lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; Matrix product &lt;/span&gt; The product $AB$ between matrices $A \in \mathbb{R}^{m \times l}$ and $B \in \mathbb{R}^{l \times n}$ is the matrix $C \in \mathbb{R}^{m \times n}$ whose coefficients $c_{ij}$ are defined by the formula $c_{ij} = \sum_{k=1}^{l}a_{ik}b_{kj}$ for all $i \in \lbrack 1, \dots, m \rbrack $ and $j \in \lbrack 1, \dots, n \rbrack $. We'll soon unpack this formula and learn about its intuitive interpretation: that computing $C = AB$ is computing all the dot products between the rows of $A$ and the columns of $B$. &lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;blue&quot;&gt; Determinant &lt;/span&gt; The determinant of a matrix $A$, denoted $|A|$ is an operation that gives us useful information about the linear independence of the rows of the matrix. The determinant is connected to many notions of linear algebra: linear independence, geometry of vectors, solving systems of equations, and matrix invertibility. We'll soon discuss these aspects. &lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;blue&quot;&gt; Matrix inverse &lt;/span&gt; We'll build upon our knowledge of Gauss-Jordan elimination, matrix products, and determinants to derive three different procedures for computing the matrix inverse $A^{-1}$.&lt;/li&gt;&lt;/ul&gt;
+
+&lt;h3&gt; Reduced Row Echelon Form &lt;/h3&gt;
+&lt;p&gt;In this section, we’ll learn to solve systems of linear equations using the Gauss-Jordan elimination procedure. A system of equations can be represented as a matrix of coefficients. The Gauss-Jordan elimination procedure converts any matrix into its &lt;span class=&quot;highlight-sketch&quot;&gt; &lt;b&gt; reduced row echelon form (RREF) &lt;/b&gt;&lt;/span&gt;. We can easily find the solution (or solutions of the system of equations from the RREF.&lt;/p&gt;
+
+&lt;p&gt;Listen up: the material covered in this section requires your full on, caffeinated attention, as the procedures you’ll learn are somewhat tedious. Gauss-Jordan elimination involves many repetitive mathematical manipulations of arrays of numbers. It’s important you hang in there and follow through the step-by-step manipulations, as well as verify each step I present on your own with pen and paper.&lt;/p&gt;
+
+&lt;h4&gt; Solving Equations &lt;/h4&gt;
+&lt;p&gt;Suppose you’re asked to solve the following system of equations:&lt;/p&gt;
+
+\[\displaylines{
+1x_1 + 2x_2  = 5 \\\
+3x_1 + 9x_2 = 21}\]
+
+&lt;p&gt;The standard approach is to use one of the equation-solving tricks we learned to combine the equations and find the values of the two unknowns $x_1$ and $x_2$.&lt;/p&gt;
+
+&lt;p&gt;Observe that the names of the two unknowns are irrelevant to the solution of the system of equations. Indeed, the solution $(x_1, x_2)$ to the above system of equations is the same as the solution $(s,t)$ to the system of equations&lt;/p&gt;
+
+\[\displaylines{
+1s+ 2t = 5 \\\
+3s+ 9t = 21}\]
+
+&lt;p&gt;The important parts of a system of linear equations are the &lt;span class=&quot;highlight-yellow&quot;&gt; coefficients &lt;/span&gt; in front of the variables and the constants on the right-hand side of each equation.&lt;/p&gt;
+
+&lt;h4&gt; Augmented Matrix &lt;/h4&gt;
+&lt;p&gt;The system of linear equations can be written as an &lt;span class=&quot;highlight-green&quot;&gt; augmented matrix &lt;/span&gt;:&lt;/p&gt;
+
+\[\begin{pmatrix} 1 &amp;amp; 2 &amp;amp;\bigm | &amp;amp; 5 \\\
+                3 &amp;amp; 9 &amp;amp;\bigm | &amp;amp; 21
+\end{pmatrix}\]
+
+&lt;p&gt;The first column corresponds to the coefficients of the first variable, the second column is for the second variable, and the last column corresponds to the constants of the right-hand side. It is customary to draw a vertical line where the equal signs in the equations would normally appear. This line helps distinguish the coefficients of the equations from the column of constants on the right-hand side.&lt;/p&gt;
+
+&lt;p&gt;Once we have the augmented matrix, we can simplify it by using &lt;span class=&quot;highlight-yellow&quot;&gt; row operations &lt;/span&gt; (which we’ll discuss shortly) on its entries. After simplification by row operations, the augmented matrix will be transformed to&lt;/p&gt;
+
+\[\begin{pmatrix}
+1 &amp;amp; 0 &amp;amp;\bigm | &amp;amp; 5 \\\
+0 &amp;amp; 1 &amp;amp;\bigm | &amp;amp; 2
+\end{pmatrix}\]
+
+&lt;p&gt;which corresponds to the system of equations&lt;/p&gt;
+
+\[\displaylines{
+x_1 = 1 \\\
+x_2 = 2}\]
+
+&lt;p&gt;This is a &lt;span class=&quot;monospace&quot;&gt; trivial &lt;/span&gt; system of equations; there is nothing left to solve and we can see that the solutions are $x_1 = 1$ and $x_2 = 2$. This example illustrates the general idea of the Gauss-Jordan elimination procedure for solving the system of equations by manipulating an augmented matrix.&lt;/p&gt;
+
+&lt;h4&gt; Row Operations &lt;/h4&gt;
+&lt;p&gt;We can manipulate the rows of an augmented matrix without changing its solutions. We’re allowed to perform the following three types of row operations:&lt;/p&gt;
+
+&lt;ul&gt;&lt;li&gt; Add a multiple of one row to another row &lt;/li&gt;
+&lt;li&gt; Swap the position of the two rows &lt;/li&gt;
+&lt;li&gt; Multiply a row by a constant &lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;Let’s trace the sequence of row operations needed to solve the system of equations&lt;/p&gt;
+
+\[\displaylines{x_1 + 2x_2 = 5 \\\
+3x_1 + 9x_2 = 21}\]
+
+&lt;p&gt;starting from its augmented matrix:&lt;/p&gt;
+
+\[\begin{pmatrix}
+1 &amp;amp; 2 &amp;amp;\bigm | &amp;amp; 5 \\\
+3 &amp;amp; 2 &amp;amp;\bigm | &amp;amp; 21
+\end{pmatrix}\]
+
+&lt;ol&gt;
+  &lt;li&gt;As a first step, we eliminate the first variable in the second row by subtracting three times the first row from the second row.&lt;/li&gt;
+&lt;/ol&gt;
+
+\[\begin{pmatrix}
+1 &amp;amp; 2 &amp;amp;\bigm | &amp;amp; 5 \\\
+0 &amp;amp; 3 &amp;amp;\bigm | &amp;amp; 6
+\end{pmatrix}\]
+
+&lt;p&gt;We denote this row operation as $R_2 \leftarrow R_2 - 3R_1$.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;To simplify the second row, we divide it by 3 to obtain&lt;/li&gt;
+&lt;/ol&gt;
+
+\[\begin{pmatrix}
+1 &amp;amp; 2 &amp;amp;\bigm | &amp;amp; 5 \\\
+0 &amp;amp; 1 &amp;amp;\bigm | &amp;amp; 2 
+\end{pmatrix}\]
+
+&lt;p&gt;This row operation is denoted $R_2 \leftarrow \frac{1}{3}R_2$.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The final step is to eliminate the second variable from the first row. We do this by subtracting two times the second row from the first row $R_1 \leftarrow R_1 - 2 R_2$:&lt;/li&gt;
+&lt;/ol&gt;
+
+\[\begin{pmatrix}
+1 &amp;amp; 0 &amp;amp;\bigm | &amp;amp; 1 \\\
+0 &amp;amp;  1 &amp;amp;\bigm | &amp;amp; 2
+\end{pmatrix}\]
+
+&lt;p&gt;We can now read off the solution: $x_1 =1$ and $x_2 = 2$.&lt;/p&gt;
+
+&lt;p&gt;Note how we simplified the augmented matrix through a specific procedure: we followed the &lt;span class=&quot;rainbow&quot;&gt; Gauss-Jordan elimination algorithm &lt;/span&gt; to bring the matrix into its reduced row echelon form.&lt;/p&gt;
+
+&lt;p&gt;The reduced row echelon form (RREF) is the simplest form for an augmented matrix. Each row contains a &lt;span class=&quot;circle-sketch-highlight&quot;&gt;&lt;b&gt; leading one &lt;/b&gt;&lt;/span&gt; (a numeral 1) also known as a &lt;span class=&quot;circle-sketch-highlight&quot;&gt; &lt;b&gt;pivot &lt;/b&gt;&lt;/span&gt;. Each column’s pivot is used to eliminate the numbers that lie below and above it in the same column. The end result of this procedure is the reduced row echelon form:&lt;/p&gt;
+
+\[\begin{pmatrix}
+1 &amp;amp; 0 &amp;amp; \ast &amp;amp; 0 &amp;amp;\bigm | \ast \\\
+0 &amp;amp; 1 &amp;amp; \ast &amp;amp; 0 &amp;amp;\bigm | \ast \\\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp;\bigm | \ast
+\end{pmatrix}\]
+
+&lt;p&gt;Note the matrix contains only zero entries below and above the pivots. The asterisks $\ast$ denote arbitrary numbers that could not be eliminated because no leading one is present in these columns.&lt;/p&gt;
+
+&lt;div class=&quot;definition&quot;&gt;The solution to a system of linear equations in the variables $x_1, x_2, \dots, x_n$ is the set of values $\{(x_1, x_2, \dots, x_n)\}$ that satisfy all the equations.&lt;/div&gt;
+
+&lt;div class=&quot;definition&quot;&gt; Gaussian elimination is the process of bringing a matrix into row echelon form. &lt;/div&gt;
+&lt;div class=&quot;definition&quot;&gt; A matrix is said to be in row echelon form (REF) if all entries below the leading ones are zero. This form can be obtained by adding or subtracting the row with the leading one from the rows below it. &lt;/div&gt;
+&lt;div class=&quot;definition&quot;&gt; Gaussian-Jordan elimination is the process of bringing a matrix into reduced row echelon form. &lt;/div&gt;
+&lt;div class=&quot;definition&quot;&gt; A matrix is said to be in reduced row echelon form (RREF) if all the entries below and above the pivots are zero. Starting from the REF, we obtain the RREF by subtracting the row containing the pivots from the rows above them.&lt;/div&gt;
+&lt;div class=&quot;definition&quot;&gt; the rank of the matrix $A$ is the number of pivots in the RREF of $A$. &lt;/div&gt;
+
+&lt;h3&gt; Number of Solutions &lt;/h3&gt;
+
+&lt;p&gt;A system of linear equations in three variables could have:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;span class=&quot;rainbow&quot;&gt; one solution &lt;/span&gt; If the RREF of a matrix has a pivot in each row, we can read off the values of the solution by inspection. 
+
+$$
+
+\begin{bmatrix}
+1 &amp;amp; 0 &amp;amp; 0 &amp;amp; c_1 \\\
+0 &amp;amp; 1 &amp;amp; 0 &amp;amp; c_2 \\\
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; c_3
+\end{bmatrix}
+
+$$
+
+The unique solution is $x_1 = c_1$, $x_2 = c_2$, and $x_3 = c_3$. &lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;rainbow&quot;&gt; Infinitely many solutions 1 &lt;/span&gt; If one of the equations is redundant, a row of zeros will appear when the matrix is brought to the RREF. This happens when one of the original equations is a linear combination of the other two. In such cases, we're really solving two equations  in three variables, so can't pin down one of the unknown variables. We say the solution contains &lt;span class=&quot;underline&quot;&gt; a free variable &lt;/span&gt;. For example, consider the following RREF:
+
+$$
+\begin{bmatrix} 
+1 &amp;amp; 0 &amp;amp; a_1 &amp;amp; c_1 \\\
+0 &amp;amp; 1 &amp;amp; a_2 &amp;amp; c_2 
+\end{bmatrix}
+$$
+
+The column that doesn't contain a leading one corresponds to the free variable. To indicate that $x_3$ is a free variable, we give it a special label $x_3 \equiv t$. The variable $t$ could be any number $t \in \mathbb{R}$. In other words, when we say $t$ is free, it means $t$ can take on any value from $-\infty$ to $+\infty$. The information in the augmented matrix can now be used to express $x_1$ and $x_2$ in terms of the right-hand constants and the free variable $t$:
+
+$$
+\begin{Bmatrix} x_1 = c_1 - a_1 t \\ x_2 = c_2 - a_2 t \\ x_3 = t, \forall t \in \mathbb{R} \end{Bmatrix} = \begin{Bmatrix} \begin{bmatrix} c_1 \\ c_2 \\ 0 \end{bmatrix} + t \begin{bmatrix} -a_1 \\ -a_2 \\ 1 \end{bmatrix}, \forall t \in \mathbb{R}\end{Bmatrix}
+$$.
+
+The solution corresponds to the equation of a line passing through the point $(c_1, c_2, 0)$ with direction vector $(-a_1, -a_2, 1)$. We'll discuss the geometry of lines in the next section. For now, it's important that you understand that a system of equations can have more than one solution; any point on the line $l \equiv \{(c_1, c_2, 0) + t(-a_1, -a_2, 1), \forall t \in \mathbb{R}\}$ is a solution to the above system of equations. &lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;rainbow&quot;&gt; Infinitely many solutions 2 &lt;/span&gt; It's also possible to obtain a two-dimensional solution space. This happens when two of the three equations are redundant. In this case, there will be a single leading one, and thus two free variables. For example, in the RREF
+
+$$
+\begin{bmatrix} 
+0 &amp;amp; 1 &amp;amp; a_1 &amp;amp; c_1 \\\ 
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\\ 
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 
+\end{bmatrix}
+$$
+
+the variables $x_1$ and $x_3$ are free. As in the previous infinitely-many-solutions case, we define new labels for the free variables $x_1 \equiv s$ and $x_3 \equiv t$, where $ s \in \mathbb{R}$ and $t \in \mathbb{R}$ are two arbitrary numbers. The solution to this system of equations is 
+
+$$ 
+\begin{Bmatrix} 
+x_1 = s \\ x_2 = c_2 - a_2 t \\ x_3 = t , \\ \forall s,t \in \mathbb{R} \end{Bmatrix} = \begin{Bmatrix} \begin{bmatrix} 0 \\ c_2 \\ 0 \end{bmatrix} + s \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} + t \begin{bmatrix} 0 \\ -a_2 \\ 1 \end{bmatrix}, \forall s,t \in \mathbb{R} 
+\end{Bmatrix} 
+$$
+
+This solution set corresponds to the parametric equation of a plane that contains the point $(0,c_2, 0)$ and the vectors $(1,0,0)$ and $(0, -a_2, 1)$. 
+
+The general equation for the solution plane is $0x+1y+a_2z = c_2$, as can be observed from the first row of the augmented matrix. In the next section, we'll learn more about the geometry of planes and how to convert between their general and parametric forms. &lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;rainbow&quot;&gt; no solutions &lt;/span&gt; If there are no numbers $(x_1, x_2, x_3)$ that simultaneously satisfy all three equations, the system of equations has no solution. An example of a system of equations with no solution is the pair $ s+t = 4$ and $s+t = 44$. There are no numbers $(s,t)$ that satisfy both these equations. 
+
+A system of equations has no solution if its reduced row echelon form contains a row of zero coefficients with a nonzero constant in the right-hand side:
+
+$$
+\begin{Bmatrix}
+\begin{array}{ccc|c}
+1 &amp;amp; 0 &amp;amp; 0 &amp;amp; c_1 \\\ 
+0 &amp;amp; 1 &amp;amp; 0 &amp;amp; c_2 \\\ 
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; c_3 
+\end{array}
+\end{Bmatrix}
+$$
+
+If $c_3 \neq 0$ this system of equations is impossible to satisfy. There is no solution because there are no numbers $(x_1, x_2, x_3)$ such that $0x_1 + 0x_2 + 0x_3 = c_3$. 
+
+Dear reader, we've reached the first moment in this book where you'll need to update your math vocabulary. The solution to an individual equation is a finite set of points. The solution to a system of equations can be an entire space containing infinitely many points, such as a line or a plane. 
+
+The solution set of a system of three linear equations in three unknowns could be either the empty set $\{0\}$ (no solution), a set with one element $\{(x_1, x_2, x_3)\}$, or a set with infinitely many elements like a line $\{p_o + t \overrightarrow{v}, t \in \mathbb{R}\}$ or a plane $\{p_o + s \overrightarrow{v} + t \overrightarrow{w}, s,t \in \mathbb{R}\}$. Another possible solution set is all of $\mathbb{R}^3$; every vector $ \overrightarrow{x} \in \mathbb{R}^3 $ is a solution to the equation 
+
+$$
+\begin{bmatrix} 0 &amp;amp; 0 &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 0 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+$$
+
+Note the distinction between the three types of infinite solution sets. A line is one-dimensional, a plane is two-dimensional, and $\mathbb{R}^3$ is three-dimensional. Describing all points on a line requires one parameter, describing all points on a plane takes two parameters, and-of course-describing a point in $\mathbb{R}^3$ takes three parameters. 
+
+&lt;h3&gt; Geometric Interpretation &lt;/h3&gt;
+We can gain some intuition about solution sets by studying the geometry of the intersections of lines in $\mathbb{R}^2$ and planes in $\mathbb{R}^3$. 
+
+&lt;h4&gt; Lines in two dimensions &lt;/h4&gt;
+Equations of the form $ax+by = c$ corresponds to lines in $\mathbb{R}^2$. Solving systems of linear equations of the form
+
+$$
+\displaylines{
+a_1 x + b_1 y = c_1 \\\
+a_2 x + b_2 y = c_2
+}
+$$
+
+requires finding the point $(x,y) \in \mathbb{R}^2$ where these lines intersect. There are three possibilities for the solution set:
+- &lt;span class=&quot;highlight-sketch&quot;&gt; one solution &lt;/span&gt; if the two lines intersect at a point. 
+- &lt;span class=&quot;highlight-sketch&quot;&gt; infinitely many solutions &lt;/span&gt; if the lines are superimposed.
+- &lt;span class=&quot;highlight-sketch&quot;&gt; no solution &lt;/span&gt; if the two lines are parallel and never intersect.
+
+&lt;h4&gt; Planes in three dimensions &lt;/h4&gt;
+Equations of the form $ax+by+cz = d$ correspond to planes in $\mathbb{R}^3$. When solving three such equations, 
+
+$$ 
+\displaylines{
+a_1 x + b_1 y + c_1 z = d_1 \\\
+a_2 x + b_2 y + c_2 z = d_2 \\\
+a_3 x + b_3 y + c_3 z = d_3
+}
+$$
+
+we want to find a set of points $(x,y,z)$ that satisfy all three equations simultaneously. There are four possibilities for the solution set:
+
+1. &lt;span class=&quot;highlight-green&quot;&gt; one solution &lt;/span&gt; three non-parallel planes intersect at a point. 
+2. &lt;span class=&quot;highlight-yellow&quot;&gt; infinitely many solutions 1 &lt;/span&gt; if only one of the plane equations is redundant, the solution corresponds to the intersection of two planes which is a line.
+3. &lt;span class=&quot;highlight-green&quot;&gt; infinitely many solutions 2 &lt;/span&gt; if two of the equations are redundant, then the solution space is a two-dimensional space. 
+4. &lt;span class=&quot;highlight-yellow&quot;&gt; if two (or more) of the planes are parallel, they will never intersect. &lt;/span&gt;
+
+&lt;h3&gt; Determinants &lt;/h3&gt;
+&lt;h4&gt; Overview &lt;/h4&gt; 
+What is the volume of a rectangular box of length $1m$, width $2$ and height $3m$? It's easy to compute the volume of this box because its shape is right rectangular prism. The volume of this prism is $V = l \times w \times h = 6m^3$. What if the shape of the box was a parallelpiped instead? A parallelpiped is a box whose opposite faces are parallel but whose sides are slanted. How do we compute the volume of a parallelpiped? The determinant operation, specifically the $3 \times 3$ determinant, is the perfect tool for this purpose. 
+
+The determinant of a matrix, denoted $det(A)$ or $|A|$, is a particular way to multiply the entries of the matrix to produce a single number. We use determinants for all kinds of tasks: to compute areas and volumes, to solve systems of linear equations, to check whether a matrix is invertible or not, etc.
+
+We can interpret the determinant of a matrix intuitively as a geometrical calculation. The &lt;span class=&quot;blue&quot;&gt; determinant &lt;/span&gt; is the &lt;span class=&quot;blue&quot;&gt; volume &lt;/span&gt; of the geometric shape whose edges are the rows of the matrix. For $2 \times 2$ matrices, the determinant corresponds to the area of a parallelogram. For $3 \times 3$ matices, the determinant corresponds to the volume of a parallelpiped. For dimensions $d &amp;gt; 3$, we say the determinant measures a &lt;span class=&quot;blue&quot;&gt; $d$-dimensional hyper-volume &lt;/span&gt;.
+
+Consider the linear transformation $T: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ defined through the matrix-vector product with a matrix $A_T: T(\overrightarrow{x}) \equiv A_T \overrightarrow{x}$. The determinant of the matrix $A_T$ is the &lt;span class=&quot;blue&quot;&gt; scale factor &lt;/span&gt; associated with the linear transformation $T$. The scale factor of the linear transformation $T$ describes &lt;mark&gt; how the area of a unit square in the input space (a square with dimensions $1 \times 1$) is transformed by $T$ &lt;/mark&gt;. After passing through $T$, the unit square is transformed to a parallelogram with with area $det(A_T)$. Linear transformations that shrink areas have $det(A_T) &amp;lt; 1$, while linear transformations that enlarge areas have $det(A_T) &amp;gt; 1$. A linear transformation that is area preserving has $det(A+T) = 1$. 
+
+The determinant is also used to check &lt;span class=&quot;blue&quot;&gt; linear independence &lt;/span&gt; for a given set of vectors. We &lt;span class=&quot;underline&quot;&gt; construct a matrix using the vectors as the matrix rows &lt;/span&gt;, and compute its determinant. 
+
+The determinant of a matrix tells us whether or not that matrix is &lt;span class=&quot;blue&quot;&gt; invertible &lt;/span&gt;. If $det(A) \neq 0$, then $A$ is invertible; if $det(A) = 0$, $A$ is not invertible. 
+
+The determinant shares a connection with the &lt;span class=&quot;blue&quot;&gt; vector cross product &lt;/span&gt;, and is used in the definition of the &lt;span class=&quot;blue&quot;&gt; eigenvalue equation &lt;/span&gt;.
+
+&lt;h4&gt; Formulas &lt;/h4&gt;
+The determinant of a $2 \times 2$ matrix is 
+
+$$
+det(\begin{bmatrix} a_{11} &amp;amp; a_{12} \\ a_{21} &amp;amp; a_{22} \end{bmatrix}) = \begin{vmatrix} a_{11} &amp;amp; a_{12} \\ a_{21} &amp;amp; a_{22} \end{vmatrix} = a_{11}a_{22} - a_{12}a{21}
+$$
+
+The formulas for the determinants of larger matrices are defined recursively. For example, the determinant of $3 \times 3$ matirx is defined in terms of $2 \times 2$ determinants:
+
+$$ 
+\begin{vmatrix} a_{11} &amp;amp; a_{12} &amp;amp; a_{13} \\ a_{21} &amp;amp; a_{22} &amp;amp; a_{23} \\ a_{31} &amp;amp; a_{32} &amp;amp; a_{33} \end{vmatrix} = a_{11} 
+
+= a_{11} \begin{vmatrix}a_{22} &amp;amp; a_{23} \\ a_{32} &amp;amp; a_{33} \end{vmatrix} -a_{12} \begin{vmatrix} a_{21} &amp;amp; a_{23} \\ a_{31} &amp;amp; a_{33} \end{vmatrix}+ a_{13} \begin{vmatrix} a_{21} &amp;amp; a_{22} \\ a_{31} &amp;amp; a_{32} \end{vmatrix}
+$$ 
+
+There's a neat computational trick for computing $3 \times 3$ determinants by hand. The trick consists of extending the matrix $A$ into a $3 \times 5$ array that contains copies the columns of $A$: the $1^{st}$ column of $A$ is copied to the $4^{th}$ column of the extended array, and the $2^{nd}$ column of $A$ is copied to the $5^{th}$ column. The determinant is then computed by summing the products of the entries on the three positive diagonals and subtracting the products of the entries on the three negative diagonals. 
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/3x3.png&quot; /&gt;&lt;/picture&gt;
+
+The general formula for the determinant of an $n \times n$ matrix is
+
+$$
+det(A)  = \sum_{j=1}^{n} (-1)^{1+j} a_{1j} M_{1j}
+$$
+
+where $M_{ij}$ is called the &lt;mark&gt; minor &lt;/mark&gt; associated with the entry $a_{ij}$. The minor $M_{ij}$ is the determinant of the submatrix obtained by removing the $i^{th}$ row and the $j^{th}$ column of the matrix $A$. Note the alternating factor $(-1)^{i+j}$ that changes value between $+1$ and $-1$ for different terms in the formula.
+
+The determinant of a $4 \times 4$ matrix $B$ is 
+
+$$ 
+det(B) = b_{11}M_{11} - b_{12}M_{12} + b_{13}M_{13} - b_{14}M_{14}
+$$
+
+The general formula for determinants $det(A) = \sum_{j=1}^{n} (-1)^{1+j} a_{1j} M_{1j}$ assumes we're expanding the determinant along the first row of the matrix. In fact, a determinant formula can be obtained by expanding the determinant along anyrow or column of the matrix.
+
+The expand-along-any-row-or-column nature of determinants can be very handy: if you need to calculate the determinant of a matrix with one row (or column) containing many zero entries, it makes sense to expand along that row since many of the terms in the formula will be zero. If a matrix contains a row (or column) consisting entirely of zeros, we can immediately tell its determinant is zero. 
+
+&lt;h4&gt; Geometric interpretation &lt;/h4&gt;
+&lt;h5&gt; Area of a parallelogram &lt;/h5&gt;
+Suppose we're given vectors $overrightarrow{v} = (v_1, v_2)$ and $\overrightarrow{w} = (w_1, w_2)$ in $\mathbb{R}^2$ and we construct a parallelogram with corner points $(0,0), \overrightarrow{v}, \overrightarrow{w}$ and $\overrightarrow{v} + \overrightarrow{w}$.
+
+The area of this parallelogram is equal to the determinant of the matrix that contains $(v_1, v_2)$ and $(w_1, w_2)$ as rows:
+
+$$
+area = \begin{vmatrix} v_1 &amp;amp; v_2 \\ w_1 &amp;amp; w_2 \end{vmatrix} = v_1 w_2 - v_2 w_1 
+$$
+
+&lt;h2&gt; Theoretical Linear Algebra &lt;/h2&gt;
+The things we are going to learn now are less concerned with calculations and more about mind expansion. This section extends what we know about the vector space $\mathbb{R}^n$ to the realm of &lt;span class=&quot;blue&quot;&gt; abstract vector spaces &lt;/span&gt; of &lt;u&gt;vector-like mathematical objects. &lt;/u&gt;
+
+&lt;h3&gt; Eigenvalues and Eigenvectors &lt;/h3&gt;
+The set of &lt;u&gt; eignevectors &lt;/u&gt; of a matrix is a special set of input vectors for which the action of the matrix is described as &lt;u&gt; simple scaling &lt;/u&gt;. 
+
+Decomposing a matrix in terms of its eigenvalues and its eigenvectors gives valuable insights into the properties of the matrix. Certain matrix calculations, like &lt;b&gt; computing the power of the matrix&lt;/b&gt;, become much easier when use the &lt;u&gt; eigendecomposition of the matrix &lt;/u&gt;
+
+For example, suppose we're given a square matrix $A$ and want to compute $A^7$. To make this example more concrete, we'll analyze the matrix 
+$$
+A = \begin{bmatrix} 9 &amp;amp; -2 \\ -2 &amp;amp; 6 \end{bmatrix}
+$$
+
+We want to compute $A^7$. That would be an awful lot of matrix multiplications. Every matrix corresponds to some linear operation. This means it's legit to ask, &lt;u&gt; &quot;what does the matrix A do?&quot; &lt;/u&gt; Once we figure out this part, we can compute $A^{77}$ by simply doing what $A$ does $77$ times. 
+
+The best way to see what a matrix does is to look inside it and see what it's made of. To understand the matrix $A$, you must find it its eigenvectors and its eigenvalues. The eigenvectors of a matrix are a &lt;span class=&quot;rainbow&quot;&gt; natural basis &lt;/span&gt; for describing the action ofthe matrix. The eigendecomposition is a change-of-basis operation that expresses the matrix $A$ with respect to its eigenbasis (own-basis). The eigendecompositions of the matrix $A$ is a product of three matrices:
+
+
+
+
+
+
+&lt;/li&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="linear algebra" /><category term="featured" /><summary type="html">This article goes through the fundamentals of linear algebra. Linear algebra is the branch of mathematics concerning linear equations and their representations in vector spaces. This ultimate guide will prove very useful or understanding deep learning techniques.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/linear.png" /><media:content medium="image" url="http://localhost:4000/assets/images/linear.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Batch Normalization and Group Normalization</title><link href="http://localhost:4000/group-norm.html" rel="alternate" type="text/html" title="Batch Normalization and Group Normalization" /><published>2021-09-08T00:00:00+09:00</published><updated>2021-09-08T00:00:00+09:00</updated><id>http://localhost:4000/group-norm</id><content type="html" xml:base="http://localhost:4000/group-norm.html">&lt;!--more--&gt;
+
+&lt;h2&gt; Batch Normalization: the Principles &lt;/h2&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/bn2.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Batch Normalization is an algorithmic method which makes the training of Deep Neural Networks &lt;span class=&quot;blue&quot;&gt; faster and more stable &lt;/span&gt;. Batch normalization is computed differently during the training and the testing phase.&lt;/p&gt;
+
+&lt;p&gt;At &lt;span class=&quot;circle-sketch-highlight&quot;&gt; training &lt;/span&gt;, the BN layer determines the mean and standard deviation of the activation values across the batch. It then &lt;span class=&quot;underline&quot;&gt; normalizes the activation vector &lt;/span&gt; with $\mu$ and $\sigma$. That way, each neuron’s output follows a standard &lt;span class=&quot;blue&quot;&gt; normal distribution &lt;/span&gt; across the &lt;span class=&quot;blue&quot;&gt; batch &lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;It finally applies a &lt;span class=&quot;blue&quot;&gt; linear transformation &lt;/span&gt; with $\gamma$ and $\beta$ which are the two &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;trainable parameters&lt;/code&gt;. Such step allows the model to choose the optimum distribution for each hidden layer. $\gamma$ allows to adjust the standard deviation while $\beta$ allows to adjust the bias, shifting the curve on the right or on the left side.&lt;/p&gt;
+
+&lt;p&gt;At each iteration, the network computes the mean $\mu$ and the standard deviation $\sigma$ corresponding to the current batch. Then it trains $\gamma$ and $\beta$ through &lt;mark&gt; gradient descent &lt;/mark&gt; using an &lt;mark&gt; Exponential Moving Average (EMA) &lt;/mark&gt; to give more importance to the latest iterations.&lt;/p&gt;
+
+&lt;div class=&quot;sidenote&quot;&gt; We mostly use &lt;mark&gt; Exponential Moving Average algorithm &lt;/mark&gt; to reduce the noise or to smooth the data. The weight of each element decreases progressively over time, meaning &lt;span class=&quot;underline&quot;&gt; the EMA gives greater weight to recent data points &lt;/span&gt;. EMA reacts faster to changes compared to Simple Moving Average. &lt;/div&gt;
+
+&lt;p&gt;At the &lt;span class=&quot;rainbow&quot;&gt; evaluation phase &lt;/span&gt;, we may not have a full batch to feed into the model. To tackle this issue, &lt;span class=&quot;underline&quot;&gt; we compute $\mu_{pop}$ and $\sigma_{pop}$ as the estimated mean and standard deviation of the studied population &lt;/span&gt;. Those values are computed using all the $\mu_{batch}$ and $\sigma_{batch}$ during training, and directly fed during the evaluation phase.&lt;/p&gt;
+
+&lt;h2&gt; Why Normalization? &lt;/h2&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/bn4.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;What we can conclude from the original Batch Normalization paper is that:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Adding BN layers leads to &lt;b&gt; better convergence and higher accuracy &lt;/b&gt;&lt;/li&gt;
+  &lt;li&gt;Adding BN layers allows us to &lt;b&gt; use higher learning rate &lt;/b&gt; without compromising convergence.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To quote Ian Goodfellow about the use of batch normalization:&lt;/p&gt;
+&lt;blockquote&gt; Before BN, we thought it was almost &lt;span class=&quot;underline&quot;&gt; impossible to efficiently train deep models using sigmoid &lt;/span&gt; in the hidden layers. Batch Normalization makes those unstable networks trainable. &lt;/blockquote&gt;
+
+&lt;p&gt;In practice, it is widely admitted that:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt; For &lt;span class=&quot;highlight-green&quot;&gt; CNNs, Batch Normalization is better &lt;/span&gt; &lt;/li&gt;&lt;li&gt; &lt;span class=&quot;highlight-yellow&quot;&gt; For Recurrent Networks, Layer Normalization is better &lt;/span&gt; &lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;While BN uses the current batch to normalize every single value, LN uses all the current layer to do so. &lt;span class=&quot;underline&quot;&gt; The normalization is performed using other features from a single example &lt;/span&gt; instead of using the same feature across all current batch examples.&lt;/p&gt;
+
+&lt;p&gt;The best way to understand why BN works is to understand &lt;span class=&quot;highlight-sketch&quot;&gt; the optimization landscape smoothness &lt;/span&gt;. BN &lt;u&gt; reparameterizes the underlying optimization problem &lt;/u&gt;, making the training faster and easier. In additional recent studies, researchers observed that this effect is not unique to BN, but applies to other normalization methods (i.e. L1 normalization or L2 normalization).&lt;/p&gt;
+
+&lt;h2&gt; The Drawbacks of BN &lt;/h2&gt;
+
+&lt;p&gt;For BN to work, the &lt;span class=&quot;rainbow&quot;&gt; batch size is required to be sufficiently large &lt;/span&gt;, usually at least &lt;span class=&quot;circle-sketch-highlight&quot;&gt; 32 &lt;/span&gt;. However, there are situations when we have to settle for a small batch size. For example, when each &lt;span class=&quot;underline&quot;&gt; data sample is highly memory consuming &lt;/span&gt; or when we train a &lt;span class=&quot;underline&quot;&gt; very large neural network &lt;/span&gt; which leaves little GPU memory for processing data. For computer vision applications other than image classification, the restriction on batch sizes are more demanding and it is difficult to have higher batch sizes.&lt;/p&gt;
+
+&lt;h2&gt; Comparisions of Normalization Methods &lt;/h2&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/bn3.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Group Normalization is one of the latest normalization methods that &lt;u&gt; avoids exploiting the batch dimension&lt;/u&gt;, thus is &lt;u&gt;independent of batch size&lt;/u&gt;. But there are other normalization methods as well.&lt;/p&gt;
+
+&lt;h3&gt; Layer Normalization &lt;/h3&gt;
+
+&lt;p&gt;Layer Normalization computes $\mu_i$ and $\sigma_i$ along the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(C,H,W)&lt;/code&gt; axes. The computation for an input feature is entirely independent of other input features in a batch.&lt;/p&gt;
+
+&lt;h3&gt; Instance Normalization &lt;/h3&gt;
+
+&lt;p&gt;Instance Normalization computes $\mu_i$ and $\sigma_i$ along the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(H,W)&lt;/code&gt; axes. Since the computation of IN is the same as that of BN with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;batch_size=1&lt;/code&gt;, IN actually makes the situation worse in most cases. However, for &lt;span class=&quot;highlight-pink&quot;&gt; style transfer tasks &lt;/span&gt;, IN is better at discarding contrast information of an image, thus having superior performance than BN.&lt;/p&gt;
+
+&lt;h3&gt; Group Normalization &lt;/h3&gt;
+
+&lt;p&gt;Also notice that IN can be viewed as applying Layer Normalization to each channel individually as if the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;num_channels = 1&lt;/code&gt;. Group Normalization is the middle ground between IN and LN. It &lt;span class=&quot;gif&quot;&gt; organizes the channels into different groups &lt;/span&gt; and &lt;span class=&quot;highlight-yellow&quot;&gt; computes $\mu_i$ and $\sigma_i$ along the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(H,W)&lt;/code&gt; axes and along a group of channels.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;First, the batch with dimension &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(N,C,H,W)&lt;/code&gt; is reshaped to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(N,G,C//G,H,W)&lt;/code&gt;. The number of group &lt;span class=&quot;underline&quot;&gt; $G$ is a pre-defined hyperparameter &lt;/span&gt;. Then we normalize along the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(C//G,H,W)&lt;/code&gt; dimension and return the result after reshaping the batch back to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(N,C,H,w)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Group Normalization is better than Layer Normalization as GN allows different distribution to be learned for each group of channels. GN is also thought to be better than IN because GN can exploit the dependence across channels. If &lt;mark&gt;`C = G`&lt;/mark&gt;, that is, if the number of groups are set to be equal to the number of channels, &lt;mark&gt; GN becomes IN &lt;/mark&gt; . Likewise, if &lt;mark&gt;`G = 1`&lt;/mark&gt; &lt;mark&gt; GN becomes LN &lt;/mark&gt;.&lt;/p&gt;
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt; 
+&lt;li&gt;&lt;a href=&quot;https://amaarora.github.io/2020/08/09/groupnorm.html&quot;&gt; blog post &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/what-is-group-normalization-45fe27307be7&quot;&gt; medium article &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/batch-normalization-in-3-levels-of-understanding-14c2da90a338&quot;&gt; medium article2 &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="deep learning" /><category term="featured" /><summary type="html">Batch normalization is used in most state-of-the-art computer vision techniques to stabilize training, but it also suffers from drawbacks. Group normalization can be an awesome alternative when the batch size is too small.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/bn.png" /><media:content medium="image" url="http://localhost:4000/assets/images/bn.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Depth from Disparity</title><link href="http://localhost:4000/disparity.html" rel="alternate" type="text/html" title="Depth from Disparity" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/disparity</id><content type="html" xml:base="http://localhost:4000/disparity.html">&lt;!--We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, Structure from Motion, optical flow etc. In the first part of the series, we will focus on stereo vision.--&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;&lt;h2 class=&quot;glow&quot;&gt;🌟 3D Reconstruction from 2D Signals &lt;/h2&gt;&lt;/div&gt;
+
+&lt;p&gt;We are going to look at depth estimation as a multi-view problem. Multi-view problems can span into different domains including stereo vision, Structure from Motion and optical flow. Although each carries great importance in the problem of Virtual Reality (VR) and robotics, we will focus on stereo vision in this multi-part series. Specifically, the progress of deep learning in stereo vision technology.&lt;/p&gt;
+
+&lt;p&gt;How can we automatically &lt;span class=&quot;highlight-sketch&quot;&gt; compute 3D geometry from images &lt;/span&gt;? What cues in the image provide 3D information? Before looking at binocular, let’s consider single view characteristics.&lt;/p&gt;
+
+&lt;p&gt;Well, we humans do so naturally. Here are several cues we use to infer depth information:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; shading &lt;/li&gt;
+&lt;li&gt; texture &lt;/li&gt; 
+&lt;li&gt; focus &lt;/li&gt;
+&lt;li&gt; motion &lt;/li&gt; 
+&lt;li&gt; perspective &lt;/li&gt;
+&lt;li&gt; occlusion &lt;/li&gt; 
+&lt;li&gt; symmetry &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/single.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Nonetheless, structure and depth are inherently ambiguous from a single view. As seen from the optical center (i.e., camera location), $P1$ and $P2$ are projected onto the image plane as equivalent.&lt;/p&gt;
+
+&lt;h2&gt; The Stereo Problem &lt;/h2&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/stereo.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Stereo vision systems reference the knowledge of two images captured simultaneously from a pair of cameras (left and right) with camera parameters (extrinsic and intrinsic). Stereo is heavily motivated by biology. Classic stereo problem include disparity, depth, occlusion, Structure from Motion, motion parallax etc. Provided left and right images, the ambiguity problem of the aforementioned is satisfied via triangulation from the two image planes by matching correspondences of a point in the world coordinate to the ones that can be seen in both images.&lt;/p&gt;
+
+&lt;p&gt;The basic principle of triangulation is shown above: the reconstruction via the intersection of two rays. Requirements? Calibration and correspondences.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/epipolar.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Furthermore,  &lt;span class=&quot;rainbow&quot;&gt; the Epipolar Constraint &lt;/span&gt; reduces the correspondence problem to $1D$ search along &lt;span class=&quot;frozen&quot;&gt; conjugate epipolar lines &lt;/span&gt; shown in the above figure.&lt;/p&gt;
+
+&lt;p&gt;Thus, &lt;span class=&quot;rainbow&quot;&gt; Epipolar Constraint &lt;/span&gt; assumes that stereo pairs are rectified images, meaning the same &lt;span class=&quot;frozen&quot;&gt; epipolar line &lt;/span&gt; aligns across rows such that it is orthogonal to both and aligned with one another. Rectification is achieved by learning a transformation based on intrinsic and extrinsic parameters: a process that dates back several decades.&lt;/p&gt;
+
+&lt;p&gt;From the rectified image pair, the depth $Z$ can be determined by its inversely proportionate relationhip with disparity $d$, where the disparity is defined as the pixel difference along the horizontal when comparing correspondences of left and right. This can be written as:&lt;/p&gt;
+
+\[I(x,y) = D(x+d, y)\]
+
+&lt;p&gt;This relationship is easiest to grasp visually. Provided a point in the left image plane $P_L(x,y)$ along with the correspondence in the right image plane and the world coordinates $(X,Y,Z)$ projected as a point in a 3D scene, our goal is to reconstruct the missing $Z$ (depth) provided the stereo pair.&lt;/p&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;We set the relative coordinates (red axis) along with having known baseline $b$ between the two camera centers. Then $/frac{x_L}{f}$ can be expressed as $\frac{X+b/2}{Z}$ and $\frac{x_R}{f} = \frac{X-b/2}{Z}$. Therefore,&lt;/p&gt;
+
+\[\frac{y_L}{f} = \frac{y_R}{f} = \frac{Y}{Z}\]
+
+&lt;p&gt;and the world coordinate can be expressed as&lt;/p&gt;
+
+\[X = \frac{b(x_L+x_R)}{2(x_L - x_R)} Y = \frac{b(y_L + y_R}{2(x_L-x_R} Z = \frac{bf}{(x_L - x_R)}\]
+
+&lt;blockquote class=&quot;black&quot;&gt; $d = x_L - x_R$ is the &lt;span class=&quot;neon-green&quot;&gt;disparity&lt;/span&gt; between corresponding left and right image points &lt;/blockquote&gt;
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt; 
+&lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-from-disparity-via-deep-learning-part-0-458827141b23&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, SfM, optical flow, etc.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dissecting the Camera Matrix (Part 1)</title><link href="http://localhost:4000/camera.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 1)" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/camera</id><content type="html" xml:base="http://localhost:4000/camera.html">&lt;!--This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices, and and I will try to untangle the issues that can crop-up with different coordinate conventions.--&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h2&gt; Camera Calibration and Decomposition &lt;/h2&gt;
+&lt;p&gt;Primarily, camera calibration is about finding the quantities internal to the camera that affect the imaging process. Here are some of the factors that will be taken care of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; image center &lt;/span&gt;: we need to find the position of the image center in the image. Wait, isn't the image center located at $(width/2, height/2)$? Well, no. Unless we calibrate the camera, the image will almost always appear to be off-center.&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; focal length &lt;/span&gt;: this is a very important parameter. Remember how people using DSLR cameras tend to &lt;mark&gt; focus &lt;/mark&gt; on things before capturing the image? this parameter is directly related to the &lt;mark&gt; focus &lt;/mark&gt; of the camera and it is very critical.&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; scaling factors &lt;/span&gt;: the scaling factors for row pixels and column pixels might be different. If we don't take care of this thing, the image will look stretched (either horizontally or vertically).&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; skew factor &lt;/span&gt;: this refers to shearing. the image will look like a parallelogram otherwise.&lt;/li&gt;
+&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; lens distortion &lt;/span&gt;: this refers to the pseudo zoom effect that we see near the center of any image. &lt;/li&gt; 
+
+&lt;small class=&quot;sidenote&quot;&gt; &lt;span class=&quot;highlight-sketch&quot;&gt;shearing &lt;/span&gt; refers to a transformation in which all points along a given line $L$ remain fixed while other points are shifted parallel to $L$ by a distance proportional to their perpendicular distance from $L$. &lt;/small&gt;
+&lt;br /&gt;
+
+&lt;h2&gt; Pinhole Camera Model &lt;/h2&gt;
+&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole.png&quot; /&gt;&lt;/picture&gt;
+
+Before we jump into anything, let's see where this all began. When we capture an image, we are basically mapping the 3D scene to a 2D scene. It means that every point in the 3D world gets mapped to the 2D plane of our image. This is called the &lt;span class=&quot;red&quot;&gt; pinhole camera model &lt;/span&gt;. It basically describes the relationship between the coordinates of the 3D point and its projection on the 2D image. This, of course, is the ideal case where &lt;span class=&quot;highlight-yellow&quot;&gt; there is absolutely no distortion &lt;/span&gt; of any kind. Every camera is modeled based on this, and every camera aspires to simulate this as close as possible. But in the real world, we have to deal with things like geometric distortions, blurring, finite sized apertures, etc. 
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole2.png&quot; /&gt;&lt;/picture&gt;
+
+The figure shown here depicts a pinhole camera model. The camera is placed at the origin $O$. The point $P$ represents a point in the real world. We are trying to capture that onto a 2D plane. The &lt;span class=&quot;rainbow&quot;&gt; image plane &lt;/span&gt; represents the 2D plane that you get after capturing the image. The image plane actually contains the image that you see after capturing a picture. So basically, we are trying to map every 3D point to a point on the image plane. In this case, the point $P$ gets mapped to $P_c$. The distance between the origin $O$ and this image plane is called the &lt;span class=&quot;highlight-sketch&quot;&gt; focal length &lt;/span&gt; of the camera. This is the parameter you modify when you adjst the &lt;mark&gt; focus &lt;/mark&gt; of the camera. 
+
+&lt;h2&gt; Intrinsic and Extrinsic Parameters &lt;/h2&gt; 
+In the above figure, we want to estimate $(u,v)$ from $(X,Y,Z)$. Let's say the focal length is denoted by $f$. If you look at the triangle formed using the origin-$P_c$-and the $Z$-axis with the origin-$P$ and $Z$-axis, you will notice that they are similar triangles. This means that $u$ depends on the $f$, $X$ and $Z$. Similarly, $v$ depends on $f$, $Y$ and $Z$. 
+
+$$
+
+\displaylines{
+u = fX/Z \\\
+v = fY/Z
+}
+
+$$
+
+Next, if the origin of the 2D image coordinate system does not coincide with where the $Z$-axis intersects the image plane, we need to translate $P_c$ into the desired origin. Let this translation be defined by $(t_u, t_v)$. So now, $u$ and $v$ are given by:
+
+$$
+\displaylines{
+u = fX/Z + t_u \\\
+v = fY/Z + t_v
+}
+$$
+
+So up until now, we have something that can translate $(X,Y,Z)$ to $(u,v)$. Let's denote this matrix $M$. So we can write:
+
+$$ 
+P_c = MP
+$$
+
+
+Since this is a camera image, we need to express it in inches. For this, we will need to know the resolution of the camera in pixels/inch. If the pixels are square the resolution will be identical in both $u$ and $v$ directions of the camera image coordinates. However, for a more general case, we assume rectangular pixels with resolution $m_u$ and $m_v$ pixels/inch in $u$ and $v$ directions respectively. Therefore, to measure $P_c$ in pixels, its $u$ and $v$ coordinates should be multiplied by $m_u$ and $m_v$ respectively. So now, this new transformation matrix depends on $f, X, Y, Z, t_u, t_v, m_u, m_v$. Let's denote this by:
+
+$$
+P_c = KP
+$$
+
+Here, $K$ is called the &lt;span class=&quot;typewriter&quot;&gt; intrinsic parameter matrix &lt;/span&gt; for the camera.
+
+Now, if the camera does not have its center of projection at $(0,0,0)$ and is oriented in an arbitrary fashion (not necessarily $z$-perpendicular to the image plane), then we need roation and translation to make the camera coordinate system coincide with the configuration in that pinhole camera figure. Let the rotation applied to coincide the principal axis with $Z$-axis given by a $3 \times 3$ rotation matrix $R$. Then the matrix is formed by first applying the translation followed by the rotation is given by the $3 \times 4$ matrix.
+
+$$
+E = \\( R|RT \\)
+$$
+
+This is called the &lt;span class=&quot;typewriter&quot;&gt; extrinsic parameter matrix for the camera &lt;/span&gt;. So, the complete camera transformation can now be represented as: 
+
+$$ 
+K \\( R|RT \\) = KR \\( I|T \\)
+$$
+
+Hence, $P_c$ the projection of $P$ is given by:
+
+$$
+P\_c = KR \\( I|T \\) P = CP
+$$
+
+$C$ is a $3 \times 4$ matrix usually called the complete camera calibration matrix. So basically, camera calibration matrix is used to transform a 3D point in the real world to a 2D point on the image plane considering all the things like focal length of the camera, distortion, resolution, shifting of origin, etc. 
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt; 
+&lt;li&gt;&lt;a href=&quot;https://ksimek.github.io/2012/08/14/decompose/&quot;&gt; ksimek blog &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://prateekvjoshi.com/2014/05/31/understanding-camera-calibration/&quot;&gt; prateekvjoshi blog &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices. We will untangle the issues that arise due to different coordinate conventions.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/camera2.png" /><media:content medium="image" url="http://localhost:4000/assets/images/camera2.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
