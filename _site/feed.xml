@@ -1,6 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-16T09:49:41+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">Image Processing: the Basics</title><link href="http://localhost:4000/paradox.html" rel="alternate" type="text/html" title="Image Processing: the Basics" /><published>2021-09-16T00:00:00+09:00</published><updated>2021-09-16T00:00:00+09:00</updated><id>http://localhost:4000/paradox</id><content type="html" xml:base="http://localhost:4000/paradox.html">&lt;!--more--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-17T13:10:52+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seri Lee Blog</title><subtitle>This is where I write posts about my research field.</subtitle><entry><title type="html">A Machine Learning Primer</title><link href="http://localhost:4000/linear.html" rel="alternate" type="text/html" title="A Machine Learning Primer" /><published>2021-10-17T00:00:00+09:00</published><updated>2021-10-17T00:00:00+09:00</updated><id>http://localhost:4000/linear</id><content type="html" xml:base="http://localhost:4000/linear.html">&lt;!--more--&gt;
+
+&lt;h2&gt; Fundamentals of Linear Regression &lt;/h2&gt;
+
+&lt;p&gt;In this section, we investigate one of the most common and widely used machine learning techniques: linear regression.&lt;/p&gt;
+
+&lt;p&gt;Linear regression is a very intuitive supervised learning algorithm and as its name suggests, it is a regression technique. This means that is is used &lt;span class=&quot;underline&quot;&gt; when we have labels that are continuous values &lt;/span&gt; such as car prices or the temperature in a room.&lt;/p&gt;
+
+&lt;p&gt;Linear regression seeks to find fits of data that are lines. What does this mean?&lt;/p&gt;
 
 &lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;h2&gt; References &lt;/h2&gt;
+&lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="machine learning" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/1.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Image Processing: the Basics</title><link href="http://localhost:4000/paradox.html" rel="alternate" type="text/html" title="Image Processing: the Basics" /><published>2021-10-17T00:00:00+09:00</published><updated>2021-10-17T00:00:00+09:00</updated><id>http://localhost:4000/paradox</id><content type="html" xml:base="http://localhost:4000/paradox.html">&lt;!--more--&gt;
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/disparity.png&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;Once I realized that my should and shouldn’t instructions were part of what was getting in the way, I began to explore ways of helping student learn without them. I would hasten to say that I wasn’t asking him to make any change, but just to observe what was happening.&lt;/p&gt;
+
+&lt;p&gt;What amazed me was that in this nonjudgemental mode of observation of the ball, many of the technical elements of his swings would change spontaneously. The body was allowed its natural response to the perception of the ball, which was to step into it and hit it. This felt better and naturally produced better results.&lt;/p&gt;
+
+&lt;p&gt;As coach, my first responsibility was to maintain a nonjudgemental focus, provide appropriate opportunity for natural learning, and stay out of the way. Paradoxicall,y it is conscious acceptance of oneself and one’s actions as they are that frees up both the incentive and the capacity for spontaneous change.&lt;/p&gt;
+
+&lt;p&gt;Performance was equal to one’s potential after the interference factor had been subtracted from the equation.&lt;/p&gt;
 
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt;&lt;li&gt;&amp;lt;a=href=&quot;&quot;&amp;gt; TheAILearner &amp;lt;/a&amp;gt;&lt;/li&gt;
@@ -57,9 +79,99 @@
 
 &lt;h3&gt; The Right, Up and Forward Vectors &lt;/h3&gt;
 
+&lt;p&gt;The Cartesian coordinate system is only defined by three perpendicular vectors of unit length. As far as the mathematical notation is concerned, this coordinate system does not convey anything about what these three axes actually mean. The developer is the one that decides how these axes should be interpreted. It is thus very important to make a clear distinction between the handedness of the coordinate system and the conventions used to label the corresponding axes.&lt;/p&gt;
+
+&lt;p&gt;The choice of coordinate system handedness also plays a critical role when it comes to rotation and the cross product of two vectors. It’s actually easy enough (but painful) to go from one coordinate system to another. All that is needed is to scale the point coordinates and the camera-to-world matrix by $(1,1,-1)$.&lt;/p&gt;
+
+&lt;h3&gt; The World Coordinate System &lt;/h3&gt;
+
+&lt;p&gt;In most 3D applications, each different type of coordinate system is defined with respect to a master coordinate system called the world coordinate system. It defines the origin and the main $x$,$y$,$z$-axes from which all other coordinate systems are defined.&lt;/p&gt;
+
+&lt;h2&gt; Math Operations on Points and Vectors &lt;/h2&gt;
+
+&lt;p&gt;I have explained the concept of (Cartesian) coordinate system. Now we can look at some of the most common operations which can be performed on points and vectors.&lt;/p&gt;
+
+&lt;h3&gt; Vector Length &lt;/h3&gt;
+
+&lt;p&gt;The vector itself indicates not only the direction of point $B$ from $A$ but also can be used to find out the distance between $A$ and $B$. This is given by the length of a vector which can easily be computed with the following formula:&lt;/p&gt;
+
+\[\lVert V \rVert = \sqrt{x^2 + y^2 + z^2}\]
+
+&lt;p&gt;&lt;mark class=&quot;teal&quot;&gt; The vector's length is sometimes also called norm or magnitude. &lt;/mark&gt; Note that the axes of the three-dimensional Cartesian coordinate systems are unit vectors.&lt;/p&gt;
+
+&lt;h3&gt; Normalizing a Vector &lt;/h3&gt;
+
+&lt;p&gt;&lt;span class=&quot;red&quot;&gt; A normalized vector is a vector whose length is 1.&lt;/span&gt; Such a vector is also called a unit vector (it is a vector which has unit length). Normalizing a vector is very simple. We first compute the length of the vector and divide each one of the vector coordinates with this length.&lt;/p&gt;
+
+\[\hat{V} = \frac{V}{\lVert V \rVert}\]
+
+&lt;p&gt;In mathematics, you will also find the term norm to define a function that assigns a length or size (or distance) to a vector. The function we have just described is called the Euclidean norm.&lt;/p&gt;
+
+&lt;h3&gt; Dot Product &lt;/h3&gt;
+
+&lt;p&gt;The dot product or scalar product requires two vectors $A$ and $B$ and can be seen as the projection of one vector onto the other. The result of the dot product is a real number. A dot product between two vectors is denoted with the dot sign: $A \cdot B$ (it can also sometimes be written as $&amp;lt;A,B&amp;gt;$).&lt;/p&gt;
+
+&lt;p&gt;The dot product consists of multiplying each element of the $A$ vector with its counterpart from vector $B$ and taking the sum of each product. In the case of 3D vectors (they have three coefficients of elements which are $x$, $y$ and $z$), it consists of the following operation:&lt;/p&gt;
+
+\[A \cdot B = A.x * B.x + A.y * B.y + A.z * B.z\]
+
+&lt;p&gt;Note that this is quite similar to the way we compute the length of a vector. If we take the square root of the dot product between two vectors ($\sqrt{A \cdot B}$) that are equal ($A=B$), then what we get is the length of the vector. We can write:&lt;/p&gt;
+
+\[{\lVert V \rVert}^2 = V \cdot V\]
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/dotproduct.png&quot; style=&quot;width: 300px !important;float: left !important; margin: 0px 0px 25px 25px !important;&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;The dot product between two vectors is an extremely important and common operation in any 3D application because the result of this operation relates to the cosine of the angle between the two vectors. In this example vector $A$ is projected in the direction of vector $B$.&lt;/p&gt;
+
+&lt;ul&gt;&lt;li&gt; If $B$ is a unit vector then the product $A \cdot B$ gives $\lVert A \rVert \cos (\theta)$, the magnitude of the projection of $A$ in the direction of $B$, with a minus sign if the direction is opposite. This is called the scalar projection of $A$ onto $B$. &lt;/li&gt;
+
+&lt;li&gt; When neither $A$ nor $B$ is a unit vector, we can write that $A \cdot B / \lVert B \rVert$, since $B$ as a unit vector is $B/\lVert B rVert$. &lt;/li&gt;
+
+&lt;li&gt; In mathematics, $ {\cos}^{-1}$ is the inverse of the cosine function. When the two vectors are normalized ($A \cdot B / \lVert A \rVert \lVert B \rVert$), taking the arc cosine of the dot product gives you the angle $\theta$ between two vectors: $\theta = {\cos}^{-1}(A \cdot B / \lVert A \rVert \lVert B \rVert)$ or $\theta = {\cos}^{-1}(\hat{A} \cdot \hat{B})$. &lt;/li&gt;&lt;ul&gt;
+
+
+&lt;div class=&quot;sidenote&quot;&gt; &lt;picture&gt;&lt;img src=&quot;/assets/images/dot.png&quot; style=&quot;width: 300px !important;float: left !important; margin: 0px 0px 25px 25px !important;&quot; /&gt;&lt;/picture&gt;
+The dot product is a very important operation in 3D. It can be used for many things. As a test of orthogonality. When two vectors $A$,$B$ are perpendicular to each other, the result of the dot product between these two vectors is $0$. 
+
+It is also used intensively to find out the angle between two vectors or compute the angle between a vector and the axis of a coordinate system. &lt;/div&gt; 
+
+&lt;h3&gt; Cross Product &lt;/h3&gt;
+
+The cross product is also an operation on two vectors. The difference between cross product and dot product is that the dot product returns a number, whereas the cross product returns a vector. 
+
+The particularity of this operation is that &lt;mark class=&quot;blue&quot;&gt; the vector resulting from the cross product is perpendicular to the other two. &lt;/mark&gt; The cross product operation is written using the following syntax:
+
+$$
+C = A \times B
+$$
+
+&lt;picture&gt;&lt;img src=&quot;/assets/images/crossproduct.png&quot; style=&quot;width: 300px !important;&quot; /&gt;&lt;/picture&gt;
+
+To compute the cross product we will need to implement the following formula:
+
+$$
+C_x = A_Y * B_Z - A_Z * B_Y
+C_Y = A_Z * B_X - A_X * B_Z
+C_Z = A_X * B_Y - A_Y * B_X
+$$
+
+The result of this cross product is another vector which is &lt;span class=&quot;reveal&quot;&gt;  orthogonal &lt;/span&gt; to the other two. The two vectors $A$ and $B$ define a plane and the resulting vector $C$ is perpendicular to that plane. 
+
+$A$ and $B$ don't have to be perpendicular to each other, but when they are, the resulting $A$, $B$ and $C$ vectors form a Cartesian coordinate system (assuming the vectors have unit length).
+
+If you need a mnemonic way of remembering this formula, we like to use the technique that consists of asking ourselves the question &quot;why z?&quot;. $y$ and $z$ being the coordinates of vector $A$ and $B$ used to compute the $x$ coordinates of the resulting vector $C$. 
+
+It is important to note that the order of the vectors involved in the cross product has an effect on the resulting vector $C$. You can see that $A \times B$ doesn't give you the same result as $B \times A$. 
+
+
+
+
+
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.scratchapixel.com&quot;&gt; scratchpixel &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/pointvec.png" /><media:content medium="image" url="http://localhost:4000/assets/images/pointvec.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">All About Training GAN</title><link href="http://localhost:4000/gan.html" rel="alternate" type="text/html" title="All About Training GAN" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/gan</id><content type="html" xml:base="http://localhost:4000/gan.html">&lt;!--more--&gt;
+&lt;/ul&gt;
+
+&lt;/ul&gt;&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/pointvec.png" /><media:content medium="image" url="http://localhost:4000/assets/images/pointvec.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">All About Training GAN</title><link href="http://localhost:4000/gan.html" rel="alternate" type="text/html" title="All About Training GAN" /><published>2021-09-14T00:00:00+09:00</published><updated>2021-09-14T00:00:00+09:00</updated><id>http://localhost:4000/gan</id><content type="html" xml:base="http://localhost:4000/gan.html">&lt;!--more--&gt;
 
 &lt;h2&gt; 1.  Generative Adversarial Networks &lt;/h2&gt;
 
@@ -873,91 +985,4 @@ The best way to see what a matrix does is to look inside it and see what it's ma
 &lt;h2&gt; References &lt;/h2&gt;
 &lt;ul&gt; 
 &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/depth-from-disparity-via-deep-learning-part-0-458827141b23&quot;&gt; article from medium &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, SfM, optical flow, etc.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dissecting the Camera Matrix (Part 1)</title><link href="http://localhost:4000/camera.html" rel="alternate" type="text/html" title="Dissecting the Camera Matrix (Part 1)" /><published>2021-09-05T00:00:00+09:00</published><updated>2021-09-05T00:00:00+09:00</updated><id>http://localhost:4000/camera</id><content type="html" xml:base="http://localhost:4000/camera.html">&lt;!--This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices, and and I will try to untangle the issues that can crop-up with different coordinate conventions.--&gt;
-&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h2&gt; Camera Calibration and Decomposition &lt;/h2&gt;
-&lt;p&gt;Primarily, camera calibration is about finding the quantities internal to the camera that affect the imaging process. Here are some of the factors that will be taken care of:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; image center &lt;/span&gt;: we need to find the position of the image center in the image. Wait, isn't the image center located at $(width/2, height/2)$? Well, no. Unless we calibrate the camera, the image will almost always appear to be off-center.&lt;/li&gt;
-&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; focal length &lt;/span&gt;: this is a very important parameter. Remember how people using DSLR cameras tend to &lt;mark&gt; focus &lt;/mark&gt; on things before capturing the image? this parameter is directly related to the &lt;mark&gt; focus &lt;/mark&gt; of the camera and it is very critical.&lt;/li&gt;
-&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; scaling factors &lt;/span&gt;: the scaling factors for row pixels and column pixels might be different. If we don't take care of this thing, the image will look stretched (either horizontally or vertically).&lt;/li&gt;
-&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; skew factor &lt;/span&gt;: this refers to shearing. the image will look like a parallelogram otherwise.&lt;/li&gt;
-&lt;li&gt; &lt;span class=&quot;blue&quot;&gt; lens distortion &lt;/span&gt;: this refers to the pseudo zoom effect that we see near the center of any image. &lt;/li&gt; 
-
-&lt;small class=&quot;sidenote&quot;&gt; &lt;span class=&quot;highlight-sketch&quot;&gt;shearing &lt;/span&gt; refers to a transformation in which all points along a given line $L$ remain fixed while other points are shifted parallel to $L$ by a distance proportional to their perpendicular distance from $L$. &lt;/small&gt;
-&lt;br /&gt;
-
-&lt;h2&gt; Pinhole Camera Model &lt;/h2&gt;
-&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole.png&quot; /&gt;&lt;/picture&gt;
-
-Before we jump into anything, let's see where this all began. When we capture an image, we are basically mapping the 3D scene to a 2D scene. It means that every point in the 3D world gets mapped to the 2D plane of our image. This is called the &lt;span class=&quot;red&quot;&gt; pinhole camera model &lt;/span&gt;. It basically describes the relationship between the coordinates of the 3D point and its projection on the 2D image. This, of course, is the ideal case where &lt;span class=&quot;highlight-yellow&quot;&gt; there is absolutely no distortion &lt;/span&gt; of any kind. Every camera is modeled based on this, and every camera aspires to simulate this as close as possible. But in the real world, we have to deal with things like geometric distortions, blurring, finite sized apertures, etc. 
-
-&lt;picture&gt;&lt;img src=&quot;/assets/images/pinhole2.png&quot; /&gt;&lt;/picture&gt;
-
-The figure shown here depicts a pinhole camera model. The camera is placed at the origin $O$. The point $P$ represents a point in the real world. We are trying to capture that onto a 2D plane. The &lt;span class=&quot;rainbow&quot;&gt; image plane &lt;/span&gt; represents the 2D plane that you get after capturing the image. The image plane actually contains the image that you see after capturing a picture. So basically, we are trying to map every 3D point to a point on the image plane. In this case, the point $P$ gets mapped to $P_c$. The distance between the origin $O$ and this image plane is called the &lt;span class=&quot;highlight-sketch&quot;&gt; focal length &lt;/span&gt; of the camera. This is the parameter you modify when you adjst the &lt;mark&gt; focus &lt;/mark&gt; of the camera. 
-
-&lt;h2&gt; Intrinsic and Extrinsic Parameters &lt;/h2&gt; 
-In the above figure, we want to estimate $(u,v)$ from $(X,Y,Z)$. Let's say the focal length is denoted by $f$. If you look at the triangle formed using the origin-$P_c$-and the $Z$-axis with the origin-$P$ and $Z$-axis, you will notice that they are similar triangles. This means that $u$ depends on the $f$, $X$ and $Z$. Similarly, $v$ depends on $f$, $Y$ and $Z$. 
-
-$$
-
-\displaylines{
-u = fX/Z \\\
-v = fY/Z
-}
-
-$$
-
-Next, if the origin of the 2D image coordinate system does not coincide with where the $Z$-axis intersects the image plane, we need to translate $P_c$ into the desired origin. Let this translation be defined by $(t_u, t_v)$. So now, $u$ and $v$ are given by:
-
-$$
-\displaylines{
-u = fX/Z + t_u \\\
-v = fY/Z + t_v
-}
-$$
-
-So up until now, we have something that can translate $(X,Y,Z)$ to $(u,v)$. Let's denote this matrix $M$. So we can write:
-
-$$ 
-P_c = MP
-$$
-
-
-Since this is a camera image, we need to express it in inches. For this, we will need to know the resolution of the camera in pixels/inch. If the pixels are square the resolution will be identical in both $u$ and $v$ directions of the camera image coordinates. However, for a more general case, we assume rectangular pixels with resolution $m_u$ and $m_v$ pixels/inch in $u$ and $v$ directions respectively. Therefore, to measure $P_c$ in pixels, its $u$ and $v$ coordinates should be multiplied by $m_u$ and $m_v$ respectively. So now, this new transformation matrix depends on $f, X, Y, Z, t_u, t_v, m_u, m_v$. Let's denote this by:
-
-$$
-P_c = KP
-$$
-
-Here, $K$ is called the &lt;span class=&quot;typewriter&quot;&gt; intrinsic parameter matrix &lt;/span&gt; for the camera.
-
-Now, if the camera does not have its center of projection at $(0,0,0)$ and is oriented in an arbitrary fashion (not necessarily $z$-perpendicular to the image plane), then we need roation and translation to make the camera coordinate system coincide with the configuration in that pinhole camera figure. Let the rotation applied to coincide the principal axis with $Z$-axis given by a $3 \times 3$ rotation matrix $R$. Then the matrix is formed by first applying the translation followed by the rotation is given by the $3 \times 4$ matrix.
-
-$$
-E = \\( R|RT \\)
-$$
-
-This is called the &lt;span class=&quot;typewriter&quot;&gt; extrinsic parameter matrix for the camera &lt;/span&gt;. So, the complete camera transformation can now be represented as: 
-
-$$ 
-K \\( R|RT \\) = KR \\( I|T \\)
-$$
-
-Hence, $P_c$ the projection of $P$ is given by:
-
-$$
-P\_c = KR \\( I|T \\) P = CP
-$$
-
-$C$ is a $3 \times 4$ matrix usually called the complete camera calibration matrix. So basically, camera calibration matrix is used to transform a 3D point in the real world to a 2D point on the image plane considering all the things like focal length of the camera, distortion, resolution, shifting of origin, etc. 
-
-&lt;h2&gt; References &lt;/h2&gt;
-&lt;ul&gt; 
-&lt;li&gt;&lt;a href=&quot;https://ksimek.github.io/2012/08/14/decompose/&quot;&gt; ksimek blog &lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://prateekvjoshi.com/2014/05/31/understanding-camera-calibration/&quot;&gt; prateekvjoshi blog &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">This blog post covers the process of decomposing a camera matrix into intrinsic and extrinsic matrices. We will untangle the issues that arise due to different coordinate conventions.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/camera2.png" /><media:content medium="image" url="http://localhost:4000/assets/images/camera2.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>seri</name></author><category term="computer vision" /><category term="featured" /><summary type="html">We will be looking at depth estimation as a multi-image problem. Multi-view problems span different problem domains: these include stereo vision, SfM, optical flow, etc.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/depth/12.png" /><media:content medium="image" url="http://localhost:4000/assets/images/depth/12.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
