@@ -52,9 +52,24 @@ Why do human beings have this desire to be liked? To come off as a good person? 
 
 So maybe there are two things I need to work on: accepting without judgement and choosing me instead of other people. And maybe accept mistakes and failures as a natural consequence of any action or choice.
 
+I am going to have to get used to the feeling of uncertainty. Uncertainty leaves you in a very vulnerable state, and in some way you are going to fail and make mistakes, and that is okay. 
+
+There is no perfect solution. The truth is that you cannot have it all. What kind of price are you going to pay? You gotta let go of some of the things you want. Or you are gonna losethem all. I have to let go of the perfect picture in my head and accept the world as is. I am going to fail, and that is okay. I am going to disappoint people, and that is okay. Some things are not going to go as planned, and that is okay.
+
+Here's another paradox. In order to be playful and curious (at something), you must be doubtful and logical (at other things). In order to trust yourself at something, you have to doubt yourself at other things. In order to trust the right people, you have to doubt other people. But the question is, is this the time to engage or avoid? 
+
+People pleasing can be thought of this way. In order not to disappoint other people, you need to disappoint them. Life can be thought of this way. In order to look at things thoroughly, in a difficult way, you have to think of other things the easy way. In order to have what I want, I must let go of what I want. Sometimes you have to overlook stuff to really focus on what matters. You cannot analyze every part of your life and decisions. Or you will end up losing it all.
+
+You have to make a decision about some things in order to not make a decision, that is in order to look things polarized in the really important stuff. 
 
 
-   
+
+
+
+ 
+
+
+
 
 
 <picture><img src="{{site.baseurl}}/assets/images/disparity.png"></picture>
