@@ -1,0 +1,37 @@
+*.gem
+*.rbc
+.bundle
+.config
+.yardoc
+InstalledFiles
+_yardoc
+coverage
+doc/
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+log
+.highlight_cache
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+.DS_Store
+.api_token
+.project_id
+.ruby-*
