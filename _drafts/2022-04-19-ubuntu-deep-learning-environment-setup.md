@@ -12,9 +12,6 @@
 - nvidia-docker2 nvidia-container-toolkit
 
 
-
-
-
 <h2> Step 1: Getting Hardware/Software Information </h2>
 
 - GeForce RTX 3080
@@ -143,8 +140,6 @@ sudo /usr/local/cuda-11.6/bin/cuda-uninstaller
 sudo /usr/bin/nvidia-uninstall
 ```
 
-
-
 <h3> Download the Distribution-Specific Packages </h3>
 
 NVIDIA recommends using the distribution-specific packages which interface with the distribution's native package management system. To do this, head over to the nvidia developer site and download the deb file (http://developer.nvidia.com/cuda-downloads).
@@ -222,47 +217,35 @@ docker version
 systemctl --user enable docker-desktop
 ```
 
+<h2> Step 6: Install NVIDIA Container for Docker </h2>
 
-<h2> Step 5: Install NVIDIA Container Toolkit </h2>
+Over the last few years there have been a dramatic rise in the use of software containers for simplifying deployment of data center applications at scale. Containers encapsulate an application along with its libraries and other dependencies to provide reproducible and reliable execution of applications and services without the overhead of a full virtual machine. 
 
-<h3> Overview </h3>
+The NVIDIA Container Runtime for Docker, also known as `nvidia-docker2` enables GPU-based applications that are portable across multiple machines, in a similar way to how Docker enables CPU-based applications to be deployed across multiple machines. It accomplishes this through the use of Docker containers. 
 
-The NVIDIA Container Toolkit allows users to build and run GPU accelerated containers. The toolkit includes a container runtime library and utilities to automatically configure containers to leverage NVIDIA GPUs. The NVIDIA container stack is architected so that it can be targeted to support any container runtime in the ecosystem. The components of the stack include:
+<span class="sidenote"> A Docker image is simply the software (including the filesystem and parameters) that you run with a Docker container. </span>
 
-<ul><li> `nvidia-docker` wrapper </li>
-<li> `nvidia-container-runtime` </li>
-<li> `nvidia-container-toolkit`, `nvidia-container-runtime-hook` </li>
-<li> `libnvidia-container1`, `nvidia-container-cli` </li></ul>
+<span class="sidenote"> A Docker container is an instance of a Docker image. A Docker container deploys a single application or service per container. </span>
 
+<h3> What is A Docker Container? </h3>
 
-The main packages of the NVIDIA Container Toolkit are: `nvidia-container-toolkit`, `libnvidia-container-tools`, `libnvidia-container1`. In addition to these main packages, the following two packages are considered part of the NVIDIA container stack: `nvidia-docker2`, `nvidia-container-runtime`. Since the `nvidia-docker2` package contains docker-specifics, it also introduces a dependence on `docker` packages that are determined by the platform where the package is being installed. 
+A Docker container is a mechanism for bundling a Linux application with all of its libraries, data files, and environment variables so that the execution environment is always the same, on whatever Linux system it runs and between instances on the same host. 
 
+Unlike a VM which has its own isolated kernel, containers use the host system kernel. Therefore, all kernel calls from the container are handled by the host system kernel. DGX systems use Docker containers as the mechanism for deploying deep learning frameworks. 
 
-<h3> Install Docker </h3> 
+A Docker container is composed of layers. The layers are combined to create the container. You can think of layers as intermediate images that add some capability to the overall container. If you make a change to a layer through a DockerFile, than Docker rebuilds that layer and all subsequent layers but not the layers that are not affected by the build. This reduces the time to create containers and also allows you to keep them modular. 
 
-Docker-CE on Ubuntu can be setup using Docker's official convenience script:
+Docker is also very good about keeping one copy of the layers on a system. This saves space and also greatly reduces the possibility of "version skew" so that layers should be the same are not duplicated. 
 
-```bash
-curl https://get.docker.com | sh && sudo systemctl --now enable docker
-```
+<h3> Why Use A Container? </h3>
 
-If you don't want to preface the `docker` command with `sudo`, create a Unix group called `docker` and add users to it. When the docker daemon starts, it creates a Unix socket accessible by members of the `docker` group. 
+One of the many benefits to using containers is that you can install your application, dependencies and environment variables one time into the container image; rather than on each system you run on. the key benefits to using containers also include:
 
-```bash
-sudo groupadd docker
-sudo usermod -aG docker $USER
-newgrp docker
-# verify that docker runs w/o sudo
-docker run hello-world
-```
-
-<h4> Configure Docker to start on boot </h4>
-
-```bash
-sudo systemctl enable docker.service
-sudo systemctl enable containerd.service
-```
-
+<ul><li> Install your application, dependencies and environment variables one time into the container image; rather than on each system you run on. </li>
+<li> There is no risk of conflict with libraries that are installed by others. </li>
+<li> Containers allow use of multiple different deep learning frameworks, which may have conflicting software dependencies, on the same server. </li>
+<li> After you build your application into a container, you can run it on lots of other places, especially servers, without having to install any software. </li>
+<li> Legacy accelerated compute applications can be containerized and deployed on newer systems, on premise, or in the cloud. </li>
 
 
 

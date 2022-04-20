@@ -133,9 +133,19 @@ $$
 
 Note that the second part of the equation involves the inverse tangent function. By convention, the function $\tan^{-1}$ returns values between $\pi/2$ and $-\pi/2$. You must be careful when finding the $\theta$ of vectors with an angle outside of this range. Specifically, for vectors with $v_x < 0$, you must add $\pi$ to $\tan^{-1})(r_y/r_x)$ to obtain the correct $\theta$. 
 
+<h3> Determinants </h3>
+
+A parallelpiped is a box whose opposite faces are parallel but whose sides are slanted. How do we compute the volume of a parallelpiped? The determinant tool is the perfect tool for this purpose. 
+
+$$
+\operatorname{det}: \mathbb{R}^{n \times n} \rightarrow \mathbb{R} 
+$$
+
+The determinant of a matrix, denoted $\operatorname{det}(A)$ or $|A|$, is a particular way to multiply the entries of the matrix to produce a single number. We use determinants for all kinds of tasks: to compute areas and volumes, to solve systems of equations, to check whether a matrix is invertible or not. 
+
+We can interpret the determinant of a matrix intuitively as a geometrical calculation. The determinant is the "volume" of the geometric shape whose edges are the rows of the matrix. For $2 \times 2$ matrices, the determinant corresponds to the area of parallelogram. For $3 \times 3$ matrices, the determinant corresponds to the volume of a parallelpiped. 
 
 
- 
 
 
 
