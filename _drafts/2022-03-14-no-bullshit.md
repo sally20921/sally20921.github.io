@@ -143,7 +143,8 @@ $$
 
 The determinant of a matrix, denoted $\operatorname{det}(A)$ or $|A|$, is a particular way to multiply the entries of the matrix to produce a single number. We use determinants for all kinds of tasks: to compute areas and volumes, to solve systems of equations, to check whether a matrix is invertible or not. 
 
-We can interpret the determinant of a matrix intuitively as a geometrical calculation. The determinant is the "volume" of the geometric shape whose edges are the rows of the matrix. For $2 \times 2$ matrices, the determinant corresponds to the area of parallelogram. For $3 \times 3$ matrices, the determinant corresponds to the volume of a parallelpiped. 
+We can interpret the determinant of a matrix intuitively as a geometrical calculation. The determinant is the "volume" of the geometric shape whose edges are the rows of the matrix. For $2 \times 2$ matrices, the determinant corresponds to the area of parallelogram. For $3 \times 3$ matrices, the determinant corresponds to the volume of a parallelpiped. For dimensions $d>3$, we say the determinant measures a $d$-dimensional hyper-volume. 
+
 
 
 
