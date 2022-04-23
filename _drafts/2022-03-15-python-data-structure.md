@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ""
+title:  "Hands-On Data Structures and Algorithms with Python"
 author: seri
 categories: [ computer vision ]
 image: assets/images/depth/1.jpg
@@ -912,6 +912,103 @@ cars.reverse()
 print(cars)
 ```
 Notice that `reverse()` doesn't sort backward alphabetically; it simply reverses the order of the list. The `reverse()` method changes the order of a list permanently, but you can revert to the original order anytime by applying `reverse()` to the same list a second time. 
+
+<h3> Functions as First Class Objects </h3>
+
+In Python, it is not only data types that are treated as objects. Both functions and classes are what are known as first class objects, allowing them to be manipulated in the same way as built-in data types. By definition, class objects are the following:
+
+<ul><li> Created at runtime </li><li> Assigned as a variable or in a data structure </li> <li> Passed as an argument to a function </li><li> Returned as the result of a function </li></ul>
+
+In Python, the term first class object is a bit of a misnomer, since it implies some sort of hierarchy, whereas all Python objects are essentially first class. 
+
+To have a look at how this works, let's define a simple function:
+
+```python
+def greeting(language):
+ if language == 'eng':
+  return 'hello world'
+ if language == 'fr':
+  return 'Bonjour le monde'
+ else:
+  return 'language not supported'
+```
+Since user-defined functions are objects, we can do things such as include them in other objects, such as lists. Functions can also be used as arguments for other functions. For example, we can define the following function:
+
+```python
+def callf(f):
+ lang = 'eng'
+ return (f(lang))
+
+callf(greeting)
+>> 'hello world'
+```
+
+Here, `callf()` takes a function as an argument, sets a language variable to `eng`, and then calls the function with the language variable as its argument. We could see how this would be useful if, for example, we wanted to produce a program that returns specific sentences in a variety of languages, perhaps for some sort of natural language application. 
+
+Here, we have a central place to set the language. As well as our greeting function, we could create similar functions that return different sentences. By having one point where we set the language, the rest of the program logic does not have to worry about this. If we want to change the language, we simply change the language variable and we can keep everything else the same.  
+
+<h3> Higher Order Functions </h3>
+
+Functions that take other functions as arguments, or that return functions, are called higher order functions. Python 3 contains two built-in higher order functions-`filter()` and `map()`. Note that in earlier versions of Python, these functions returned lists; in Python 3, they return an iterator, making them much more efficient. The `map()` function provides an easy way to transform each item into an iterable object. For example, here is an efficient, compact way to perform an operation on a sequence. Note the use of the `lambda` anonymous function: 
+
+```bash
+list = [1,2,3,4]
+for item in map(lambda n: n*2, list):
+ print(item)
+```
+
+Similarly, we can use the filter built-in function to filter items in a list:
+
+```bash
+list = [1,2,3,4]
+for item in filter(lambda n: n<4, list):
+ print(item)
+```
+
+Note that both map and filter perform the same function similar to what can be achieved by list comprehensions. There does not seem to be a great deal of difference in the performance characteristics, apart from the slight performance advantage when using the in-built functions map and filter without the `lambda` operator, compared to list comprehensions. Despite this, most style guides recommend the use of list comprehensions over built-in functions, possibly because they tend to be easier to read. 
+
+Creating our own higher order functions is one of the hallmarks of functional programming style. A practical example of how higher order functions can be useful is demonstrated by the following:
+
+Here, we are passing the `len` function as the key to the sort function. This way, we can sort a list of words by length:
+
+```bash
+words = str.split('The longest word in the sentence')
+sorted(words, key=len)
+['in','The','word','this','longest','sentence']
+```
+Here is another example for case-insensitive sorting:
+
+```bash
+sl = ['A','b','a','C,'c']
+sl.sort(key=str.lower)
+# ['A','a','b'.'C','c']
+sl.sort()
+# ['A','C','a','b','c']
+```
+Note the difference between the `list.sort()` method and the sorted built-in function. The `list.sort()` method, a method of the list object, sorts the existing instance of a list without copying it. This method changes the target object and returns `None`. It is an important convention in Python that functions or methods that change the object return `None`, to make it clear that no new object was created and that the object itself was changed. 
+
+On the other hand, the sorted built-in function returns a new list. It actually accepts any iterable object as an argument, but it will always return a list. Both list `sort()` and `sorted()` take two optional keyword arguments as key. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

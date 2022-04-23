@@ -245,7 +245,52 @@ One of the many benefits to using containers is that you can install your applic
 <li> There is no risk of conflict with libraries that are installed by others. </li>
 <li> Containers allow use of multiple different deep learning frameworks, which may have conflicting software dependencies, on the same server. </li>
 <li> After you build your application into a container, you can run it on lots of other places, especially servers, without having to install any software. </li>
-<li> Legacy accelerated compute applications can be containerized and deployed on newer systems, on premise, or in the cloud. </li>
+<li> Legacy accelerated compute applications can be containerized and deployed on newer systems, on premise, or in the cloud. </li></ul>
+
+<h3> Example: Running A Container </h3>
+
+As a user, run the container interactively:
+
+```bash
+docker run --gpus all -it --rm -v local_dir:container_dir nvcr.io/nvidia/<repository>:<xx.xx>
+```
+
+The base command `docker run --gpus all` assumes that your system has Docker 19.03-CE installed. 
+
+```bash
+docker run --gpus all --rm -ti nvcr.io/nvidia/pytorch:21.02-py3
+```
+
+From within the container, start the job that you want to run. The precise command to run depends on the deep learning framework in the container that you are running and the job that you want to run. For details, see the `/workspace/README.md` file for the container. 
+
+<h3> Specifying A User </h3>
+
+Unless otherwise specified, the user inside the container is the root user. 
+
+When running within the container, files created on the host operating system or network volumes can be accessed by the root user. This is unacceptable for some users and they will want to set the ID of the user in the container. For example, to set the user in the container to be the currently running user, issue the following:
+
+```bash
+docker run --gpus all -ti --rm -u $(id -u):$(id -g) nvcr.io/nvidia/<repository>:<container version>
+```
+
+Typically, this results in warnings due to the fact that the specified user and group do not exist in the container. The warning can be ignored. 
+
+<h3> Setting The Remove Flag </h3>
+
+By default, Docker containers remain on the system after being run. Repeated pull or run operations use up more and more space on the local disk, even after exiting the container. Therefore, it is important to clean up containers after exiting. 
+
+Do not use the `--rm` flag if you have made changes to the container that you want to save, or if you want to access job logs after the run finishes. To automatically remove a container when exiting, add the `--rm` flag to the run command. 
+
+```bash
+docker run --gpus all --rm nvcr.io/nvidia/<repository>:<container version>
+```
+
+
+
+
+
+
+
 
 
 

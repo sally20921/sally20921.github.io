@@ -35,7 +35,7 @@ $$
 \rightarrow{u} \cdot \rightarrow{v} = u_x v_x + u_y v_y \\
 \lVert \rightarrow{u} \rVert = \sqrt{\rightarrow{u} \cdot \rightarrow{u}} = \sqrt{u_x^2 + u_y^2}
 \end{aligned}
-
+S
 We will also sometimes simply use the letter $u$ to denote the length of $\rightarrow{u}$. 
 
 $$
@@ -69,7 +69,7 @@ $$
 \alpha \rightarrow{v} = (\alpha v_x, \alpha v_y)
 $$
 
-where each component is multiplied by the scaling factor $\alpha$. Scaling changes the length of a vector. If $\alpha > 1$ the vector will get longer, and $0 \leq \alpha 1$ then the vector will become shorter. If $\alpha$ is a negative number, the scaled vector will point in the opposite direction. 
+where each component is multiplied by the scaling factor $\alpha$. Scaling changes the length of a vector. If $\alpha > 1$ the vector will get longer, and $0 \leq \alpha 1$ then the vector will bSecome shorter. If $\alpha$ is a negative number, the scaled vector will point in the opposite direction. 
 
 <h4> Length </h4>
 
@@ -145,10 +145,16 @@ The determinant of a matrix, denoted $\operatorname{det}(A)$ or $|A|$, is a part
 
 We can interpret the determinant of a matrix intuitively as a geometrical calculation. The determinant is the "volume" of the geometric shape whose edges are the rows of the matrix. For $2 \times 2$ matrices, the determinant corresponds to the area of parallelogram. For $3 \times 3$ matrices, the determinant corresponds to the volume of a parallelpiped. For dimensions $d>3$, we say the determinant measures a $d$-dimensional hyper-volume. 
 
+Consider the linear transformation $T: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ defined through the matrix-vector product with a matrix $A_T: T(\vec{x}) \equiv A_T(\vec{x})$. The determinant of the matrix $A_T$ is the scale factor associated with the linear transformation $T$. The scale factor of the linear transformation $T$ describes how the area of a unit square in the input space (a square with dimension $1\times1$) is tranformed by $T$. After passing through $T$, the unit square is transformed to a parallelogram with area $\operatorname{det}(A_T)$. 
+
+Linear transformations that shrink area have $\operatorname{det}(A_T)<1$, while linear transformations that enlarge areas have $\operatorname{det}(A_T)>1$. A linear transformation that is area preserving has $\operatorname{det}(A_T)=1$. 
+
+The determinant is also used to check linear independence for a given set of vectors. We construct a matrix using the vectors as the matrix rows, and compute its determinant. If the determinant is nonzero, the vectors are linearly independent. 
+
+The determinant of a matrix tells us whether or not that matrix is invertible. If $\operatorname{det}(A) \neq 0$, then $A$ is invertible; if $\operatorname{det}(A) = 0$, $A$ is not invertible. The determinant shares a connection with the vector cross product, and is also used in the definition of the eigenvalue equation. 
 
 
-
-
+<h4> Formulas </h4>
 
 
 
